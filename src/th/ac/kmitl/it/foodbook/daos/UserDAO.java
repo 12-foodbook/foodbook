@@ -66,6 +66,29 @@ public class UserDAO extends DAO {
 		return user;
 	}
 	
+	public User find(long id) throws SQLException {
+		User user = null;
+		
+		Connection conn = ds.getConnection();
+		String sql = "SELECT * FROM users WHERE user_id = ? LIMIT 1";
+		PreparedStatement stm = conn.prepareStatement(sql);
+		
+		stm.setLong(1, id);
+		
+		ResultSet rs = stm.executeQuery();
+		
+		if (rs.next()) {
+			user = new User();
+			user.setUser_id(rs.getLong("user_id"));
+			user.setUsername(rs.getString("username"));
+			user.setHashed_password(rs.getString("hashed_password"));
+			user.setSalt(rs.getString("salt"));
+		}
+		
+		conn.close();
+		return user;
+	}
+	
 	public User findByUsername(String username) throws SQLException {
 		User user = null;
 		
