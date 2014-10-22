@@ -5,21 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 
 public class RecipeDAO extends DAO {
 
-	public RecipeDAO(DataSource ds) {
-		super(ds);
-
+	public RecipeDAO(Connection conn) {
+		super(conn);
 	}
 
 	public Recipe find(long id) throws SQLException {
 		Recipe recipe = null;
 
-		Connection conn = ds.getConnection();
 		String sql = "SELECT * FROM recipes WHERE recipe_id = ? LIMIT 1";
 		PreparedStatement stm = conn.prepareStatement(sql);
 
@@ -36,9 +32,7 @@ public class RecipeDAO extends DAO {
 
 		}
 
-		conn.close();
 		return recipe;
-
 	}
 
 }

@@ -1,13 +1,13 @@
 package th.ac.kmitl.it.foodbook.daos;
 
-import javax.sql.DataSource;
+import java.sql.Connection;
 
 public abstract class DAO {
     
-    protected DataSource ds;
-    
-    public DAO(DataSource ds) {
-    	this.ds = ds;
-    }
+    protected Connection conn;
+
+	public DAO(Connection conn) {
+		this.conn = conn;
+	}
 
 }

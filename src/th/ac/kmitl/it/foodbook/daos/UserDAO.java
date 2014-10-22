@@ -5,19 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import th.ac.kmitl.it.foodbook.Foodbook;
 import th.ac.kmitl.it.foodbook.beans.User;
 
 public class UserDAO extends DAO {
 
-	public UserDAO(DataSource ds) {
-		super(ds);
+	public UserDAO(Connection conn) {
+		super(conn);
 	}
 
 	public boolean create(User user) throws SQLException {
-		Connection conn = ds.getConnection();
 		String sql = "INSERT INTO users (username, hashed_password, salt) VALUES (?, ?, ?)";
 		PreparedStatement stm = conn.prepareStatement(sql);
 		
@@ -27,7 +24,6 @@ public class UserDAO extends DAO {
 		
 		int rowCount = stm.executeUpdate();
 		
-		conn.close();
 		return rowCount == 1;
 	}
 
@@ -43,7 +39,6 @@ public class UserDAO extends DAO {
 		hashedPasswordBytes = Foodbook.hashPassword(password, salt);
 		hashedPassword = Foodbook.bytesToString(hashedPasswordBytes);
 		
-		Connection conn = ds.getConnection();
 		String sql = "SELECT * FROM users WHERE username = ? AND hashed_password = ? LIMIT 1";
 		PreparedStatement stm = conn.prepareStatement(sql);
 		
@@ -62,14 +57,12 @@ public class UserDAO extends DAO {
 			user.setSalt(rs.getString("salt"));
 		}
 		
-		conn.close();
 		return user;
 	}
 	
 	public User find(long id) throws SQLException {
 		User user = null;
 		
-		Connection conn = ds.getConnection();
 		String sql = "SELECT * FROM users WHERE user_id = ? LIMIT 1";
 		PreparedStatement stm = conn.prepareStatement(sql);
 		
@@ -85,14 +78,12 @@ public class UserDAO extends DAO {
 			user.setSalt(rs.getString("salt"));
 		}
 		
-		conn.close();
 		return user;
 	}
 	
 	public User findByUsername(String username) throws SQLException {
 		User user = null;
 		
-		Connection conn = ds.getConnection();
 		String sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
 		PreparedStatement stm = conn.prepareStatement(sql);
 		
@@ -108,7 +99,6 @@ public class UserDAO extends DAO {
 			user.setSalt(rs.getString("salt"));
 		}
 		
-		conn.close();
 		return user;
 	}
 
