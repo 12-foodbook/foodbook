@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>เพิ่มสูตรอาหาร</title>
+<title>เพิ่มหมวดหมู่</title>
 <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css"
 	type="text/css" />
 <script type="text/javascript"
@@ -57,51 +57,78 @@
 			</ul>
 		</div>
 	</div>
-	<!-- form insert  -->
-	<form class="form-horizontal">
+	<!-- Add Category View -->
+	<!--Category Accordion  -->
+	<div class="container">
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion"
+							href="#collapseOne"> หมวดที่ 1 </a>
+					</h4>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse in">
+
+					<div class="panel-body">
+						<a href="#">test</a>
+						<a href="#">test</a>
+						<a href="#">test</a>
+						<a href="#">test</a>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion"
+							href="#collapseTwo"> หมวดที่ 2 </a>
+					</h4>
+				</div>
+				<div id="collapseTwo" class="panel-collapse collapse">
+					<div class="panel-body">Anim pariatur cliche reprehenderit,
+						enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+						moon officia aute, non cupidatat skateboard dolor brunch. Food
+						truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+						sunt aliqua put a bird on it squid single-origin coffee nulla
+						assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer
+						labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+						excepteur butcher vice lomo. Leggings occaecat craft beer
+						farm-to-table, raw denim aesthetic synth nesciunt you probably
+						haven't heard of them accusamus labore sustainable VHS.</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion"
+							href="#collapseThree"> หมวดที่ 3 </a>
+					</h4>
+				</div>
+				<div id="collapseThree" class="panel-collapse collapse">
+					<div class="panel-body"></div>
+				</div>
+			</div>
+		</div>
+		<!-- Category Add form  -->
+		<form class="form-horizontal">
 		<fieldset>
-			<legend>เพิ่มสูตรอาหาร</legend>
+			<legend>เพิ่มหมวดอาหาร</legend>
 			<div class="form-group">
-				<label for="inputFoodName" class="col-lg-2 control-label">ชื่ออาหาร</label>
+				<label for="inputCategoryName" class="col-lg-2 control-label">ชื่อหมวดอาหาร</label>
 				<div class="col-lg-10">
 					<input type="text" class="form-control" id="inputFoodName"
-						placeholder="ชื่ออาหาร">
+						placeholder="ชื่อหมวดอาหาร">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputVideoLink" class="col-lg-2 control-label">video
-					link</label>
+				<label for="inputRecipeInCate" class="col-lg-2 control-label">อาหารในหมวด</label>
 				<div class="col-lg-10">
-					<input type="text" class="form-control" id="inputVideoLink"
-						placeholder="video link example: http://www.youtube.com/watch?v=6YZlFdTIdzM">
+					<input type="text" class="form-control" id="inputRecipeInCate"
+						placeholder="อาหารในหมวด">
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="inputVideoLink" class="col-lg-2 control-label">รูปประกอบ</label>
-				<div class="col-lg-10">
-					<input id="input-1" type="file" class="file" multiple="true">
-				</div>
-
-			</div>
-			<div class="form-group">
-				<label for="inputIngredients" class="col-lg-2 control-label">วัตถุดิบ</label>
-				<div class="col-lg-10">
-					<textarea class="form-control" rows="3" id="inputIngredients"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputKitchenWare" class="col-lg-2 control-label">เครื่องครัว</label>
-				<div class="col-lg-10">
-					<textarea class="form-control" rows="3" id="inputKitchenWare"></textarea>
-
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputFoodProcedure" class="col-lg-2 control-label">ขั้นตอนการทำ</label>
-				<div class="col-lg-10">
-					<textarea class="form-control" rows="3" id="inputFoodProcedure"></textarea>
-				</div>
-			</div>
+			
 			<div class="form-group">
 				<div class="col-lg-10 col-lg-offset-2">
 					<button class="btn btn-default">Cancel</button>
@@ -110,4 +137,6 @@
 			</div>
 		</fieldset>
 	</form>
+	</div>
+</body>
 </html>
