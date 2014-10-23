@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Foodbook / <c:out value="${pageTitle}"/></title>
 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
 </head>
 <body>
