@@ -6,7 +6,6 @@ public class Recipe {
 	private String name;
 	private String video_url;
 	private long user_id;
-	private User user;
 
 	public long getRecipe_id() {
 		return recipe_id;
@@ -38,14 +37,6 @@ public class Recipe {
 
 	public void setUser_id(long user_id) {
 		this.user_id = user_id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }
