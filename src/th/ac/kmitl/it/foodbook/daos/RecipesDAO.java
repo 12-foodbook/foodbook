@@ -12,6 +12,19 @@ public class RecipesDAO extends DAO {
 	public RecipesDAO(Connection conn) {
 		super(conn);
 	}
+	
+	public boolean create(Recipe recipe) throws SQLException {
+		String sql = "INSERT INTO recipes (name, video_url, user_id) VALUES (?, ?, ?)";
+		PreparedStatement stm = conn.prepareStatement(sql);
+		
+		stm.setString(1, recipe.getName());
+		stm.setString(2, recipe.getVideo_url());
+		stm.setLong(3, recipe.getUser_id());
+		
+		int rowCount = stm.executeUpdate();
+		
+		return rowCount == 1;
+	}
 
 	public Recipe find(long id) throws SQLException {
 		Recipe recipe = null;
