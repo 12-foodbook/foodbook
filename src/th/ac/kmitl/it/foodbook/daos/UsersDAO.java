@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import th.ac.kmitl.it.foodbook.Foodbook;
 import th.ac.kmitl.it.foodbook.beans.User;
 
-public class UserDAO extends DAO {
+public class UsersDAO extends DAO {
 
-	public UserDAO(Connection conn) {
+	public UsersDAO(Connection conn) {
 		super(conn);
 	}
 
