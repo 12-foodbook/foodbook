@@ -10,9 +10,6 @@ import org.apache.tomcat.util.codec.binary.Base64;
 public class Foodbook {
     
     public static final String NANE = "Foodbook";
-    public static final String VERSION = "0.0.1";
-    
-    private static final int DIGEST_ITERATION = 1000;
     
     private Foodbook() {}
     
@@ -33,10 +30,6 @@ public class Foodbook {
 			digest.reset();
 			digest.update(salt);
 			hashedPassword = digest.digest(password.getBytes("UTF-8"));
-			for (int i = 0; i < DIGEST_ITERATION; i++) {
-				digest.reset();
-				hashedPassword = digest.digest(hashedPassword);
-			}
 		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
