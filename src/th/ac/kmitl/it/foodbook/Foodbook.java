@@ -5,23 +5,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
 import org.apache.tomcat.util.codec.binary.Base64;
 
 public class Foodbook {
     
     public static final String NANE = "Foodbook";
     
-    @Resource(name = "jdbc/foodbook_development")
-    public static DataSource dataSource;
-    
     private Foodbook() {}
-    
-    public static void main(String[] args) {
-    	
-    }
     
     public static byte[] getSalt() {
     	SecureRandom random = null;
