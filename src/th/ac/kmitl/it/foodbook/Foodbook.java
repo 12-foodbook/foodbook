@@ -5,21 +5,35 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 
 public class Foodbook {
     
     public static final String NANE = "Foodbook";
     
+    @Resource(name = "jdbc/foodbook_development")
+    public static DataSource dataSource;
+    
     private Foodbook() {}
     
     public static void main(String[] args) {
-    	byte[] salt = getSalt();
-    	byte[] hashedPassword = hashPassword("password1@#$", salt);
-    	String saltString = bytesToString(salt);
-    	String hashedPasswordString = bytesToString(hashedPassword);
-    	System.out.println(saltString);
-    	System.out.println(hashedPasswordString);
+    	
+    }
+    
+    public static byte[] getSalt() {
+    	SecureRandom random = null;
+    	byte[] salt = null;
+		try {
+			random = SecureRandom.getInstance("SHA1PRNG");
+	    	salt = new byte[8];
+	    	random.nextBytes(salt);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+    	return salt;
     }
 
     public static byte[] hashPassword(String password, byte[] salt) {
@@ -34,19 +48,6 @@ public class Foodbook {
 			e.printStackTrace();
 		}
     	return hashedPassword;
-    }
-    
-    public static byte[] getSalt() {
-    	SecureRandom random = null;
-    	byte[] salt = null;
-		try {
-			random = SecureRandom.getInstance("SHA1PRNG");
-	    	salt = new byte[8];
-	    	random.nextBytes(salt);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-    	return salt;
     }
     
     public static String bytesToString(byte[] bytes) {
