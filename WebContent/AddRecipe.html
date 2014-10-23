@@ -56,46 +56,57 @@
 			</ul>
 		</div>
 	</div>
-	<!-- video link Edit-->
-	<h4 class="media-heading">Video Head</h4>
-	<section class="row">
-		<div class="span6">
-			<div class="flex-video widescreen">
-				<iframe src="http://www.youtube.com/embed/NFnogrjN7rs?autoplay=1"
-					frameborder="0" allowfullscreen=""></iframe>
+	<!-- form insert  -->
+	<form class="form-horizontal">
+		<fieldset>
+			<legend>เพิ่มสูตรอาหาร</legend>
+			<div class="form-group">
+				<label for="inputFoodName" class="col-lg-2 control-label">ชื่ออาหาร</label>
+				<div class="col-lg-10">
+					<input type="text" class="form-control" id="inputFoodName"
+						placeholder="ชื่ออาหาร">
+				</div>
 			</div>
-		</div>
-	</section>
+			<div class="form-group">
+				<label for="inputVideoLink" class="col-lg-2 control-label">video
+					link</label>
+				<div class="col-lg-10">
+					<input type="text" class="form-control" id="inputVideoLink"
+						placeholder="video link">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputVideoLink" class="col-lg-2 control-label">รูปประกอบ</label>
+				<div class="col-lg-10">
+					<input id="input-1" type="file" class="file" multiple="true">
+				</div>
 
-	<!-- Jammy video
-<div class="media" >
-<div class="media-body">
-    <h4 class="media-heading">Video Head</h4>
-  </div>
-    <video class="media-object" controls autoplay>
-    <source src="test content/Scones.mp4" type="video/mp4">
-    </video>
-    </div> -->
-	<!-- other content -->
-	<div class="well">
-		<h2>Example recipe</h2>
-		<!-- picture -->
-		<img class="media-img" src="test content/scone.jpg">
-		<!-- description -->
-		<ol>
-			<li>asdkklnsasnd</li>
-			<li>dafdgsfbfs</li>
-			<li>gsdgffgfd</li>
-			<li>gsdgsggsfg</li>
-			<li>sdgffbgdfg</li>
-		</ol>
+			</div>
+			<div class="form-group">
+				<label for="inputIngredients" class="col-lg-2 control-label">วัตถุดิบ</label>
+				<div class="col-lg-10">
+					<textarea class="form-control" rows="3" id="inputIngredients"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputKitchenWare" class="col-lg-2 control-label">เครื่องครัว</label>
+				<div class="col-lg-10">
+					<textarea class="form-control" rows="3" id="inputKitchenWare"></textarea>
 
-	</div>
-	<!-- rating -->
-	<div class="rating">
-		<span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
-	</div>
-
-
-</body>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputFoodProcedure" class="col-lg-2 control-label">ขั้นตอนการทำ</label>
+				<div class="col-lg-10">
+					<textarea class="form-control" rows="3" id="inputFoodProcedure"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-lg-10 col-lg-offset-2">
+					<button class="btn btn-default">Cancel</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
 </html>
