@@ -9,3 +9,6 @@
 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
 </head>
 <body>
+
+<c:out value="${alert}"/>
+<c:set var="alert" scope="session" value=""/>
