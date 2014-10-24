@@ -16,7 +16,7 @@ public class UsersDAO extends DAO {
 
 	public boolean create(User user) throws SQLException {
 		String sql = "INSERT INTO users (username, hashed_password, salt) VALUES (?, ?, ?)";
-		PreparedStatement stm = conn.prepareStatement(sql);
+		PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 		
 		stm.setString(1, user.getUsername());
 		stm.setString(2, user.getHashed_password());
@@ -24,7 +24,14 @@ public class UsersDAO extends DAO {
 		
 		int rowCount = stm.executeUpdate();
 		
-		return rowCount == 1;
+		if (rowCount == 1) {
+			ResultSet rs = stm.getGeneratedKeys();
+			rs.next();
+			user.setUser_id(rs.getLong(1));
+			return true;
+		}
+		
+		return false;
 	}
 
 	public User authenticate(String username, String password) throws SQLException {

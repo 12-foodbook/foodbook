@@ -15,7 +15,7 @@ public class RecipesDAO extends DAO {
 	
 	public boolean create(Recipe recipe) throws SQLException {
 		String sql = "INSERT INTO recipes (name, video_url, user_id) VALUES (?, ?, ?)";
-		PreparedStatement stm = conn.prepareStatement(sql);
+		PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 		
 		stm.setString(1, recipe.getName());
 		stm.setString(2, recipe.getVideo_url());
@@ -23,7 +23,14 @@ public class RecipesDAO extends DAO {
 		
 		int rowCount = stm.executeUpdate();
 		
-		return rowCount == 1;
+		if (rowCount == 1) {
+			ResultSet rs = stm.getGeneratedKeys();
+			rs.next();
+			recipe.setRecipe_id(rs.getLong(1));
+			return true;
+		}
+		
+		return false;
 	}
 
 	public Recipe find(long id) throws SQLException {
@@ -42,7 +49,6 @@ public class RecipesDAO extends DAO {
 			recipe.setName(rs.getString("name"));
 			recipe.setVideo_url(rs.getString("video_url"));
 			recipe.setUser_id(rs.getLong("user_id"));
-
 		}
 
 		return recipe;
