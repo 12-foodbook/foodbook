@@ -58,20 +58,20 @@
 		</div>
 	</div>
 	<!-- form insert  -->
-	<form class="form-horizontal">
+	<form class="form-horizontal" method="post" action="users/authenticate">
 		<fieldset>
 			<legend>เข้าสู่ระบบ</legend>
 			<div class="form-group">
 				<label for="inputFoodName" class="col-lg-2 control-label">ชื่อผู้ใช้</label>
 				<div class="col-lg-10">
-					<input type="text" class="form-control" id="inputUsername"
+					<input type="text" class="form-control" id="inputUsername" name="username"
 						placeholder="ชื่อผู้ใช้">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputVideoLink" class="col-lg-2 control-label">รหัสผ่าน</label>
 				<div class="col-lg-10">
-					<input type="password" class="form-control" id="inputPassword"
+					<input type="password" class="form-control" id="inputPassword" name="password"
 						placeholder="รหัสผ่าน">
 				</div>
 			</div>
