@@ -7285,6 +7285,11 @@ button.close {
 .panel-group{
 	float:left;
 }
+.Ingres{
+	display: inline-block;
+	margin: 0 30px 0 30px;
+}
+.carousel slide{}
 @media only screen and (max-device-width: 800px) , only screen and
 		(device-width: 1024px) and (device-height: 600px) , only screen and
 		(width: 1280px) and (orientation: landscape) , only screen and
