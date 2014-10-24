@@ -12,13 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Recipe;
-import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
-import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 
-/**
- * Servlet implementation class ShowServlet
- */
 @WebServlet("/recipes/show")
 public class ShowServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
