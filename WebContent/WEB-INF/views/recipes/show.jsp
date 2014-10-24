@@ -5,7 +5,9 @@
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
-<!-- HTML goes here -->
-<c:out value="${pageTitle}"/>
+<c:out value="${recipe.recipe_id}"/>
+<c:out value="${recipe.name}"/>
+<c:out value="${recipe.video_link}"/>
+<c:out value="${recipe.user_id}"/>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
