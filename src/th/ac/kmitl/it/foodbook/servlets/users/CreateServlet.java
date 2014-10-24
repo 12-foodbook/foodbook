@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.Foodbook;
@@ -64,11 +65,13 @@ public class CreateServlet extends HttpServlet {
 			
 			response.sendError(500);
 		}
+		
+		HttpSession session = request.getSession();
     	
     	if (isSuccess) {
-    		
+    		session.setAttribute("alert", "/users/create success");
     	} else {
-    		
+    		session.setAttribute("alert", "/users/create not success");
     	}
     }
 
