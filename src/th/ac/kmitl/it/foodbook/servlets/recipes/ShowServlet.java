@@ -22,39 +22,40 @@ import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 @WebServlet("/recipes/show")
 public class ShowServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ShowServlet() {
-        super();
-        
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public ShowServlet() {
+		super();
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		String recipe_id = request.getParameter("id");
-		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-		
+		DataSource ds = (DataSource) request.getServletContext().getAttribute(
+				"ds");
+
 		Recipe recipe = null;
-		
+
 		try {
 			Connection conn = ds.getConnection();
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
-			
+
 			recipe = recipesDAO.find(Long.parseLong(recipe_id));
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
+
 			response.sendError(500);
 		}
-		System.out.println(recipe.getName());
-		
+
 		request.setAttribute("recipe", recipe);
-		
-		request.getRequestDispatcher("/WEB-INF/views/recipes/show.jsp").include(request, response);
+
+		request.getRequestDispatcher("/WEB-INF/views/recipes/show.jsp")
+				.include(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 	}
 
 }
