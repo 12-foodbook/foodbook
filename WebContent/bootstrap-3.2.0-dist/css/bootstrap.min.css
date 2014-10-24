@@ -7272,7 +7272,7 @@ button.close {
 }
 .panel-body{
 	word-wrap: break-word;
-	width: 150px;
+	width: 90px;
 }
 .panel-body a{
 	color:#004080;
@@ -7309,7 +7309,41 @@ button.close {
 	border-top-right-radius:8px;
 	background-color:#ffaa00;
 }
-.carousel slide{}
+div.checkbox{
+	padding-top:10px;
+	padding-left:10px;
+}
+.checkboxcol{
+	position: relative;
+	margin:0 10px;
+	display: inline-block;
+}
+.tab-content>.active {
+	border: 2px ridge #ffaa00;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px; 
+}
+.selectedIngres{
+	padding: 10px;
+}
+.selectedIngres span.label.label-success{
+	font-size: medium;
+}
+.searchButt{
+	float: left;
+	margin-top: 300px;
+	margin-top: 300px;
+	margin-left: 20px;
+}
+.FoodbookDes{
+	position:absolute;
+	top:150px;
+	right:50px;
+	word-wrap: break-word;
+	width:500px;
+	background-color: #ffecb3; 
+}
+
 @media only screen and (max-device-width: 800px) , only screen and
 		(device-width: 1024px) and (device-height: 600px) , only screen and
 		(width: 1280px) and (orientation: landscape) , only screen and
