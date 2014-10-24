@@ -30,16 +30,18 @@ public class AuthenticateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
-    	
-    	DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		
 		User user = null;
+    	
+    	DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		
 		try {
 			Connection conn = ds.getConnection();
 			UsersDAO usersDAO = new UsersDAO(conn);
 			
 			user = usersDAO.authenticate(username, password);
+			
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
@@ -49,10 +51,13 @@ public class AuthenticateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if (user != null) {
-			session.setAttribute("alert", "/users/authenticate success");
+			session.setAttribute("user", user);
+			session.setAttribute("alert", "เข้าสู่ระบบเรียบร้อยแล้ว");
+			
 			response.sendRedirect("/");
 		} else {
-			session.setAttribute("alert", "/users/authenticate not success");
+			session.setAttribute("alert", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+			
 			request.getRequestDispatcher("/WEB-INF/views/users/authenticate.jsp").include(request, response);
 		}
     }
