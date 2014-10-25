@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import th.ac.kmitl.it.foodbook.Foodbook;
+import th.ac.kmitl.it.foodbook.PasswordManager;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 
@@ -49,10 +49,10 @@ public class CreateServlet extends HttpServlet {
 			
 			user.setUsername(username);
 			
-			byte[] saltBytes = Foodbook.getSalt();
-			String salt = Foodbook.bytesToString(saltBytes);
-			byte[] hashedPasswordBytes = Foodbook.hashPassword(password, saltBytes);
-			String hashedPassword = Foodbook.bytesToString(hashedPasswordBytes);
+			byte[] saltBytes = PasswordManager.getSalt();
+			String salt = PasswordManager.bytesToString(saltBytes);
+			byte[] hashedPasswordBytes = PasswordManager.hashPassword(password, saltBytes);
+			String hashedPassword = PasswordManager.bytesToString(hashedPasswordBytes);
 			
 			user.setHashed_password(hashedPassword);
 			user.setSalt(salt);

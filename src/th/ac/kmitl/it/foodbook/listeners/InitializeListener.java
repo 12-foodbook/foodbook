@@ -7,8 +7,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
-import th.ac.kmitl.it.foodbook.Foodbook;
-
 @WebListener
 public class InitializeListener implements ServletContextListener {
     
@@ -22,7 +20,7 @@ public class InitializeListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		ServletContext context = sce.getServletContext();
 		
-		context.setAttribute("siteTitle", Foodbook.NANE);
+		context.setAttribute("siteTitle", "Foodbook");
 		
 		context.setAttribute("ds", ds);
 	}

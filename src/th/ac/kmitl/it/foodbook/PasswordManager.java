@@ -7,11 +7,7 @@ import java.security.SecureRandom;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
-public class Foodbook {
-    
-    public static final String NANE = "Foodbook";
-    
-    private Foodbook() {}
+public class PasswordManager {
     
     public static byte[] getSalt() {
     	SecureRandom random = null;

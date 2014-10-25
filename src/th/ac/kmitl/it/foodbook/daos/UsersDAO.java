@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import th.ac.kmitl.it.foodbook.Foodbook;
+import th.ac.kmitl.it.foodbook.PasswordManager;
 import th.ac.kmitl.it.foodbook.beans.User;
 
 public class UsersDAO extends DAO {
@@ -39,12 +39,12 @@ public class UsersDAO extends DAO {
 		if (user == null) { return user; }
 		
 		byte[] salt = null;
-		salt = Foodbook.stringToBytes(user.getSalt());
+		salt = PasswordManager.stringToBytes(user.getSalt());
 		
 		byte[] hashedPasswordBytes = null;
 		String hashedPassword = null;
-		hashedPasswordBytes = Foodbook.hashPassword(password, salt);
-		hashedPassword = Foodbook.bytesToString(hashedPasswordBytes);
+		hashedPasswordBytes = PasswordManager.hashPassword(password, salt);
+		hashedPassword = PasswordManager.bytesToString(hashedPasswordBytes);
 		
 		String sql = "SELECT * FROM users WHERE username = ? AND hashed_password = ? LIMIT 1";
 		PreparedStatement stm = conn.prepareStatement(sql);
