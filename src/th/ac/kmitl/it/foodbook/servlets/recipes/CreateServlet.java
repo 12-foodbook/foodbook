@@ -58,6 +58,14 @@ public class CreateServlet extends HttpServlet {
 			
 			response.sendError(500);
 		}
+		
+		HttpSession session = request.getSession();
+    	
+    	if (isSuccess) {
+    		session.setAttribute("alert", "เพิ่มรายการอาหารเรียบร้อยแล้ว");
+    	} else {
+    		session.setAttribute("alert", "ไม่สามารถเพิ่มรายการอาหารได้");
+    	}
     }
 
 }
