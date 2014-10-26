@@ -37,6 +37,8 @@ public class CreateServlet extends HttpServlet {
 			return;
 		}
 		
+		User user = null;
+		
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		
 		boolean isSuccess = false;
@@ -45,7 +47,7 @@ public class CreateServlet extends HttpServlet {
 			Connection conn = ds.getConnection();
 			UsersDAO usersDAO = new UsersDAO(conn);
 			
-			User user = new User();
+			user = new User();
 			
 			user.setUsername(username);
 			
@@ -62,16 +64,16 @@ public class CreateServlet extends HttpServlet {
 	    	conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
 			response.sendError(500);
 		}
 		
 		HttpSession session = request.getSession();
-    	
+
     	if (isSuccess) {
-    		session.setAttribute("alert", "/users/create success");
+    		session.setAttribute("alert", "success");
+    		response.sendRedirect("/");
     	} else {
-    		session.setAttribute("alert", "/users/create not success");
+    		session.setAttribute("alert", "fail");
     	}
     }
 

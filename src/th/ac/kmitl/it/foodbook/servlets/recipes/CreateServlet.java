@@ -32,6 +32,8 @@ public class CreateServlet extends HttpServlet {
     	String name = request.getParameter("name");
     	String videoUrl = request.getParameter("video_url");
     	
+    	Recipe recipe = null;
+    	
     	DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		
 		boolean isSuccess = false;
@@ -40,7 +42,7 @@ public class CreateServlet extends HttpServlet {
 			Connection conn = ds.getConnection();
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
 			
-			Recipe recipe = new Recipe();
+			recipe = new Recipe();
 			
 			recipe.setName(name);
 			recipe.setVideo_url(videoUrl);
@@ -55,16 +57,16 @@ public class CreateServlet extends HttpServlet {
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
 			response.sendError(500);
 		}
 		
 		HttpSession session = request.getSession();
     	
     	if (isSuccess) {
-    		session.setAttribute("alert", "เพิ่มรายการอาหารเรียบร้อยแล้ว");
+    		session.setAttribute("alert", "success");
+    		response.sendRedirect("/recipes/show?id=" + recipe.getRecipe_id());
     	} else {
-    		session.setAttribute("alert", "ไม่สามารถเพิ่มรายการอาหารได้");
+    		session.setAttribute("alert", "fail");
     	}
     }
 

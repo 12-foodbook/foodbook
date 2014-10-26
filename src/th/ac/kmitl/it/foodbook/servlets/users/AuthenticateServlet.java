@@ -44,7 +44,6 @@ public class AuthenticateServlet extends HttpServlet {
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
 			response.sendError(500);
 		}
 		
@@ -52,12 +51,10 @@ public class AuthenticateServlet extends HttpServlet {
 		
 		if (user != null) {
 			session.setAttribute("user", user);
-			session.setAttribute("alert", "เข้าสู่ระบบเรียบร้อยแล้ว");
-			
+			session.setAttribute("alert", "success");
 			response.sendRedirect("/");
 		} else {
-			session.setAttribute("alert", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
-			
+			session.setAttribute("alert", "fail");
 			request.getRequestDispatcher("/WEB-INF/views/users/authenticate.jsp").include(request, response);
 		}
     }
