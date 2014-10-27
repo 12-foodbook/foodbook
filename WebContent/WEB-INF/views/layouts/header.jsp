@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Foodbook / <c:out value="${pageTitle}"/></title>
 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap_Foodbooktheme.css" type="text/css" />
+<link rel="stylesheet" href="/css/bootstrap_Foodbooktheme.css" type="text/css" />
 </head>
 <body>
 
