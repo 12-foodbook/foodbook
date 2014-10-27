@@ -132,11 +132,12 @@
 	<div class="rating">
 		<span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
 	</div>
-
+<%-- 
 
 <c:out value="${recipe.recipe_id}"/>
 <c:out value="${recipe.name}"/>
 <c:out value="${recipe.video_url}"/>
 <c:out value="${recipe.user_id}"/>
+ --%>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
