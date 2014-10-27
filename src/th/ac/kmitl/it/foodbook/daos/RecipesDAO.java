@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 
-public class RecipesDAO extends DAO {
+public class RecipesDAO extends AbstractDAO {
 
 	public RecipesDAO(Connection conn) {
 		super(conn);

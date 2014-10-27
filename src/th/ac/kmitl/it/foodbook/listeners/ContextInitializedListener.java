@@ -8,12 +8,12 @@ import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
 @WebListener
-public class InitializeListener implements ServletContextListener {
+public class ContextInitializedListener implements ServletContextListener {
     
     @Resource(name = "jdbc/foodbook_development")
     private DataSource ds;
 
-	public InitializeListener() {
+	public ContextInitializedListener() {
 
 	}
 
@@ -21,7 +21,6 @@ public class InitializeListener implements ServletContextListener {
 		ServletContext context = sce.getServletContext();
 		
 		context.setAttribute("siteTitle", "Foodbook");
-		
 		context.setAttribute("ds", ds);
 	}
 

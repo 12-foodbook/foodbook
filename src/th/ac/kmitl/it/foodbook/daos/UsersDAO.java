@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import th.ac.kmitl.it.foodbook.PasswordManager;
 import th.ac.kmitl.it.foodbook.beans.User;
 
-public class UsersDAO extends DAO {
+public class UsersDAO extends AbstractDAO {
 
 	public UsersDAO(Connection conn) {
 		super(conn);
