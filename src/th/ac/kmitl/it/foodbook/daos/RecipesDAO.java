@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 
 public class RecipesDAO extends AbstractDAO {
@@ -52,6 +55,27 @@ public class RecipesDAO extends AbstractDAO {
 		}
 
 		return recipe;
+	}
+	
+	public List<Ingredient> findIngredients(long id) throws SQLException {
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+		
+		String sql = "SELECT ingredient_id FROM recipes_ingredients WHERE recipe_id = ?";
+		PreparedStatement stm = conn.prepareStatement(sql);
+		
+		stm.setLong(1, id);
+		
+		ResultSet rs = stm.executeQuery();
+		
+		IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
+		
+		while (rs.next()) {
+			long ingredientId = rs.getLong("ingredient_id");
+			Ingredient ingredient = ingredientsDAO.find(ingredientId);
+			ingredients.add(ingredient);
+		}
+		
+		return ingredients;
 	}
 
 }
