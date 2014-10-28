@@ -29,6 +29,8 @@ public class SearchByIngredientServlet extends HttpServlet {
 		
 		List<Recipe> recipes = null;
 		
+		
+		
 		request.setAttribute("recipes", recipes);
 		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
 	}
