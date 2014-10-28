@@ -1,1 +1,26 @@
 @CHARSET "UTF-8";
+.navbar-fixed-top{
+	background-color: #ffa000;
+	border-color: #e7e7e7;
+}
+.navbar-fixed-top .navbar-nav>li>a:hover {
+	background-color: #ffcc77;
+	color: #000;
+}
+.navbar-header a,.navbar-nav li a{
+	color:white;
+}
+.logo_brand{
+	max-width:30px;
+	max-height:30px;
+	
+}
+.navbar-toggle{
+	border-color: #9d5804; 
+}
+.navbar-toggle .icon-bar{
+	background-color: #9d5804;	
+}
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus,.nav>li>a:hover, .nav>li>a:focus{
+	background-color: #ffa000;
+}
