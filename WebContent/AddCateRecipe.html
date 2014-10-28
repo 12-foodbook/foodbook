@@ -7,9 +7,12 @@
 <link rel="stylesheet" href="css/Foodbook_theme.css" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
 	<!-- menu bar -->
+	
 	<nav class="navbar navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,9 +68,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 	<!-- Add Category View -->
+	<div class="space-nav">asd</div>
+	<div class="container-fluid">
 	<!--Category Accordion  -->
-	<div class="container .visible-xs-9">
-		<div class="panel-group" id="accordion">
+	<div class="row">
+		<div class="panel-group col-xs-6 col-sm-2" id="accordion">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -117,8 +122,8 @@
 				</div>
 			</div>
 		</div>
-		Category Add form 
-		<form class="form-horizontal">
+		<!-- Category Add form --> 
+		<form class="form-horizontal col-xs-8">
 		<fieldset>
 			<legend>เพิ่มหมวดอาหาร</legend>
 			<div class="form-group">
@@ -144,6 +149,7 @@
 			</div>
 		</fieldset>
 	</form>
+	</div>
 	</div>
 </body>
 </html>
