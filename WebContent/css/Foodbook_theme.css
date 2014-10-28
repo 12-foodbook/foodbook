@@ -24,9 +24,19 @@
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus,.nav>li>a:hover, .nav>li>a:focus{
 	background-color: #ffa000;
 }
+.dropdown-menu  li a{
+	color:black;
+}
 .space-nav{
 	
 	height: 60px;
 }
 .col-xs-6{ 
 	}
+.media-heading {
+	margin-top: 80px;
+	text-align: center;
+}
+.embed-responsive-16by9{
+	margin: 0 50px 50px 50px;
+}
