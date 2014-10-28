@@ -4165,11 +4165,6 @@ border-radius:0
 	z-index: 1030;
 	background-color: #ffa000;
 	border-color: #e7e7e7;
-	-webkit-animation: fadeInLeft 1s; /* Chrome, Safari, Opera */
-	animation: fadeInLeft 1s;
-	-webkit-transform: translate3d(0, 0, 0);
-	-o-transform: translate3d(0, 0, 0);
-	transform: translate3d(0, 0, 0)
 }
 
 @media ( min-width :768px) {
@@ -4436,8 +4431,6 @@ border-radius:0
 .navbar-default {
 	background-color: #ffa000;
 	border-color: #e7e7e7;
-	-webkit-animation: fadeInLeft 0.3s; /* Chrome, Safari, Opera */
-	animation: fadeInLeft 0.3s;
 }
 
 .navbar-default .navbar-brand {
