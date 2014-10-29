@@ -10,9 +10,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 @WebFilter("/AuthenticateFilter")
-public class AuthenticateFilter implements Filter {
+public class AuthenticationFilter implements Filter {
 
-    public AuthenticateFilter() {
+    public AuthenticationFilter() {
 
     }
 
