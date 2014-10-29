@@ -57,25 +57,25 @@ public class RecipesDAO extends AbstractDAO {
 		return recipe;
 	}
 	
-	public List<Ingredient> findIngredients(long id) throws SQLException {
-		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+	public List<Recipe> findByIngredientId(long ingredientId) throws SQLException {
+		List<Recipe> recipes = new ArrayList<Recipe>();
 		
-		String sql = "SELECT ingredient_id FROM recipes_ingredients WHERE recipe_id = ?";
+		String sql = "SELECT recipe_id FROM recipes_ingredients WHERE ingredient_id = ?";
 		PreparedStatement stm = conn.prepareStatement(sql);
 		
-		stm.setLong(1, id);
+		stm.setLong(1, ingredientId);
 		
 		ResultSet rs = stm.executeQuery();
 		
-		IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
+		RecipesDAO recipesDAO = new RecipesDAO(conn);
 		
 		while (rs.next()) {
-			long ingredientId = rs.getLong("ingredient_id");
-			Ingredient ingredient = ingredientsDAO.find(ingredientId);
-			ingredients.add(ingredient);
+			long recipeId = rs.getLong("recipe_id");
+			Recipe recipe = recipesDAO.find(recipeId);
+			recipes.add(recipe);
 		}
 		
-		return ingredients;
+		return recipes;
 	}
 
 }

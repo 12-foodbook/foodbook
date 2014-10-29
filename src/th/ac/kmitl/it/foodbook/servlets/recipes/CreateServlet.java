@@ -67,6 +67,7 @@ public class CreateServlet extends HttpServlet {
     		response.sendRedirect("/recipes/show?id=" + recipe.getRecipe_id());
     	} else {
     		session.setAttribute("alert", "fail");
+    		request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
     	}
     }
 
