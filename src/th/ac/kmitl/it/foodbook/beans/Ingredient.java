@@ -4,7 +4,7 @@ public class Ingredient {
 	
 	private long ingredient_id;
 	private String name;
-	private String video_url;
+	private String photo_url;
 	
 	public long getIngredient_id() {
 		return ingredient_id;
@@ -22,12 +22,12 @@ public class Ingredient {
 		this.name = name;
 	}
 	
-	public String getVideo_url() {
-		return video_url;
+	public String getPhoto_url() {
+		return photo_url;
 	}
 	
-	public void setVideo_url(String video_url) {
-		this.video_url = video_url;
+	public void setPhoto_url(String video_url) {
+		this.photo_url = video_url;
 	}
 
 }
