@@ -34,7 +34,6 @@ public class AuthenticationFilter implements Filter {
 		HttpSession session = httpRequest.getSession();
 		if (session.getAttribute("user") == null) {
 			httpResponse.sendRedirect("/");
-			return;
 		}	else {
 			chain.doFilter(request, response);
 		}

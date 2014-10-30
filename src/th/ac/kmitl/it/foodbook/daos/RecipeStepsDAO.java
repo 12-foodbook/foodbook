@@ -26,7 +26,7 @@ public class RecipeStepsDAO extends AbstractDAO {
 		if (rowCount == 1) {
 			ResultSet rs = stm.getGeneratedKeys();
 			rs.next();
-			recipeStep.setRecipe_id(rs.getLong(1));
+			recipeStep.setRecipe_step_id(rs.getLong(1));
 			return true;
 		}
 		
