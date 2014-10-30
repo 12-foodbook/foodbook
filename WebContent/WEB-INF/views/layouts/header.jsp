@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Foodbook / <c:out value="${pageTitle}"/></title>
+<title>Foodbook / ${pageTitle}</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="/css/bootstrap_Foodbooktheme.css" type="text/css" />
 </head>
 <body>
 
-<c:out value="${alert}"/>
-<c:set var="alert" scope="session" value=""/>
+<c:if test="${not empty alert}">
+	<div class="alert alert-${alert.type}" role="alert">${alert.message}</div>
+</c:if>

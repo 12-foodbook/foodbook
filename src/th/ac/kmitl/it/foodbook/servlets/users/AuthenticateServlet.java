@@ -14,6 +14,8 @@ import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.UsersDAO;
+import th.ac.kmitl.it.foodbook.utils.Alert;
+import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/users/authenticate")
 public class AuthenticateServlet extends HttpServlet {
@@ -24,7 +26,7 @@ public class AuthenticateServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+    	request.getRequestDispatcher("/WEB-INF/views/users/authenticate.jsp").include(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,10 +53,11 @@ public class AuthenticateServlet extends HttpServlet {
 		
 		if (user != null) {
 			session.setAttribute("user", user);
-			session.setAttribute("alert", "success");
+			
+			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Authenticated Successfully!"));
 			response.sendRedirect("/");
 		} else {
-			session.setAttribute("alert", "fail");
+			session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Authenticated Unsuccessfully!"));
 			request.getRequestDispatcher("/WEB-INF/views/users/authenticate.jsp").include(request, response);
 		}
     }

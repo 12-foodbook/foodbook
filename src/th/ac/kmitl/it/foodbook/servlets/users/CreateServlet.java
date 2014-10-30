@@ -15,6 +15,8 @@ import javax.sql.DataSource;
 import th.ac.kmitl.it.foodbook.PasswordManager;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.UsersDAO;
+import th.ac.kmitl.it.foodbook.utils.Alert;
+import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/users/create")
 public class CreateServlet extends HttpServlet {
@@ -25,7 +27,7 @@ public class CreateServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+		request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -68,10 +70,10 @@ public class CreateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
     	if (isSuccess) {
-    		session.setAttribute("alert", "success");
+    		session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
     		response.sendRedirect("/");
     	} else {
-    		session.setAttribute("alert", "fail");
+    		session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully!"));
     		request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
     	}
     }
