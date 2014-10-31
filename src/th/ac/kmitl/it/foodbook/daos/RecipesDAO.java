@@ -14,24 +14,25 @@ public class RecipesDAO extends AbstractDAO {
 	public RecipesDAO(Connection conn) {
 		super(conn);
 	}
-	
+
 	public boolean create(Recipe recipe) throws SQLException {
 		String sql = "INSERT INTO recipes (name, video_url, user_id) VALUES (?, ?, ?)";
-		PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-		
+		PreparedStatement stm = conn.prepareStatement(sql,
+				PreparedStatement.RETURN_GENERATED_KEYS);
+
 		stm.setString(1, recipe.getName());
 		stm.setString(2, recipe.getVideo_url());
 		stm.setLong(3, recipe.getUser_id());
-		
+
 		int rowCount = stm.executeUpdate();
-		
+
 		if (rowCount == 1) {
 			ResultSet rs = stm.getGeneratedKeys();
 			rs.next();
 			recipe.setRecipe_id(rs.getLong(1));
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -55,25 +56,24 @@ public class RecipesDAO extends AbstractDAO {
 
 		return recipe;
 	}
-	
-	public List<Recipe> findByIngredientId(long ingredientId) throws SQLException {
+
+	public List<Recipe> findByIngredientId(long ingredientId)
+			throws SQLException {
 		List<Recipe> recipes = new ArrayList<Recipe>();
-		
+
 		String sql = "SELECT recipe_id FROM recipes_ingredients WHERE ingredient_id = ?";
 		PreparedStatement stm = conn.prepareStatement(sql);
-		
+
 		stm.setLong(1, ingredientId);
-		
+
 		ResultSet rs = stm.executeQuery();
-		
-		RecipesDAO recipesDAO = new RecipesDAO(conn);
-		
+
 		while (rs.next()) {
 			long recipeId = rs.getLong("recipe_id");
-			Recipe recipe = recipesDAO.find(recipeId);
+			Recipe recipe = find(recipeId);
 			recipes.add(recipe);
 		}
-		
+
 		return recipes;
 	}
 
