@@ -72,6 +72,7 @@ public class CreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String name = request.getParameter("name");
     	String videoUrl = request.getParameter("video_url");
+    	String[] ingredientIds = request.getParameterValues("ingredient_id");
     	
     	String[] stepTitles = request.getParameterValues("step_title");
     	String[] stepDescriptions = request.getParameterValues("step_description");
