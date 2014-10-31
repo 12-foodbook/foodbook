@@ -35,6 +35,8 @@ public class ShowServlet extends HttpServlet {
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
 
 			recipe = recipesDAO.find(Long.parseLong(recipe_id));
+			
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);
