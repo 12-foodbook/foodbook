@@ -60,6 +60,9 @@ public class CreateServlet extends HttpServlet {
 			favorite.setRecipe_id(Long.parseLong(recipeId));
 
 			isSuccess = favoritesDAO.create(favorite);
+			
+			conn.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);

@@ -56,6 +56,9 @@ public class DeleteServlet extends HttpServlet {
 			favorite.setRecipe_id(Long.parseLong(recipeId));
 
 			isSuccess = favoritesDAO.delete((favorite));
+			
+			conn.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);
