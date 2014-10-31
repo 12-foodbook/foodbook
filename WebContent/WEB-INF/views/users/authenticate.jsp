@@ -6,8 +6,8 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 <form method="post">
-	<input name="username"><br>
-	<input name="password" type="password"><br>
+	<input name="username" placeholder="username"><br>
+	<input name="password" placeholder="password" type="password"><br>
 	<button>Authenticate</button>
 </form>
 

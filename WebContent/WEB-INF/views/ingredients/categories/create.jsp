@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 <form method="post">
-	<input name="name"><br>
+	<input name="name" placeholder="name"><br>
 	<button>Create</button>
 </form>
 
