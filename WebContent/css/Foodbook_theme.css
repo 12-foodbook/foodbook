@@ -41,3 +41,36 @@
 .Ingres{
 	text-align: center;
 }
+.tab-content{
+	border:groove 2px #ffa000;	
+}
+.nav-tabs li{
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	background: #ffa000;	
+}
+.nav-tabs li.active a{
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	background: #c17900;
+}
+.nav-tabs li.active a:hover{
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	background: #c17900;
+}
+.checkboxcol .checkbox{
+	display: inline-block;
+	padding: 5px;
+	max-width: 340px;
+	
+}
+.jumboImg{
+	display:inline-block;
+	max-height: 180px;
+	max-width: 180px;
+}
+.searchButt{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
