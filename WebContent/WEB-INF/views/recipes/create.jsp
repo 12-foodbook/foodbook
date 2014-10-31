@@ -68,6 +68,7 @@ function uploadImage(e) {
 			type : 'base64'
 		},
 		beforeSend: function(xhr, settings) {
+			$('input[type=file]').attr('disabled', true);
 			$createButton.attr('disabled', true);
 		},
 		success : function(result) {
@@ -76,6 +77,7 @@ function uploadImage(e) {
 			var url = 'https://i.imgur.com/' + id + '.png';
 			$stepPhotoUrlInput.attr('value', url);
 			console.log($stepPhotoUrlInput);
+			$('input[type=file]').attr('disabled', false);
 			$createButton.attr('disabled', false);
 		},
 		error : function(result) {
