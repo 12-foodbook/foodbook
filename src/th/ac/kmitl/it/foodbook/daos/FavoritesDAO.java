@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.Favorite;
-import th.ac.kmitl.it.foodbook.beans.Recipe;
 
 public class FavoritesDAO extends AbstractDAO {
 
@@ -51,8 +50,9 @@ public class FavoritesDAO extends AbstractDAO {
 
 	public List<Favorite> findByUserId(long userId) throws SQLException {
 		List<Favorite> favorites = new ArrayList<Favorite>();
+		Favorite favorite = null;
 
-		String sql = "SELECT user_id FROM favorites WHERE user_id = ?";
+		String sql = "SELECT * FROM favorites WHERE user_id = ?";
 		PreparedStatement stm = conn.prepareStatement(sql);
 
 		stm.setLong(1, userId);
@@ -60,31 +60,24 @@ public class FavoritesDAO extends AbstractDAO {
 		ResultSet rs = stm.executeQuery();
 
 		while (rs.next()) {
-			long recipeId = rs.getLong("recipe_id");
-			Favorite favorite = find(recipeId);
+			favorite = new Favorite();
+			favorite.setRecipe_id(rs.getLong("recipe_id"));
+			favorite.setUser_id(rs.getLong("user_id"));
 			favorites.add(favorite);
 		}
 
 		return favorites;
 	}
 
-	public Favorite find(long id) throws SQLException {
-		Favorite favorite = null;
-
-		String sql = "SELECT * FROM favorites WHERE user_id = ? LIMIT 1";
-		PreparedStatement stm = conn.prepareStatement(sql);
-
-		stm.setLong(1, id);
-
-		ResultSet rs = stm.executeQuery();
-
-		if (rs.next()) {
-			favorite = new Favorite();
-			favorite.setRecipe_id(rs.getLong("recipe_id"));
-			favorite.setUser_id(rs.getLong("user_id"));
+	public Favorite find(long userId, long recipeId) throws SQLException {
+		List<Favorite> favorites = new ArrayList<Favorite>();
+		favorites = findByUserId(userId);
+		for (Favorite i : favorites) {
+			if (i.getRecipe_id() == recipeId) {
+				return i;
+			}
 		}
-
-		return favorite;
+		return null;
 	}
 
 }
