@@ -15,6 +15,9 @@
 	max-height:30px;
 	
 }
+.navbar-brand>img{
+	display: inline-block;
+}
 .navbar-toggle{
 	border-color: #9d5804; 
 }
@@ -31,7 +34,7 @@
 	
 	height: 60px;
 }
-.media-heading {
+.videoHead {
 	margin-top: 80px;
 	text-align: center;
 }
@@ -73,4 +76,10 @@
 .searchButt{
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+.allRecipePic{
+	
+}
+.allRecipeDetail{
+	 
 }
