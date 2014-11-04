@@ -16,7 +16,13 @@ import javax.servlet.http.HttpSession;
 @WebFilter({
 	"/recipes/create",
 	"/recipes/show",
-	"/recipes/search-by-ingredient"
+	"/recipes/search-by-ingredient",
+	"/rates",
+	"/ingredients/categories/create",
+	"/favorites/create",
+	"/favorites/delete",
+	"/recipes/edit",
+	
 })
 public class AuthenticationFilter implements Filter {
 
@@ -33,7 +39,7 @@ public class AuthenticationFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		if (session.getAttribute("user") == null) {
-			httpResponse.sendRedirect("/");
+			httpResponse.sendRedirect("/users/authenticate");
 		}	else {
 			chain.doFilter(request, response);
 		}
