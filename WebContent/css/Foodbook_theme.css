@@ -1,85 +1,127 @@
 @CHARSET "UTF-8";
-.navbar-fixed-top{
+
+.navbar-fixed-top {
 	background-color: #ffa000;
 	border-color: #e7e7e7;
 }
+
 .navbar-fixed-top .navbar-nav>li>a:hover {
 	background-color: #ffcc77;
 	color: #000;
 }
-.navbar-header a,.navbar-nav li a{
-	color:white;
+
+.navbar-header a,.navbar-nav li a {
+	color: white;
 }
-.logo_brand{
-	max-width:30px;
-	max-height:30px;
-	
+
+.logo_brand {
+	max-width: 30px;
+	max-height: 30px;
 }
-.navbar-brand>img{
+
+.navbar-brand>img {
 	display: inline-block;
 }
-.navbar-toggle{
-	border-color: #9d5804; 
+
+.navbar-toggle {
+	border-color: #9d5804;
 }
-.navbar-toggle .icon-bar{
-	background-color: #9d5804;	
+
+.navbar-toggle .icon-bar {
+	background-color: #9d5804;
 }
-.nav .open>a, .nav .open>a:hover, .nav .open>a:focus,.nav>li>a:hover, .nav>li>a:focus{
+
+.nav .open>a,.nav .open>a:hover,.nav .open>a:focus,.nav>li>a:hover,.nav>li>a:focus
+	{
 	background-color: #ffa000;
 }
-.dropdown-menu  li a{
-	color:black;
+
+.dropdown-menu  li a {
+	color: black;
 }
-.space-nav{
-	
+
+.space-nav {
 	height: 60px;
 }
+
 .videoHead {
 	margin-top: 80px;
 	text-align: center;
 }
-.embed-responsive-16by9{
+
+.embed-responsive-16by9 {
 	margin: 0 50px 50px 50px;
 }
-.Ingres{
+
+.Ingres {
 	text-align: center;
 }
-.tab-content{
-	border:groove 2px #ffa000;	
+
+.tab-content {
+	border: groove 2px #ffa000;
 }
-.nav-tabs li{
-	border-top-left-radius:10px;
-	border-top-right-radius:10px;
-	background: #ffa000;	
+
+.nav-tabs li {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background: #ffa000;
 }
-.nav-tabs li.active a{
-	border-top-left-radius:10px;
-	border-top-right-radius:10px;
+
+.nav-tabs li.active a {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	background: #c17900;
 }
-.nav-tabs li.active a:hover{
-	border-top-left-radius:10px;
-	border-top-right-radius:10px;
+
+.nav-tabs li.active a:hover {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	background: #c17900;
 }
-.checkboxcol .checkbox{
+
+.checkboxcol .checkbox {
 	display: inline-block;
 	padding: 5px;
 	max-width: 340px;
-	
 }
-.jumboImg{
-	display:inline-block;
+
+.jumboImg {
+	display: inline-block;
 	max-height: 180px;
 	max-width: 180px;
 }
-.searchButt{
+
+.searchButt {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
-.allRecipePic{
+
+.allRecipePic {
 	
 }
-.allRecipeDetail{
-	 
+
+.allRecipeDetail {
+	
+}
+.rating {
+	unicode-bidi: bidi-override;
+	direction: rtl;
+	text-align: center;
+}
+
+.rating span {
+	display: inline-block;
+	position: relative;
+	width: 1.1em;
+}
+
+.rating span:hover,.rating span:hover ~ span {
+	color: transparent;
+}
+
+.rating span:hover:before,.rating span:hover ~ span:before {
+	content: "\2605";
+	position: absolute;
+	left: 0;
+	color: gold;
 }
