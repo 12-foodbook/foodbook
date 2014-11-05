@@ -72,13 +72,13 @@
 	<div class="container-fluid">
 		<!--Category Accordion  -->
 		<div class="row">
-			<form class="form-horizontal col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3">
+			<form action="/recipes/create" method="post" class="form-horizontal col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3">
 				<fieldset>
 					<legend>เพิ่มสูตรอาหาร</legend>
 					<div class="form-group">
 						<label for="inputFoodName" class="col-lg-2 control-label">ชื่ออาหาร</label>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id="inputFoodName"
+							<input name="name" type="text" class="form-control" id="inputFoodName"
 								placeholder="ชื่ออาหาร">
 						</div>
 					</div>
@@ -86,14 +86,14 @@
 						<label for="inputVideoLink" class="col-lg-2 control-label">video
 							link</label>
 						<div class="col-lg-10">
-							<input type="text" class="form-control" id="inputVideoLink"
+							<input name="video_url" type="text" class="form-control" id="inputVideoLink"
 								placeholder="video link example: http://www.youtube.com/watch?v=6YZlFdTIdzM">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputVideoLink" class="col-lg-2 control-label">รูปประกอบ</label>
+						<label for="inputPicLink" class="col-lg-2 control-label">รูปประกอบ</label>
 						<div class="col-lg-10">
-							<input id="input-1" type="file" class="file" multiple="true">
+							<input name="step_photo_url" id="input-1" type="file" class="file" multiple="true">
 						</div>
 
 					</div>
