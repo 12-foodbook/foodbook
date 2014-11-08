@@ -96,13 +96,7 @@
 	margin-bottom: 10px;
 }
 
-.allRecipePic {
-	
-}
 
-.allRecipeDetail {
-	
-}
 .rating {
 	unicode-bidi: bidi-override;
 	direction: rtl;
@@ -124,4 +118,7 @@
 	position: absolute;
 	left: 0;
 	color: gold;
+}
+.FavButt{
+	top: 10px;
 }
