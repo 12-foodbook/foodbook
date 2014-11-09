@@ -143,7 +143,7 @@
 					});
 				}
 					</script>
-					<span name="rate" value="5" onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span><span name="rate" value="4" onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span><span name="rate" value="3" onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span><span name="rate" value="2" onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span><span name="rate" value="1" onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
+					<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span><span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span><span onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span><span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span><span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
 				</h1>
 			</form>
 		</div>
