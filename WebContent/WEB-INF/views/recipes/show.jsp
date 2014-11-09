@@ -80,13 +80,13 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="test content/scone2.jpg" alt="...">
+					<img src="/test content/scone2.jpg" alt="...">
 					<div class="carousel-caption">
 						<center>${recipe.name}</center>
 					</div>
 				</div>
 				<div class="item">
-					<img src="test content/scone.jpg" alt="...">
+					<img src="/test content/scone.jpg" alt="...">
 					<div class="carousel-caption">
 						<center>${recipe.name}</center>
 					</div>
@@ -149,12 +149,12 @@
 		</div>
 	</div>
 
-<%-- 
+
 
 <c:out value="${recipe.recipe_id}"/>
 <c:out value="${recipe.name}"/>
 <c:out value="${recipe.video_url}"/>
 <c:out value="${recipe.user_id}"/>
- --%>
+
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
