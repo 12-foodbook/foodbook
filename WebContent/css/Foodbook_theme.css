@@ -3,6 +3,12 @@
 body{
 	padding-top:70px 
 }
+
+body {
+	font-family: 'thaisansneue_semibold' !important;
+	font-weight: normal !important;
+}
+
 .navbar-fixed-top {
 	background-color: #ffa000;
 	border-color: #e7e7e7;
