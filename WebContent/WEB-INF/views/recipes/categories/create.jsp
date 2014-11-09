@@ -6,7 +6,6 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 
-	<div class="space-nav">asd</div>
 <div class="container">
 	<!--Category Accordion  -->
 	<div class="row">
