@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 <c:forEach var="recipe" items="${recipes}">
-	${recipe.name}<br>
+	<a herf="/recipes/show?id=${recipe.id}">${recipe.name}</a><br>
 </c:forEach>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
