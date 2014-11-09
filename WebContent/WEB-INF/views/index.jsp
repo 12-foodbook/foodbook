@@ -71,7 +71,6 @@
 		<!-- /.container-fluid -->
 	</nav>
 	<!-- Add Category View -->
-	<div class="space-nav">asd</div>
 	<!-- Content -->
 	<div class="container">
 		<!--Accordion  -->

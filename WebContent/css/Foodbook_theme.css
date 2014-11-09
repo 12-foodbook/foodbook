@@ -9,6 +9,10 @@ body {
 	font-weight: normal !important;
 }
 
+label {
+	font-weight: normal !important;
+}
+
 .navbar-fixed-top {
 	background-color: #ffa000;
 	border-color: #e7e7e7;
