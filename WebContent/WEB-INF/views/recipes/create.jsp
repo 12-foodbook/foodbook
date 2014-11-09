@@ -7,7 +7,6 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 
-	<div class="space-nav">asd</div>
 	<!-- form insert  -->
 	<div class="container-fluid">
 		<div class="row">
