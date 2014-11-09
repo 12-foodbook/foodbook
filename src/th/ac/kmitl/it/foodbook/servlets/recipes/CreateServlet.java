@@ -73,6 +73,7 @@ public class CreateServlet extends HttpServlet {
     	String name = request.getParameter("name");
     	String videoUrl = request.getParameter("video_url");
     	String[] ingredientIds = request.getParameterValues("ingredient_id");
+    	String[] ingredientAmounts = request.getParameterValues("ingredient_amount");
     	
     	String[] stepTitles = request.getParameterValues("step_title");
     	String[] stepDescriptions = request.getParameterValues("step_description");
@@ -99,8 +100,16 @@ public class CreateServlet extends HttpServlet {
 			recipe.setUser_id(user.getUser_id());
 			
 			if (recipesDAO.create(recipe)) {
-				System.out.println("Rid"+recipe.getRecipe_id());
 				isSuccess = true;
+				
+				for (int i = 0; i < ingredientIds.length; i++) {
+					long ingredientId = Integer.parseInt(ingredientIds[i]);
+					
+					if (!recipesDAO.createIngredient(recipe.getRecipe_id(), ingredientId, ingredientAmounts[i])) {
+						isSuccess = false;
+						return;
+					}
+				}
 				
 				RecipeStepsDAO recipeStepsDAO = new RecipeStepsDAO(conn);
 				RecipeStepPhotosDAO recipeStepPhotosDAO = new RecipeStepPhotosDAO(conn);
@@ -112,15 +121,13 @@ public class CreateServlet extends HttpServlet {
 					recipeStep.setRecipe_id(recipe.getRecipe_id());
 					
 					if (recipeStepsDAO.create(recipeStep)) {
-						System.out.println("RSid"+recipeStep.getRecipe_step_id());
 						RecipeStepPhoto recipeStepPhoto = new RecipeStepPhoto();
 						recipeStepPhoto.setPhoto_url(stepPhotoUrls[i]);
 						recipeStepPhoto.setRecipe_step_id(recipeStep.getRecipe_step_id());
 						recipeStepPhotosDAO.create(recipeStepPhoto);
-						System.out.println("RSPid"+recipeStepPhoto.getRecipe_step_photo_id());
 					} else {
 						isSuccess = false;
-						break;
+						return;
 					}
 				}
 			}

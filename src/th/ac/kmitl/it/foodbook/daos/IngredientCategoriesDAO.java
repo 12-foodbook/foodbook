@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
-import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 
 public class IngredientCategoriesDAO extends AbstractDAO {
 

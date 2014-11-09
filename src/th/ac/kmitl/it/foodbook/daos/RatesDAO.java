@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import th.ac.kmitl.it.foodbook.beans.Favorite;
 import th.ac.kmitl.it.foodbook.beans.Rate;
 
 public class RatesDAO extends AbstractDAO {

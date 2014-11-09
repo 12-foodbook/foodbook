@@ -9,10 +9,11 @@
 <form method="post" id="create-recipe">
 	<input name="name" placeholder="name"><br>
 	<input name="video_url" placeholder="video_url"><br>
-	<c:forEach begin="0" end="${fn:length(ingredientCategories)}" var="i">
+	<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
 		${ingredientCategories[i].name}
-		<c:forEach begin="0" end="${fn:length(ingredients)}" var="j">
-			<input name="ingredient_id" type="checkbox" value="${ingredients[i][j].ingredient_id}">
+		<c:forEach begin="0" end="${fn:length(ingredients[i]) - 1}" var="j">
+			<input name="ingredient_id" type="checkbox" value="${ingredients[i][j].ingredient_id}"> ${ingredients[i][j].name}
+			<input name="ingredient_amount" placeholder="ingredient_amount">
 		</c:forEach>
 	</c:forEach>
 	<div id="recipe-steps">

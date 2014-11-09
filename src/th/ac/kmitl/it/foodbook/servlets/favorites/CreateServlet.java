@@ -12,14 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import th.ac.kmitl.it.foodbook.PasswordManager;
 import th.ac.kmitl.it.foodbook.beans.Favorite;
-import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.FavoritesDAO;
-import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
-import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
-import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
