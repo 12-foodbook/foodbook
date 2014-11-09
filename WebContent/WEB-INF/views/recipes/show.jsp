@@ -62,7 +62,7 @@
 	</nav>
 	<!-- **************************************************************************** -->
 	<!-- video link Edit-->
-	<div class="container-fluid">
+	<div class="container">
 	<div class="media">
 		<h1 class="media-heading videoHead">${recipe.name}</h1>
 
