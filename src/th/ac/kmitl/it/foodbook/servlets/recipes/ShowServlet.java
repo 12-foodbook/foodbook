@@ -3,6 +3,7 @@ package th.ac.kmitl.it.foodbook.servlets.recipes;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
+import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
 @WebServlet("/recipes/show")
@@ -24,9 +27,11 @@ public class ShowServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String recipe_id = request.getParameter("id");
+		String recipeIdString = request.getParameter("id");
+		long recipeId = Long.parseLong(recipeIdString);
 
 		Recipe recipe = null;
+		List<Ingredient> ingredients = null;
 		
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
@@ -34,7 +39,11 @@ public class ShowServlet extends HttpServlet {
 			Connection conn = ds.getConnection();
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
 
-			recipe = recipesDAO.find(Long.parseLong(recipe_id));
+			recipe = recipesDAO.find(recipeId);
+			
+			IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
+			
+			ingredients = ingredientsDAO.findByRecipeId(recipeId);
 			
 			conn.close();
 		} catch (SQLException e) {
@@ -43,6 +52,7 @@ public class ShowServlet extends HttpServlet {
 		}
 
 		request.setAttribute("recipe", recipe);
+		request.setAttribute("ingredients", ingredients);
 		request.getRequestDispatcher("/WEB-INF/views/recipes/show.jsp").include(request, response);
 	}
 
