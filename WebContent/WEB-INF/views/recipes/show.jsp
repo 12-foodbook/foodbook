@@ -62,6 +62,7 @@
 	</nav>
 	<!-- **************************************************************************** -->
 	<!-- video link Edit-->
+	<div class="container-fluid">
 	<div class="media">
 		<h1 class="media-heading videoHead">${recipe.name}</h1>
 
@@ -148,7 +149,7 @@
 			</form>
 		</div>
 	</div>
-
+</div>
 
 
 <c:out value="${recipe.recipe_id}"/>
