@@ -37,7 +37,7 @@ public class CreateServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		if (username.length() == 0 || password.length() == 0 || !password.equals(confirmPassword)) {
+		if (username.equals("") || password.equals("") || !password.equals(confirmPassword)) {
 			session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Invalid Username or Password!"));
     		request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
 		}
