@@ -60,21 +60,17 @@
 		<div class="Ingres col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-1">
 			<h3>Ingredients</h3>
 			<ol>
-				<li>asdkklnsasnd</li>
-				<li>dafdgsfbfs</li>
-				<li>gsdgffgfd</li>
-				<li>gsdgsggsfg</li>
-				<li>sdgffbgdfg</li>
+				<c:forEach var="ingredient" items="${ingredients}">
+					<li>${ingredient.name}</li>
+				</c:forEach>
 			</ol>
 		</div>
 		<div class="Ingres col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-1">
 			<h3>How to</h3>
 			<ol>
-				<li>asdkklnsasnd</li>
-				<li>dafdgsfbfs</li>
-				<li>gsdgffgfd</li>
-				<li>gsdgsggsfg</li>
-				<li>sdgffbgdfg</li>
+				<c:forEach var="recipeStep" items="${recipeSteps}">
+					<li>${recipeStep.title} ${recipeStep.description}</li>
+				</c:forEach>
 			</ol>
 		</div>
 		<!-- rating -->

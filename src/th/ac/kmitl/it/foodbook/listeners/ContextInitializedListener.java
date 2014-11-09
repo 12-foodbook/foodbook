@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 @WebListener
 public class ContextInitializedListener implements ServletContextListener {
     
-    @Resource(name = "jdbc/foodbook_development")
+    @Resource(name = "jdbc/foodbook_production")
     private DataSource ds;
 
 	public ContextInitializedListener() {

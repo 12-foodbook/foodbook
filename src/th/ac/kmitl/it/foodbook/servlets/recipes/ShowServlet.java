@@ -14,7 +14,9 @@ import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
+import th.ac.kmitl.it.foodbook.beans.RecipeStep;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
+import th.ac.kmitl.it.foodbook.daos.RecipeStepsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
 @WebServlet("/recipes/show")
@@ -32,6 +34,7 @@ public class ShowServlet extends HttpServlet {
 
 		Recipe recipe = null;
 		List<Ingredient> ingredients = null;
+		List<RecipeStep> recipeSteps = null;
 		
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
@@ -45,6 +48,10 @@ public class ShowServlet extends HttpServlet {
 			
 			ingredients = ingredientsDAO.findByRecipeId(recipeId);
 			
+			RecipeStepsDAO recipeStepsDAO = new RecipeStepsDAO(conn);
+			
+			recipeSteps = recipeStepsDAO.findByRecipeId(recipeId);
+			
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,6 +60,7 @@ public class ShowServlet extends HttpServlet {
 
 		request.setAttribute("recipe", recipe);
 		request.setAttribute("ingredients", ingredients);
+		request.setAttribute("recipeSteps", recipeSteps);
 		request.getRequestDispatcher("/WEB-INF/views/recipes/show.jsp").include(request, response);
 	}
 

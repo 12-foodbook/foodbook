@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.RecipeStep;
 
@@ -31,6 +33,28 @@ public class RecipeStepsDAO extends AbstractDAO {
 		}
 		
 		return false;
+	}
+
+	public List<RecipeStep> findByRecipeId(long recipeId) throws SQLException {
+		List<RecipeStep> recipeSteps = new ArrayList<RecipeStep>();
+		
+		String sql = "SELECT * FROM recipe_steps WHERE recipe_id = ?";
+		PreparedStatement stm = conn.prepareStatement(sql);
+		
+		stm.setLong(1, recipeId);
+		
+		ResultSet rs = stm.executeQuery();
+		
+		while (rs.next()) {
+			RecipeStep recipeStep = new RecipeStep();
+			recipeStep.setRecipe_step_id(rs.getLong("recipe_step_id"));
+			recipeStep.setTitle(rs.getString("title"));
+			recipeStep.setDescription(rs.getString("description"));
+			recipeStep.setRecipe_id(rs.getLong("recipe_id"));
+			recipeSteps.add(recipeStep);
+		}
+		
+		return recipeSteps;
 	}
 
 }

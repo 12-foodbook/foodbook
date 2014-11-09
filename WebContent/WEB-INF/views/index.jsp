@@ -9,11 +9,11 @@
 <!-- menu bar -->
 
 	<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
-		${ingredientCategories[i].name}
+		${ingredientCategories[i].name}<br>
 		<c:forEach begin="0" end="${fn:length(ingredients[i]) - 1}" var="j">
-			<input name="ingredient_id" type="checkbox" value="${ingredients[i][j].ingredient_id}"> ${ingredients[i][j].name}
-			<input name="ingredient_amount" placeholder="ingredient_amount">
+			<input name="ingredient_id" type="checkbox" value="${ingredients[i][j].ingredient_id}"> ${ingredients[i][j].name}<br>
 		</c:forEach>
+		<hr>
 	</c:forEach>
 
 	<nav class="navbar navbar-fixed-top" role="navigation">
