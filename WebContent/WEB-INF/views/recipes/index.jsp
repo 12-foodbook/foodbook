@@ -5,7 +5,7 @@
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
-	<div class="space-nav">asd</div>
+
 	<div class="row">
 	<!-- ************************************************************************************************* -->
 	<!-- Contextual Class -->
@@ -19,118 +19,13 @@
 	<!-- detial -->
 	<div class="col-sm-9">
 	
+	
 	<div class="row media">
 		<a class="media-left media-middle col-sm-2 thumbnail" href="#"> 
-			<img src="test content/scone.jpg"alt="scone">
+			<img src="/test content/scone.jpg"alt="scone">
 		</a>
 		<div class="media-body col-sm-3">
-			<h4 class="media-heading">Scone</h4>
-				sdlferhvdsjldfjfvdfbvjhdsvcwvdyvweycvweuycveycveywucv
-			wecbwbcwhjecvbdgjvsdgcvhegcvweghcvweghdvcdcdhsgcvsdg
-			<!-- rating -->
-		<div class="row">
-		<div class="rating col-sm-8">
-			<form action="send_rating">
-				<h3>
-					<span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
-				</h3>
-			</form>
-		</div>
-		<button type="button" class="btn btn-primary col-sm-4 FavButt">Favorite</button>
-		</div>
-		</div>
-	</div>
-			
-	<div class="row media">
-		<a class="media-left media-middle col-sm-2 thumbnail" href="#"> 
-			<img src="test content/scone.jpg"alt="scone">
-		</a>
-		<div class="media-body col-sm-3">
-			<h4 class="media-heading">Scone</h4>
-				sdlferhvdsjldfjfvdfbvjhdsvcwvdyvweycvweuycveycveywucv
-			wecbwbcwhjecvbdgjvsdgcvhegcvweghcvweghdvcdcdhsgcvsdg
-			<!-- rating -->
-		<div class="row">
-		<div class="rating col-sm-8">
-			<form action="send_rating">
-				<h3>
-					<span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
-				</h3>
-			</form>
-		</div>
-		<button type="button" class="btn btn-primary col-sm-4 FavButt">Favorite</button>
-		</div>
-		</div>
-	</div>
-	<div class="row media">
-		<a class="media-left media-middle col-sm-2 thumbnail" href="#"> 
-			<img src="test content/scone.jpg"alt="scone">
-		</a>
-		<div class="media-body col-sm-3">
-			<h4 class="media-heading">Scone</h4>
-				sdlferhvdsjldfjfvdfbvjhdsvcwvdyvweycvweuycveycveywucv
-			wecbwbcwhjecvbdgjvsdgcvhegcvweghcvweghdvcdcdhsgcvsdg
-			<!-- rating -->
-		<div class="row">
-		<div class="rating col-sm-8">
-			<form action="send_rating">
-				<h3>
-					<span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
-				</h3>
-			</form>
-		</div>
-		<button type="button" class="btn btn-primary col-sm-4 FavButt">Favorite</button>
-		</div>
-		</div>
-	</div>
-	<div class="row media">
-		<a class="media-left media-middle col-sm-2 thumbnail" href="#"> 
-			<img src="test content/scone.jpg"alt="scone">
-		</a>
-		<div class="media-body col-sm-3">
-			<h4 class="media-heading">Scone</h4>
-				sdlferhvdsjldfjfvdfbvjhdsvcwvdyvweycvweuycveycveywucv
-			wecbwbcwhjecvbdgjvsdgcvhegcvweghcvweghdvcdcdhsgcvsdg
-			<!-- rating -->
-		<div class="row">
-		<div class="rating col-sm-8">
-			<form action="send_rating">
-				<h3>
-					<span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
-				</h3>
-			</form>
-		</div>
-		<button type="button" class="btn btn-primary col-sm-4 FavButt">Favorite</button>
-		</div>
-		</div>
-	</div>
-	<div class="row media">
-		<a class="media-left media-middle col-sm-2 thumbnail" href="#"> 
-			<img src="test content/scone.jpg"alt="scone">
-		</a>
-		<div class="media-body col-sm-3">
-			<h4 class="media-heading">Scone</h4>
-				sdlferhvdsjldfjfvdfbvjhdsvcwvdyvweycvweuycveycveywucv
-			wecbwbcwhjecvbdgjvsdgcvhegcvweghcvweghdvcdcdhsgcvsdg
-			<!-- rating -->
-		<div class="row">
-		<div class="rating col-sm-8">
-			<form action="send_rating">
-				<h3>
-					<span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
-				</h3>
-			</form>
-		</div>
-		<button type="button" class="btn btn-primary col-sm-4 FavButt">Favorite</button>
-		</div>
-		</div>
-	</div>
-	<div class="row media">
-		<a class="media-left media-middle col-sm-2 thumbnail" href="#"> 
-			<img src="test content/scone.jpg"alt="scone">
-		</a>
-		<div class="media-body col-sm-3">
-			<h4 class="media-heading">Scone</h4>
+			<h4 class="media-heading">${recipe.name}</h4>
 				sdlferhvdsjldfjfvdfbvjhdsvcwvdyvweycvweuycveycveywucv
 			wecbwbcwhjecvbdgjvsdgcvhegcvweghcvweghdvcdcdhsgcvsdg
 			<!-- rating -->
