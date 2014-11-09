@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:set var="pageTitle" value="Index" scope="application"/>
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 <!-- menu bar -->
+
+	<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
+		${ingredientCategories[i].name}
+		<c:forEach begin="0" end="${fn:length(ingredients[i]) - 1}" var="j">
+			<input name="ingredient_id" type="checkbox" value="${ingredients[i][j].ingredient_id}"> ${ingredients[i][j].name}
+			<input name="ingredient_amount" placeholder="ingredient_amount">
+		</c:forEach>
+	</c:forEach>
 
 	<nav class="navbar navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
