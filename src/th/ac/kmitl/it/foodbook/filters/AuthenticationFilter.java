@@ -15,13 +15,13 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter({
 	"/recipes/create",
+	"/recipes/edit",
 	"/recipes/show",
 	"/recipes/search-by-ingredient",
-	"/rates",
 	"/ingredients/categories/create",
 	"/favorites/create",
 	"/favorites/delete",
-	"/recipes/edit",
+	"/rates",
 	
 })
 public class AuthenticationFilter implements Filter {
