@@ -81,13 +81,14 @@ public class CreateServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		if (name.length() == 0 ||
+		if (name.equals("") ||
 			ingredientIds.length == 0 ||
 			ingredientAmounts.length == 0 ||
 			stepTitles.length == 0
 		) {
 			session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Invalid Inputs!"));
     		request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
+    		return;
 		}
     	
     	Recipe recipe = null;
