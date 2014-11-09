@@ -78,6 +78,17 @@ public class CreateServlet extends HttpServlet {
     	String[] stepTitles = request.getParameterValues("step_title");
     	String[] stepDescriptions = request.getParameterValues("step_description");
     	String[] stepPhotoUrls = request.getParameterValues("step_photo_url");
+		
+		HttpSession session = request.getSession();
+		
+		if (name.length() == 0 ||
+			ingredientIds.length == 0 ||
+			ingredientAmounts.length == 0 ||
+			stepTitles.length == 0
+		) {
+			session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Invalid Inputs!"));
+    		request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
+		}
     	
     	Recipe recipe = null;
     	
@@ -94,7 +105,6 @@ public class CreateServlet extends HttpServlet {
 			recipe.setName(name);
 			recipe.setVideo_url(videoUrl);
 			
-			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user");
 			
 			recipe.setUser_id(user.getUser_id());
@@ -137,8 +147,6 @@ public class CreateServlet extends HttpServlet {
 			e.printStackTrace();
 			response.sendError(500);
 		}
-		
-		HttpSession session = request.getSession();
     	
     	if (isSuccess) {
     		session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
