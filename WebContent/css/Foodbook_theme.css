@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+body{
+	padding-top:10px 
+}
 .navbar-fixed-top {
 	background-color: #ffa000;
 	border-color: #e7e7e7;
