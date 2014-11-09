@@ -27,7 +27,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"> Foodbook <img
+				<a class="navbar-brand" href="/index"> Foodbook <img
 					class="logo_brand" alt="Brand" src="/test content/logo/logo_1.png">
 				</a>
 			</div>
