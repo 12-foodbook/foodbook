@@ -79,18 +79,29 @@ label {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	background: #ffa000;
+	
 }
-
+.nav-tabs li a{
+	color: white;
+}
 .nav-tabs li.active a {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	background: #c17900;
+	background: #F57F17;
+	color: white;
 }
-
+.nav-tabs li a:hover {
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
+	text-shadow:black 1px 1px 1px;
+	background: #F57F17;
+	color: white;
+}
 .nav-tabs li.active a:hover {
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	background: #c17900;
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
+	background: #F57F17;
+	color: white;
 }
 
 .checkboxcol .checkbox {
