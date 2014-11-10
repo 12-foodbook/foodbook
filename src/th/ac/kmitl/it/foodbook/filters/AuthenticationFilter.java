@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 	"/recipes/show",
 	"/recipes/search-by-ingredient",
 	"/ingredients/categories/create",
+	"/favorites/index",
 	"/favorites/create",
 	"/favorites/delete",
 	"/rates",

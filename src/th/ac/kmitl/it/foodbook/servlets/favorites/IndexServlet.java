@@ -32,15 +32,7 @@ public class IndexServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
-
-
-		DataSource ds = (DataSource) request.getServletContext().getAttribute(
+    	DataSource ds = (DataSource) request.getServletContext().getAttribute(
 				"ds");
 		
 		HttpSession session = request.getSession();
@@ -48,7 +40,7 @@ public class IndexServlet extends HttpServlet {
 		boolean isSuccess = false;
 		
 		List<Favorite> favorites = null;
-		List<Recipe> recipes = null;
+		List<Recipe> recipes = new ArrayList<Recipe>();
 		
 		try{
 			Connection conn = ds.getConnection();
@@ -65,9 +57,19 @@ public class IndexServlet extends HttpServlet {
 			e.printStackTrace();
 			response.sendError(500);
 		}
+		System.out.print(recipes.size());
 		
 		request.setAttribute("recipes", recipes);
-		request.getRequestDispatcher("/WEB-INF/views/favorites/index.jsp").include(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
+		
+
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+
+
 		
 
 		
