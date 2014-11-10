@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -14,12 +15,12 @@
 </head>
 <body>
 
-<c:if test="${not empty alert}">
-	<div class="container">
-		<div class="alert alert-${alert.type}" role="alert">${alert.message}</div>
-	</div>
-</c:if>
-<!-- menu bar -->
+	<c:if test="${not empty alert}">
+		<div class="container">
+			<div class="alert alert-${alert.type}" role="alert">${alert.message}</div>
+		</div>
+	</c:if>
+	<!-- menu bar -->
 	<nav class="navbar navbar-fixed-top" role="navigation">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -30,8 +31,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/index"> Foodbook <img
-					class="logo_brand" alt="Brand" src="/test content/logo/logo_1.png">
+				<a class="navbar-brand" href="/index"> Foodbook<!--  <img
+					class="logo_brand" alt="Brand" src="/test content/logo/logo_1.png"> -->
 				</a>
 			</div>
 
@@ -45,7 +46,6 @@
 							<li><a href="#">ของทอด</a></li>
 							<li class="divider"></li>
 							<li><a href="#">ของหวาน</a></li>
-							
 						</ul></li>
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
@@ -55,17 +55,19 @@
 					<button type="submit" class="btn btn-default">Search</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<c:if test="${empty user}"><li><a href="/users/authenticate">Login</a></li>
-					<li><a href="/users/create">สมัครสมาชิก</a></li></c:if>
-					<c:if test="${!empty user}"><li><a href="#">${user.username}</a></li></c:if>
-					
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">ตัวเลือก <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Favorite</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul></li>
+					<c:if test="${empty user}">
+						<li><a href="/users/authenticate">Login</a></li>
+						<li><a href="/users/create">สมัครสมาชิก</a></li>
+					</c:if>
+					<c:if test="${!empty user}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">${user.username} <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Favorite</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Separated link</a></li>
+							</ul></li>
+					</c:if>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
