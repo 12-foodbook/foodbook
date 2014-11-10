@@ -40,13 +40,10 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">หมวดหมู่ <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a href="#">ของทอด</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+							<li><a href="#">ของหวาน</a></li>
+							
 						</ul></li>
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
@@ -56,13 +53,14 @@
 					<button type="submit" class="btn btn-default">Search</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">ชื่อ นามสกุล</a></li>
+					<c:if test="${empty user}"><li><a href="/users/authenticate">Login</a></li>
+					<li><a href="/users/create">สมัครสมาชิก</a></li></c:if>
+					<c:if test="${!empty user}"><li><a href="#">${user.username}</a></li></c:if>
+					
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">ตั้งค่า <span class="caret"></span></a>
+						data-toggle="dropdown">ตัวเลือก <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Favorite</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Separated link</a></li>
 						</ul></li>
