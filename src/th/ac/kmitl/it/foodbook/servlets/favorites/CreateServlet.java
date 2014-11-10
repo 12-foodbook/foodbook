@@ -42,11 +42,12 @@ public class CreateServlet extends HttpServlet {
 
 		boolean isSuccess = false;
 
+		HttpSession session = request.getSession();
+
 		try {
 			Connection conn = ds.getConnection();
 			FavoritesDAO favoritesDAO = new FavoritesDAO(conn);
 
-			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user");
 
 			favorite = new Favorite();
@@ -55,15 +56,13 @@ public class CreateServlet extends HttpServlet {
 			favorite.setRecipe_id(Long.parseLong(recipeId));
 
 			isSuccess = favoritesDAO.create(favorite);
-			
+
 			conn.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);
 		}
-
-		HttpSession session = request.getSession();
 
 		if (isSuccess) {
 			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS,

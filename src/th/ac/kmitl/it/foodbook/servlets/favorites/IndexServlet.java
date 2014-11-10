@@ -3,6 +3,8 @@ package th.ac.kmitl.it.foodbook.servlets.favorites;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,66 +15,63 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Favorite;
+import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.FavoritesDAO;
+import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
-@WebServlet("/favorites/delete")
-public class DeleteServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/favorites/index")
+public class IndexServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
 
-	public DeleteServlet() {
-		super();
+    public IndexServlet() {
+    	super();
+    }
 
-	}
-
-	protected void doGet(HttpServletRequest request,
+    protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String recipeId = request.getParameter("recipe_id");
+		
 
-		Favorite favorite = null;
 
 		DataSource ds = (DataSource) request.getServletContext().getAttribute(
 				"ds");
-
-		boolean isSuccess = false;
-
+		
 		HttpSession session = request.getSession();
-
-		try {
+		
+		boolean isSuccess = false;
+		
+		List<Favorite> favorites = null;
+		List<Recipe> recipes = null;
+		
+		try{
 			Connection conn = ds.getConnection();
 			FavoritesDAO favoritesDAO = new FavoritesDAO(conn);
-
 			User user = (User) session.getAttribute("user");
-
-			favorite = new Favorite();
-
-			favorite.setUser_id(user.getUser_id());
-			favorite.setRecipe_id(Long.parseLong(recipeId));
-
-			isSuccess = favoritesDAO.delete((favorite));
-
-			conn.close();
-
+			favorites = favoritesDAO.findByUserId(user.getUser_id());
+			for(Favorite i:favorites){
+				RecipesDAO recipesDAO = new RecipesDAO(conn);
+				Recipe recipe = recipesDAO.find(i.getRecipe_id());
+				recipes.add(recipe);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);
 		}
+		
+		request.setAttribute("recipes", recipes);
+		request.getRequestDispatcher("/WEB-INF/views/favorites/index.jsp").include(request, response);
+		
 
-		if (isSuccess) {
-			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS,
-					"Deleted Successfully!"));
-			response.sendRedirect("/");
-		} else {
-			session.setAttribute("alert", new Alert(AlertTypes.DANGER,
-					"Deleted Unsuccessfully!"));
-			response.sendRedirect("/users/favorites");
-		}
+		
+
+		
 	}
 }
