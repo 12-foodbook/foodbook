@@ -67,6 +67,8 @@
 								<li class="divider"></li>
 								<li><a href="/recipes/create">Create recipe</a></li>
 								<li class="divider"></li>
+								<li><a href="#">My recipe</a></li>
+								<li class="divider"></li>
 								<li><a href="#">Logout</a></li>
 								<li class="divider"></li>
 							</ul></li>
