@@ -10,10 +10,10 @@
 	<!-- ************************************************************************************************* -->
 	<!-- Contextual Class -->
 	<div class="list-group col-sm-2 col-sm-offset-1" >
-		<a href="#" class="list-group-item">หมวด 1</a> 
+		<!-- <a href="#" class="list-group-item">หมวด 1</a> 
 		<a href="#" class="list-group-item">หมวด 2</a> 
 		<a href="#" class="list-group-item">หมวด 3</a> 
-		<a href="#"class="list-group-item">หมวด 4</a>
+		<a href="#"class="list-group-item">หมวด 4</a> -->
 	</div>
 	<!-- *************************************************************************************************** -->
 	<!-- detial -->
@@ -45,9 +45,5 @@
 	</div>
 	
 	</div>
-
-<c:forEach var="recipe" items="${recipes}">
-	<a herf="/recipes/show?id=${recipe.id}">${recipe.name}</a><br>
-</c:forEach>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>

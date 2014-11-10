@@ -31,7 +31,7 @@ public class SearchByIngredientServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,6 +57,8 @@ public class SearchByIngredientServlet extends HttpServlet {
 				for (Recipe recipe : tempRecipes) {
 					List<Ingredient> ingredients = ingredientsDAO.findByRecipeId(recipe.getRecipe_id());
 					Set<String> recipesIngredientIdStrings = new HashSet<String>();
+					
+					System.out.println("ingredients.size(): " + ingredients.size());
 					
 					for (Ingredient ingredient : ingredients) {
 						recipesIngredientIdStrings.add(String.valueOf(ingredient.getIngredient_id()));
@@ -86,6 +88,8 @@ public class SearchByIngredientServlet extends HttpServlet {
 			e.printStackTrace();
 			response.sendError(500);
 		}
+		
+		System.out.println("recipes.size(): " + recipes.size());
 		
 		request.setAttribute("recipes", recipes);
 		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
