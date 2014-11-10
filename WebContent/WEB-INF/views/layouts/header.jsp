@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/fontface.css">
 <link rel="stylesheet" type="text/css" href="/css/Foodbook_theme.css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </head>
