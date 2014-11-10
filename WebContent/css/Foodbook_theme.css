@@ -147,9 +147,14 @@ label {
 .FavButt{
 	top: 10px;
 }
-.ingredientname,.ingredientamount{
-	margin: 10px;
+.ingredientname{
+	color:#F57F17;
 }
-.ingredientamount{
-	display: inline-block;
+.stepdes{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+/*select photo button  */
+.photobutt{
+	margin-bottom:10px;
 }

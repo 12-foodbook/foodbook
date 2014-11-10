@@ -6,7 +6,7 @@
 <c:set var="pageTitle" value="Recipes / Create" scope="application" />
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp" />
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
 		<form method="post" id="create-recipe"
 			class="form-horizontal col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3">
@@ -34,15 +34,19 @@
 					
 						<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
 						<div class="row">
-							${ingredientCategories[i].name} <br>
+							<p class="col-xs-offset-1 col-lg-offset-0 ingredientname">${ingredientCategories[i].name}<br>
+							<div class="row">
 							<c:forEach begin="0" end="${fn:length(ingredients[i]) - 1}" var="j">
-								<div class="col-lg-2">
-								<input class="ingredientname" name="ingredient_id" type="checkbox" value="${ingredients[i][j].ingredient_id}"> ${ingredients[i][j].name}
+							
+								<div class="col-xs-4 col-xs-offset-1 col-lg-3 col-lg-offset-0">
+								<input name="ingredient_id" type="checkbox" value="${ingredients[i][j].ingredient_id}"> ${ingredients[i][j].name}
 								</div>
-								<div class="col-lg-4">
-								<input class="form-control ingredientamount" name="ingredient_amount" placeholder=" ingredient_amount"><br>
+								<div class="col-xs-4 col-lg-3 col-lg-offset-0">
+								<input class="form-control ingredientamount" name="ingredient_amount" placeholder="amount"><br>
 								</div>
+							
 							</c:forEach>
+							</div>
 							</div>
 						</c:forEach>
 						</div>
@@ -54,7 +58,7 @@
 				</div>
 				
 				<button id="add-step-button" type="button">Add Step</button>
-				<button id="create-button" type="submit" class="btn btn-primary col-lg-2 col-lg-offset-10">Create</button>
+				<button id="create-button" type="submit" class="btn btn-primary col-xs-3 col-xs-offset-8 col-lg-2 col-lg-offset-10">Create</button>
 			</fieldset>
 		</form>
 	</div>
@@ -65,8 +69,8 @@
 	var recipeStepHtml = ''
 			+ '<div class="recipe-step col-lg-10 col-lg-offset-2">'
 			+ '<input name="step_title" placeholder="step_title"><br>'
-			+ '<input name="step_description" placeholder="step_description"><br>'
-			+ '<input type="file" onchange="fileChanged(this)">'
+			+ '<input class="stepdes" name="step_description" placeholder="step_description"><br>'
+			+ '<input class="photobutt" type="file" onchange="fileChanged(this)">'
 			+ '<input name="step_photo_url" type="hidden">' + '</div>';
 	console.log(recipeStepHtml);
 	var $addStepButton = $('#add-step-button');
