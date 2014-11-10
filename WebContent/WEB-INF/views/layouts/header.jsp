@@ -65,7 +65,10 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#">Favorite</a></li>
 								<li class="divider"></li>
-								<li><a href="#">Separated link</a></li>
+								<li><a href="/recipes/create">Create recipe</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Logout</a></li>
+								<li class="divider"></li>
 							</ul></li>
 					</c:if>
 				</ul>
