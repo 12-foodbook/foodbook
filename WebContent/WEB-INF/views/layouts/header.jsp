@@ -15,7 +15,9 @@
 <body>
 
 <c:if test="${not empty alert}">
-	<div class="alert alert-${alert.type}" role="alert">${alert.message}</div>
+	<div class="container">
+		<div class="alert alert-${alert.type}" role="alert">${alert.message}</div>
+	</div>
 </c:if>
 <!-- menu bar -->
 	<nav class="navbar navbar-fixed-top" role="navigation">

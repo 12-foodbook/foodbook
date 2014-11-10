@@ -31,16 +31,22 @@
 				<div class="form-group">
 					<label for="inputIngredients" class="col-lg-2 control-label">วัตถุดิบ</label>
 					<div class="col-lg-10">
-						<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}"
-							var="i">
-		${ingredientCategories[i].name}<br>
-		<c:forEach begin="0" end="${fn:length(ingredients[i]) - 1}" var="j">
-								<input name="ingredient_id" type="checkbox"
-									value="${ingredients[i][j].ingredient_id}"> ${ingredients[i][j].name}
-			<input name="ingredient_amount" placeholder="ingredient_amount"><br>
+					
+						<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
+						<div class="row">
+							${ingredientCategories[i].name} <br>
+							<c:forEach begin="0" end="${fn:length(ingredients[i]) - 1}" var="j">
+								<div class="col-lg-2">
+								<input class="ingredientname" name="ingredient_id" type="checkbox" value="${ingredients[i][j].ingredient_id}"> ${ingredients[i][j].name}
+								</div>
+								<div class="col-lg-4">
+								<input class="form-control ingredientamount" name="ingredient_amount" placeholder=" ingredient_amount"><br>
+								</div>
 							</c:forEach>
+							</div>
 						</c:forEach>
-					</div>
+						</div>
+					
 				</div>
 				
 				<div id="recipe-steps" class="form-group">

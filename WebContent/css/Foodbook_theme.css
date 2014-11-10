@@ -11,6 +11,7 @@ body {
 
 label {
 	font-weight: normal !important;
+	display: inline-block;
 }
 
 .navbar-fixed-top {
@@ -134,4 +135,10 @@ label {
 }
 .FavButt{
 	top: 10px;
+}
+.ingredientname,.ingredientamount{
+	margin: 10px;
+}
+.ingredientamount{
+	display: inline-block;
 }
