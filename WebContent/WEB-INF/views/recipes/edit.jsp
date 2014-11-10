@@ -7,8 +7,8 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 <form method="post" id="create-recipe">
-	<input name="name" placeholder="name"><br>
-	<input name="video_url" placeholder="video_url"><br>
+	<input name="name" placeholder="name" value="${recipe.name}"><br>
+	<input name="video_url" placeholder="video_url" value="${recipe.video_url}"><br>
 	<c:forEach begin="0" end="${fn:length(ingredientCategories)}" var="i">
 		${ingredientCategories[i].name}
 		<c:forEach begin="0" end="${fn:length(ingredients)}" var="j">
