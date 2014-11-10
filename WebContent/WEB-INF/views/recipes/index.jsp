@@ -31,11 +31,11 @@
 			<!-- rating -->
 		<div class="row">
 		<div class="rating col-sm-8">
-			<form action="send_rating">
+			
 				<h3>
 					<span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span><span>&#x2605;</span>
 				</h3>
-			</form>
+			
 		</div>
 		<button type="button" class="btn btn-primary col-sm-4 FavButt">Favorite</button>
 		</div>
