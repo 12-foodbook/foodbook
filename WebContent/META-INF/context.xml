@@ -8,9 +8,9 @@
 		maxIdle="30"
 		maxWait="10000"
 		username="root"
-		password="root"
+		password="root1@#$"
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/foodbook_development"
+		url="jdbc:mysql://128.199.251.149:3306/foodbook_development"
 	/>
 	
 	<Resource
@@ -21,9 +21,9 @@
 		maxIdle="30"
 		maxWait="10000"
 		username="root"
-		password="root"
+		password="root1@#$"
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/foodbook_production"
+		url="jdbc:mysql://128.199.251.149:3306/foodbook_production"
 	/>
 	
 </Context>
