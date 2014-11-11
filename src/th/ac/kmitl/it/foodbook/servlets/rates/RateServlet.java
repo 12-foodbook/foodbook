@@ -38,8 +38,7 @@ public class RateServlet extends HttpServlet {
 
 		Rate rate = null;
 
-		DataSource ds = (DataSource) request.getServletContext().getAttribute(
-				"ds");
+		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
 		boolean isSuccess = false;
 
@@ -72,12 +71,10 @@ public class RateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (isSuccess) {
-			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS,
-					"Rated Successfully!"));
+			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Rated Successfully!"));
 			response.sendRedirect("/");
 		} else {
-			session.setAttribute("alert", new Alert(AlertTypes.DANGER,
-					"Rated Unsuccessfully!"));
+			session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Rated Unsuccessfully!"));
 			response.sendRedirect("/recipes/show?id=" + recipeId);
 		}
 	}

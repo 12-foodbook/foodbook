@@ -16,16 +16,14 @@ import javax.servlet.http.HttpSession;
 @WebFilter({
 	"/recipes/create",
 	"/recipes/edit",
-	"/ingredients/categories/create",
 	"/favorites/index",
 	"/favorites/create",
 	"/favorites/delete",
 	"/rates",
-	
 })
-public class AuthenticationFilter implements Filter {
+public class UserAuthenticationFilter implements Filter {
 
-    public AuthenticationFilter() {
+    public UserAuthenticationFilter() {
 
     }
 
