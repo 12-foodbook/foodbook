@@ -14,6 +14,9 @@
 		<!-- Ingredients will select-->
 		<div
 			class="ingresTab col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-0">
+			<div class="page-header">
+				<h1>เลือกวัตถุดิบ</h1>
+			</div>
 			<ul class="nav nav-tabs">
 				<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
 					<li<c:if test="${i == 0}"> class="active"</c:if>><a href="#ingredient-category-${i}" data-toggle="tab">${ingredientCategories[i].name}</a></li>
@@ -41,19 +44,18 @@
 					class="label label-success">องุ่น</span> <span
 					class="label label-success">พริก</span>
 			</div> -->
-			<button class="btn btn-primary btn-lg searchButt">ค้นหาเมนู</button>
+			<button class="btn btn-success btn-lg btn-block searchButt">ค้นหาตำรับอาหาร</button>
 			</form>
 		</div>
-		<!--Search ingres button  -->
-
-		<!-- Foodbook Description -->
-		<div
-			class="jumbotron FoodbookDes col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-0">
-			<h1>
-				Foodbook <img class="jumboImg" alt="Brand"
-					src="/test content/logo/logo_1.png">
-			</h1>
-			<p>This is Foodbook.</p>
+		
+		<div class="panel panel-default col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-0"">
+		  <div class="panel-body">
+		    <div align="center">
+				<img src="/img/foodbook_black.png">
+				<h1>Foodbook</h1>
+				<h3>ระบบค้นหาตำรับอาหารจากวัตถุดิบที่มีอยู่</h3>
+			</div>
+		  </div>
 		</div>
 
 	</div>

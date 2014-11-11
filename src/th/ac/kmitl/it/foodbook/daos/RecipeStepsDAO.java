@@ -23,6 +23,8 @@ public class RecipeStepsDAO extends AbstractDAO {
 		stm.setString(2, recipeStep.getDescription());
 		stm.setLong(3, recipeStep.getRecipe_id());
 		
+		System.out.println("RecipeStepsDAO#create: " + recipeStep);
+		
 		int rowCount = stm.executeUpdate();
 		
 		if (rowCount == 1) {
@@ -55,6 +57,17 @@ public class RecipeStepsDAO extends AbstractDAO {
 		}
 		
 		return recipeSteps;
+	}
+	
+	public boolean deleteByRecipeId(long recipeId) throws SQLException {
+		String sql = "DELETE FROM recipe_steps WHERE recipe_id = ?";
+		PreparedStatement stm = conn.prepareStatement(sql);
+		
+		stm.setLong(1, recipeId);
+		
+		int rowCount = stm.executeUpdate();
+		
+		return rowCount > 0;
 	}
 
 }

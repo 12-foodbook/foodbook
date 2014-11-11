@@ -39,4 +39,11 @@ public class RecipeStep {
 		this.recipe_id = recipe_id;
 	}
 
+	@Override
+	public String toString() {
+		return "RecipeStep [recipe_step_id=" + recipe_step_id + ", title="
+				+ title + ", description=" + description + ", recipe_id="
+				+ recipe_id + "]";
+	}
+
 }

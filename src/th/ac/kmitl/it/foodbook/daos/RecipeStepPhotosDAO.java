@@ -31,5 +31,16 @@ public class RecipeStepPhotosDAO extends AbstractDAO {
 		
 		return false;
 	}
+	
+	public boolean deleteByRecipeStepId(long recipeStepId) throws SQLException {
+		String sql = "DELETE FROM recipe_step_photos WHERE recipe_step_id = ?";
+		PreparedStatement stm = conn.prepareStatement(sql);
+		
+		stm.setLong(1, recipeStepId);
+		
+		int rowCount = stm.executeUpdate();
+		
+		return rowCount > 0;
+	}
 
 }

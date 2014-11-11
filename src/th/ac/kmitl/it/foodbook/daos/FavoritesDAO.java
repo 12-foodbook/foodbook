@@ -25,11 +25,7 @@ public class FavoritesDAO extends AbstractDAO {
 
 		int rowCount = stm.executeUpdate();
 
-		if (rowCount == 1) {
-			return true;
-		}
-
-		return false;
+		return rowCount == 1;
 	}
 
 	public boolean delete(Favorite favorite) throws SQLException {
@@ -41,11 +37,7 @@ public class FavoritesDAO extends AbstractDAO {
 
 		int rowCount = stm.executeUpdate();
 
-		if (rowCount == 1) {
-			return true;
-		}
-
-		return false;
+		return rowCount == 1;
 	}
 
 	public List<Favorite> findByUserId(long userId) throws SQLException {
@@ -70,13 +62,12 @@ public class FavoritesDAO extends AbstractDAO {
 	}
 
 	public Favorite find(long userId, long recipeId) throws SQLException {
-		List<Favorite> favorites = new ArrayList<Favorite>();
-		favorites = findByUserId(userId);
-		for (Favorite i : favorites) {
-			if (i.getRecipe_id() == recipeId) {
-				return i;
-			}
+		List<Favorite> favorites = findByUserId(userId);
+		
+		for (Favorite favorite : favorites) {
+			if (favorite.getRecipe_id() == recipeId) return favorite;
 		}
+		
 		return null;
 	}
 

@@ -11,7 +11,6 @@ body {
 
 label {
 	font-weight: normal !important;
-	display: inline-block;
 }
 
 .navbar-fixed-top {
@@ -33,7 +32,7 @@ label {
 	max-height: 30px;
 }
 
-.navbar-brand>img {
+.navbar-brand > img {
 	display: inline-block;
 }
 
@@ -63,7 +62,6 @@ label {
 }
 
 .embed-responsive-16by9 {
-
 	margin: 0 50px 50px 50px;
 }
 
@@ -71,29 +69,25 @@ label {
 	text-align: center;
 }
 
-.tab-content {
-	border: groove 2px #ffa000;
-}
-
 .nav-tabs li {
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
 	background: #ffa000;
 	
 }
 .nav-tabs li a{
 	color: white;
+	border: 0 !important;
 }
 .nav-tabs li.active a {
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
 	background: #F57F17;
 	color: white;
 }
 .nav-tabs li a:hover {
 	border-top-left-radius: 14px;
 	border-top-right-radius: 14px;
-	text-shadow:black 1px 1px 1px;
 	background: #F57F17;
 	color: white;
 }

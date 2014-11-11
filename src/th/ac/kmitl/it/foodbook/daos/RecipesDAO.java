@@ -87,11 +87,32 @@ public class RecipesDAO extends AbstractDAO {
 
 		int rowCount = stm.executeUpdate();
 
-		if (rowCount == 1) {
-			return true;
-		}
+		return rowCount == 1;
+	}
+	
+	public boolean deleteIngredient(long recipeId, long ingredientId) throws SQLException {
+		String sql = "DELETE FROM recipes_ingredients WHERE recipe_id = ? AND ingredient_id = ?";
+		PreparedStatement stm = conn.prepareStatement(sql);
 
-		return false;
+		stm.setLong(1, recipeId);
+		stm.setLong(2, ingredientId);
+
+		int rowCount = stm.executeUpdate();
+
+		return rowCount == 1;
+	}
+	
+	public boolean update(Recipe recipe) throws SQLException {
+		String sql = "UPDATE recipes SET name = ?, video_url = ? WHERE recipe_id = ?";
+		PreparedStatement stm = conn.prepareStatement(sql);
+		
+		stm.setString(1, recipe.getName());
+		stm.setString(2, recipe.getVideo_url());
+		stm.setLong(3, recipe.getRecipe_id());
+		
+		int rowCount = stm.executeUpdate();
+		
+		return rowCount == 1;
 	}
 
 }
