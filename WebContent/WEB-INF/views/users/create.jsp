@@ -5,46 +5,42 @@
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
+<div class="container">
 
-	<!-- form insert  -->
-	<div class="container-fluid">
-		<!--Category Accordion  -->
-		<div class="row">
-			<form class="form-horizontal col-sm-6 col-sm-offset-3" method="post">
-				<fieldset>
-					<legend>สมัครสมาชิก</legend>
-					<div class="form-group">
-						<label for="inputFoodName" class="col-lg-2 control-label">ชื่อผู้ใช้</label>
-						<div class="col-lg-10">
-							<input type="text" class="form-control" id="inputUsername"
-								name="username" placeholder="ชื่อผู้ใช้">
-						</div>
+	<div class="page-header">
+		<h1>สมัครสมาชิก</h1>
+	</div>
+	
+	<div class="row">
+		<div class="col-xs-12 col-md-6 col-md-offset-3">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="username" class="col-sm-2 control-label">ชื่อผู้ใช้</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="username" placeholder="เช่น stevejobs">
 					</div>
-					<div class="form-group">
-						<label for="inputVideoLink" class="col-lg-2 control-label">รหัสผ่าน</label>
-						<div class="col-lg-10">
-							<input name="password" type="password" class="form-control" id="inputPassword"
-								 placeholder="รหัสผ่าน">
-						</div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-2 control-label">รหัสผ่าน</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="password" placeholder="เช่น secret1@#$">
 					</div>
-					<div class="form-group">
-						<label for="inputVideoLink" class="col-lg-2 control-label">ยืนยันรหัสผ่าน</label>
-						<div class="col-lg-10">
-							<input name="confirm_password" type="password" class="form-control"
-								id="inputConfirmPassword"
-								placeholder="ยืนยันรหัสผ่าน">
-						</div>
+				</div>
+				<div class="form-group">
+					<label for="confirm_password" class="col-sm-2 control-label">ยืนยันรหัสผ่าน</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="confirm_password" placeholder="เช่น secret1@#$">
 					</div>
-
-					<div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
-							<button type="submit" class="btn btn-primary">สมัครสมาชิก</button>
-						</div>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-12">
+						<button type="submit" class="btn btn-success btn-lg btn-block">สมัครสมาชิก</button>
 					</div>
-				</fieldset>
+				</div>
 			</form>
 		</div>
 	</div>
-
+	
+</div>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
