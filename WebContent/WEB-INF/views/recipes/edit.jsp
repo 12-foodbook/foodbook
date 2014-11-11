@@ -16,16 +16,16 @@
 	<form method="post" class="form-horizontal" role="form">
 		<input name="id" value="${recipe.recipe_id}" type="hidden">
 		<div class="row">
-			<div class="col-xs-12 col-md-8">
+			<div class="col-xs-12 col-md-6">
 				<div class="form-group">
-					<label for="name" class="col-sm-2 control-label">ชื่อรายการอาหาร</label>
-					<div class="col-sm-10">
+					<label for="name" class="col-sm-4 control-label"><h4>ชื่อรายการอาหาร</h4></label>
+					<div class="col-sm-8">
 						<input name="name" placeholder="name" id="name" class="form-control" value="${recipe.name}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="video_url" class="col-sm-2 control-label">วิดิโอวิธีการประกอบอาหาร</label>
-					<div class="col-sm-10">
+					<label for="video_url" class="col-sm-4 control-label"><h4>วิดิโอวิธีการประกอบอาหาร</h4></label>
+					<div class="col-sm-8">
 						<input name="video_url" placeholder="video_url" id="video_url" class="form-control" value="${recipe.video_url}">
 					</div>
 				</div>
@@ -34,20 +34,20 @@
 					<c:forEach var="recipeStep" items="${recipeSteps}">
 						<hr>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">หัวข้อขั้นตอน</label>
-							<div class="col-sm-10">
+							<label class="col-sm-4 control-label"><h4>หัวข้อขั้นตอน</h4></label>
+							<div class="col-sm-8">
 								<input name="step_title" class="form-control" value="${recipeStep.title}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">รายละเอียดขั้นตอน</label>
-							<div class="col-sm-10">
+							<label class="col-sm-4 control-label"><h4>รายละเอียดขั้นตอน</h4></label>
+							<div class="col-sm-8">
 								<textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">รูปภาพประกอบขั้นตอน</label>
-							<div class="col-sm-10">
+							<label class="col-sm-4 control-label"><h4>รูปภาพประกอบขั้นตอน</h4></label>
+							<div class="col-sm-8">
 								<input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)">
 								<input name="step_photo_url" class="form-control" type="hidden">
 							</div>
@@ -57,11 +57,13 @@
 				
 			</div>
 			
-			<div class="col-xs-12 col-md-4">
+			<div class="col-xs-12 col-md-5 col-md-offset-1 editrecipe-bgcolor">
+			<label><h4>เลือกวัตถุดิบ</h4></label>
 				<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
 					<div class="form-group">
-						<label class="col-sm-4 control-label">${ingredientCategories[i].name}</label>
+						<label class="col-sm-6 control-label">${ingredientCategories[i].name}</label>
 					</div>
+					<div class="form-group">
 					<c:forEach begin="0" end="${fn:length(ingredients[i]) - 1}" var="j">
 						<c:set var="contains" value="false" />
 						<c:forEach var="recipeIngredient" items="${recipeIngredients}">
@@ -69,8 +71,8 @@
 								<c:set var="contains" value="true" />
 							</c:if>
 						</c:forEach>
-						<div class="form-group">
-							<div class="col-sm-8">
+						
+							<div class="col-sm-6">
 								<div class="checkbox">
 								  <label>
 								    <input name="ingredient_id" type="checkbox" onclick="toggleAmount(this)" value="${ingredients[i][j].ingredient_id}"<c:if test="${contains}"> checked</c:if>>
@@ -79,8 +81,9 @@
 								  </label>
 								</div>
 							</div>
-						</div>
+						
 					</c:forEach>
+					</div>
 				</c:forEach>
 			</div>
 		</div>
@@ -101,7 +104,7 @@
 <script>
 	var $createRecipeForm = $('#create-recipe');
 	var $recipeSteps = $('#recipe-steps');
-	var recipeStepHtml = '<hr><div class="form-group"><label class="col-sm-2 control-label">หัวข้อขั้นตอน</label><div class="col-sm-10"><input name="step_title" class="form-control" value="${recipeStep.title}"></div></div><div class="form-group"><label class="col-sm-2 control-label">รายละเอียดขั้นตอน</label><div class="col-sm-10"><textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea></div></div><div class="form-group"><label class="col-sm-2 control-label">รูปภาพประกอบขั้นตอน</label><div class="col-sm-10"><input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)"><input name="step_photo_url" class="form-control" type="hidden"></div></div>';
+	var recipeStepHtml = '<hr><div class="form-group"><label class="col-sm-4 control-label"><h4>หัวข้อขั้นตอน</h4></label><div class="col-sm-8"><input name="step_title" class="form-control" value="${recipeStep.title}"></div></div><div class="form-group"><label class="col-sm-4 control-label"><h4>รายละเอียดขั้นตอน</h4></label><div class="col-sm-8"><textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea></div></div><div class="form-group"><label class="col-sm-4 control-label"><h4>รูปภาพประกอบขั้นตอน</h4></label><div class="col-sm-8"><input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)"><input name="step_photo_url" class="form-control" type="hidden"></div></div>';
 	console.log(recipeStepHtml);
 	var $addStepButton = $('#add-step-button');
 	var $createButton = $('#create-button');

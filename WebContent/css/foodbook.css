@@ -153,3 +153,10 @@ label {
 .photobutt{
 	margin-bottom:10px;
 }
+.editrecipe-bgcolor{
+	background-color: #c8ad51;
+	border-width:1px;
+	border-top-left-radius:30px;
+	border-bottom-left-radius:30px;
+	border-bottom-color: #c8ad51;
+}
