@@ -16,8 +16,6 @@ import javax.servlet.http.HttpSession;
 @WebFilter({
 	"/recipes/create",
 	"/recipes/edit",
-	"/recipes/show",
-	"/recipes/search-by-ingredient",
 	"/ingredients/categories/create",
 	"/favorites/index",
 	"/favorites/create",
