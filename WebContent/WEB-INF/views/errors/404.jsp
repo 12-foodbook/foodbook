@@ -5,6 +5,8 @@
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
-Not Found
+<div class="container">
+	<h1>Not Found</h1>
+</div>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>

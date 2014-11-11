@@ -5,6 +5,8 @@
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
-Internal Server Error
+<div class="container">
+	<h1>Internal Server Error</h1>
+</div>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
