@@ -18,13 +18,13 @@
 				<div class="form-group">
 					<label for="username" class="col-sm-2 control-label">ชื่อผู้ใช้</label>
 					<div class="col-sm-10">
-						<input class="form-control" id="username" placeholder="เช่น stevejobs" required>
+						<input class="form-control" id="username" name="username" placeholder="เช่น stevejobs" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="password" class="col-sm-2 control-label">รหัสผ่าน</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="password" placeholder="เช่น secret1@#$" required>
+						<input type="password" class="form-control" id="password" name="password" placeholder="เช่น secret1@#$" required>
 					</div>
 				</div>
 				<div class="form-group">
