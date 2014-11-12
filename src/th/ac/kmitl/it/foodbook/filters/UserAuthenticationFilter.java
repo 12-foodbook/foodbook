@@ -36,6 +36,7 @@ public class UserAuthenticationFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		if (session.getAttribute("user") == null) {
+			session.setAttribute("referrer", new String(httpRequest.getRequestURL().append('?').append(httpRequest.getQueryString())));
 			httpResponse.sendRedirect("/users/authenticate");
 		}	else {
 			chain.doFilter(request, response);
