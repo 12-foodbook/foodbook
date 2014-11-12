@@ -17,8 +17,7 @@ public class RecipesDAO extends AbstractDAO {
 
 	public boolean create(Recipe recipe) throws SQLException {
 		String sql = "INSERT INTO recipes (name, video_url, user_id) VALUES (?, ?, ?)";
-		PreparedStatement stm = conn.prepareStatement(sql,
-				PreparedStatement.RETURN_GENERATED_KEYS);
+		PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
 		stm.setString(1, recipe.getName());
 		stm.setString(2, recipe.getVideo_url());
