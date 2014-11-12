@@ -17,10 +17,12 @@ import javax.sql.DataSource;
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
+import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.beans.RecipeStep;
 import th.ac.kmitl.it.foodbook.beans.RecipeStepPhoto;
 import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
+import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepPhotosDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
@@ -42,6 +44,8 @@ public class EditServlet extends HttpServlet {
 
 		Recipe recipe = null;
 		
+		List<RecipeCategory> recipeCategories = null;
+		
 		List<Ingredient> recipeIngredients = null;
 		
 		List<IngredientCategory> ingredientCategories = null;
@@ -56,6 +60,10 @@ public class EditServlet extends HttpServlet {
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
 
 			recipe = recipesDAO.find(recipeId);
+			
+			RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+			
+			recipeCategories = recipeCategoriesDAO.findAll();
 			
 			IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
 	    	
@@ -83,6 +91,8 @@ public class EditServlet extends HttpServlet {
 		}
 
 		request.setAttribute("recipe", recipe);
+		
+		request.setAttribute("recipeCategories", recipeCategories);
 		
 		request.setAttribute("recipeIngredients", recipeIngredients);
 		
