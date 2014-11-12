@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
@@ -13,7 +12,7 @@
 		<h1>แก้ไขตำรับอาหาร <small>${recipe.name}</small></h1>
 	</div>
 
-	<form method="post" class="form-horizontal" role="form">
+	<form method="post" accept-charset="UTF-8" class="form-horizontal" role="form">
 		<input name="id" value="${recipe.recipe_id}" type="hidden">
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
@@ -61,7 +60,7 @@
 			<label><h4>เลือกวัตถุดิบ</h4></label>
 				<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
 					<div class="form-group">
-						<label class="col-sm-6 control-label">${ingredientCategories[i].name}</label>
+						<label class="col-sm-6">${ingredientCategories[i].name}</label>
 					</div>
 					<div class="form-group">
 					<c:forEach begin="0" end="${fn:length(ingredients[i]) - 1}" var="j">
