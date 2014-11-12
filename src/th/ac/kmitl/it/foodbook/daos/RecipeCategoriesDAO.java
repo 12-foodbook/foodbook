@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 
@@ -29,6 +31,24 @@ public class RecipeCategoriesDAO extends AbstractDAO {
 		}
 		
 		return false;
+	}
+	
+	public List<RecipeCategory> findAll() throws SQLException {
+		String sql = "SELECT * FROM recipe_categories";
+		PreparedStatement stm = conn.prepareStatement(sql);
+		
+		ResultSet rs = stm.executeQuery();
+		
+		List<RecipeCategory> recipeCategories = new ArrayList<RecipeCategory>();
+		
+		while (rs.next()) {
+			RecipeCategory recipeCategory = new RecipeCategory();
+			recipeCategory.setRecipe_category_id(rs.getLong("recipe_category_id"));
+			recipeCategory.setName(rs.getString("name"));
+			recipeCategories.add(recipeCategory);
+		}
+		
+		return recipeCategories;
 	}
 
 }
