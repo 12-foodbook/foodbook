@@ -18,7 +18,9 @@ import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
+import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
+import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
 @WebServlet("/recipes/search-by-ingredient")
@@ -31,13 +33,15 @@ public class SearchByIngredientServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] ingredientIds = request.getParameterValues("ingredient_id");
 		
 		List<Recipe> recipes = null;
+		
+		List<RecipeCategory> recipeCategories = null;
     	
     	DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		
@@ -45,6 +49,10 @@ public class SearchByIngredientServlet extends HttpServlet {
 			Connection conn = ds.getConnection();
 			IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
+			
+			RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+			
+			recipeCategories = recipeCategoriesDAO.findAll();
 			
 			Set<String> ingredientIdStrings = new HashSet<String>(Arrays.asList(ingredientIds));
 			
@@ -88,6 +96,8 @@ public class SearchByIngredientServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("recipes", recipes);
+		
+		request.setAttribute("recipeCategories", recipeCategories);
 		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
 	}
 
