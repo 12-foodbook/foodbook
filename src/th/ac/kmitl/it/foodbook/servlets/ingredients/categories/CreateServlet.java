@@ -1,4 +1,4 @@
-package th.ac.kmitl.it.foodbook.ingredients.categories;
+package th.ac.kmitl.it.foodbook.servlets.ingredients.categories;
 
 import java.io.IOException;
 import java.sql.Connection;
