@@ -37,7 +37,7 @@
 				</c:forEach>
 			</table>
 			<c:if test="${!empty user}">
-				<form action="/rates" method="post">
+				<form action="/rates" accept-charset="UTF-8" method="post">
 					<input type="hidden" value="${recipe.recipe_id}" name="recipe_id">
 					<h1>
 					<script>
@@ -55,7 +55,7 @@
 						${rate}
 					</h1>
 				</form>
-				<form method="post" action="/favorites/create">
+				<form method="post" accept-charset="UTF-8" action="/favorites/create">
 					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
 					<button class="btn btn-lg btn-block btn-danger">เพิ่มในรายการโปรด</button>
 				</form>

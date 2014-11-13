@@ -13,7 +13,7 @@
 		<h1>สร้างตำรับอาหาร <small>${recipe.name}</small></h1>
 	</div>
 
-	<form method="post" class="form-horizontal" role="form">
+	<form method="post" accept-charset="UTF-8" class="form-horizontal" role="form">
 		<input name="id" value="${recipe.recipe_id}" type="hidden">
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
@@ -113,7 +113,7 @@
 				<button id="add-step-button" class="btn btn-default btn-lg btn-block" type="button">เพิ่มขั้นตอน</button>
 			</div>
 			<div class="col-xs-12 col-md-6">
-				<button type="submit" id="create-button" class="btn btn-success btn-lg btn-block">แก้ไขตำรับอาหาร</button>
+				<button type="submit" id="create-button" class="btn btn-success btn-lg btn-block">สร้างตำรับอาหาร</button>
 			</div>
 		</div>
 		
