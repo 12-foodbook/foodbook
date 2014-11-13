@@ -81,7 +81,6 @@ public class IngredientsDAO extends AbstractDAO {
 
 	public List<Ingredient> findAll() throws SQLException {
 		List<Ingredient> ingredients = new ArrayList<Ingredient>();
-		Ingredient ingredient = null;
 
 		String sql = "SELECT * FROM ingredients";
 		PreparedStatement stm = conn.prepareStatement(sql);
@@ -89,10 +88,7 @@ public class IngredientsDAO extends AbstractDAO {
 		ResultSet rs = stm.executeQuery();
 
 		if (rs.next()) {
-			ingredient = new Ingredient();
-			ingredient.setIngredient_id(rs.getLong("ingredient_id"));
-			ingredient.setName(rs.getString("name"));
-			ingredient.setPhoto_url(rs.getString("photo_url"));
+			Ingredient ingredient = find(rs.getLong("ingredient_id"));
 			ingredients.add(ingredient);
 		}
 
