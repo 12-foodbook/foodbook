@@ -16,6 +16,7 @@ import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeStep;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
+import th.ac.kmitl.it.foodbook.daos.RatesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
@@ -33,6 +34,7 @@ public class ShowServlet extends HttpServlet {
 		long recipeId = Long.parseLong(recipeIdString);
 
 		Recipe recipe = null;
+		String rate = null;
 		List<Ingredient> ingredients = null;
 		List<RecipeStep> recipeSteps = null;
 		
@@ -43,6 +45,10 @@ public class ShowServlet extends HttpServlet {
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
 
 			recipe = recipesDAO.find(recipeId);
+			
+			RatesDAO ratesDAO = new RatesDAO(conn);
+			
+			rate = String.format("%.2f", ratesDAO.average(recipeId));
 			
 			IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
 			
@@ -59,6 +65,7 @@ public class ShowServlet extends HttpServlet {
 		}
 
 		request.setAttribute("recipe", recipe);
+		request.setAttribute("rate", rate);
 		request.setAttribute("ingredients", ingredients);
 		request.setAttribute("recipeSteps", recipeSteps);
 		request.getRequestDispatcher("/WEB-INF/views/recipes/show.jsp").include(request, response);

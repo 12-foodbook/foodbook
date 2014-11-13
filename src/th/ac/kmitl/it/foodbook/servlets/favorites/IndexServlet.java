@@ -19,8 +19,6 @@ import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.FavoritesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
-import th.ac.kmitl.it.foodbook.utils.Alert;
-import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/favorites/index")
 public class IndexServlet extends HttpServlet {
@@ -37,8 +35,6 @@ public class IndexServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		boolean isSuccess = false;
-		
 		List<Favorite> favorites = null;
 		List<Recipe> recipes = new ArrayList<Recipe>();
 		
@@ -47,9 +43,9 @@ public class IndexServlet extends HttpServlet {
 			FavoritesDAO favoritesDAO = new FavoritesDAO(conn);
 			User user = (User) session.getAttribute("user");
 			favorites = favoritesDAO.findByUserId(user.getUser_id());
-			for(Favorite i:favorites){
+			for (Favorite favorite : favorites){
 				RecipesDAO recipesDAO = new RecipesDAO(conn);
-				Recipe recipe = recipesDAO.find(i.getRecipe_id());
+				Recipe recipe = recipesDAO.find(favorite.getRecipe_id());
 				recipes.add(recipe);
 			}
 			

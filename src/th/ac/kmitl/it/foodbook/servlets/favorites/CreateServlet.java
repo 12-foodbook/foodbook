@@ -37,8 +37,7 @@ public class CreateServlet extends HttpServlet {
 
 		Favorite favorite = null;
 
-		DataSource ds = (DataSource) request.getServletContext().getAttribute(
-				"ds");
+		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
 		boolean isSuccess = false;
 
@@ -65,12 +64,10 @@ public class CreateServlet extends HttpServlet {
 		}
 
 		if (isSuccess) {
-			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS,
-					"Created Successfully!"));
-			response.sendRedirect("/");
+			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
+			response.sendRedirect("/recipes/show?id=" + recipeId);
 		} else {
-			session.setAttribute("alert", new Alert(AlertTypes.DANGER,
-					"Created Unsuccessfully!"));
+			session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully!"));
 			response.sendRedirect("/recipes/show?id=" + recipeId);
 		}
 	}

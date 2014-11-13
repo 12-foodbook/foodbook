@@ -10,8 +10,23 @@ body {
 	font-weight: normal !important;
 }
 
-label {
+h1, h2, h3, h4 {
+	font-family: 'thaisansneue_bold' !important;
 	font-weight: normal !important;
+}
+
+label {
+	font-family: 'thaisansneue_bold' !important;
+	font-weight: normal !important;
+}
+
+th {
+	font-family: 'thaisansneue_black' !important;
+	font-weight: normal !important;
+}
+
+.panel-title {
+	font-size: 24px;
 }
 
 .navbar-fixed-top {
@@ -60,10 +75,6 @@ label {
 
 .videoHead {
 	text-align: center;
-}
-
-.embed-responsive-16by9 {
-	margin: 0 50px 50px 50px;
 }
 
 .Ingres {

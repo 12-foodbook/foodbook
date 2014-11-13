@@ -104,5 +104,18 @@ public class RatesDAO extends AbstractDAO {
 		}
 		return null;
 	}
+	
+	public double average(long recipeId) throws SQLException {
+		String sql = "SELECT AVG(rate) avg_rate FROM rates WHERE recipe_id = ?";
+		PreparedStatement stm = conn.prepareStatement(sql);
+
+		stm.setLong(1, recipeId);
+		
+		ResultSet rs = stm.executeQuery();
+		
+		if (rs.next()) return rs.getDouble("avg_rate");
+		
+		return -1;
+	}
 
 }

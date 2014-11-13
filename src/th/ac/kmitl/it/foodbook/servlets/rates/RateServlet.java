@@ -72,7 +72,7 @@ public class RateServlet extends HttpServlet {
 
 		if (isSuccess) {
 			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Rated Successfully!"));
-			response.sendRedirect("/");
+			response.sendRedirect("/recipes/show?id=" + recipeId);
 		} else {
 			session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Rated Unsuccessfully!"));
 			response.sendRedirect("/recipes/show?id=" + recipeId);

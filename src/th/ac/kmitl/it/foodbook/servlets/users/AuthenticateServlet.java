@@ -57,6 +57,7 @@ public class AuthenticateServlet extends HttpServlet {
 			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Authenticated Successfully!"));
 			
 			String referrer = (String) session.getAttribute("referrer");
+			session.setAttribute("referrer", null);
 			if (referrer != null) response.sendRedirect(referrer);
 			else response.sendRedirect("/");
 		} else {

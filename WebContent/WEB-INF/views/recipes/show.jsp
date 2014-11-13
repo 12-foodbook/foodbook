@@ -1,11 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="pageTitle" value="Recipes / Show" scope="application"/>
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
+<div class="container">
 	
+	<div class="page-header">
+		<h1>${recipe.name} <small>โดย username</small></h1>
+	</div>
+	
+	<div class="row">
+		<div class="col-xs-12 col-md-8">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe src="${recipe.video_url}"></iframe>
+			</div><hr>
+			<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">${i+1}. ${recipeSteps[i].title}</h3>
+				  </div>
+				  <div class="panel-body">
+				    ${recipeSteps[i].description}
+				  </div>
+				</div>
+			</c:forEach>
+		</div>
+		
+		<div class="col-xs-12 col-md-4">
+			<table class="table table-bordered">
+				<tr><th>วัตถุดิบ</th><th>ปริมาณที่ใช้</th></tr>
+				<c:forEach var="ingredient" items="${ingredients}">
+					<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td></tr>
+				</c:forEach>
+			</table>
+			<c:if test="${!empty user}">
+				<form action="/rates" method="post">
+					<input type="hidden" value="${recipe.recipe_id}" name="recipe_id">
+					<h1>
+					<script>
+					function sentrate(recipe_id,rate) {
+						$.post('/rates', {'recipe_id':recipe_id,'rate':rate}, function (data) {
+							console.log(data);
+						});
+					}
+						</script>
+						<span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
+						<span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span>
+						<span onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span>
+						<span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span>
+						<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span>
+						${rate}
+					</h1>
+				</form>
+				<form method="post" action="/favorites/create">
+					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
+					<button class="btn btn-lg btn-block btn-danger">เพิ่มในรายการโปรด</button>
+				</form>
+			</c:if>
+		</div>
+	</div>
+	
+</div>
+
+<%-- 	
 	<!-- **************************************************************************** -->
 	<!-- video link Edit-->
 	<div class="container">
@@ -97,7 +157,6 @@
 <c:out value="${recipe.recipe_id}"/>
 <c:out value="${recipe.name}"/>
 <c:out value="${recipe.video_url}"/>
-<c:out value="${recipe.user_id}"/>
-
+<c:out value="${recipe.user_id}"/> --%>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
