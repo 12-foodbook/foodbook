@@ -14,10 +14,10 @@ public class IngredientsDAO extends AbstractDAO {
 	public IngredientsDAO(Connection conn) {
 		super(conn);
 	}
-	
+
 	public Ingredient find(long id) throws SQLException {
 		Ingredient ingredient = null;
-		
+
 		String sql = "SELECT * FROM ingredients WHERE ingredient_id = ? LIMIT 1";
 		PreparedStatement stm = conn.prepareStatement(sql);
 
@@ -31,50 +31,71 @@ public class IngredientsDAO extends AbstractDAO {
 			ingredient.setName(rs.getString("name"));
 			ingredient.setPhoto_url(rs.getString("photo_url"));
 		}
-		
+
 		return ingredient;
 	}
-	
+
 	public List<Ingredient> findByRecipeId(long recipeId) throws SQLException {
 		List<Ingredient> ingredients = new ArrayList<Ingredient>();
-		
+
 		String sql = "SELECT ingredient_id, amount FROM recipes_ingredients WHERE recipe_id = ?";
 		PreparedStatement stm = conn.prepareStatement(sql);
-		
+
 		stm.setLong(1, recipeId);
-		
+
 		ResultSet rs = stm.executeQuery();
-		
+
 		IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-		
+
 		while (rs.next()) {
 			long ingredientId = rs.getLong("ingredient_id");
 			Ingredient ingredient = ingredientsDAO.find(ingredientId);
 			ingredient.setAmount(rs.getString("amount"));
 			ingredients.add(ingredient);
 		}
-		
+
 		return ingredients;
 	}
 
-	public List<Ingredient> findByIngredientCategoryId(long ingredientCategoryId) throws SQLException {
+	public List<Ingredient> findByIngredientCategoryId(long ingredientCategoryId)
+			throws SQLException {
 		List<Ingredient> ingredients = new ArrayList<Ingredient>();
-		
+
 		String sql = "SELECT ingredient_id FROM ingredients_ingredient_categories WHERE ingredient_category_id = ?";
 		PreparedStatement stm = conn.prepareStatement(sql);
-		
+
 		stm.setLong(1, ingredientCategoryId);
-		
+
 		ResultSet rs = stm.executeQuery();
-		
+
 		IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-		
+
 		while (rs.next()) {
 			long ingredientId = rs.getLong("ingredient_id");
 			Ingredient ingredient = ingredientsDAO.find(ingredientId);
 			ingredients.add(ingredient);
 		}
-		
+
+		return ingredients;
+	}
+
+	public List<Ingredient> findAll() throws SQLException {
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+		Ingredient ingredient = null;
+
+		String sql = "SELECT * FROM ingredients";
+		PreparedStatement stm = conn.prepareStatement(sql);
+
+		ResultSet rs = stm.executeQuery();
+
+		if (rs.next()) {
+			ingredient = new Ingredient();
+			ingredient.setIngredient_id(rs.getLong("ingredient_id"));
+			ingredient.setName(rs.getString("name"));
+			ingredient.setPhoto_url(rs.getString("photo_url"));
+			ingredients.add(ingredient);
+		}
+
 		return ingredients;
 	}
 
