@@ -18,7 +18,7 @@ import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
-@WebServlet("/index")
+@WebServlet("/recipes/index")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

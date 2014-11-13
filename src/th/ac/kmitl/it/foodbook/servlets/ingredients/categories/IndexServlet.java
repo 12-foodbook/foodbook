@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
 import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
 
-@WebServlet("/index")
+@WebServlet("/ingredients/categories/index")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
