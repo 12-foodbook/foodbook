@@ -48,7 +48,7 @@ public class IndexServlet extends HttpServlet {
 		request.setAttribute("recipeCategories", recipeCategories);
 
 		request.getRequestDispatcher(
-				"/WEB-INF/views/ingredients/categories/index.jsp").include(
+				"/WEB-INF/views/recipes/categories/index.jsp").include(
 				request, response);
 	}
 
