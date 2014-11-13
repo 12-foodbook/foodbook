@@ -114,4 +114,26 @@ public class RecipesDAO extends AbstractDAO {
 		return rowCount == 1;
 	}
 
+	public List<Recipe> findByNameLike(String query) throws SQLException {
+		List<Recipe> recipes = new ArrayList<Recipe>();
+		
+		String sql = "SELECT * FROM recipes WHERE name LIKE ?";
+		PreparedStatement stm = conn.prepareStatement(sql);
+		
+		stm.setString(1, "%" + query + "%");
+		
+		ResultSet rs = stm.executeQuery();
+		
+		while (rs.next()) {
+			Recipe recipe = new Recipe();
+			recipe.setRecipe_id(rs.getLong("recipe_id"));
+			recipe.setName(rs.getString("name"));
+			recipe.setVideo_url(rs.getString("video_url"));
+			recipe.setUser_id(rs.getLong("user_id"));
+			recipes.add(recipe);
+		}
+		
+		return recipes;
+	}
+
 }

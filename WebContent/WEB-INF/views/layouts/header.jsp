@@ -50,9 +50,9 @@
 						</ul>
 					</li>
 				</ul> -->
-				<form class="navbar-form navbar-left" role="search">
+				<form class="navbar-form navbar-left" role="search" action="/recipes/search-by-name">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="เช่น ข้าวผัด">
+						<input type="text" class="form-control" name="query" placeholder="เช่น ข้าวผัด" value="${param.query}">
 					</div>
 					<button type="submit" class="btn btn-default">ค้นหา</button>
 				</form>
@@ -65,7 +65,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">${user.username} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/favorites/index">ตำรับอาหารโปรด</a></li>
+								<li><a href="/favorites/index">รายการโปรด</a></li>
 								<li class="divider"></li>
 								<li><a href="/recipes/index">ตำรับอาหารของฉัน</a></li>
 								<li><a href="/recipes/create">สร้างตำรับอาหาร</a></li>
