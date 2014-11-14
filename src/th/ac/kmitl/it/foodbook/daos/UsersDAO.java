@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import th.ac.kmitl.it.foodbook.PasswordManager;
 import th.ac.kmitl.it.foodbook.beans.User;
+import th.ac.kmitl.it.foodbook.utils.Util;
 
 public class UsersDAO extends AbstractDAO {
 
@@ -39,12 +39,12 @@ public class UsersDAO extends AbstractDAO {
 		if (user == null) { return user; }
 		
 		byte[] salt = null;
-		salt = PasswordManager.stringToBytes(user.getSalt());
+		salt = Util.stringToBytes(user.getSalt());
 		
 		byte[] hashedPasswordBytes = null;
 		String hashedPassword = null;
-		hashedPasswordBytes = PasswordManager.hashPassword(password, salt);
-		hashedPassword = PasswordManager.bytesToString(hashedPasswordBytes);
+		hashedPasswordBytes = Util.hashPassword(password, salt);
+		hashedPassword = Util.bytesToString(hashedPasswordBytes);
 		
 		String sql = "SELECT * FROM users WHERE username = ? AND hashed_password = ? LIMIT 1";
 		PreparedStatement stm = conn.prepareStatement(sql);

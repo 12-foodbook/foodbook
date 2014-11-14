@@ -44,13 +44,13 @@ public class CreateServlet extends HttpServlet {
     	
     	try {
     		Connection conn = ds.getConnection();
+    		
 	    	IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
-	    	
 	    	ingredientCategories = ingredientCategoriesDAO.findAll();
 	    	
-	    	IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-	    	
 	    	ingredients = new ArrayList<List<Ingredient>>();
+	    	
+	    	IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
 	    	
 	    	for (IngredientCategory ingredientCategory : ingredientCategories) {
 	    		List<Ingredient> tempIngredients = ingredientsDAO.findByIngredientCategoryId(ingredientCategory.getIngredient_category_id());
@@ -65,7 +65,7 @@ public class CreateServlet extends HttpServlet {
     	
     	request.setAttribute("ingredientCategories", ingredientCategories);
     	request.setAttribute("ingredients", ingredients);
-    	
+    
     	request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
     }
 

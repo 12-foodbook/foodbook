@@ -40,11 +40,11 @@ public class CreateServlet extends HttpServlet {
     	
     	try {
     		Connection conn = ds.getConnection();
-    		RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
 
     		recipeCategory = new RecipeCategory();
-    		
     		recipeCategory.setName(name);
+    		
+    		RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
     		
 			isSuccess = recipeCategoriesDAO.create(recipeCategory);
 			

@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import th.ac.kmitl.it.foodbook.PasswordManager;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
+import th.ac.kmitl.it.foodbook.utils.Util;
 
 @WebServlet("/users/create")
 public class CreateServlet extends HttpServlet {
@@ -51,20 +51,19 @@ public class CreateServlet extends HttpServlet {
     	
     	try {
     		Connection conn = ds.getConnection();
-    		UsersDAO usersDAO = new UsersDAO(conn);
 
     		user = new User();
-    		
     		user.setUsername(username);
     		
-    		byte[] saltBytes = PasswordManager.getSalt();
-    		String salt = PasswordManager.bytesToString(saltBytes);
-    		byte[] hashedPasswordBytes = PasswordManager.hashPassword(password, saltBytes);
-    		String hashedPassword = PasswordManager.bytesToString(hashedPasswordBytes);
+    		byte[] saltBytes = Util.getSalt();
+    		String salt = Util.bytesToString(saltBytes);
+    		byte[] hashedPasswordBytes = Util.hashPassword(password, saltBytes);
+    		String hashedPassword = Util.bytesToString(hashedPasswordBytes);
     		
     		user.setHashed_password(hashedPassword);
     		user.setSalt(salt);
     		
+    		UsersDAO usersDAO = new UsersDAO(conn);
 			isSuccess = usersDAO.create(user);
 		} catch (SQLException e) {
 			e.printStackTrace();

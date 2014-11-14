@@ -28,48 +28,37 @@ public class IndexServlet extends HttpServlet {
     	super();
     }
 
-    protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-    	DataSource ds = (DataSource) request.getServletContext().getAttribute(
-				"ds");
-		
-		HttpSession session = request.getSession();
-		
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Favorite> favorites = null;
 		List<Recipe> recipes = new ArrayList<Recipe>();
 		
-		try{
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		
+		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
+		
+		try {
 			Connection conn = ds.getConnection();
+			
 			FavoritesDAO favoritesDAO = new FavoritesDAO(conn);
-			User user = (User) session.getAttribute("user");
 			favorites = favoritesDAO.findByUserId(user.getUser_id());
+			
+			RecipesDAO recipesDAO = new RecipesDAO(conn);
+			
 			for (Favorite favorite : favorites){
-				RecipesDAO recipesDAO = new RecipesDAO(conn);
 				Recipe recipe = recipesDAO.find(favorite.getRecipe_id());
 				recipes.add(recipe);
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);
 		}
-		System.out.print(recipes.size());
 		
 		request.setAttribute("recipes", recipes);
 		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
-		
-
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		
-
-
-		
-
-		
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 }

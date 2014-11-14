@@ -43,19 +43,15 @@ public class ShowServlet extends HttpServlet {
 		try {
 			Connection conn = ds.getConnection();
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
-
 			recipe = recipesDAO.find(recipeId);
 			
 			RatesDAO ratesDAO = new RatesDAO(conn);
-			
 			rate = String.format("%.2f", ratesDAO.average(recipeId));
 			
 			IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-			
 			ingredients = ingredientsDAO.findByRecipeId(recipeId);
 			
 			RecipeStepsDAO recipeStepsDAO = new RecipeStepsDAO(conn);
-			
 			recipeSteps = recipeStepsDAO.findByRecipeId(recipeId);
 			
 			conn.close();
@@ -68,6 +64,7 @@ public class ShowServlet extends HttpServlet {
 		request.setAttribute("rate", rate);
 		request.setAttribute("ingredients", ingredients);
 		request.setAttribute("recipeSteps", recipeSteps);
+		
 		request.getRequestDispatcher("/WEB-INF/views/recipes/show.jsp").include(request, response);
 	}
 

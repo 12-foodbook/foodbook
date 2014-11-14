@@ -3,7 +3,6 @@ package th.ac.kmitl.it.foodbook.servlets.ingredients.categories;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
@@ -25,18 +23,15 @@ public class IndexServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<IngredientCategory> ingredientCategories = null;
 
-		DataSource ds = (DataSource) request.getServletContext().getAttribute(
-				"ds");
+		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
 		try {
 			Connection conn = ds.getConnection();
-			IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(
-					conn);
-
+			
+			IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
 			ingredientCategories = ingredientCategoriesDAO.findAll();
 
 			conn.close();
@@ -46,10 +41,7 @@ public class IndexServlet extends HttpServlet {
 		}
 
 		request.setAttribute("ingredientCategories", ingredientCategories);
-
-		request.getRequestDispatcher(
-				"/WEB-INF/views/ingredients/categories/index.jsp").include(
-				request, response);
+		request.getRequestDispatcher("/WEB-INF/views/ingredients/categories/index.jsp").include(request, response);
 	}
 
 }

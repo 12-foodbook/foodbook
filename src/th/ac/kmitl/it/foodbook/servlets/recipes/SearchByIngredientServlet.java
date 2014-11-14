@@ -40,21 +40,20 @@ public class SearchByIngredientServlet extends HttpServlet {
 		String[] ingredientIds = request.getParameterValues("ingredient_id");
 		
 		List<Recipe> recipes = null;
-		
 		List<RecipeCategory> recipeCategories = null;
     	
     	DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 		
 		try {
 			Connection conn = ds.getConnection();
-			IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-			RecipesDAO recipesDAO = new RecipesDAO(conn);
 			
 			RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
-			
 			recipeCategories = recipeCategoriesDAO.findAll();
 			
 			Set<String> ingredientIdStrings = new HashSet<String>(Arrays.asList(ingredientIds));
+			
+			IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
+			RecipesDAO recipesDAO = new RecipesDAO(conn);	
 			
 			recipes = new ArrayList<Recipe>();
 			
@@ -96,8 +95,8 @@ public class SearchByIngredientServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("recipes", recipes);
-		
 		request.setAttribute("recipeCategories", recipeCategories);
+		
 		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
 	}
 

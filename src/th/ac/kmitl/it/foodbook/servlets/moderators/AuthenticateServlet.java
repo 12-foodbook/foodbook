@@ -39,9 +39,9 @@ public class AuthenticateServlet extends HttpServlet {
 		
 		try {
 			Connection conn = ds.getConnection();
-			ModeratorsDAO moderatorsDAO = new ModeratorsDAO(conn);
 			
-			moderator =moderatorsDAO.authenticate(username, password);
+			ModeratorsDAO moderatorsDAO = new ModeratorsDAO(conn);
+			moderator = moderatorsDAO.authenticate(username, password);
 			
 			conn.close();
 		} catch (SQLException e) {
@@ -53,7 +53,6 @@ public class AuthenticateServlet extends HttpServlet {
 		
 		if (moderator != null) {
 			session.setAttribute("moderator", moderator);
-			
 			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Authenticated Successfully!"));
 			response.sendRedirect("/");
 		} else {

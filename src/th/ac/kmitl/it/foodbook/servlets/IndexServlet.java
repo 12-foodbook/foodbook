@@ -35,11 +35,9 @@ public class IndexServlet extends HttpServlet {
     	try {
     		Connection conn = ds.getConnection();
 	    	IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
-	    	
 	    	ingredientCategories = ingredientCategoriesDAO.findAll();
-	    	
+	   
 	    	IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-	    	
 	    	ingredients = new ArrayList<List<Ingredient>>();
 	    	
 	    	for (IngredientCategory ingredientCategory : ingredientCategories) {

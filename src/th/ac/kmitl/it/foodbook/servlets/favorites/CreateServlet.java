@@ -26,38 +26,32 @@ public class CreateServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		String recipeId = request.getParameter("recipe_id");
-
-		Favorite favorite = null;
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String recipeIdString = request.getParameter("recipe_id");
+		long recipeId = Long.parseLong(recipeIdString);
 
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
 		boolean isSuccess = false;
 
 		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		
+		Favorite favorite = new Favorite();
+		favorite.setUser_id(user.getUser_id());
+		favorite.setRecipe_id(recipeId);
 
 		try {
 			Connection conn = ds.getConnection();
+			
 			FavoritesDAO favoritesDAO = new FavoritesDAO(conn);
-
-			User user = (User) session.getAttribute("user");
-
-			favorite = new Favorite();
-
-			favorite.setUser_id(user.getUser_id());
-			favorite.setRecipe_id(Long.parseLong(recipeId));
-
 			isSuccess = favoritesDAO.create(favorite);
 
 			conn.close();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);

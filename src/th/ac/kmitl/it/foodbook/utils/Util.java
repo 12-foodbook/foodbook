@@ -1,4 +1,4 @@
-package th.ac.kmitl.it.foodbook;
+package th.ac.kmitl.it.foodbook.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -7,7 +7,7 @@ import java.security.SecureRandom;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
-public class PasswordManager {
+public class Util {
     
     public static byte[] getSalt() {
     	SecureRandom random = null;
@@ -43,5 +43,15 @@ public class PasswordManager {
     public static byte[] stringToBytes(String string) {
     	return Base64.decodeBase64(string);
     }
+    
+	public static String decodeParameter(String parameter) {
+		String decoded = null;
+		try {
+			decoded = new String(parameter.getBytes("ISO-8859-1"), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return decoded;
+	}
 
 }

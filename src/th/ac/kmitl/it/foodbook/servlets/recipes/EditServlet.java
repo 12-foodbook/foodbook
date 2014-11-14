@@ -45,32 +45,26 @@ public class EditServlet extends HttpServlet {
 		Recipe recipe = null;
 		
 		List<RecipeCategory> recipeCategories = null;
-		
 		List<Ingredient> recipeIngredients = null;
-		
 		List<IngredientCategory> ingredientCategories = null;
     	List<List<Ingredient>> ingredients = null;
-    	
 		List<RecipeStep> recipeSteps = null;
 		
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
 		try {
 			Connection conn = ds.getConnection();
+			
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
-
 			recipe = recipesDAO.find(recipeId);
 			
 			RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
-			
 			recipeCategories = recipeCategoriesDAO.findAll();
 			
 			IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
-	    	
 	    	ingredientCategories = ingredientCategoriesDAO.findAll();
 	    	
 	    	IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-	    	
 	    	recipeIngredients = ingredientsDAO.findByRecipeId(recipeId);
 	    	
 	    	ingredients = new ArrayList<List<Ingredient>>();
@@ -81,7 +75,6 @@ public class EditServlet extends HttpServlet {
 	    	}
 	    	
 	    	RecipeStepsDAO recipeStepsDAO = new RecipeStepsDAO(conn);
-	    	
 	    	recipeSteps = recipeStepsDAO.findByRecipeId(recipeId);
 			
 			conn.close();
@@ -91,14 +84,10 @@ public class EditServlet extends HttpServlet {
 		}
 
 		request.setAttribute("recipe", recipe);
-		
 		request.setAttribute("recipeCategories", recipeCategories);
-		
 		request.setAttribute("recipeIngredients", recipeIngredients);
-		
     	request.setAttribute("ingredientCategories", ingredientCategories);
     	request.setAttribute("ingredients", ingredients);
-    	
 		request.setAttribute("recipeSteps", recipeSteps);
 		
 		request.getRequestDispatcher("/WEB-INF/views/recipes/edit.jsp").include(request, response);
@@ -136,10 +125,9 @@ public class EditServlet extends HttpServlet {
     	
     	try {
 			Connection conn = ds.getConnection();
+			
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
-			
 			recipe = recipesDAO.find(recipeId);
-			
 			recipe.setName(name);
 			recipe.setVideo_url(videoUrl);
 			
@@ -158,9 +146,9 @@ public class EditServlet extends HttpServlet {
 				}
 				
 				RecipeStepsDAO recipeStepsDAO = new RecipeStepsDAO(conn);
-				RecipeStepPhotosDAO recipeStepPhotosDAO = new RecipeStepPhotosDAO(conn);
-				
 				List<RecipeStep> recipeSteps = recipeStepsDAO.findByRecipeId(recipeId);
+				
+				RecipeStepPhotosDAO recipeStepPhotosDAO = new RecipeStepPhotosDAO(conn);
 				
 				for (RecipeStep recipeStep : recipeSteps) {
 					recipeStepPhotosDAO.deleteByRecipeStepId(recipeStep.getRecipe_step_id());

@@ -26,15 +26,15 @@ public class RateServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		String recipeId = request.getParameter("recipe_id");
-		String rating = request.getParameter("rate");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String recipeIdString = request.getParameter("recipe_id");
+		long recipeId = Long.parseLong(recipeIdString);
+		String ratingString = request.getParameter("rate");
+		int rating = Integer.parseInt(ratingString);
 
 		Rate rate = null;
 
@@ -50,19 +50,15 @@ public class RateServlet extends HttpServlet {
 			User user = (User) session.getAttribute("user");
 
 			rate = new Rate();
-
 			rate.setUser_id(user.getUser_id());
-			rate.setRecipe_id(Long.parseLong(recipeId));
-			rate.setRate(Integer.parseInt(rating));
+			rate.setRecipe_id(recipeId);
+			rate.setRate(rating);
 
 			isSuccess = ratesDAO.update(rate);
 
-			if (isSuccess != true) {
-				isSuccess = ratesDAO.create(rate);
-			}
+			if (!isSuccess) isSuccess = ratesDAO.create(rate);
 
 			conn.close();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			response.sendError(500);

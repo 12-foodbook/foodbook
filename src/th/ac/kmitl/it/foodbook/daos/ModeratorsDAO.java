@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import th.ac.kmitl.it.foodbook.PasswordManager;
 import th.ac.kmitl.it.foodbook.beans.Moderator;
+import th.ac.kmitl.it.foodbook.utils.Util;
 
 public class ModeratorsDAO extends AbstractDAO {
 
@@ -39,12 +39,12 @@ public class ModeratorsDAO extends AbstractDAO {
 		if (mod == null) { return mod; }
 		
 		byte[] salt = null;
-		salt = PasswordManager.stringToBytes(mod.getSalt());
+		salt = Util.stringToBytes(mod.getSalt());
 		
 		byte[] hashedPasswordBytes = null;
 		String hashedPassword = null;
-		hashedPasswordBytes = PasswordManager.hashPassword(password, salt);
-		hashedPassword = PasswordManager.bytesToString(hashedPasswordBytes);
+		hashedPasswordBytes = Util.hashPassword(password, salt);
+		hashedPassword = Util.bytesToString(hashedPasswordBytes);
 		
 		String sql = "SELECT * FROM moderators WHERE username = ? AND hashed_password = ? LIMIT 1";
 		PreparedStatement stm = conn.prepareStatement(sql);

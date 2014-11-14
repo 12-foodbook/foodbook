@@ -30,7 +30,6 @@ public class SearchByNameServlet extends HttpServlet {
 		String query = request.getParameter("query");
 		
 		List<Recipe> recipes = null;
-		
 		List<RecipeCategory> recipeCategories = null;
 		
 		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
@@ -39,12 +38,10 @@ public class SearchByNameServlet extends HttpServlet {
 			Connection conn = ds.getConnection();
 			
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
+			recipes = recipesDAO.findByNameLike(query);
 			
 			RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
-			
 			recipeCategories = recipeCategoriesDAO.findAll();
-			
-			recipes = recipesDAO.findByNameLike(query);
 			
 			conn.close();
 		} catch (SQLException e) {
@@ -54,6 +51,7 @@ public class SearchByNameServlet extends HttpServlet {
 		
 		request.setAttribute("recipes", recipes);
 		request.setAttribute("recipeCategories", recipeCategories);
+		
 		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
 	}
 

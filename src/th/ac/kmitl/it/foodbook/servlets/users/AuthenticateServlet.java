@@ -39,8 +39,8 @@ public class AuthenticateServlet extends HttpServlet {
 		
 		try {
 			Connection conn = ds.getConnection();
-			UsersDAO usersDAO = new UsersDAO(conn);
 			
+			UsersDAO usersDAO = new UsersDAO(conn);
 			user = usersDAO.authenticate(username, password);
 			
 			conn.close();
@@ -53,11 +53,11 @@ public class AuthenticateServlet extends HttpServlet {
 		
 		if (user != null) {
 			session.setAttribute("user", user);
-			
 			session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Authenticated Successfully!"));
 			
 			String referrer = (String) session.getAttribute("referrer");
 			session.setAttribute("referrer", null);
+			
 			if (referrer != null) response.sendRedirect(referrer);
 			else response.sendRedirect("/");
 		} else {

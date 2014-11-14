@@ -3,7 +3,6 @@ package th.ac.kmitl.it.foodbook.servlets.recipes;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -26,20 +25,18 @@ public class IndexServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Recipe> recipes = null;
 
-		DataSource ds = (DataSource) request.getServletContext().getAttribute(
-				"ds");
+		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 
 		try {
 			Connection conn = ds.getConnection();
+			
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
-
 			recipes = recipesDAO.findByUserId(user.getUser_id());
 
 			conn.close();
@@ -49,9 +46,7 @@ public class IndexServlet extends HttpServlet {
 		}
 
 		request.setAttribute("recipes", recipes);
-
-		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp")
-				.include(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
 	}
 
 }
