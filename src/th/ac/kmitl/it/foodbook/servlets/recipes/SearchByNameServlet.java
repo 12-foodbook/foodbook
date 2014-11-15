@@ -30,6 +30,13 @@ public class SearchByNameServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String query = Util.decodeParameter(request.getParameter("query"));
 		
+		System.out.println(query);
+		for (byte b : request.getParameter("query").getBytes("ISO-8859-1")) {
+			System.out.print(b);
+			System.out.print(' ');
+		}
+		System.out.println();
+		
 		List<Recipe> recipes = null;
 		List<RecipeCategory> recipeCategories = null;
 		

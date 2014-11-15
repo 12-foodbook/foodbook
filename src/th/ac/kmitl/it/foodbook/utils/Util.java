@@ -46,11 +46,13 @@ public class Util {
     
 	public static String decodeParameter(String parameter) {
 		String decoded = null;
+		
 		try {
 			decoded = new String(parameter.getBytes("ISO-8859-1"), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		
 		return decoded;
 	}
 

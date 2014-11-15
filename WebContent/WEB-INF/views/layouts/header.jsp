@@ -39,22 +39,8 @@
 				<a class="navbar-brand" href="/">Foodbook</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<!-- <ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							หมวดหมู่ <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">ของทอด</a></li>
-							<li><a href="#">ของหวาน</a></li>
-						</ul>
-					</li>
-				</ul> -->
-				<form class="navbar-form navbar-left" role="search" action="/recipes/search-by-name">
-					<div class="form-group">
-						<input type="text" class="form-control" name="query" placeholder="เช่น ข้าวผัด" value="${param.query}">
-					</div>
-					<button type="submit" class="btn btn-default">ค้นหา</button>
+				<form class="navbar-form navbar-left" role="search">
+					<a href="/" class="btn btn-success">ค้นหาตำรับอาหารจากวัตถุดิบ</a>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<c:if test="${empty user}">
@@ -74,6 +60,12 @@
 							</ul></li>
 					</c:if>
 				</ul>
+				<form class="navbar-form navbar-right" role="search" action="/recipes/search-by-name" accept-charset="UTF-8">
+					<div class="form-group">
+						<input type="text" class="form-control" name="query" placeholder="เช่น ข้าวผัด" value="${param.query}">
+					</div>
+					<button type="submit" class="btn btn-default">ค้นหา</button>
+				</form>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
