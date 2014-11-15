@@ -31,9 +31,9 @@ public class CreateServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String confirmPassword = request.getParameter("confirm_password");
+		String username = Util.decodeParameter(request.getParameter("username"));
+		String password = Util.decodeParameter(request.getParameter("password"));
+		String confirmPassword = Util.decodeParameter(request.getParameter("confirm_password"));
 		
 		if (!password.equals(confirmPassword)) {
 			return;

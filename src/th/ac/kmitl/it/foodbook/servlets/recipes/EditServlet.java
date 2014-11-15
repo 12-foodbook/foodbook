@@ -27,6 +27,7 @@ import th.ac.kmitl.it.foodbook.daos.RecipeStepPhotosDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
+import th.ac.kmitl.it.foodbook.utils.Util;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/recipes/edit")
@@ -94,10 +95,10 @@ public class EditServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String recipeIdString = request.getParameter("id");
+		String recipeIdString = Util.decodeParameter(request.getParameter("id"));
 		long recipeId = Long.parseLong(recipeIdString);
-		String name = request.getParameter("name");
-    	String videoUrl = request.getParameter("video_url");
+		String name = Util.decodeParameter(request.getParameter("name"));
+    	String videoUrl = Util.decodeParameter(request.getParameter("video_url"));
     	String[] ingredientIds = request.getParameterValues("ingredient_id");
     	String[] ingredientAmounts = request.getParameterValues("ingredient_amount");
     	
@@ -127,6 +128,7 @@ public class EditServlet extends HttpServlet {
 			Connection conn = ds.getConnection();
 			
 			RecipesDAO recipesDAO = new RecipesDAO(conn);
+			
 			recipe = recipesDAO.find(recipeId);
 			recipe.setName(name);
 			recipe.setVideo_url(videoUrl);
@@ -135,11 +137,11 @@ public class EditServlet extends HttpServlet {
 				isSuccess = true;
 				
 				for (int i = 0; i < ingredientIds.length; i++) {
-					long ingredientId = Integer.parseInt(ingredientIds[i]);
+					long ingredientId = Integer.parseInt(Util.decodeParameter(ingredientIds[i]));
 					
 					recipesDAO.deleteIngredient(recipe.getRecipe_id(), ingredientId);
 					
-					if (!recipesDAO.createIngredient(recipe.getRecipe_id(), ingredientId, ingredientAmounts[i])) {
+					if (!recipesDAO.createIngredient(recipe.getRecipe_id(), ingredientId, Util.decodeParameter(ingredientAmounts[i]))) {
 						isSuccess = false;
 						return;
 					}
@@ -158,13 +160,13 @@ public class EditServlet extends HttpServlet {
 				
 				for (int i = 0; i < stepTitles.length; i++) {
 					RecipeStep recipeStep = new RecipeStep();
-					recipeStep.setTitle(stepTitles[i]);
-					recipeStep.setDescription(stepDescriptions[i]);
+					recipeStep.setTitle(Util.decodeParameter(stepTitles[i]));
+					recipeStep.setDescription(Util.decodeParameter(stepDescriptions[i]));
 					recipeStep.setRecipe_id(recipeId);
 					
 					if (recipeStepsDAO.create(recipeStep)) {
 						RecipeStepPhoto recipeStepPhoto = new RecipeStepPhoto();
-						recipeStepPhoto.setPhoto_url(stepPhotoUrls[i]);
+						recipeStepPhoto.setPhoto_url(Util.decodeParameter(stepPhotoUrls[i]));
 						recipeStepPhoto.setRecipe_step_id(recipeStep.getRecipe_step_id());
 						recipeStepPhotosDAO.create(recipeStepPhoto);
 					} else {

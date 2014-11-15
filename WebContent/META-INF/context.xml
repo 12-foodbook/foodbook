@@ -10,7 +10,7 @@
 		username="root"
 		password="root1@#$"
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://128.199.251.149:3306/foodbook_development"
+		url="jdbc:mysql://128.199.251.149:3306/foodbook_development?useUnicode=true&amp;characterEncoding=UTF-8"
 	/>
 	
 	<Resource
@@ -23,7 +23,7 @@
 		username="root"
 		password="root1@#$"
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://128.199.251.149:3306/foodbook_production"
+		url="jdbc:mysql://128.199.251.149:3306/foodbook_production?useUnicode=true&amp;characterEncoding=UTF-8"
 	/>
 	
 </Context>
