@@ -62,7 +62,6 @@
 					<form class="col-md-4" method="post" accept-charset="UTF-8"
 						action="/favorites/create">
 						<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
-						<button class="btn btn-lg btn-block btn-danger">เพิ่มในรายการโปรด</button>
 					</form>
 				</div>
 			</c:forEach>
