@@ -26,7 +26,6 @@ import th.ac.kmitl.it.foodbook.daos.RecipeStepPhotosDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
-import th.ac.kmitl.it.foodbook.utils.Util;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/recipes/create")
@@ -71,8 +70,8 @@ public class CreateServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String name = Util.decodeParameter(request.getParameter("name"));
-    	String videoUrl = Util.decodeParameter(request.getParameter("video_url"));
+    	String name = request.getParameter("name");
+    	String videoUrl = request.getParameter("video_url");
     	String[] ingredientIds = request.getParameterValues("ingredient_id");
     	String[] ingredientAmounts = request.getParameterValues("ingredient_amount");
     	
@@ -115,9 +114,9 @@ public class CreateServlet extends HttpServlet {
 				isSuccess = true;
 				
 				for (int i = 0; i < ingredientIds.length; i++) {
-					long ingredientId = Integer.parseInt(Util.decodeParameter(ingredientIds[i]));
+					long ingredientId = Integer.parseInt(ingredientIds[i]);
 					
-					if (!recipesDAO.createIngredient(recipe.getRecipe_id(), ingredientId, Util.decodeParameter(ingredientAmounts[i]))) {
+					if (!recipesDAO.createIngredient(recipe.getRecipe_id(), ingredientId, ingredientAmounts[i])) {
 						isSuccess = false;
 						return;
 					}
@@ -128,13 +127,13 @@ public class CreateServlet extends HttpServlet {
 				
 				for (int i = 0; i < stepTitles.length; i++) {
 					RecipeStep recipeStep = new RecipeStep();
-					recipeStep.setTitle(Util.decodeParameter(stepTitles[i]));
-					recipeStep.setDescription(Util.decodeParameter(stepDescriptions[i]));
+					recipeStep.setTitle(stepTitles[i]);
+					recipeStep.setDescription(stepDescriptions[i]);
 					recipeStep.setRecipe_id(recipe.getRecipe_id());
 					
 					if (recipeStepsDAO.create(recipeStep)) {
 						RecipeStepPhoto recipeStepPhoto = new RecipeStepPhoto();
-						recipeStepPhoto.setPhoto_url(Util.decodeParameter(stepPhotoUrls[i]));
+						recipeStepPhoto.setPhoto_url(stepPhotoUrls[i]);
 						recipeStepPhoto.setRecipe_step_id(recipeStep.getRecipe_step_id());
 						recipeStepPhotosDAO.create(recipeStepPhoto);
 					} else {

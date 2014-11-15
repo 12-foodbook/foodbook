@@ -15,7 +15,6 @@ import javax.sql.DataSource;
 import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
 import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
-import th.ac.kmitl.it.foodbook.utils.Util;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/ingredients/categories/create")
@@ -31,7 +30,7 @@ public class CreateServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = Util.decodeParameter(request.getParameter("name"));
+		String name = request.getParameter("name");
 		
 		IngredientCategory ingredientCategory = null;
     	

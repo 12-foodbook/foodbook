@@ -15,7 +15,6 @@ import javax.sql.DataSource;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
-import th.ac.kmitl.it.foodbook.utils.Util;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/users/authenticate")
@@ -31,8 +30,8 @@ public class AuthenticateServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String username = Util.decodeParameter(request.getParameter("username"));
-    	String password = Util.decodeParameter(request.getParameter("password"));
+    	String username = request.getParameter("username");
+    	String password = request.getParameter("password");
 		
 		User user = null;
     	
