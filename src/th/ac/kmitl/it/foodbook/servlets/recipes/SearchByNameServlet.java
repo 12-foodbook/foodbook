@@ -16,7 +16,6 @@ import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
-import th.ac.kmitl.it.foodbook.utils.Util;
 
 @WebServlet("/recipes/search-by-name")
 public class SearchByNameServlet extends HttpServlet {
@@ -24,18 +23,10 @@ public class SearchByNameServlet extends HttpServlet {
 	
 	public SearchByNameServlet() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String query = Util.decodeParameter(request.getParameter("query"));
-		
-		System.out.println(query);
-		for (byte b : request.getParameter("query").getBytes("ISO-8859-1")) {
-			System.out.print(b);
-			System.out.print(' ');
-		}
-		System.out.println();
+		String query = request.getParameter("query");
 		
 		List<Recipe> recipes = null;
 		List<RecipeCategory> recipeCategories = null;
