@@ -4,6 +4,7 @@ public class Recipe {
 
 	private long recipe_id;
 	private String name;
+	private String photo_url;
 	private String video_url;
 	private long user_id;
 
@@ -21,6 +22,14 @@ public class Recipe {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPhoto_url() {
+		return photo_url;
+	}
+
+	public void setPhoto_url(String photo_url) {
+		this.photo_url = photo_url;
 	}
 
 	public String getVideo_url() {

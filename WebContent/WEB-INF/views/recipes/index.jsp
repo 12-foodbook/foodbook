@@ -27,8 +27,8 @@
 
 		<div class="list-group media col-xs-12 col-md-8">
 			<c:forEach var="recipe" items="${recipes}">
-				<a href="/recipes/show?id=${recipe.recipe_id}"
-					class="media-left media-top col-md-2"> <img src="" alt="image">
+				<a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top col-md-2">
+					<img src="${recipe.photo_url}" alt="image">
 				</a>
 
 				<div class="media-body col-md-10">

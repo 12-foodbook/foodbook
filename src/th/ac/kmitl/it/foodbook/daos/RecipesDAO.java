@@ -50,6 +50,7 @@ public class RecipesDAO extends AbstractDAO {
 			recipe = new Recipe();
 			recipe.setRecipe_id(rs.getLong("recipe_id"));
 			recipe.setName(rs.getString("name"));
+			recipe.setPhoto_url(rs.getString("photo_url"));
 			recipe.setVideo_url(rs.getString("video_url"));
 			recipe.setUser_id(rs.getLong("user_id"));
 		}
@@ -131,6 +132,7 @@ public class RecipesDAO extends AbstractDAO {
 			Recipe recipe = new Recipe();
 			recipe.setRecipe_id(rs.getLong("recipe_id"));
 			recipe.setName(rs.getString("name"));
+			recipe.setPhoto_url(rs.getString("photo_url"));
 			recipe.setVideo_url(rs.getString("video_url"));
 			recipe.setUser_id(rs.getLong("user_id"));
 			recipes.add(recipe);
