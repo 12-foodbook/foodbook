@@ -74,8 +74,15 @@
 						</div>
 					</c:forEach>
 				</div>
-				
+				<!-- button -->
+				<div class="row">
+					<div class="col-xs-12 col-md-6">
+						<button id="add-step-button" class="btn btn-default btn-lg btn-block" type="button">เพิ่มขั้นตอน</button>
+					</div>
+				</div>	
 			</div>
+	
+			
 			
 			<div class="col-xs-12 col-md-5 col-md-offset-1 editrecipe-bgcolor">
 			<label><h4>เลือกวัตถุดิบ</h4></label>
@@ -107,15 +114,13 @@
 				</c:forEach>
 			</div>
 		</div>
-		
+		<!-- button -->
 		<div class="row">
-			<div class="col-xs-12 col-md-6">
-				<button id="add-step-button" class="btn btn-default btn-lg btn-block" type="button">เพิ่มขั้นตอน</button>
-			</div>
 			<div class="col-xs-12 col-md-6">
 				<button type="submit" id="create-button" class="btn btn-success btn-lg btn-block">สร้างตำรับอาหาร</button>
 			</div>
 		</div>
+		
 		
 	</form>
 
