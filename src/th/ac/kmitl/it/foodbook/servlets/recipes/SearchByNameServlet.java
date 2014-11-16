@@ -19,42 +19,43 @@ import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
 @WebServlet("/recipes/search-by-name")
 public class SearchByNameServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	public SearchByNameServlet() {
-		super();
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String query = request.getParameter("query");
-		
-		List<Recipe> recipes = null;
-		List<RecipeCategory> recipeCategories = null;
-		
-		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-		
-		try {
-			Connection conn = ds.getConnection();
-			
-			RecipesDAO recipesDAO = new RecipesDAO(conn);
-			recipes = recipesDAO.findByNameLike(query);
-			
-			RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
-			recipeCategories = recipeCategoriesDAO.findAll();
-			
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			response.sendError(500);
-		}
-		
-		request.setAttribute("recipes", recipes);
-		request.setAttribute("recipeCategories", recipeCategories);
-		
-		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
+    
+    private static final long serialVersionUID = 1L;
+    
+    public SearchByNameServlet() {
+        super();
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String query = request.getParameter("query");
+        
+        List<Recipe> recipes = null;
+        List<RecipeCategory> recipeCategories = null;
+        
+        DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
+        
+        try {
+            Connection conn = ds.getConnection();
+            
+            RecipesDAO recipesDAO = new RecipesDAO(conn);
+            recipes = recipesDAO.findByNameLike(query);
+            
+            RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+            recipeCategories = recipeCategoriesDAO.findAll();
+            
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(500);
+        }
+        
+        request.setAttribute("recipes", recipes);
+        request.setAttribute("recipeCategories", recipeCategories);
+        
+        request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+    }
 }

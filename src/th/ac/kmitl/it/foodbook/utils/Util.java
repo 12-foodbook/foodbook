@@ -10,50 +10,50 @@ import org.apache.tomcat.util.codec.binary.Base64;
 public class Util {
     
     public static byte[] getSalt() {
-    	SecureRandom random = null;
-    	byte[] salt = null;
-		try {
-			random = SecureRandom.getInstance("SHA1PRNG");
-	    	salt = new byte[8];
-	    	random.nextBytes(salt);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-    	return salt;
+        SecureRandom random = null;
+        byte[] salt = null;
+        try {
+            random = SecureRandom.getInstance("SHA1PRNG");
+            salt = new byte[8];
+            random.nextBytes(salt);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return salt;
     }
-
+    
     public static byte[] hashPassword(String password, byte[] salt) {
-    	byte[] hashedPassword = null;
-    	MessageDigest digest = null;
-    	try {
-			digest = MessageDigest.getInstance("SHA-256");
-			digest.reset();
-			digest.update(salt);
-			hashedPassword = digest.digest(password.getBytes("UTF-8"));
-		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-    	return hashedPassword;
+        byte[] hashedPassword = null;
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("SHA-256");
+            digest.reset();
+            digest.update(salt);
+            hashedPassword = digest.digest(password.getBytes("UTF-8"));
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return hashedPassword;
     }
     
     public static String bytesToString(byte[] bytes) {
-    	return Base64.encodeBase64String(bytes);
+        return Base64.encodeBase64String(bytes);
     }
     
     public static byte[] stringToBytes(String string) {
-    	return Base64.decodeBase64(string);
+        return Base64.decodeBase64(string);
     }
     
-	public static String decodeParameter(String parameter) {
-		String decoded = null;
-		
-		try {
-			decoded = new String(parameter.getBytes("ISO-8859-1"), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		
-		return decoded;
-	}
-
+    public static String decodeParameter(String parameter) {
+        String decoded = null;
+        
+        try {
+            decoded = new String(parameter.getBytes("ISO-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        
+        return decoded;
+    }
+    
 }

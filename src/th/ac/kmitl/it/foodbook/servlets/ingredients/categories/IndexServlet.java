@@ -17,31 +17,32 @@ import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
 
 @WebServlet("/ingredients/categories/index")
 public class IndexServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	public IndexServlet() {
-		super();
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<IngredientCategory> ingredientCategories = null;
-
-		DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-
-		try {
-			Connection conn = ds.getConnection();
-			
-			IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
-			ingredientCategories = ingredientCategoriesDAO.findAll();
-
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			response.sendError(500);
-		}
-
-		request.setAttribute("ingredientCategories", ingredientCategories);
-		request.getRequestDispatcher("/WEB-INF/views/ingredients/categories/index.jsp").include(request, response);
-	}
-
+    
+    private static final long serialVersionUID = 1L;
+    
+    public IndexServlet() {
+        super();
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<IngredientCategory> ingredientCategories = null;
+        
+        DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
+        
+        try {
+            Connection conn = ds.getConnection();
+            
+            IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
+            ingredientCategories = ingredientCategoriesDAO.findAll();
+            
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(500);
+        }
+        
+        request.setAttribute("ingredientCategories", ingredientCategories);
+        request.getRequestDispatcher("/WEB-INF/views/ingredients/categories/index.jsp").include(request, response);
+    }
+    
 }

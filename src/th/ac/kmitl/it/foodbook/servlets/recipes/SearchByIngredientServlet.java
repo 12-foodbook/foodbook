@@ -25,79 +25,80 @@ import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
 @WebServlet("/recipes/search-by-ingredient")
 public class SearchByIngredientServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	public SearchByIngredientServlet() {
-		super();
-
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] ingredientIds = request.getParameterValues("ingredient_id");
-		
-		List<Recipe> recipes = null;
-		List<RecipeCategory> recipeCategories = null;
-    	
-    	DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-		
-		try {
-			Connection conn = ds.getConnection();
-			
-			RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
-			recipeCategories = recipeCategoriesDAO.findAll();
-			
-			Set<String> ingredientIdStrings = new HashSet<String>(Arrays.asList(ingredientIds));
-			
-			IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-			RecipesDAO recipesDAO = new RecipesDAO(conn);	
-			
-			recipes = new ArrayList<Recipe>();
-			
-			for (String ingredientIdString : ingredientIds) {
-				int ingredientId = Integer.parseInt(ingredientIdString);
-				List<Recipe> tempRecipes = recipesDAO.findByIngredientId(ingredientId);
-				
-				for (Recipe recipe : tempRecipes) {
-					List<Ingredient> ingredients = ingredientsDAO.findByRecipeId(recipe.getRecipe_id());
-					Set<String> recipesIngredientIdStrings = new HashSet<String>();
-					
-					for (Ingredient ingredient : ingredients) {
-						recipesIngredientIdStrings.add(String.valueOf(ingredient.getIngredient_id()));
-					}
-					
-					if (ingredientIdStrings.containsAll(recipesIngredientIdStrings)) {
-						
-						// TODO: Remove fuck up.
-						boolean fuckedUp = false;
-						
-						for (Recipe fu : recipes) {
-							if (recipe.getRecipe_id() == fu.getRecipe_id()) {
-								fuckedUp = true;
-							}
-						}
-						
-						if (!fuckedUp) {
-							recipes.add(recipe);
-						}
-						
-					}
-				}
-			}
-			
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			response.sendError(500);
-		}
-		
-		request.setAttribute("recipes", recipes);
-		request.setAttribute("recipeCategories", recipeCategories);
-		
-		request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
-	}
-
+    
+    private static final long serialVersionUID = 1L;
+    
+    public SearchByIngredientServlet() {
+        super();
+        
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String[] ingredientIds = request.getParameterValues("ingredient_id");
+        
+        List<Recipe> recipes = null;
+        List<RecipeCategory> recipeCategories = null;
+        
+        DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
+        
+        try {
+            Connection conn = ds.getConnection();
+            
+            RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+            recipeCategories = recipeCategoriesDAO.findAll();
+            
+            Set<String> ingredientIdStrings = new HashSet<String>(Arrays.asList(ingredientIds));
+            
+            IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
+            RecipesDAO recipesDAO = new RecipesDAO(conn);
+            
+            recipes = new ArrayList<Recipe>();
+            
+            for (String ingredientIdString : ingredientIds) {
+                int ingredientId = Integer.parseInt(ingredientIdString);
+                List<Recipe> tempRecipes = recipesDAO.findByIngredientId(ingredientId);
+                
+                for (Recipe recipe : tempRecipes) {
+                    List<Ingredient> ingredients = ingredientsDAO.findByRecipeId(recipe.getRecipe_id());
+                    Set<String> recipesIngredientIdStrings = new HashSet<String>();
+                    
+                    for (Ingredient ingredient : ingredients) {
+                        recipesIngredientIdStrings.add(String.valueOf(ingredient.getIngredient_id()));
+                    }
+                    
+                    if (ingredientIdStrings.containsAll(recipesIngredientIdStrings)) {
+                        
+                        // TODO: Remove fuck up.
+                        boolean fuckedUp = false;
+                        
+                        for (Recipe fu : recipes) {
+                            if (recipe.getRecipe_id() == fu.getRecipe_id()) {
+                                fuckedUp = true;
+                            }
+                        }
+                        
+                        if (!fuckedUp) {
+                            recipes.add(recipe);
+                        }
+                        
+                    }
+                }
+            }
+            
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(500);
+        }
+        
+        request.setAttribute("recipes", recipes);
+        request.setAttribute("recipeCategories", recipeCategories);
+        
+        request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
+    }
+    
 }
