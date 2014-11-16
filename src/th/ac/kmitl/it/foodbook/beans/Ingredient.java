@@ -5,6 +5,7 @@ public class Ingredient {
     private long ingredient_id;
     private String name;
     private String photo_url;
+    private float calorie;
     private String amount;
     
     public long getIngredient_id() {
@@ -29,6 +30,16 @@ public class Ingredient {
     
     public void setPhoto_url(String photo_url) {
         this.photo_url = photo_url;
+    }
+
+    
+    public float getCalorie() {
+        return calorie;
+    }
+
+    
+    public void setCalorie(float calorie) {
+        this.calorie = calorie;
     }
     
     public String getAmount() {

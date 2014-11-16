@@ -30,6 +30,7 @@ public class IngredientsDAO extends AbstractDAO {
             ingredient.setIngredient_id(rs.getLong("ingredient_id"));
             ingredient.setName(rs.getString("name"));
             ingredient.setPhoto_url(rs.getString("photo_url"));
+            ingredient.setCalorie(rs.getFloat("calorie"));
         }
         
         return ingredient;
@@ -92,6 +93,19 @@ public class IngredientsDAO extends AbstractDAO {
         }
         
         return ingredients;
+    }
+    
+    public boolean create(Ingredient ingredient) throws SQLException {
+        String sql = "INSERT INTO ingredients (name, photo_url, calorie) VALUES (?, ?, ?)";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setString(1, ingredient.getName());
+        stm.setString(2, ingredient.getPhoto_url());
+        stm.setFloat(3, ingredient.getCalorie());
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
     }
     
 }
