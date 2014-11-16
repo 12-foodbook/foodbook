@@ -12,20 +12,20 @@ public class ContextInitializedListener implements ServletContextListener {
     
     @Resource(name = "jdbc/foodbook_development")
     private DataSource ds;
-
-	public ContextInitializedListener() {
-
-	}
-
-	public void contextInitialized(ServletContextEvent sce) {
-		ServletContext context = sce.getServletContext();
-		
-		context.setAttribute("siteTitle", "Foodbook");
-		context.setAttribute("ds", ds);
-	}
-
-	public void contextDestroyed(ServletContextEvent sce) {
-
-	}
-
+    
+    public ContextInitializedListener() {
+        
+    }
+    
+    public void contextInitialized(ServletContextEvent sce) {
+        ServletContext context = sce.getServletContext();
+        
+        context.setAttribute("siteTitle", "Foodbook");
+        context.setAttribute("ds", ds);
+    }
+    
+    public void contextDestroyed(ServletContextEvent sce) {
+        
+    }
+    
 }

@@ -20,63 +20,64 @@ import th.ac.kmitl.it.foodbook.utils.Util;
 
 @WebServlet("/users/create")
 public class CreateServlet extends HttpServlet {
+    
     private static final long serialVersionUID = 1L;
-
+    
     public CreateServlet() {
-    	super();
+        super();
     }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
     }
-
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String confirmPassword = request.getParameter("confirm_password");
-		
-		HttpSession session = request.getSession();
-		
-		if (username.equals("") || password.equals("") || !password.equals(confirmPassword)) {
-			session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Invalid Username or Password!"));
-    		request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
-    		return;
-		}
-		
-		User user = null;
-    	
-    	DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-		
-		boolean isSuccess = false;
-    	
-    	try {
-    		Connection conn = ds.getConnection();
-
-    		user = new User();
-    		user.setUsername(username);
-    		
-    		byte[] saltBytes = Util.getSalt();
-    		String salt = Util.bytesToString(saltBytes);
-    		byte[] hashedPasswordBytes = Util.hashPassword(password, saltBytes);
-    		String hashedPassword = Util.bytesToString(hashedPasswordBytes);
-    		
-    		user.setHashed_password(hashedPassword);
-    		user.setSalt(salt);
-    		
-    		UsersDAO usersDAO = new UsersDAO(conn);
-			isSuccess = usersDAO.create(user);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			response.sendError(500);
-		}
-
-    	if (isSuccess) {
-    		session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
-    		response.sendRedirect("/");
-    	} else {
-    		session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully!"));
-    		request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
-    	}
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirm_password");
+        
+        HttpSession session = request.getSession();
+        
+        if (username.equals("") || password.equals("") || !password.equals(confirmPassword)) {
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Invalid Username or Password!"));
+            request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
+            return;
+        }
+        
+        User user = null;
+        
+        DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
+        
+        boolean isSuccess = false;
+        
+        try {
+            Connection conn = ds.getConnection();
+            
+            user = new User();
+            user.setUsername(username);
+            
+            byte[] saltBytes = Util.getSalt();
+            String salt = Util.bytesToString(saltBytes);
+            byte[] hashedPasswordBytes = Util.hashPassword(password, saltBytes);
+            String hashedPassword = Util.bytesToString(hashedPasswordBytes);
+            
+            user.setHashed_password(hashedPassword);
+            user.setSalt(salt);
+            
+            UsersDAO usersDAO = new UsersDAO(conn);
+            isSuccess = usersDAO.create(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(500);
+        }
+        
+        if (isSuccess) {
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
+            response.sendRedirect("/");
+        } else {
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully!"));
+            request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
+        }
     }
-
+    
 }

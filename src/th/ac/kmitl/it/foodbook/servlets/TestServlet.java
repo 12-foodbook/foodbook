@@ -14,28 +14,27 @@ import javax.sql.DataSource;
 
 @WebServlet("/test")
 public class TestServlet extends HttpServlet {
+    
     private static final long serialVersionUID = 1L;
-
+    
     public TestServlet() {
-    	super();
+        super();
     }
-
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	response.setContentType("text/plain");
-    	@SuppressWarnings("unused")
-		PrintWriter out = response.getWriter();
-    	
-    	DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-    	
-		try {
-			Connection conn = ds.getConnection();
-	    	
-			
-			
-	    	conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+        response.setContentType("text/plain");
+        @SuppressWarnings("unused")
+        PrintWriter out = response.getWriter();
+        
+        DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
+        
+        try {
+            Connection conn = ds.getConnection();
+            
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
+    
 }

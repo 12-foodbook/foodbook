@@ -10,45 +10,45 @@ import java.util.List;
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 
 public class RecipeCategoriesDAO extends AbstractDAO {
-
-	public RecipeCategoriesDAO(Connection conn) {
-		super(conn);
-	}
-	
-	public boolean create(RecipeCategory recipeCategory) throws SQLException {
-		String sql = "INSERT INTO recipe_categories (name) VALUES (?)";
-		PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-		
-		stm.setString(1, recipeCategory.getName());
-		
-		int rowCount = stm.executeUpdate();
-		
-		if (rowCount == 1) {
-			ResultSet rs = stm.getGeneratedKeys();
-			rs.next();
-			recipeCategory.setRecipe_category_id(rs.getLong(1));
-			return true;
-		}
-		
-		return false;
-	}
-	
-	public List<RecipeCategory> findAll() throws SQLException {
-		String sql = "SELECT * FROM recipe_categories";
-		PreparedStatement stm = conn.prepareStatement(sql);
-		
-		ResultSet rs = stm.executeQuery();
-		
-		List<RecipeCategory> recipeCategories = new ArrayList<RecipeCategory>();
-		
-		while (rs.next()) {
-			RecipeCategory recipeCategory = new RecipeCategory();
-			recipeCategory.setRecipe_category_id(rs.getLong("recipe_category_id"));
-			recipeCategory.setName(rs.getString("name"));
-			recipeCategories.add(recipeCategory);
-		}
-		
-		return recipeCategories;
-	}
-
+    
+    public RecipeCategoriesDAO(Connection conn) {
+        super(conn);
+    }
+    
+    public boolean create(RecipeCategory recipeCategory) throws SQLException {
+        String sql = "INSERT INTO recipe_categories (name) VALUES (?)";
+        PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+        
+        stm.setString(1, recipeCategory.getName());
+        
+        int rowCount = stm.executeUpdate();
+        
+        if (rowCount == 1) {
+            ResultSet rs = stm.getGeneratedKeys();
+            rs.next();
+            recipeCategory.setRecipe_category_id(rs.getLong(1));
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public List<RecipeCategory> findAll() throws SQLException {
+        String sql = "SELECT * FROM recipe_categories";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        ResultSet rs = stm.executeQuery();
+        
+        List<RecipeCategory> recipeCategories = new ArrayList<RecipeCategory>();
+        
+        while (rs.next()) {
+            RecipeCategory recipeCategory = new RecipeCategory();
+            recipeCategory.setRecipe_category_id(rs.getLong("recipe_category_id"));
+            recipeCategory.setName(rs.getString("name"));
+            recipeCategories.add(recipeCategory);
+        }
+        
+        return recipeCategories;
+    }
+    
 }

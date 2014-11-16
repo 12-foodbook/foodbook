@@ -10,20 +10,20 @@ import th.ac.kmitl.it.foodbook.utils.Alert;
 
 @WebListener
 public class RequestInitializedListener implements ServletRequestListener {
-
+    
     public RequestInitializedListener() {
-
+        
     }
-
-    public void requestInitialized(ServletRequestEvent sre)  {
-    	
+    
+    public void requestInitialized(ServletRequestEvent sre) {
+        
     }
-
-    public void requestDestroyed(ServletRequestEvent sre)  { 
-    	HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
-    	HttpSession session = request.getSession();
-    	Alert alert = (Alert) session.getAttribute("alert");
-    	if (alert != null && alert.isShowed()) session.setAttribute("alert", null); 
+    
+    public void requestDestroyed(ServletRequestEvent sre) {
+        HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
+        HttpSession session = request.getSession();
+        Alert alert = (Alert) session.getAttribute("alert");
+        if (alert != null && alert.isShowed()) session.setAttribute("alert", null);
     }
-	
+    
 }

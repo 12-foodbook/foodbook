@@ -11,20 +11,21 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/moderators/deauthenticate")
 public class DeauthenticateServlet extends HttpServlet {
+    
     private static final long serialVersionUID = 1L;
-
+    
     public DeauthenticateServlet() {
-    	super();
+        super();
     }
-
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	HttpSession session = request.getSession();
-    	session.setAttribute("moderator", null);
-    	response.sendRedirect("/");
+        HttpSession session = request.getSession();
+        session.setAttribute("moderator", null);
+        response.sendRedirect("/");
     }
-
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	doGet(request, response);
+        doGet(request, response);
     }
-
+    
 }
