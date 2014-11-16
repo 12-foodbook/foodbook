@@ -22,7 +22,8 @@ public class TestServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	response.setContentType("text/plain");
-    	PrintWriter out = response.getWriter();
+    	@SuppressWarnings("unused")
+		PrintWriter out = response.getWriter();
     	
     	DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
     	
