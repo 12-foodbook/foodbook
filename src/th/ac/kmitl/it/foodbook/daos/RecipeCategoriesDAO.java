@@ -45,6 +45,25 @@ public class RecipeCategoriesDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
+    public RecipeCategory find(long id) throws SQLException {
+        RecipeCategory recipeCategory = null;
+        
+        String sql = "SELECT * FROM recipe_categories WHERE recipe_category_id = ? LIMIT 1";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, id);
+        
+        ResultSet rs = stm.executeQuery();
+        
+        if (rs.next()) {
+            recipeCategory = new RecipeCategory();
+            recipeCategory.setRecipe_category_id(rs.getLong("recipe_category_id"));
+            recipeCategory.setName(rs.getString("name"));
+        }
+        
+        return recipeCategory;
+    }
+    
     public List<RecipeCategory> findAll() throws SQLException {
         String sql = "SELECT * FROM recipe_categories";
         PreparedStatement stm = conn.prepareStatement(sql);
