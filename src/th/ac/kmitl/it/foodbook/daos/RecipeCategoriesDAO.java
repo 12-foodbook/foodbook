@@ -33,6 +33,18 @@ public class RecipeCategoriesDAO extends AbstractDAO {
         return false;
     }
     
+    public boolean update(RecipeCategory recipeCategory) throws SQLException {
+        String sql = "UPDATE recipe_categories SET name = ? WHERE recipe_category_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setString(1, recipeCategory.getName());
+        stm.setLong(2, recipeCategory.getRecipe_category_id());
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
     public List<RecipeCategory> findAll() throws SQLException {
         String sql = "SELECT * FROM recipe_categories";
         PreparedStatement stm = conn.prepareStatement(sql);
