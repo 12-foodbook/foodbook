@@ -109,7 +109,10 @@ th {
 	background: #F57F17;
 	color: white;
 }
-
+.checkboxcol{
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
 .checkboxcol .checkbox {
 	display: inline-block;
 	max-width: 300px;
