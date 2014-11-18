@@ -17,7 +17,7 @@ import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
-@WebServlet("/recipes/edit")
+@WebServlet("/recipes/categories/edit")
 public class EditServlet extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
