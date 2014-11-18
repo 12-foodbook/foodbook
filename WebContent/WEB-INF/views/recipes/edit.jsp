@@ -9,7 +9,7 @@
 <div class="container">
 
 	<div class="page-header">
-		<h1>แก้ไขตำรับอาหาร <small>${recipe.name}</small></h1>
+		<h1>แก้ไขตำหรับอาหาร <small>${recipe.name}</small></h1>
 	</div>
 
 	<form method="post" accept-charset="UTF-8" class="form-horizontal" role="form">
@@ -53,6 +53,13 @@
 						</div>
 					</c:forEach>
 				</div>
+				
+				<!-- button -->
+				<div class="row">
+					<div class="col-xs-12">
+						<button id="add-step-button" class="btn btn-default btn-lg btn-block" type="button">เพิ่มขั้นตอน</button>
+					</div>
+				</div>	
 				
 			</div>
 			
@@ -105,11 +112,8 @@
 				</c:forEach>
 			</div>
 		</div>
-		
+		<!-- button -->
 		<div class="row">
-			<div class="col-xs-12 col-md-6">
-				<button id="add-step-button" class="btn btn-default btn-lg btn-block" type="button">เพิ่มขั้นตอน</button>
-			</div>
 			<div class="col-xs-12 col-md-6">
 				<button type="submit" id="create-button" class="btn btn-success btn-lg btn-block">แก้ไขตำรับอาหาร</button>
 			</div>

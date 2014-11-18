@@ -112,9 +112,13 @@ th {
 
 .checkboxcol .checkbox {
 	display: inline-block;
-	padding: 5px;
-	max-width: 340px;
+	max-width: 300px;
+	
 }
+.chtest{
+	width: 17%
+}
+
 
 .jumboImg {
 	display: inline-block;
@@ -177,4 +181,8 @@ th {
 }
 #add-step-button{
 	margin-top: 20px;
+}
+/* font create and edit page */
+.label-create{
+	font-size: 15px;
 }

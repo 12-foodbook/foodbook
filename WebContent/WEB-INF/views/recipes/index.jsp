@@ -33,8 +33,7 @@
 
 				<div class="media-body col-md-10">
 					<h4 class="media-heading col-md-6">
-						<a href="/recipes/show?id=${recipe.recipe_id}"
-							class="media-left media-top">
+						<a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top">
 							<h2>${recipe.name}</h2>
 						</a>
 					</h4>
