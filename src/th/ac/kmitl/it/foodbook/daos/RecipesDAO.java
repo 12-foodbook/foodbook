@@ -76,7 +76,7 @@ public class RecipesDAO extends AbstractDAO {
         return recipes;
     }
     
-    public boolean createIngredient(long recipeId, long ingredientId, String amount) throws SQLException {
+    public boolean addIngredient(long recipeId, long ingredientId, String amount) throws SQLException {
         String sql = "INSERT INTO recipes_ingredients (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)";
         PreparedStatement stm = conn.prepareStatement(sql);
         
@@ -89,12 +89,36 @@ public class RecipesDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
-    public boolean deleteIngredient(long recipeId, long ingredientId) throws SQLException {
+    public boolean removeIngredient(long recipeId, long ingredientId) throws SQLException {
         String sql = "DELETE FROM recipes_ingredients WHERE recipe_id = ? AND ingredient_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setLong(1, recipeId);
         stm.setLong(2, ingredientId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
+    public boolean addRecipeCategory(long recipeId, long recipeCategoryId) throws SQLException {
+        String sql = "INSERT INTO recipes_recipe_categories (recipe_id, recipe_category_id) VALUES (?, ?)";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeId);
+        stm.setLong(2, recipeCategoryId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
+    public boolean removeRecipeCategory(long recipeId, long recipeCategoryId) throws SQLException {
+        String sql = "DELETE FROM recipes_recipe_categories WHERE recipe_id = ? AND recipe_category_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeId);
+        stm.setLong(2, recipeCategoryId);
         
         int rowCount = stm.executeUpdate();
         

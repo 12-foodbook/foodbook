@@ -135,9 +135,9 @@ public class EditServlet extends HttpServlet {
                 for (int i = 0; i < ingredientIds.length; i++) {
                     long ingredientId = Integer.parseInt(ingredientIds[i]);
                     
-                    recipesDAO.deleteIngredient(recipe.getRecipe_id(), ingredientId);
+                    recipesDAO.removeIngredient(recipe.getRecipe_id(), ingredientId);
                     
-                    if (!recipesDAO.createIngredient(recipe.getRecipe_id(), ingredientId, ingredientAmounts[i])) {
+                    if (!recipesDAO.addIngredient(recipe.getRecipe_id(), ingredientId, ingredientAmounts[i])) {
                         isSuccess = false;
                         return;
                     }
