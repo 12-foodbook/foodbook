@@ -79,6 +79,7 @@ public class CreateServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
+        String photoUrl = request.getParameter("photo_url");
         String videoUrl = request.getParameter("video_url");
         
         String[] recipeCategoryIds = request.getParameterValues("recipe_category_id");
@@ -111,6 +112,7 @@ public class CreateServlet extends HttpServlet {
             
             recipe = new Recipe();
             recipe.setName(name);
+            recipe.setPhoto_url(photoUrl);
             recipe.setVideo_url(videoUrl);
             
             User user = (User) session.getAttribute("user");
