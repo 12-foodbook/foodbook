@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
+import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
@@ -48,7 +49,8 @@ public class DeleteServlet extends HttpServlet {
             Connection conn = ds.getConnection();
             
             RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
-            isSuccess = recipeCategoriesDAO.delete((recipeCategory));
+            RecipesDAO recipesDAO = new RecipesDAO(conn);
+            isSuccess = recipeCategoriesDAO.delete((recipeCategory)) && recipesDAO.removeAllRecipeCategory(recipeCategoryId);
             
             conn.close();
         } catch (SQLException e) {
