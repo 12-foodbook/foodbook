@@ -70,7 +70,7 @@ public class DeleteServlet extends HttpServlet {
             response.sendRedirect("/");
         } else {
             session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Deleted Unsuccessfully!"));
-            response.sendRedirect("/recipes/categories/index");
+            response.sendRedirect("/");
         }
     }
 }
