@@ -33,8 +33,8 @@ public class DeleteServlet extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String recipeCategoryIdString = request.getParameter("id");
-        long recipeCategoryId = Long.parseLong(recipeCategoryIdString);
+        String[] recipeCategoryIdString = request.getParameterValues("recipe_category_id");
+        long recipeCategoryId;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -44,17 +44,19 @@ public class DeleteServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         
-        RecipeCategory recipeCategory = new RecipeCategory();
-        recipeCategory.setRecipe_category_id(recipeCategoryId);
-        
         try {
             Connection conn = ds.getConnection();
             
-            RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
-            RecipesDAO recipesDAO = new RecipesDAO(conn);
-            isRemoveAllRecipeCategory = recipesDAO.removeAllRecipeCategory(recipeCategoryId);
-            isDelete = recipeCategoriesDAO.delete((recipeCategory));
-            isSuccess = isRemoveAllRecipeCategory && isDelete;
+            for (String i : recipeCategoryIdString) {
+                recipeCategoryId = Long.parseLong(i);
+                RecipeCategory recipeCategory = new RecipeCategory();
+                recipeCategory.setRecipe_category_id(recipeCategoryId);
+                RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+                RecipesDAO recipesDAO = new RecipesDAO(conn);
+                isRemoveAllRecipeCategory = recipesDAO.removeAllRecipeCategory(recipeCategoryId);
+                isDelete = recipeCategoriesDAO.delete((recipeCategory));
+                isSuccess = isRemoveAllRecipeCategory && isDelete;
+            }
             
             conn.close();
         } catch (SQLException e) {
