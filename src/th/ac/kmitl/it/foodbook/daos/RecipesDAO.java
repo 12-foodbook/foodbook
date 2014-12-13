@@ -136,8 +136,19 @@ public class RecipesDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
-    public boolean removeAllRecipe(long recipeId) throws SQLException {
+    public boolean removeAllRecipeFromRecipeCategories(long recipeId) throws SQLException {
         String sql = "DELETE FROM recipes_recipe_categories WHERE recipe_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
+    public boolean removeAllRecipeFromIngredients(long recipeId) throws SQLException {
+        String sql = "DELETE FROM recipes_ingredients WHERE recipe_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setLong(1, recipeId);
