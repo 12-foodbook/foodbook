@@ -65,7 +65,7 @@
 	
 </div>
 
-<div class="fb-comments" data-href="<%= request.getRequestURL() + request.getQueryString() %>" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="<%= request.getRequestURL() + "?" + request.getQueryString() %>" data-colorscheme="light"></div>
 
 <%-- 	
 	<!-- **************************************************************************** -->
