@@ -96,12 +96,12 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> สมาชิก</a></li>
 								<li class="divider"></li>
-								<li><a href="#">ตำรับอาหาร</a></li>
-								<li><a href="/recipes/categories/index">หมวดหมู่รายการอาหาร</a></li>
-								<li><a href="#">เพิ่มวัตถุดิบ</a></li>
-								<li><a href="#">สร้างตำรับอาหาร</a></li>
+								<li><a href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> ตำรับอาหาร</a></li>
+								<li><a href="/recipes/categories/index"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> หมวดหมู่รายการอาหาร</a></li>
+								<li><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> เพิ่มวัตถุดิบ</a></li>
+								<li><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> สร้างตำรับอาหาร</a></li>
 								<li class="divider"></li>
-								<li><a href="/moderators/deauthenticate">ออกจากระบบ</a></li>
+								<li><a href="/moderators/deauthenticate"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> ออกจากระบบ</a></li>
 							</ul></li>
 					</c:if>
 				</ul>
