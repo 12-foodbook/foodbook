@@ -52,7 +52,7 @@
 					<a href="/" class="btn btn-success">ค้นหาตำรับอาหารจากวัตถุดิบ</a>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<c:if test="${empty user}">
+					<c:if test="${empty user && empty moderator}">
 						<li><a href="/users/authenticate">เข้าสู่ระบบ</a></li>
 						<li><a href="/users/create">สมัครสมาชิก</a></li>
 					</c:if>
