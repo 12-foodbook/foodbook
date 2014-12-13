@@ -39,6 +39,17 @@ public class FavoritesDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
+    public boolean deleteByUserId(long userId) throws SQLException {
+        String sql = "DELETE FROM favorites WHERE user_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, userId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount > 0;
+    }
+    
     public boolean removeRecipe(long recipeId) throws SQLException {
         String sql = "DELETE FROM favorites WHERE recipe_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);

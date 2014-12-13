@@ -109,4 +109,24 @@ public class UsersDAO extends AbstractDAO {
         return user;
     }
     
+    public boolean delete(long userId) throws SQLException {
+        FavoritesDAO favoritesDAO = new FavoritesDAO(conn);
+        favoritesDAO.deleteByUserId(userId);
+        
+        RatesDAO ratesDAO = new RatesDAO(conn);
+        ratesDAO.deleteByUserId(userId);
+        
+        RecipesDAO recipesDAO = new RecipesDAO(conn);
+        recipesDAO.deleteByUserId(userId);
+        
+        String sql = "DELETE FROM users WHERE user_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, userId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
 }

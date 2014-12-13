@@ -61,7 +61,7 @@ public class DeleteServlet extends HttpServlet {
             isRemoveFromIngredients = recipesDAO.removeAllRecipeFromIngredients(recipeId);
             isRemoveFromSteps = recipesDAO.removeAllRecipeFromSteps(recipeId);
             isRemoveFromFavorites = favoritesDAO.removeRecipe(recipeId);
-            isRemoveFromRates = ratesDAO.removeRecipe(recipeId);
+            isRemoveFromRates = ratesDAO.removeByRecipe(recipeId);
             isRemoveFromComments = commentsDAO.removeRecipe(recipeId);
             isRemove = recipesDAO.delete(recipeId);
             

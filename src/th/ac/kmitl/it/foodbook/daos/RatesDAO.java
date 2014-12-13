@@ -46,7 +46,7 @@ public class RatesDAO extends AbstractDAO {
         return false;
     }
     
-    public boolean removeRecipe(long recipeId) throws SQLException {
+    public boolean removeByRecipe(long recipeId) throws SQLException {
         String sql = "DELETE FROM rates WHERE recipe_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
         
@@ -121,6 +121,17 @@ public class RatesDAO extends AbstractDAO {
         if (rs.next()) return rs.getDouble("avg_rate");
         
         return -1;
+    }
+    
+    public boolean deleteByUserId(long userId) throws SQLException {
+        String sql = "DELETE FROM rates WHERE user_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, userId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount > 0;
     }
     
 }
