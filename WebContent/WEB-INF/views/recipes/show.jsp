@@ -65,6 +65,8 @@
 	
 </div>
 
+<div class="fb-comments" data-href="<%= request.getRequestURL() + request.getQueryString() %>" data-numposts="5" data-colorscheme="light"></div>
+
 <%-- 	
 	<!-- **************************************************************************** -->
 	<!-- video link Edit-->
