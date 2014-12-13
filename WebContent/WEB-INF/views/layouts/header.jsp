@@ -68,6 +68,20 @@
 								<li><a href="/users/deauthenticate">ออกจากระบบ</a></li>
 							</ul></li>
 					</c:if>
+					<c:if test="${!empty moderator}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">${moderator.username} <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">สมาชิก</a></li>
+								<li class="divider"></li>
+								<li><a href="#">ตำรับอาหาร</a></li>
+								<li><a href="/recipes/categories/index">หมวดหมู่รายการอาหาร</a></li>
+								<li><a href="#">เพิ่มวัตถุดิบ</a></li>
+								<li><a href="#">สร้างตำรับอาหาร</a></li>
+								<li class="divider"></li>
+								<li><a href="/users/deauthenticate">ออกจากระบบ</a></li>
+							</ul></li>
+					</c:if>
 				</ul>
 				<form class="navbar-form navbar-right" role="search" action="/recipes/search-by-name" accept-charset="UTF-8">
 					<div class="form-group">
