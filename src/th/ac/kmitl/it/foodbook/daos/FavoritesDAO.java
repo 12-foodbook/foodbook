@@ -13,7 +13,6 @@ public class FavoritesDAO extends AbstractDAO {
     
     public FavoritesDAO(Connection conn) {
         super(conn);
-        
     }
     
     public boolean create(Favorite favorite) throws SQLException {
