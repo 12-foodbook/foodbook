@@ -29,10 +29,12 @@
 							</div>
 						</c:forEach>
 					</div>
+					<button class="btn btn-success btn-lg btn-block searchButt col-sm-12">ค้นหาตำรับอาหาร</button>
 				</div>
 			</c:forEach>
+			
 		</div>
-		<button class="btn btn-success btn-lg btn-block searchButt">ค้นหาตำรับอาหาร</button>
+		
 		</form>
 	</div>
 	
