@@ -55,10 +55,8 @@ public class DeleteServlet extends HttpServlet {
                 RecipesDAO recipesDAO = new RecipesDAO(conn);
                 isRemoveAllRecipeCategory = recipesDAO.removeAllRecipeCategory(recipeCategoryId);
                 isDelete = recipeCategoriesDAO.delete((recipeCategory));
-                isSuccess = isRemoveAllRecipeCategory && isDelete;
-                if (isSuccess == false) {
-                    break;
-                }
+                isSuccess = isDelete;
+             
             }
             
             conn.close();

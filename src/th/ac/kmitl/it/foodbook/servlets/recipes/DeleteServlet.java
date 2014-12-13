@@ -65,7 +65,7 @@ public class DeleteServlet extends HttpServlet {
             isRemoveFromComments = commentsDAO.removeRecipe(recipeId);
             isRemove = recipesDAO.delete(recipeId);
             
-            isSuccess = isRemoveFromRecipeCategories && isRemoveFromIngredients && isRemoveFromSteps && isRemoveFromFavorites && isRemoveFromRates && isRemoveFromComments && isRemove;
+            isSuccess = isRemove;
             
             conn.close();
         } catch (SQLException e) {
