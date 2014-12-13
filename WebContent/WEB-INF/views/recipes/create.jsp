@@ -24,9 +24,22 @@
 					<label for="name" class="col-sm-4 control-label label-create">ชื่อรายการอาหาร</label>
 					<div class="col-sm-8">
 						<input name="name" placeholder="name" id="name"
-							class="form-control" value="${recipe.name}">
+							class="form-control" value="${recipe.name}" required>
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="name" class="col-sm-4 control-label label-create">หมวดรายการอาหาร</label>
+					<div class="col-sm-8">						
+						<c:forEach var='i' begin="0" end="${fn:length(recipeCategories) - 1}">
+						<div class='col-sm-3'>
+						<input type="checkbox" name="recipe_category_id" value="${recipeCategories[i].recipe_category_id}">
+						<label>
+						${recipeCategories[i].name}
+						</label>
+						</div>
+						</c:forEach>
+					</div>
+				</div><hr>
 				<div class="form-group">
 					<label for="video_url" class="col-sm-4 control-label label-create">วิดิโอวิธีการประกอบอาหาร</label>
 					<div class="col-sm-8">
