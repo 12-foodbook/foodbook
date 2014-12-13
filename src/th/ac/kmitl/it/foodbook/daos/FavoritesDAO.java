@@ -19,6 +19,10 @@ public class FavoritesDAO extends AbstractDAO {
         String sql = "INSERT INTO favorites (user_id, recipe_id) VALUES (?, ?)";
         PreparedStatement stm = conn.prepareStatement(sql);
         
+        if(find(favorite.getUser_id(), favorite.getRecipe_id()) == null){
+            return false;
+        }
+        
         stm.setLong(1, favorite.getUser_id());
         stm.setLong(2, favorite.getRecipe_id());
         
