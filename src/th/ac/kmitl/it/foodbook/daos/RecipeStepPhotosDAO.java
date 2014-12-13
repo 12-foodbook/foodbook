@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.RecipeStepPhoto;
 
@@ -41,6 +43,27 @@ public class RecipeStepPhotosDAO extends AbstractDAO {
         int rowCount = stm.executeUpdate();
         
         return rowCount > 0;
+    }
+
+    public List<RecipeStepPhoto> findByRecipeStepId(long recipeStepId) throws SQLException {
+        String sql = "SELECT * FROM recipe_step_photos WHERE recipe_step_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeStepId);
+        
+        ResultSet rs = stm.executeQuery();
+        
+        List<RecipeStepPhoto> recipeStepPhotos = new ArrayList<RecipeStepPhoto>();
+        
+        while (rs.next()) {
+            RecipeStepPhoto recipeStepPhoto = new RecipeStepPhoto();
+            recipeStepPhoto.setRecipe_step_photo_id(rs.getLong("recipe_step_photo_id"));
+            recipeStepPhoto.setPhoto_url(rs.getString("photo_url"));
+            recipeStepPhoto.setRecipe_step_id(rs.getLong("recipe_step_id"));
+            recipeStepPhotos.add(recipeStepPhoto);
+        }
+        
+        return recipeStepPhotos;
     }
     
 }

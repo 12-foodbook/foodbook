@@ -3,6 +3,7 @@ package th.ac.kmitl.it.foodbook.servlets.recipes;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,8 +16,10 @@ import javax.sql.DataSource;
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeStep;
+import th.ac.kmitl.it.foodbook.beans.RecipeStepPhoto;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
 import th.ac.kmitl.it.foodbook.daos.RatesDAO;
+import th.ac.kmitl.it.foodbook.daos.RecipeStepPhotosDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
@@ -38,11 +41,13 @@ public class ShowServlet extends HttpServlet {
         String rate = null;
         List<Ingredient> ingredients = null;
         List<RecipeStep> recipeSteps = null;
+        List<List<RecipeStepPhoto>> recipeStepPhotos = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
         try {
             Connection conn = ds.getConnection();
+            
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipe = recipesDAO.find(recipeId);
             
@@ -55,6 +60,14 @@ public class ShowServlet extends HttpServlet {
             RecipeStepsDAO recipeStepsDAO = new RecipeStepsDAO(conn);
             recipeSteps = recipeStepsDAO.findByRecipeId(recipeId);
             
+            RecipeStepPhotosDAO recipeStepPhotosDAO = new RecipeStepPhotosDAO(conn);
+            recipeStepPhotos = new ArrayList<List<RecipeStepPhoto>>();
+            
+            for (RecipeStep recipeStep : recipeSteps) {
+                List<RecipeStepPhoto> recipeStepPhoto = recipeStepPhotosDAO.findByRecipeStepId(recipeStep.getRecipe_step_id());
+                recipeStepPhotos.add(recipeStepPhoto);
+            }
+            
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,6 +78,7 @@ public class ShowServlet extends HttpServlet {
         request.setAttribute("rate", rate);
         request.setAttribute("ingredients", ingredients);
         request.setAttribute("recipeSteps", recipeSteps);
+        request.setAttribute("recipeStepPhotos", recipeStepPhotos);
         
         request.getRequestDispatcher("/WEB-INF/views/recipes/show.jsp").include(request, response);
     }
