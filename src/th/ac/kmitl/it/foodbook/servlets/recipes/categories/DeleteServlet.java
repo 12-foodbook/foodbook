@@ -1,6 +1,7 @@
 package th.ac.kmitl.it.foodbook.servlets.recipes.categories;
 
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -46,6 +47,11 @@ public class DeleteServlet extends HttpServlet {
         
         try {
             Connection conn = ds.getConnection();
+            
+            if(recipeCategoryIdString == null){
+                response.sendRedirect("/recipes/categories/index");
+                return;
+            }
             
             for (String i : recipeCategoryIdString) {
                 recipeCategoryId = Long.parseLong(i);
