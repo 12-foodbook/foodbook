@@ -10,53 +10,61 @@
 <div class="container">
 
 	<div class="page-header">
-		<h1>สร้างตำหรับอาหาร <small>${recipe.name}</small></h1>
+		<h1>
+			สร้างตำหรับอาหาร <small>${recipe.name}</small>
+		</h1>
 	</div>
 
-	<form method="post" accept-charset="UTF-8" class="form-horizontal" role="form">
+	<form method="post" accept-charset="UTF-8" class="form-horizontal"
+		role="form">
 		<input name="id" value="${recipe.recipe_id}" type="hidden">
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
 				<div class="form-group">
 					<label for="name" class="col-sm-4 control-label label-create">ชื่อรายการอาหาร</label>
 					<div class="col-sm-8">
-						<input name="name" placeholder="name" id="name" class="form-control" value="${recipe.name}">
+						<input name="name" placeholder="name" id="name"
+							class="form-control" value="${recipe.name}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="video_url" class="col-sm-4 control-label label-create">วิดิโอวิธีการประกอบอาหาร</label>
 					<div class="col-sm-8">
-						<input name="video_url" placeholder="video_url" id="video_url" class="form-control" value="${recipe.video_url}">
+						<input name="video_url" placeholder="video_url" id="video_url"
+							class="form-control" value="${recipe.video_url}">
 					</div>
 				</div>
-				
+
 				<div id="recipe-steps">
-				<hr>
-						<div class="form-group">
-							<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
-							<div class="col-sm-8">
-								<input name="step_title" class="form-control" value="${recipeStep.title}">
-							</div>
+					<hr>
+					<div class="form-group">
+						<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
+						<div class="col-sm-8">
+							<input name="step_title" class="form-control"
+								value="${recipeStep.title}">
 						</div>
-						<div class="form-group">
-							<label class="col-sm-4 control-label label-create">รายละเอียดขั้นตอน</label>
-							<div class="col-sm-8">
-								<textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea>
-							</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label label-create">รายละเอียดขั้นตอน</label>
+						<div class="col-sm-8">
+							<textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-4 control-label label-create">รูปภาพประกอบขั้นตอน</label>
-							<div class="col-sm-8">
-								<input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)">
-								<input name="step_photo_url" class="form-control" type="hidden">
-							</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label label-create">รูปภาพประกอบขั้นตอน</label>
+						<div class="col-sm-8">
+							<input name="step_photo" class="form-control" type="file"
+								onchange="fileChanged(this)"> <input
+								name="step_photo_url" class="form-control" type="hidden">
 						</div>
+					</div>
 					<c:forEach var="recipeStep" items="${recipeSteps}">
 						<hr>
 						<div class="form-group">
 							<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
 							<div class="col-sm-8">
-								<input name="step_title" class="form-control" value="${recipeStep.title}">
+								<input name="step_title" class="form-control"
+									value="${recipeStep.title}">
 							</div>
 						</div>
 						<div class="form-group">
@@ -68,8 +76,9 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label label-create">รูปภาพประกอบขั้นตอน</label>
 							<div class="col-sm-8">
-								<input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)">
-								<input name="step_photo_url" class="form-control" type="hidden">
+								<input name="step_photo" class="form-control" type="file"
+									onchange="fileChanged(this)"> <input
+									name="step_photo_url" class="form-control" type="hidden">
 							</div>
 						</div>
 					</c:forEach>
@@ -77,38 +86,47 @@
 				<!-- button -->
 				<div class="row">
 					<div class="col-xs-12">
-						<button id="add-step-button" class="btn btn-default btn-lg btn-block" type="button">เพิ่มขั้นตอน</button>
+						<button id="add-step-button"
+							class="btn btn-default btn-lg btn-block" type="button">เพิ่มขั้นตอน</button>
 					</div>
-				</div>	
+				</div>
 			</div>
-			
+
 			<!-- ingredients -->
+
 			<div class="col-xs-12 col-md-6">
-			<ul class="nav nav-tabs">
-			<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
-				<li<c:if test="${i == 0}"> class="active"</c:if>><a href="#ingredient-category-${i}" data-toggle="tab">${ingredientCategories[i].name}</a></li>
-			</c:forEach>
-			</ul>
-			<div class="row">
-			<div id="myTabContent" class="tab-content">
-			<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
-				<div class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>" id="ingredient-category-${j}">
-					<div class="checkboxcol col-sm-12">
-						<c:forEach var="ingredient" items="${ingredients[j]}">
-							<div class="checkbox chtest">
-								<label> <input type="checkbox" name="ingredient_id"
-									value="${ingredient.ingredient_id}">${ingredient.name}
-								</label>
+				<ul class="nav nav-tabs">
+					<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}"
+						var="i">
+						<li <c:if test="${i == 0}"> class="active"</c:if>><a
+							href="#ingredient-category-${i}" data-toggle="tab">${ingredientCategories[i].name}</a></li>
+					</c:forEach>
+				</ul>
+				<div class="row">
+					<div id="myTabContent" class="tab-content">
+					
+						<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
+							<div
+								class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>"
+								id="ingredient-category-${j}">
+								<div class="checkboxcol col-sm-12">
+									<c:forEach var="ingredient" items="${ingredients[j]}">
+									<div class=' col-sm-6'>
+										<input type="checkbox" onclick="toggleAmount(this)" name="ingredient_id" value="${ingredient.ingredient_id}">
+										<label >
+										${ingredient.name}
+										</label>
+									</div>
+
+									</c:forEach>
+								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
-			</c:forEach>
-		</div>
-		</div>
-		
-			<!-- check box -->
-			<%-- <div class="col-xs-12 col-md-5 col-md-offset-1 editrecipe-bgcolor">
+
+				<!-- check box -->
+				<%-- <div class="col-xs-12 col-md-5 col-md-offset-1 editrecipe-bgcolor">
 			<h4>เลือกวัตถุดิบ</h4>
 				<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
 					<div class="form-group">
@@ -137,16 +155,17 @@
 					</div>
 				</c:forEach>
 			</div> --%>
-		</div>
+			</div>
 		</div>
 		<!-- button -->
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
-				<button type="submit" id="create-button" class="btn btn-success btn-lg btn-block">สร้างตำรับอาหาร</button>
+				<button type="submit" id="create-button"
+					class="btn btn-success btn-lg btn-block">สร้างตำรับอาหาร</button>
 			</div>
 		</div>
-		
-		
+
+
 	</form>
 
 </div>
@@ -216,12 +235,14 @@
 			}
 		});
 	}
-	
-	var amountHtml = '<input name="ingredient_amount" class="form-control" placeholder="เช่น 5 ชิ้น">'
-	
+
+	var amountHtml = '<input name="ingredient_amount" class="form-control" placeholder="เช่น 5 ชิ้น"/>'
+
 	function toggleAmount(input) {
-		if (input.checked) $(input).next().after(amountHtml);
-		else $(input).next().next().remove();
+		if (input.checked)
+			$(input).next().after(amountHtml);
+		else
+			$(input).next().next().remove();
 	}
 </script>
 
