@@ -23,15 +23,27 @@
 		<div id="myTabContent" class="tab-content">
 			<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
 				<div class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>" id="ingredient-category-${j}">
-					<div class="checkboxcol col-sm-12">
-						<c:forEach var="ingredient" items="${ingredients[j]}">
-							<div class="checkbox chtest">
-								<label> <input type="checkbox" name="ingredient_id"
-									value="${ingredient.ingredient_id}">${ingredient.name}
-								</label>
+				<div class="row">
+					<div id="myTabContent" class="tab-content">
+						<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
+							<div
+								class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>"
+								id="ingredient-category-${j}">
+								<div class="checkboxcol col-sm-12">
+									<c:forEach var="ingredient" items="${ingredients[j]}">
+									<div class=' col-sm-6'>
+										<input type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
+										<label >
+										${ingredient.name}
+										</label>
+									</div>
+									</c:forEach>
+								</div>
 							</div>
 						</c:forEach>
 					</div>
+				</div>
+
 					<button class="btn btn-success btn-lg btn-block searchButt col-sm-12">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						ค้นหาตำรับอาหาร
