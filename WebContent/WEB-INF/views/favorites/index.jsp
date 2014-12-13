@@ -59,10 +59,10 @@
 						</form>
 						<form action="/favorites/delete" method="post"class='col-md-2' style='margin-left:2%'>
 							<!-- button delete -->
-							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> ลบรายการโปรด</button>
+							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal_${recipe.recipe_id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> ลบรายการโปรด</button>
 							<input name="recipe_id" value="${recipe.recipe_id}" type="hidden">
 							<!-- Modal -->
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog"aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal fade" id="myModal_${recipe.recipe_id}" tabindex="-1" role="dialog"aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 							<div class="modal-content">
 							<div class="modal-header">
@@ -71,7 +71,7 @@
 								</button>
 								<h4 class="modal-title" id="myModalLabel">ลบรายการโปรด</h4>
 							</div>
-							<div class="modal-body">ต้องการลบรายการโปรดหรือไม่?</div>
+							<div class="modal-body">ต้องการลบ${recipe.name}หรือไม่?</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"data-dismiss="modal">ยกเลิก</button>
 								<input type="submit" class="btn btn-danger" value='ลบ'>
