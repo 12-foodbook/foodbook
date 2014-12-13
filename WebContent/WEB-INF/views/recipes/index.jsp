@@ -32,12 +32,12 @@
 				</a>
 
 				<div class="media-body col-md-10">
-					<h4 class="media-heading col-md-6">
+					<h4 class="media-heading col-md-4">
 						<a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top">
 							<h2>${recipe.name}</h2>
 						</a>
 					</h4>
-					<form action="/rates" accept-charset="UTF-8" method="post">
+					<form action="/rates" accept-charset="UTF-8" method="post" class='col-md-4'>
 						<input type="hidden" value="${recipe.recipe_id}" name="recipe_id">
 						<h3>
 							<script>
@@ -58,6 +58,8 @@
 							${rate}
 						</h3>
 					</form>
+					<form action="/recipes/edit?id=${recipe.recipe_id}" method="post" class='col-md-1 col-md-offset-0'><input type="submit" class="btn btn-default" value='Edit'/></form>
+					<form action="/recipes/delete?id=${recipe.recipe_id}" method="post"class='col-md-2' style='margin-left:2%'><input type="submit" class="btn btn-danger" value='Delete'/></form>
 					<form class="col-md-4" method="post" accept-charset="UTF-8"
 						action="/favorites/create">
 						<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
