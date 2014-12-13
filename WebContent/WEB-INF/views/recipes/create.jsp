@@ -144,6 +144,7 @@
 						</c:forEach>
 					</div>
 				</div>
+				</div>
 
 				<!-- check box -->
 				<%-- <div class="col-xs-12 col-md-5 col-md-offset-1 editrecipe-bgcolor">
@@ -175,7 +176,6 @@
 					</div>
 				</c:forEach>
 			</div> --%>
-			</div>
 		</div>
 		<!-- button -->
 		<div class="row">

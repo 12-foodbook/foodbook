@@ -22,9 +22,10 @@
 		<form method="post" action="/recipes/search-by-ingredient">
 		<div id="myTabContent" class="tab-content">
 			<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
-				<div class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>" id="ingredient-category-${j}">
+				<div class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>" id="ingredient-category-${i}">
 				<div class="row">
 					<div id="myTabContent" class="tab-content">
+					
 						<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
 							<div
 								class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>"
@@ -37,6 +38,7 @@
 										${ingredient.name}
 										</label>
 									</div>
+
 									</c:forEach>
 								</div>
 							</div>
