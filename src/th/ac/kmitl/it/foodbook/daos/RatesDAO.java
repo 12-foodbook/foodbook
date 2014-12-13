@@ -46,6 +46,17 @@ public class RatesDAO extends AbstractDAO {
         return false;
     }
     
+    public boolean removeRecipe(long recipeId) throws SQLException {
+        String sql = "DELETE FROM rates WHERE recipe_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
     public List<Rate> findByUserId(long userId) throws SQLException {
         List<Rate> rates = new ArrayList<Rate>();
         Rate rate = null;
