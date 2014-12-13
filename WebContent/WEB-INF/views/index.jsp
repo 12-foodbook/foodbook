@@ -9,7 +9,10 @@
 <div class="container">
 	<div class="ingresTab col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-0">
 		<div class="page-header">
-			<h1>เลือกวัตถุดิบ</h1>
+			<h1>
+				<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+				เลือกวัตถุดิบ
+			</h1>
 		</div>
 		<ul class="nav nav-tabs">
 			<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
@@ -29,7 +32,10 @@
 							</div>
 						</c:forEach>
 					</div>
-					<button class="btn btn-success btn-lg btn-block searchButt col-sm-12">ค้นหาตำรับอาหาร</button>
+					<button class="btn btn-success btn-lg btn-block searchButt col-sm-12">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						ค้นหาตำรับอาหาร
+					</button>
 				</div>
 			</c:forEach>
 			

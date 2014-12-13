@@ -45,27 +45,49 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">Foodbook</a>
+				<a class="navbar-brand" href="/">
+					<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+					Foodbook
+				</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<form class="navbar-form navbar-left" role="search">
-					<a href="/" class="btn btn-success">ค้นหาตำรับอาหารจากวัตถุดิบ</a>
+					<a href="/" class="btn btn-success">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						ค้นหาตำรับอาหารจากวัตถุดิบ
+					</a>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<c:if test="${empty user && empty moderator}">
+					<c:if test="${empty user}">
 						<li><a href="/users/authenticate">เข้าสู่ระบบ</a></li>
 						<li><a href="/users/create">สมัครสมาชิก</a></li>
 					</c:if>
 					<c:if test="${!empty user}">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">${user.username} <span class="caret"></span></a>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+								${user.username}
+								<span class="caret"></span>
+							</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/favorites/index">รายการโปรด</a></li>
+								<li><a href="/favorites/index">
+									<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+									รายการโปรด
+								</a></li>
 								<li class="divider"></li>
-								<li><a href="/recipes/index">ตำรับอาหารของฉัน</a></li>
-								<li><a href="/recipes/create">สร้างตำรับอาหาร</a></li>
+								<li><a href="/recipes/index">
+									<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+									ตำรับอาหารของฉัน
+								</a></li>
+								<li><a href="/recipes/create">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+									สร้างตำรับอาหาร
+								</a></li>
 								<li class="divider"></li>
-								<li><a href="/users/deauthenticate">ออกจากระบบ</a></li>
+								<li><a href="/users/deauthenticate">
+									<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+									ออกจากระบบ
+								</a></li>
 							</ul></li>
 					</c:if>
 					<c:if test="${!empty moderator}">
@@ -87,7 +109,10 @@
 					<div class="form-group">
 						<input type="text" class="form-control" name="query" placeholder="เช่น ข้าวผัด" value="${param.query}">
 					</div>
-					<button type="submit" class="btn btn-default">ค้นหา</button>
+					<button type="submit" class="btn btn-default">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						ค้นหา
+					</button>
 				</form>
 			</div>
 			<!-- /.navbar-collapse -->
