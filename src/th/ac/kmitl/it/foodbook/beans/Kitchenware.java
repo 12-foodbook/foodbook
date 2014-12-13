@@ -1,9 +1,18 @@
 package th.ac.kmitl.it.foodbook.beans;
 
-
 public class Kitchenware {
+    
     private long kitchenware_id;
     private String name;
+    private String photo_url;
+    
+    public String getPhoto_url() {
+        return photo_url;
+    }
+    
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
+    }
     
     public long getKitchenware_id() {
         return kitchenware_id;
