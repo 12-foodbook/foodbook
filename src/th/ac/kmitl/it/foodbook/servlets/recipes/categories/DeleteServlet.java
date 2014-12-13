@@ -39,6 +39,8 @@ public class DeleteServlet extends HttpServlet {
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
         boolean isSuccess = false;
+        boolean isSuccessDelete = false;
+        boolean isSuccessRemoveAllRecipeCategory = false;
         
         HttpSession session = request.getSession();
         
@@ -50,7 +52,9 @@ public class DeleteServlet extends HttpServlet {
             
             RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
             RecipesDAO recipesDAO = new RecipesDAO(conn);
-            isSuccess = recipeCategoriesDAO.delete((recipeCategory)) && recipesDAO.removeAllRecipeCategory(recipeCategoryId);
+            isSuccessRemoveAllRecipeCategory = recipesDAO.removeAllRecipeCategory(recipeCategoryId);
+            isSuccessDelete = recipeCategoriesDAO.delete((recipeCategory));
+            isSuccess = isSuccessRemoveAllRecipeCategory && isSuccessDelete;
             
             conn.close();
         } catch (SQLException e) {
