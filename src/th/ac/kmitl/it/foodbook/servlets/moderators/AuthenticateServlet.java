@@ -55,6 +55,7 @@ public class AuthenticateServlet extends HttpServlet {
         if (moderator != null) {
             session.setAttribute("moderator", moderator);
             session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Authenticated Successfully!"));
+            
             response.sendRedirect("/");
         } else {
             session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Authenticated Unsuccessfully!"));
