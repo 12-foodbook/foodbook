@@ -14,16 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter({
-    "/recipes/create",
-    "/recipes/edit",
-    "/favorites/index",
-    "/favorites/create",
-    "/favorites/delete",
-    "/rates",
+    "/recipes/categories/index",
+    "/recipes/categories/create",
+    "/ingredients/categories/create",
+    "/moderators/create"
 })
-public class UserAuthenticationFilter implements Filter {
+public class ModeratorAuthenticationFilter implements Filter {
     
-    public UserAuthenticationFilter() {
+    public ModeratorAuthenticationFilter() {
         
     }
     
@@ -35,9 +33,9 @@ public class UserAuthenticationFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession();
-        if (session.getAttribute("user") == null) {
+        if (session.getAttribute("moderator") == null) {
             session.setAttribute("referrer", new String(httpRequest.getRequestURL().append('?').append(httpRequest.getQueryString())));
-            httpResponse.sendRedirect("/users/authenticate");
+            httpResponse.sendRedirect("/moderators/authenticate");
         } else {
             chain.doFilter(request, response);
         }
