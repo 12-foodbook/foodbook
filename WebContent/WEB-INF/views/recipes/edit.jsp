@@ -23,9 +23,30 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="name" class="col-sm-4 control-label">หมวดรายการอาหาร</label>
+					<div class="col-sm-8">						
+						<c:forEach var='i' begin="0" end="${fn:length(recipeCategories) - 1}">
+						<div class='col-sm-3'>
+						<input type="checkbox" name="recipe_category_id" value="${recipeCategories[i].recipe_category_id}">
+						<label>
+						${recipeCategories[i].name}
+						</label>
+						</div>
+						</c:forEach>
+					</div>
+				</div><hr>
+				<div class="form-group">
 					<label for="video_url" class="col-sm-4 control-label">วิดิโอวิธีการประกอบอาหาร</label>
 					<div class="col-sm-8">
-						<input name="video_url" placeholder="video_url" id="video_url" class="form-control" value="${recipe.video_url}">
+						<input id='video_you' onblur="checkLink()" name="video_url" placeholder="video_url" id="video_url" class="form-control" value="${recipe.video_url}">
+						<script type="text/javascript">			
+						function checkLink(){
+							var tem =document.getElementById('video_you').value;
+							var tem2= tem.replace('watch?v=','embed/');
+							document.getElementById('video_you').value=tem2;
+							
+						}
+						</script>
 					</div>
 				</div>
 				
@@ -62,21 +83,38 @@
 				</div>	
 				
 			</div>
-			
-			<div class="col-xs-12 col-md-5 col-md-offset-1 editrecipe-bgcolor">
-				<label>หมวดหมู่ตำรับอาหาร</label>
-				<c:forEach var="recipeCategory" items="${recipeCategories}">
-					<div class="form-group">
-						<div class="checkbox">
-						  <label>
-						    <input name="ingredient_id" type="checkbox">
-						    <span>${recipeCategory.name}</span>
-						  </label>
-						</div>
-					</div>
-				</c:forEach>
+			<div class="col-xs-12 col-md-6">
 				<label>วัตถุดิบ</label>
-				<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
+				<ul class="nav nav-tabs">
+					<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}"
+						var="i">
+						<li <c:if test="${i == 0}"> class="active"</c:if>><a
+							href="#ingredient-category-${i}" data-toggle="tab">${ingredientCategories[i].name}</a></li>
+					</c:forEach>
+				</ul>
+				<div class="row">
+					<div id="myTabContent" class="tab-content">
+					
+						<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
+							<div
+								class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>"
+								id="ingredient-category-${j}">
+								<div class="checkboxcol col-sm-12">
+									<c:forEach var="ingredient" items="${ingredients[j]}">
+									<div class=' col-sm-6'>
+										<input type="checkbox" name="ingredient_id" value="${ingredient.ingredient_id}">
+										<label >
+										${ingredient.name}
+										</label>
+									</div>
+
+									</c:forEach>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				<!-- <c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
 					<div class="form-group">
 						<label class="col-sm-6">${ingredientCategories[i].name}</label>
 					</div>
@@ -109,7 +147,7 @@
 							
 						</c:forEach>
 					</div>
-				</c:forEach>
+				</c:forEach> -->
 			</div>
 		</div>
 		<!-- button -->
