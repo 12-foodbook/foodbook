@@ -56,7 +56,7 @@ public class IndexServlet extends HttpServlet {
         }
         
         request.setAttribute("recipes", recipes);
-        request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/favorites/index.jsp").include(request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

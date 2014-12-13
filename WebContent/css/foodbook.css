@@ -1,5 +1,13 @@
 @CHARSET "UTF-8";
 
+@font-face {
+    font-family: hottpizza;
+	src: url(fonts/hotpizza.ttf);    
+}
+@font-face {
+    font-family: TGI;
+	src: url(fonts/TGIFriday.ttf);    
+}
 body{
 	padding-top: 70px;
 	padding-bottom: 20px;
@@ -188,4 +196,13 @@ th {
 /* font create and edit page */
 .label-create{
 	font-size: 15px;
+}
+
+/*page allRecipe */
+.bodys{
+	background-color: rgba(255,253,243);
+}
+.underline{
+	border-top: 3px solid #000;
+	border-bottom: 1px solid #000;
 }
