@@ -52,7 +52,7 @@ public class SearchByNameServlet extends HttpServlet {
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipeCategories", recipeCategories);
         
-        request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/recipes/search-by-name.jsp").include(request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
