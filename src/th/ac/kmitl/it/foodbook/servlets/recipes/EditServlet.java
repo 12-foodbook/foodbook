@@ -97,8 +97,12 @@ public class EditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String recipeIdString = request.getParameter("id");
         long recipeId = Long.parseLong(recipeIdString);
+        
         String name = request.getParameter("name");
         String videoUrl = request.getParameter("video_url");
+        
+        String[] recipeCategoryIds = request.getParameterValues("recipe_category_id");
+        
         String[] ingredientIds = request.getParameterValues("ingredient_id");
         String[] ingredientAmounts = request.getParameterValues("ingredient_amount");
         
@@ -131,6 +135,11 @@ public class EditServlet extends HttpServlet {
             
             if (recipesDAO.update(recipe)) {
                 isSuccess = true;
+                
+                for (String recipeCategoryIdString : recipeCategoryIds) {
+                    long recipeCategoryId = Long.parseLong(recipeCategoryIdString);
+                    recipesDAO.addRecipeCategory(recipe.getRecipe_id(), recipeCategoryId);
+                }
                 
                 for (int i = 0; i < ingredientIds.length; i++) {
                     long ingredientId = Integer.parseInt(ingredientIds[i]);

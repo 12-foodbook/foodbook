@@ -17,11 +17,13 @@ import javax.sql.DataSource;
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
+import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.beans.RecipeStep;
 import th.ac.kmitl.it.foodbook.beans.RecipeStepPhoto;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
+import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepPhotosDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
@@ -38,6 +40,7 @@ public class CreateServlet extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<RecipeCategory> recipeCategories = null;
         List<IngredientCategory> ingredientCategories = null;
         List<List<Ingredient>> ingredients = null;
         
@@ -45,6 +48,9 @@ public class CreateServlet extends HttpServlet {
         
         try {
             Connection conn = ds.getConnection();
+            
+            RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+            recipeCategories = recipeCategoriesDAO.findAll();
             
             IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
             ingredientCategories = ingredientCategoriesDAO.findAll();
@@ -64,6 +70,7 @@ public class CreateServlet extends HttpServlet {
             response.sendError(500);
         }
         
+        request.setAttribute("recipeCategories", recipeCategories);
         request.setAttribute("ingredientCategories", ingredientCategories);
         request.setAttribute("ingredients", ingredients);
         
@@ -73,6 +80,9 @@ public class CreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String videoUrl = request.getParameter("video_url");
+        
+        String[] recipeCategoryIds = request.getParameterValues("recipe_category_id");
+        
         String[] ingredientIds = request.getParameterValues("ingredient_id");
         String[] ingredientAmounts = request.getParameterValues("ingredient_amount");
         
@@ -109,6 +119,11 @@ public class CreateServlet extends HttpServlet {
             
             if (recipesDAO.create(recipe)) {
                 isSuccess = true;
+                
+                for (String recipeCategoryIdString : recipeCategoryIds) {
+                    long recipeCategoryId = Long.parseLong(recipeCategoryIdString);
+                    recipesDAO.addRecipeCategory(recipe.getRecipe_id(), recipeCategoryId);
+                }
                 
                 for (int i = 0; i < ingredientIds.length; i++) {
                     long ingredientId = Integer.parseInt(ingredientIds[i]);
