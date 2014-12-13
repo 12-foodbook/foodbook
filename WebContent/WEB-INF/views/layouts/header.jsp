@@ -94,7 +94,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> ${moderator.username} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">สมาชิก</a></li>
+								<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> สมาชิก</a></li>
 								<li class="divider"></li>
 								<li><a href="#">ตำรับอาหาร</a></li>
 								<li><a href="/recipes/categories/index">หมวดหมู่รายการอาหาร</a></li>
