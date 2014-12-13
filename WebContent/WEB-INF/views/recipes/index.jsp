@@ -84,7 +84,7 @@
 										</button>
 										<h4 class="modal-title" id="myModalLabel">Delete Recipe</h4>
 									</div>
-									<div class="modal-body">Are you sure to delete?</div>
+									<div class="modal-body">Are you sure to delete ${recipe.name}?</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default"
 											data-dismiss="modal">Cancel</button>
