@@ -79,7 +79,7 @@
 								<li><a href="#">เพิ่มวัตถุดิบ</a></li>
 								<li><a href="#">สร้างตำรับอาหาร</a></li>
 								<li class="divider"></li>
-								<li><a href="/users/deauthenticate">ออกจากระบบ</a></li>
+								<li><a href="/moderators/deauthenticate">ออกจากระบบ</a></li>
 							</ul></li>
 					</c:if>
 				</ul>
