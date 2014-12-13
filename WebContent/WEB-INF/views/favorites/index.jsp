@@ -56,9 +56,29 @@
 							<span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span>
 							<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span>
 							${rate}
-							<form action="/recipes/delete?id=${recipe.recipe_id}" method="post"class='col-md-2' style='margin-left:2%'>
-								<input type="submit" class="btn btn-danger" value='Delete'/>
+							<form action="/favorites/delete?id=${recipe.recipe_id}" method="post"class='col-md-2' style='margin-left:2%'>
+								<input type="submit" class="btn btn-danger" value='ลบ'/>
 							</form>
+							
+							<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">ลบหมวดหมู่</h4>
+							</div>
+							<div class="modal-body">ต้องการลบหมวดหมู่หรือไม่?</div>
+							<div class="modal-footer">
+							<button type="button" class="btn btn-default"data-dismiss="modal">ยกเลิก</button>
+							<input type="submit" class="btn btn-danger" value='ลบ'>
+						</div>
+					</div>
+				</div>
+			</div>
+							
 						</h3>
 						
 					</form>
