@@ -98,7 +98,7 @@ public class SearchByIngredientServlet extends HttpServlet {
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipeCategories", recipeCategories);
         
-        request.getRequestDispatcher("/WEB-INF/views/recipes/search-by-ingredient.jsp").include(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/recipes/search-by-name.jsp").include(request, response);
     }
     
 }
