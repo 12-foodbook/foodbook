@@ -9,9 +9,8 @@ import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.Comment;
 
-
 public class CommentsDAO extends AbstractDAO {
-
+    
     public CommentsDAO(Connection conn) {
         super(conn);
     }
@@ -50,6 +49,17 @@ public class CommentsDAO extends AbstractDAO {
         }
         
         return comments;
+    }
+    
+    public boolean removeRecipe(long recipeId) throws SQLException {
+        String sql = "DELETE FROM comments WHERE recipe_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
     }
     
 }
