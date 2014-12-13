@@ -8,7 +8,7 @@
 <div class="container">
 
 	<div class="page-header">
-		<h1>สมัครสมาชิก</h1>
+		<h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span> สมัครสมาชิก</h1>
 	</div>
 	
 	<div class="row">
@@ -34,7 +34,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12">
-						<button type="submit" class="btn btn-success btn-lg btn-block">สมัครสมาชิก</button>
+						<button type="submit" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> สมัครสมาชิก</button>
 					</div>
 				</div>
 			</form>

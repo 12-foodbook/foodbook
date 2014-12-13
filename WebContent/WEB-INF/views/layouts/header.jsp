@@ -59,8 +59,8 @@
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<c:if test="${empty user}">
-						<li><a href="/users/authenticate">เข้าสู่ระบบ</a></li>
-						<li><a href="/users/create">สมัครสมาชิก</a></li>
+						<li><a href="/users/authenticate"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> เข้าสู่ระบบ</a></li>
+						<li><a href="/users/create"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> สมัครสมาชิก</a></li>
 					</c:if>
 					<c:if test="${!empty user}">
 						<li class="dropdown">
@@ -92,7 +92,7 @@
 					</c:if>
 					<c:if test="${!empty moderator}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">${moderator.username} <span class="caret"></span></a>
+							data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> ${moderator.username} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#">สมาชิก</a></li>
 								<li class="divider"></li>
