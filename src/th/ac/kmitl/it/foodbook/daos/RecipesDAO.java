@@ -169,6 +169,17 @@ public class RecipesDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
+    public boolean delete(long recipeId) throws SQLException {
+        String sql = "DELETE FROM recipes WHERE recipe_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
     public boolean update(Recipe recipe) throws SQLException {
         String sql = "UPDATE recipes SET name = ?, video_url = ? WHERE recipe_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
