@@ -121,7 +121,7 @@ public class CreateServlet extends HttpServlet {
                 recipe.setUser_id(moderator.getModerator_id());
                 recipe.setIs_moderator_id(true);
             } else {
-                User user = (User) session.getAttribute("moderator");
+                User user = (User) session.getAttribute("user");
                 recipe.setUser_id(user.getUser_id());
                 recipe.setIs_moderator_id(false);
             }
