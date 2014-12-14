@@ -28,7 +28,7 @@ label {
 	font-weight: normal !important;
 }
 
-th {
+th, b, strong {
 	font-family: 'thaisansneue_black' !important;
 	font-weight: normal !important;
 }

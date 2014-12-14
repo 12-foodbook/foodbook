@@ -14,9 +14,15 @@
 	
 	<div class="row">
 		<div class="col-xs-12 col-md-8">
-			<div class="embed-responsive embed-responsive-16by9">
-				<iframe src="${recipe.video_url}"></iframe>
-			</div><hr>
+		
+			<img src="${recipe.photo_url}"/>
+		
+			<c:if test="${!empty recipe.video_url}">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe src="${recipe.video_url}"></iframe>
+				</div><hr>
+			</c:if>
+			
 			<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
 				<div class="panel panel-default">
 				  <div class="panel-heading">
@@ -24,17 +30,38 @@
 				  </div>
 				  <div class="panel-body">
 				    ${recipeSteps[i].description}
+				    
+				    <c:forEach var="recipeStepPhoto" items="${recipeStepPhotos[i]}">
+				    		<img src="${recipeStepPhoto.photo_url}">
+				    </c:forEach>
 				  </div>
 				</div>
 			</c:forEach>
+			
+			<div class="fb-comments" data-href="<%= request.getRequestURL() + "?" + request.getQueryString() %>" data-colorscheme="light" data-width="100%"></div>
+			
 		</div>
 		
 		<div class="col-xs-12 col-md-4">
 			<table class="table table-bordered">
-				<tr><th>วัตถุดิบ</th><th>ปริมาณที่ใช้</th></tr>
+				<tr>
+					<th>วัตถุดิบ</th>
+					<th>ปริมาณที่ใช้</th>
+					<th>แคเรอรี่</th>
+				</tr>
+				<c:set var="totalCalorie" value="0"/>
 				<c:forEach var="ingredient" items="${ingredients}">
-					<tr><td>${ingredient.name}</td><td>${ingredient.amount}</td></tr>
+					<c:set var="totalCalorie" value="${totalCalorie + ingredient.calorie}"/>
+					<tr>
+						<td>${ingredient.name}</td>
+						<td>${ingredient.amount}</td>
+						<td>${ingredient.calorie}</td>
+					</tr>
 				</c:forEach>
+				<tr>	
+					<td colspan="2"><strong>แคเรอรี่รวม</strong></td>
+					<td>${totalCalorie}</td>
+				</tr>
 			</table>
 			<c:if test="${!empty user}">
 				<form action="/rates" accept-charset="UTF-8" method="post">
@@ -64,9 +91,6 @@
 	</div>
 	
 </div>
-
-<div class="fb-comments" data-href="<%= request.getRequestURL() + "?" + request.getQueryString() %>" data-colorscheme="light"></div>
-
 <%-- 	
 	<!-- **************************************************************************** -->
 	<!-- video link Edit-->
