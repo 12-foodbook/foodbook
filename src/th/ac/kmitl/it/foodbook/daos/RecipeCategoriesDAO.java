@@ -44,6 +44,17 @@ public class RecipeCategoriesDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
+    public boolean removeAllCategoryFromRecipeCategories(long recipeCategoryId) throws SQLException {
+        String sql = "DELETE FROM recipes_recipe_categories WHERE recipe_category_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeCategoryId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
     public boolean update(RecipeCategory recipeCategory) throws SQLException {
         String sql = "UPDATE recipe_categories SET name = ? WHERE recipe_category_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
