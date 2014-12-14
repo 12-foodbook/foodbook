@@ -51,10 +51,10 @@
 				</tr>
 				<c:set var="totalCalorie" value="0"/>
 				<c:forEach var="ingredient" items="${ingredients}">
-					<c:set var="totalCalorie" value="${totalCalorie + ingredient.calorie}"/>
+					<c:set var="totalCalorie" value="${totalCalorie + (ingredient.calorie * ingredient.amount)}"/>
 					<tr>
 						<td>${ingredient.name}</td>
-						<td>${ingredient.amount}</td>
+						<td>${ingredient.amount} ${ingredient.unit}</td>
 						<td>${ingredient.calorie}</td>
 					</tr>
 				</c:forEach>
