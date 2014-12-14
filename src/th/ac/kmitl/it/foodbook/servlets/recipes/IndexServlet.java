@@ -18,6 +18,7 @@ import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
+import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 
 @WebServlet("/recipes/index")
 public class IndexServlet extends HttpServlet {
@@ -29,16 +30,30 @@ public class IndexServlet extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String userIdString = request.getParameter("user_id");
         List<Recipe> recipes = null;
         List<RecipeCategory> recipeCategories = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
         
         try {
             Connection conn = ds.getConnection();
+            
+            User user = null;
+            
+            if (session.getAttribute("user") != null) {
+                user = (User) session.getAttribute("user");
+            } else if (userIdString != null) {
+                long userId = Long.parseLong(userIdString);
+                
+                UsersDAO usersDAO = new UsersDAO(conn);
+                user = usersDAO.find(userId);
+            } else {
+                response.sendRedirect("/");
+                return;
+            }
             
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipes = recipesDAO.findByUserId(user.getUser_id());
