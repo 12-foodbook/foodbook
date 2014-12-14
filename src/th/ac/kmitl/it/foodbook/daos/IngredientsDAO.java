@@ -108,6 +108,18 @@ public class IngredientsDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
+    public boolean update(Ingredient ingredient) throws SQLException {
+        String sql = "UPDATE ingredients SET name = ? WHERE ingredient_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setString(1, ingredient.getName());
+        stm.setLong(2, ingredient.getIngredient_id());
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
     public boolean removeAllIngredientFromIngredientCategories(long ingredientId) throws SQLException {
         String sql = "DELETE FROM ingredients_ingredient_categories WHERE ingredient_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
