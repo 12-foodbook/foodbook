@@ -84,6 +84,18 @@ public class KitchenwaresDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
+    public boolean update(Kitchenware kitchenware) throws SQLException {
+        String sql = "UPDATE kitchenwares SET name = ? WHERE kitchenware_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setString(1, kitchenware.getName());
+        stm.setLong(2, kitchenware.getKitchenware_id());
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
     public boolean removeAllKitchenwareFromRecipes(long kitchenwareId) throws SQLException {
         String sql = "DELETE FROM recipes_kitchenwares WHERE kitchenware_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
