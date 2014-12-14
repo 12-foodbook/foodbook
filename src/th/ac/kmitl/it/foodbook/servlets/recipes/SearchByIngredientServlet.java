@@ -58,21 +58,29 @@ public class SearchByIngredientServlet extends HttpServlet {
             
             recipes = new ArrayList<Recipe>();
             
+            // For ingredient in all selected ingredients...
             for (String ingredientIdString : ingredientIds) {
                 int ingredientId = Integer.parseInt(ingredientIdString);
+                // Get recipes that have said ingredient in its ingredients.
                 List<Recipe> tempRecipes = recipesDAO.findByIngredientId(ingredientId);
                 
+                // For recipe in all recipes that have said ingredient in its ingredients.
                 for (Recipe recipe : tempRecipes) {
+                    // Get ingredients that used by said recipe.
                     List<Ingredient> ingredients = ingredientsDAO.findByRecipeId(recipe.getRecipe_id());
+                    // Create a set for said ingredients.
                     Set<String> recipesIngredientIdStrings = new HashSet<String>();
                     
+                    // For ingredient in said ingredients...
                     for (Ingredient ingredient : ingredients) {
+                        // Add it to said set.
                         recipesIngredientIdStrings.add(String.valueOf(ingredient.getIngredient_id()));
                     }
                     
+                    // if said set is a subset of selected ingredients. (this recipe can be cooked)
                     if (ingredientIdStrings.containsAll(recipesIngredientIdStrings)) {
                         
-                        // TODO: Remove fuck up.
+                        // TODO: Remove fuck up (duplicate recipe).
                         boolean fuckedUp = false;
                         
                         for (Recipe fu : recipes) {
