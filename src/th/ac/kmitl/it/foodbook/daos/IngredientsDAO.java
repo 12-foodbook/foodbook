@@ -108,4 +108,37 @@ public class IngredientsDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
+    public boolean removeAllIngredientFromIngredientCategories(long ingredientId) throws SQLException {
+        String sql = "DELETE FROM ingredients_ingredient_categories WHERE ingredient_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, ingredientId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
+    public boolean removeAllIngredientFromRecipes(long ingredientId) throws SQLException {
+        String sql = "DELETE FROM recipes_ingredients WHERE ingredient_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, ingredientId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
+    public boolean delete(long ingredientId) throws SQLException {
+        String sql = "DELETE FROM ingredients WHERE ingredient_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, ingredientId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
 }
