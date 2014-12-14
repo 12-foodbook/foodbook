@@ -27,7 +27,7 @@ public class CreateServlet extends HttpServlet {
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/recipes/categories/create.jsp").include(request, response);
+    	request.getRequestDispatcher("/WEB-INF/views/recipes/categories/create.jsp").include(request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -59,7 +59,7 @@ public class CreateServlet extends HttpServlet {
         
         if (isSuccess) {
             session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
-            response.sendRedirect("/");
+            response.sendRedirect("/recipes/categories/index");
         } else {
             session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully!"));
             request.getRequestDispatcher("/WEB-INF/views/recipes/categories/create.jsp").include(request, response);

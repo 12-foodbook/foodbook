@@ -59,7 +59,7 @@ public class CreateServlet extends HttpServlet {
         
         if (isSuccess) {
             session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
-            response.sendRedirect("/");
+            response.sendRedirect("/ingredients/categories/create");
         } else {
             session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully!"));
             request.getRequestDispatcher("/WEB-INF/views/ingredients/categories/create.jsp").include(request, response);
