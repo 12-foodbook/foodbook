@@ -33,7 +33,7 @@ public class DeleteServlet extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String recipeIdString = request.getParameter("id");
+        String recipeIdString = request.getParameter("recipe_id");
         long recipeId = Long.parseLong(recipeIdString);
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
