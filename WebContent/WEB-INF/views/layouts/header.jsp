@@ -94,12 +94,13 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> ${moderator.username} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> สมาชิกทั้งหมด</a></li>
+								<li><a href="/moderators/create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> สร้างผู้ดูแล</a></li>
 								<li class="divider"></li>
 								<li><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> สร้างวัตถุดิบ</a></li>
 								<li class="divider"></li>
 								<li><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> สร้างตำหรับอาหาร</a></li>
 								<li class="divider"></li>
+								<li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> ผู้ใช้ทั้งหมด</a></li>
 								<li><a href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> ตำหรับอาหารทั้งหมด</a></li>
 								<li><a href="/recipes/categories/index"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> หมวดหมู่ตำหรับอาหารทั้งหมด</a></li>
 								<li class="divider"></li>
