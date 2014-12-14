@@ -65,6 +65,7 @@
 					</form>
 				</div>
 			</c:forEach>
+			<hr>
 			<h3>ขาดบางอย่าง</h3>
 			<c:forEach var="i" begin="0" end="${fn:length(recipesPartial) - 1}">
 				<a href="/recipes/show?id=${recipesPartial[i].recipe_id}" class="media-left media-top col-md-3">
