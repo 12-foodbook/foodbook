@@ -15,6 +15,25 @@ public class IngredientCategoriesDAO extends AbstractDAO {
         super(conn);
     }
     
+    public IngredientCategory find(long id) throws SQLException {
+        IngredientCategory ingredientCategory = null;
+        
+        String sql = "SELECT * FROM ingredient_categories WHERE ingredient_category_id = ? LIMIT 1";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, id);
+        
+        ResultSet rs = stm.executeQuery();
+        
+        if (rs.next()) {
+            ingredientCategory = new IngredientCategory();
+            ingredientCategory.setIngredient_category_id(rs.getLong("ingredient_category_id"));
+            ingredientCategory.setName(rs.getString("name"));
+        }
+        
+        return ingredientCategory;
+    }
+    
     public List<IngredientCategory> findAll() throws SQLException {
         List<IngredientCategory> ingredientCategories = new ArrayList<IngredientCategory>();
         
