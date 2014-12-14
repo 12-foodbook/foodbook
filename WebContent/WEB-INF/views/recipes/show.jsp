@@ -9,7 +9,7 @@
 <div class="container">
 	
 	<div class="page-header">
-		<h1>${recipe.name} <small>โดย username</small></h1>
+		<h1>${recipe.name} <small>โดย ${recipeUser.username}</small></h1>
 	</div>
 	
 	<div class="row">

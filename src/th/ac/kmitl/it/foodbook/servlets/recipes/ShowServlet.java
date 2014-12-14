@@ -17,11 +17,13 @@ import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeStep;
 import th.ac.kmitl.it.foodbook.beans.RecipeStepPhoto;
+import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
 import th.ac.kmitl.it.foodbook.daos.RatesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepPhotosDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
+import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 
 @WebServlet("/recipes/show")
 public class ShowServlet extends HttpServlet {
@@ -38,6 +40,7 @@ public class ShowServlet extends HttpServlet {
         long recipeId = Long.parseLong(recipeIdString);
         
         Recipe recipe = null;
+        User recipeUser = null;
         String rate = null;
         List<Ingredient> ingredients = null;
         List<RecipeStep> recipeSteps = null;
@@ -50,6 +53,9 @@ public class ShowServlet extends HttpServlet {
             
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipe = recipesDAO.find(recipeId);
+            
+            UsersDAO usersDAO = new UsersDAO(conn);
+            recipeUser = usersDAO.find(recipe.getUser_id());
             
             RatesDAO ratesDAO = new RatesDAO(conn);
             rate = String.format("%.2f", ratesDAO.average(recipeId));
@@ -75,6 +81,7 @@ public class ShowServlet extends HttpServlet {
         }
         
         request.setAttribute("recipe", recipe);
+        request.setAttribute("recipeUser", recipeUser);
         request.setAttribute("rate", rate);
         request.setAttribute("ingredients", ingredients);
         request.setAttribute("recipeSteps", recipeSteps);
