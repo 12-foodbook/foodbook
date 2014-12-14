@@ -31,6 +31,7 @@ public class IngredientsDAO extends AbstractDAO {
             ingredient.setName(rs.getString("name"));
             ingredient.setPhoto_url(rs.getString("photo_url"));
             ingredient.setCalorie(rs.getFloat("calorie"));
+            ingredient.setUnit(rs.getString("unit"));
         }
         
         return ingredient;
@@ -46,12 +47,10 @@ public class IngredientsDAO extends AbstractDAO {
         
         ResultSet rs = stm.executeQuery();
         
-        IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-        
         while (rs.next()) {
             long ingredientId = rs.getLong("ingredient_id");
-            Ingredient ingredient = ingredientsDAO.find(ingredientId);
-            ingredient.setAmount(rs.getString("amount"));
+            Ingredient ingredient = find(ingredientId);
+            ingredient.setAmount(rs.getFloat("amount"));
             ingredients.add(ingredient);
         }
         
@@ -68,11 +67,11 @@ public class IngredientsDAO extends AbstractDAO {
         
         ResultSet rs = stm.executeQuery();
         
-        IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
+        
         
         while (rs.next()) {
             long ingredientId = rs.getLong("ingredient_id");
-            Ingredient ingredient = ingredientsDAO.find(ingredientId);
+            Ingredient ingredient = find(ingredientId);
             ingredients.add(ingredient);
         }
         
@@ -96,12 +95,13 @@ public class IngredientsDAO extends AbstractDAO {
     }
     
     public boolean create(Ingredient ingredient) throws SQLException {
-        String sql = "INSERT INTO ingredients (name, photo_url, calorie) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO ingredients (name, photo_url, calorie, unit) VALUES (?, ?, ?, ?)";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setString(1, ingredient.getName());
         stm.setString(2, ingredient.getPhoto_url());
         stm.setFloat(3, ingredient.getCalorie());
+        stm.setString(4, ingredient.getUnit());
         
         int rowCount = stm.executeUpdate();
         
@@ -109,11 +109,14 @@ public class IngredientsDAO extends AbstractDAO {
     }
     
     public boolean update(Ingredient ingredient) throws SQLException {
-        String sql = "UPDATE ingredients SET name = ? WHERE ingredient_id = ?";
+        String sql = "UPDATE ingredients SET name = ?, photo_url = ?, calorie = ?, unit = ? WHERE ingredient_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setString(1, ingredient.getName());
-        stm.setLong(2, ingredient.getIngredient_id());
+        stm.setString(2, ingredient.getPhoto_url());
+        stm.setFloat(3, ingredient.getCalorie());
+        stm.setString(4, ingredient.getUnit());
+        stm.setLong(5, ingredient.getIngredient_id());
         
         int rowCount = stm.executeUpdate();
         
