@@ -1,4 +1,4 @@
-package th.ac.kmitl.it.foodbook.servlets.recipes.categories;
+package th.ac.kmitl.it.foodbook.servlets.ingredients;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
-import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
+import th.ac.kmitl.it.foodbook.beans.Ingredient;
+import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
-@WebServlet("/recipes/categories/edit")
+@WebServlet("/ingredients/edit")
 public class EditServlet extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
@@ -32,12 +32,12 @@ public class EditServlet extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long recipeCategoryId = Long.parseLong(request.getParameter("id"));
+        long ingredientId = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
         
         HttpSession session = request.getSession();
         
-        RecipeCategory recipeCategory = null;
+        Ingredient ingredient = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -46,12 +46,12 @@ public class EditServlet extends HttpServlet {
         try {
             Connection conn = ds.getConnection();
             
-            RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+            IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
             
-            recipeCategory = recipeCategoriesDAO.find(recipeCategoryId);
-            recipeCategory.setName(name);
+            ingredient = ingredientsDAO.find(ingredientId);
+            ingredient.setName(name);
             
-            if (recipeCategoriesDAO.update(recipeCategory)) {
+            if (ingredientsDAO.update(ingredient)) {
                 isSuccess = true;
             }
             conn.close();
@@ -63,10 +63,10 @@ public class EditServlet extends HttpServlet {
         
         if (isSuccess) {
             session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Edited Successfully!"));
-            response.sendRedirect("/recipes/categories/index");
+            response.sendRedirect("/ingredient/index");
         } else {
             session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Edited Unsuccessfully!"));
-            request.getRequestDispatcher("/WEB-INF/views/recipes/categories/index.jsp").include(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/ingredients/index.jsp").include(request, response);
         }
     }
     
