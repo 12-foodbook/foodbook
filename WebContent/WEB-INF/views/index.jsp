@@ -32,7 +32,7 @@
 								id="ingredient-category-${j}">
 								<div class="checkboxcol col-sm-12">
 									<c:forEach var="ingredient" items="${ingredients[j]}">
-									<div class=' col-sm-6'>
+									<div class=' col-sm-4'>
 										<input type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
 										<label >
 										${ingredient.name}
