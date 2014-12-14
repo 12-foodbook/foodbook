@@ -14,7 +14,7 @@
 				เลือกวัตถุดิบ
 			</h1>
 		</div>
-		<ul class="nav nav-tabs">
+		<ul class="nav nav-tabs">test
 			<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
 				<li<c:if test="${i == 0}"> class="active"</c:if>><a href="#ingredient-category-${i}" data-toggle="tab">${ingredientCategories[i].name}</a></li>
 			</c:forEach>
