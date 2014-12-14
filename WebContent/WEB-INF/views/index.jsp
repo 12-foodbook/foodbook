@@ -49,7 +49,10 @@
 					
 				</div>
 			</c:forEach>
-				<h3><div id='tagDiv'></div></h3>
+			<!-- TAG -->
+			<div class='row'>
+				<h3><div id='tagDiv' class='col-sm-6'></div></h3>
+				</div>
 				<button class="btn btn-success btn-lg btn-block searchButt col-sm-12">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						ค้นหาตำรับอาหาร
@@ -72,16 +75,26 @@
 </div>
 
 <script type="text/javascript">
-
+var checknum = 0;
 function showStatus(ingname){
-	var tagHTML ='<span id="label-selected_'+ingname+'" class="label label-info" style="margin-left:2%">'+ingname+'</span>';
+	var tagHTML ='<span onclick="del_select(this)" id="label-selected_'+ingname+'" class="label label-info" style="margin-left:2%;cursor:pointer">'+ingname+'</span>';
 	if(document.getElementById(ingname).checked){
 		$( "#tagDiv" ).append(tagHTML);	
+		checknum++;
+		if(checknum%5==0){$( "#tagDiv" ).append('<div id="space"><br></div>');}
 	}
 	else{
 		$( '#label-selected_'+ingname+'' ).remove();
+		
+		if(checknum%5==0||checknum>5){$( '#space' ).remove();}
+		checknum--;
 	}
-	
+}
+function del_select(temid){
+	document.getElementById(temid.innerHTML).checked=false;
+	if(checknum%5==0||checknum>5){$( '#space' ).remove();}
+	checknum--;
+	$("#"+temid.id).remove();
 }
 </script>
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
