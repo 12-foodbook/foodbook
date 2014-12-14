@@ -20,6 +20,7 @@ import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.beans.RecipeStep;
 import th.ac.kmitl.it.foodbook.beans.RecipeStepPhoto;
+import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
@@ -53,11 +54,21 @@ public class EditServlet extends HttpServlet {
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
+        HttpSession session = request.getSession();
+        
+        User user = (User) session.getAttribute("user");
+        
         try {
             Connection conn = ds.getConnection();
             
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipe = recipesDAO.find(recipeId);
+            
+            if (recipe.getUser_id() != user.getUser_id()) {
+                session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Access Denial"));
+                response.sendRedirect("/");
+                return;
+            }
             
             RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
             recipeCategories = recipeCategoriesDAO.findAll();
@@ -132,6 +143,14 @@ public class EditServlet extends HttpServlet {
             recipe = recipesDAO.find(recipeId);
             recipe.setName(name);
             recipe.setVideo_url(videoUrl);
+            
+            User user = (User) session.getAttribute("user");
+            
+            if (recipe.getUser_id() != user.getUser_id()) {
+                session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Access Denial"));
+                response.sendRedirect("/");
+                return;
+            }
             
             if (recipesDAO.update(recipe)) {
                 isSuccess = true;

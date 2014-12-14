@@ -63,6 +63,7 @@
 								${rate}
 							</h3>
 						</form>
+						<c:if test="${param.user_id == recipeUser.user_id}">
 						<a href="/recipes/edit?id=${recipe.recipe_id}"
 							class='col-md-1 col-md-offset-0'>
 							<input type="submit" class="btn btn-default" value='Edit' /></a>
@@ -99,6 +100,7 @@
 							action="/favorites/create">
 							<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
 						</form>
+						</c:if>
 					</div>
 
 				</div>

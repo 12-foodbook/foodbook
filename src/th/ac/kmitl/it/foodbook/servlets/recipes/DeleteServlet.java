@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import th.ac.kmitl.it.foodbook.beans.Recipe;
+import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
@@ -44,6 +46,16 @@ public class DeleteServlet extends HttpServlet {
             Connection conn = ds.getConnection();
             
             RecipesDAO recipesDAO = new RecipesDAO(conn);
+            Recipe recipe = recipesDAO.find(recipeId);
+            
+            User user = (User) session.getAttribute("user");
+            
+            if (recipe.getUser_id() != user.getUser_id()) {
+                session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Access Denial"));
+                response.sendRedirect("/");
+                return;
+            }
+            
             isSuccess = recipesDAO.delete(recipeId);
             
             conn.close();
