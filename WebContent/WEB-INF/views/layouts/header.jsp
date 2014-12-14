@@ -79,6 +79,7 @@
 									<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
 									ตำรับอาหารของฉัน
 								</a></li>
+								<li class="divider"></li>
 								<li><a href="/recipes/create">
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									สร้างตำรับอาหาร
