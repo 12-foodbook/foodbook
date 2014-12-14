@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import th.ac.kmitl.it.foodbook.daos.CommentsDAO;
-import th.ac.kmitl.it.foodbook.daos.FavoritesDAO;
-import th.ac.kmitl.it.foodbook.daos.RatesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
@@ -39,33 +36,15 @@ public class DeleteServlet extends HttpServlet {
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
-        boolean isSuccess = false;
-        boolean isRemoveFromRecipeCategories = false;
-        boolean isRemoveFromIngredients = false;
-        boolean isRemoveFromSteps = false;
-        boolean isRemoveFromFavorites = false;
-        boolean isRemoveFromRates = false;
-        boolean isRemoveFromComments = false;
-        boolean isRemove = false;
-        
         HttpSession session = request.getSession();
+        
+        boolean isSuccess = false;
         
         try {
             Connection conn = ds.getConnection();
             
             RecipesDAO recipesDAO = new RecipesDAO(conn);
-            FavoritesDAO favoritesDAO = new FavoritesDAO(conn);
-            RatesDAO ratesDAO = new RatesDAO(conn);
-            CommentsDAO commentsDAO = new CommentsDAO(conn);
-            isRemoveFromRecipeCategories = recipesDAO.removeAllRecipeFromRecipeCategories(recipeId);
-            isRemoveFromIngredients = recipesDAO.removeAllRecipeFromIngredients(recipeId);
-            isRemoveFromSteps = recipesDAO.removeAllRecipeFromSteps(recipeId);
-            isRemoveFromFavorites = favoritesDAO.removeRecipe(recipeId);
-            isRemoveFromRates = ratesDAO.removeByRecipe(recipeId);
-            isRemoveFromComments = commentsDAO.removeRecipe(recipeId);
-            isRemove = recipesDAO.delete(recipeId);
-            
-            isSuccess = isRemove;
+            isSuccess = recipesDAO.delete(recipeId);
             
             conn.close();
         } catch (SQLException e) {

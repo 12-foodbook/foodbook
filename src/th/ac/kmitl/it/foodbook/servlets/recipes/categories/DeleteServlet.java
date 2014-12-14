@@ -1,7 +1,6 @@
 package th.ac.kmitl.it.foodbook.servlets.recipes.categories;
 
 import java.io.IOException;
-import java.lang.ProcessBuilder.Redirect;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -34,35 +33,33 @@ public class DeleteServlet extends HttpServlet {
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String[] recipeCategoryIdString = request.getParameterValues("recipe_category_id");
-        long recipeCategoryId;
+        String[] recipeCategoryIdsString = request.getParameterValues("recipe_category_id");
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
         boolean isSuccess = false;
-        boolean isDelete = false;
-        boolean isRemoveAllRecipeCategory = false;
         
         HttpSession session = request.getSession();
         
         try {
             Connection conn = ds.getConnection();
             
-            if(recipeCategoryIdString == null){
+            if(recipeCategoryIdsString == null){
                 response.sendRedirect("/recipes/categories/index");
                 return;
             }
             
-            for (String i : recipeCategoryIdString) {
-                recipeCategoryId = Long.parseLong(i);
+            for (String recipeCategoryIdString : recipeCategoryIdsString) {
+                long recipeCategoryId = Long.parseLong(recipeCategoryIdString);
+                
                 RecipeCategory recipeCategory = new RecipeCategory();
                 recipeCategory.setRecipe_category_id(recipeCategoryId);
-                RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+                
                 RecipesDAO recipesDAO = new RecipesDAO(conn);
-                isRemoveAllRecipeCategory = recipesDAO.removeAllRecipeCategory(recipeCategoryId);
-                isDelete = recipeCategoriesDAO.delete((recipeCategory));
-                isSuccess = isDelete;
-             
+                recipesDAO.removeAllRecipeCategory(recipeCategoryId);
+                
+                RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+                isSuccess = recipeCategoriesDAO.delete((recipeCategory));
             }
             
             conn.close();

@@ -170,6 +170,19 @@ public class RecipesDAO extends AbstractDAO {
     }
     
     public boolean delete(long recipeId) throws SQLException {
+        FavoritesDAO favoritesDAO = new FavoritesDAO(conn);
+        favoritesDAO.removeRecipe(recipeId);
+        
+        RatesDAO ratesDAO = new RatesDAO(conn);
+        ratesDAO.removeByRecipe(recipeId);
+        
+        CommentsDAO commentsDAO = new CommentsDAO(conn);
+        commentsDAO.removeRecipe(recipeId);
+        
+        removeAllRecipeFromRecipeCategories(recipeId);
+        removeAllRecipeFromIngredients(recipeId);
+        removeAllRecipeFromSteps(recipeId);
+        
         String sql = "DELETE FROM recipes WHERE recipe_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
         
@@ -181,14 +194,18 @@ public class RecipesDAO extends AbstractDAO {
     }
     
     public boolean deleteByUserId(long userId) throws SQLException {
-        String sql = "DELETE FROM recipes WHERE user_id = ?";
+        String sql = "SELECT recipe_id FROM recipes WHERE user_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setLong(1, userId);
         
-        int rowCount = stm.executeUpdate();
+        ResultSet rs = stm.executeQuery();
         
-        return rowCount == 1;
+        while (rs.next()) {
+            if (!delete(rs.getLong("recipe_id"))) return false;
+        }
+        
+        return true;
     }
     
     public boolean update(Recipe recipe) throws SQLException {
