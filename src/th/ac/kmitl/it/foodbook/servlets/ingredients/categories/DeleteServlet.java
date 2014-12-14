@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
-import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
