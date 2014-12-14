@@ -11,12 +11,11 @@
 
 	<div class="page-header">
 		<h1>
-			สร้างตำหรับอาหาร <small>${recipe.name}</small>
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> สร้างตำหรับอาหาร
 		</h1>
 	</div>
 
-	<form method="post" accept-charset="UTF-8" class="form-horizontal"
-		role="form">
+	<form method="post" accept-charset="UTF-8" class="form-horizontal" role="form">
 		<input name="id" value="${recipe.recipe_id}" type="hidden">
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
@@ -107,7 +106,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<button id="add-step-button"
-							class="btn btn-default btn-lg btn-block" type="button">เพิ่มขั้นตอน</button>
+							class="btn btn-default btn-lg btn-block" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> เพิ่มขั้นตอน</button>
 					</div>
 				</div>
 			</div>
@@ -181,7 +180,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
 				<button type="submit" id="create-button"
-					class="btn btn-success btn-lg btn-block">สร้างตำรับอาหาร</button>
+					class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> สร้างตำรับอาหาร</button>
 			</div>
 		</div>
 
@@ -193,7 +192,7 @@
 <script>
 	var $createRecipeForm = $('#create-recipe');
 	var $recipeSteps = $('#recipe-steps');
-	var recipeStepHtml = '<hr><div class="form-group"><label class="col-sm-4 control-label"><h4>หัวข้อขั้นตอน</h4></label><div class="col-sm-8"><input name="step_title" class="form-control" value="${recipeStep.title}"></div></div><div class="form-group"><label class="col-sm-4 control-label"><h4>รายละเอียดขั้นตอน</h4></label><div class="col-sm-8"><textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea></div></div><div class="form-group"><label class="col-sm-4 control-label"><h4>รูปภาพประกอบขั้นตอน</h4></label><div class="col-sm-8"><input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)"><input name="step_photo_url" class="form-control" type="hidden"></div></div>';
+	var recipeStepHtml = '<hr><div class="form-group"><label class="col-sm-4 control-label">หัวข้อขั้นตอน</label><div class="col-sm-8"><input name="step_title" class="form-control" value="${recipeStep.title}"></div></div><div class="form-group"><label class="col-sm-4 control-label">รายละเอียดขั้นตอน</label><div class="col-sm-8"><textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea></div></div><div class="form-group"><label class="col-sm-4 control-label">รูปภาพประกอบขั้นตอน</label><div class="col-sm-8"><input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)"><input name="step_photo_url" class="form-control" type="hidden"></div></div>';
 	console.log(recipeStepHtml);
 	var $addStepButton = $('#add-step-button');
 	var $createButton = $('#create-button');

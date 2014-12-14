@@ -9,7 +9,7 @@
 <div class="container">
 
 	<div class="page-header">
-		<h1>แก้ไขตำหรับอาหาร <small>${recipe.name}</small></h1>
+		<h1><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> แก้ไขตำหรับอาหาร <small>${recipe.name}</small></h1>
 	</div>
 
 	<form method="post" accept-charset="UTF-8" class="form-horizontal" role="form">
@@ -78,7 +78,7 @@
 				<!-- button -->
 				<div class="row">
 					<div class="col-xs-12">
-						<button id="add-step-button" class="btn btn-default btn-lg btn-block" type="button">เพิ่มขั้นตอน</button>
+						<button id="add-step-button" class="btn btn-default btn-lg btn-block" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> เพิ่มขั้นตอน</button>
 					</div>
 				</div>	
 				
@@ -153,7 +153,7 @@
 		<!-- button -->
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
-				<button type="submit" id="create-button" class="btn btn-success btn-lg btn-block">แก้ไขตำรับอาหาร</button>
+				<button type="submit" id="create-button" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> แก้ไขตำรับอาหาร</button>
 			</div>
 		</div>
 		
