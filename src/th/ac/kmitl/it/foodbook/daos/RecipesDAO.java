@@ -16,12 +16,13 @@ public class RecipesDAO extends AbstractDAO {
     }
     
     public boolean create(Recipe recipe) throws SQLException {
-        String sql = "INSERT INTO recipes (name, video_url, user_id) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO recipes (name, video_url, user_id, is_moderator_id) VALUES (?, ?, ?, ?)";
         PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         
         stm.setString(1, recipe.getName());
         stm.setString(2, recipe.getVideo_url());
         stm.setLong(3, recipe.getUser_id());
+        stm.setBoolean(4, recipe.getIs_moderator_id());
         
         int rowCount = stm.executeUpdate();
         
@@ -52,6 +53,7 @@ public class RecipesDAO extends AbstractDAO {
             recipe.setPhoto_url(rs.getString("photo_url"));
             recipe.setVideo_url(rs.getString("video_url"));
             recipe.setUser_id(rs.getLong("user_id"));
+            recipe.setIs_moderator_id(rs.getBoolean("is_moderator_id"));
         }
         
         return recipe;
@@ -238,6 +240,7 @@ public class RecipesDAO extends AbstractDAO {
             recipe.setPhoto_url(rs.getString("photo_url"));
             recipe.setVideo_url(rs.getString("video_url"));
             recipe.setUser_id(rs.getLong("user_id"));
+            recipe.setIs_moderator_id(rs.getBoolean("is_moderator_id"));
             recipes.add(recipe);
         }
         
