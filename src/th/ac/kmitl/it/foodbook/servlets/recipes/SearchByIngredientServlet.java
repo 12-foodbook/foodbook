@@ -41,6 +41,8 @@ public class SearchByIngredientServlet extends HttpServlet {
         String[] ingredientIds = request.getParameterValues("ingredient_id");
         
         List<Recipe> recipes = null;
+        List<Recipe> recipesPartial = null;
+        List<List<Ingredient>> ingredientsPartial = null;
         List<RecipeCategory> recipeCategories = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
@@ -57,6 +59,8 @@ public class SearchByIngredientServlet extends HttpServlet {
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             
             recipes = new ArrayList<Recipe>();
+            recipesPartial = new ArrayList<Recipe>();
+            ingredientsPartial = new ArrayList<List<Ingredient>>();
             
             // For ingredient in all selected ingredients...
             for (String ingredientIdString : ingredientIds) {
@@ -94,6 +98,40 @@ public class SearchByIngredientServlet extends HttpServlet {
                         }
                         
                     }
+                    
+                    if (recipesIngredientIdStrings.containsAll(ingredientIdStrings)) {
+
+                        // TODO: Remove fuck up (duplicate recipe).
+                        boolean fuckedUp = false;
+                        
+                        for (Recipe fu : recipes) {
+                            if (recipe.getRecipe_id() == fu.getRecipe_id()) {
+                                fuckedUp = true;
+                            }
+                        }
+                        
+                        if (!fuckedUp) {
+                            recipesPartial.add(recipe);
+                            
+                            List<Ingredient> ingredientPartial = new ArrayList<Ingredient>();
+                            
+                            System.out.println(ingredientIdStrings);
+                            System.out.println(recipesIngredientIdStrings);
+                            
+                            for (String recipeIngredientPartialIdString : recipesIngredientIdStrings.toArray(new String[ingredientIdStrings.size()])) {
+                                
+                                if (!ingredientIdStrings.contains(recipeIngredientPartialIdString)) {
+                                    
+                                    long ingredientPartialId = Long.parseLong(recipeIngredientPartialIdString);
+                                    Ingredient ingredient = ingredientsDAO.find(ingredientPartialId);
+                                    
+                                    ingredientPartial.add(ingredient);
+                                }
+                            }
+                            ingredientsPartial.add(ingredientPartial);
+                        }
+                        
+                    }
                 }
             }
             
@@ -103,10 +141,26 @@ public class SearchByIngredientServlet extends HttpServlet {
             response.sendError(500);
         }
         
+        for (Recipe recipe : recipes) {
+            System.out.println(recipe);
+        }
+        
+        System.out.println();
+        
+        for (int i = 0; i < recipesPartial.size(); i++) {
+            System.out.println(recipesPartial.get(i));
+            
+            for (Ingredient ingredient : ingredientsPartial.get(i)) {
+                System.out.println("\t"+ingredient);
+            }
+        }
+        
         request.setAttribute("recipes", recipes);
+        request.setAttribute("recipesPartial", recipesPartial);
+        request.setAttribute("ingredientsPartial", ingredientsPartial);
         request.setAttribute("recipeCategories", recipeCategories);
         
-        request.getRequestDispatcher("/WEB-INF/views/recipes/search-by-name.jsp").include(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/recipes/search-by-ingredient.jsp").include(request, response);
     }
     
 }

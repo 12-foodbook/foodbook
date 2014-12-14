@@ -56,5 +56,10 @@ public class Recipe {
     public void setIs_moderator_id(boolean is_moderator_id) {
         this.is_moderator_id = is_moderator_id;
     }
+
+    @Override
+    public String toString() {
+        return "Recipe [recipe_id=" + recipe_id + ", name=" + name + ", photo_url=" + photo_url + ", video_url=" + video_url + ", user_id=" + user_id + ", is_moderator_id=" + is_moderator_id + "]";
+    }
     
 }
