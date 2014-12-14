@@ -16,8 +16,10 @@ import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Favorite;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
+import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.FavoritesDAO;
+import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
 @WebServlet("/favorites/index")
@@ -32,6 +34,7 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Favorite> favorites = null;
         List<Recipe> recipes = new ArrayList<Recipe>();
+        List<RecipeCategory> recipeCategories = null;
         
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -46,6 +49,9 @@ public class IndexServlet extends HttpServlet {
             
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             
+            RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+            recipeCategories = recipeCategoriesDAO.findAll();
+            
             for (Favorite favorite : favorites) {
                 Recipe recipe = recipesDAO.find(favorite.getRecipe_id());
                 recipes.add(recipe);
@@ -56,6 +62,7 @@ public class IndexServlet extends HttpServlet {
         }
         
         request.setAttribute("recipes", recipes);
+        request.setAttribute("recipeCategories", recipeCategories);
         request.getRequestDispatcher("/WEB-INF/views/favorites/index.jsp").include(request, response);
     }
     
