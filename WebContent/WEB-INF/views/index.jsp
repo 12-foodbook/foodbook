@@ -33,8 +33,8 @@
 								<div class="checkboxcol col-sm-12">
 									<c:forEach var="ingredient" items="${ingredients[j]}">
 									<div class=' col-sm-4'>
-										<input type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
-										<label >
+										<input id='${ingredient.name}' onclick='showStatus("${ingredient.name}")' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
+										<label>
 										${ingredient.name}
 										</label>
 									</div>
@@ -45,14 +45,15 @@
 						</c:forEach>
 					</div>
 				</div>
-
-					<button class="btn btn-success btn-lg btn-block searchButt col-sm-12">
+			
+					
+				</div>
+			</c:forEach>
+				<h3><div id='tagDiv'></div></h3>
+				<button class="btn btn-success btn-lg btn-block searchButt col-sm-12">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						ค้นหาตำรับอาหาร
 					</button>
-				</div>
-			</c:forEach>
-			
 		</div>
 		
 		</form>
@@ -70,4 +71,17 @@
 
 </div>
 
+<script type="text/javascript">
+
+function showStatus(ingname){
+	var tagHTML ='<span id="label-selected_'+ingname+'" class="label label-info" style="margin-left:2%">'+ingname+'</span>';
+	if(document.getElementById(ingname).checked){
+		$( "#tagDiv" ).append(tagHTML);	
+	}
+	else{
+		$( '#label-selected_'+ingname+'' ).remove();
+	}
+	
+}
+</script>
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
