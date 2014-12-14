@@ -17,9 +17,9 @@
 					
 					<tr>
 						<td align="center" >${i+1}</td>
-						<td align="center" id='cateValue'>${recipeCategories[i].name}</td>
+						<td align="center" id='cateValue_${recipeCategories[i].name}' value="${recipeCategories[i].name}">${recipeCategories[i].name}</td>
 						<td align="center"><input id='recipe_category_id' name="recipe_category_id" type="checkbox" value="${recipeCategories[i].recipe_category_id}" /></td>
-						<td><a onclick="editCate('${recipeCategories[i].name}')" class="btn btn-default col-md-4" >แก้ไขหมวดหมู่</a></td>
+						<td id="editButt_${recipeCategories[i].name}"><a  onclick="editCate('${recipeCategories[i].recipe_category_id}','editButt_${recipeCategories[i].name}','cateValue_${recipeCategories[i].name}','${recipeCategories[i].name}')" class="btn btn-default col-md-6" >แก้ไขหมวดหมู่</a></td>
 						<td></td>
 					</tr>	
 				</c:forEach>
@@ -28,12 +28,28 @@
 			<!-- edit -->
 			<script type="text/javascript">
 				
-				function editCate(val){
+				function editCate(id,butt,catefield,val){
 					//alert("333");
 					var table = document.getElementById('cateTable');
-				    var cell3 = val;
+				    var cell2 = val;
+				    document.getElementById(catefield).innerHTML='<input id="newcateValue" value='+cell2+' />';
+				    document.getElementById(butt).innerHTML='<a onclick="sending('+id+')" id="editButt" class="btn btn-success col-md-6" >ยืนยัน</a>';
 				    //alert(cell3);
 
+				}
+				function sending(id){
+					var catsend = [];
+					xmlhttp = new XMLHttpRequest();	
+					var cateid = id;
+					var catename = document.getElementById('newcateValue').value;
+					var url = "/recipes/categories/edit?id="+cateid+"&&name="+catename;
+					
+
+					xmlhttp.open("POST",url,true);
+					xmlhttp.onreadystatechange=function(){
+						location.reload();
+					};
+					xmlhttp.send();
 				}
 			</script>
 			
@@ -88,9 +104,7 @@
 				function sendValue(){
 					
 					var catsend = [];
-					xmlhttp = new XMLHttpRequest();
-					if(xmlhttp!=null){
-					}	
+					xmlhttp = new XMLHttpRequest();	
 					var url = "/recipes/categories/delete?recipe_category_id=";
 					var category = document.getElementsByName('recipe_category_id');
 					
