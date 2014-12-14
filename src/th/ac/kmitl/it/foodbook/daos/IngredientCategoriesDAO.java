@@ -51,4 +51,26 @@ public class IngredientCategoriesDAO extends AbstractDAO {
         return false;
     }
     
+    public boolean removeAllCategoryFromIngredientCategories(long ingredientCategoryId) throws SQLException {
+        String sql = "DELETE FROM ingredients_ingredient_categories WHERE ingredient_category_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, ingredientCategoryId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
+    public boolean delete(long ingredientCategoryId) throws SQLException {
+        String sql = "DELETE FROM ingredient_categories WHERE ingredient_category_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, ingredientCategoryId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
 }
