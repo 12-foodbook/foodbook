@@ -7,6 +7,7 @@ public class Recipe {
     private String photo_url;
     private String video_url;
     private long user_id;
+    private boolean is_moderator_id;
     
     public long getRecipe_id() {
         return recipe_id;
@@ -46,6 +47,14 @@ public class Recipe {
     
     public void setUser_id(long user_id) {
         this.user_id = user_id;
+    }
+    
+    public boolean getIs_moderator_id() {
+        return is_moderator_id;
+    }
+    
+    public void setIs_moderator_id(boolean is_moderator_id) {
+        this.is_moderator_id = is_moderator_id;
     }
     
 }
