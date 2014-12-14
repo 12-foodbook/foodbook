@@ -35,6 +35,7 @@ public class CreateServlet extends HttpServlet {
         String photoUrl = request.getParameter("photo_url");
         String calorieString = request.getParameter("calorie");
         float calorie = Float.parseFloat(calorieString);
+        String unit = request.getParameter("unit");
         
         Ingredient ingredient = null;
         
@@ -51,6 +52,7 @@ public class CreateServlet extends HttpServlet {
             ingredient.setName(name);
             ingredient.setPhoto_url(photoUrl);
             ingredient.setCalorie(calorie);
+            ingredient.setUnit(unit);
             
             isSuccess = ingredientsDAO.create(ingredient);
             

@@ -34,6 +34,10 @@ public class EditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long ingredientId = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
+        String photoUrl = request.getParameter("photo_url");
+        String calorieString = request.getParameter("calorie");
+        float calorie = Float.parseFloat(calorieString);
+        String unit = request.getParameter("unit");
         
         HttpSession session = request.getSession();
         
@@ -50,6 +54,9 @@ public class EditServlet extends HttpServlet {
             
             ingredient = ingredientsDAO.find(ingredientId);
             ingredient.setName(name);
+            ingredient.setPhoto_url(photoUrl);
+            ingredient.setCalorie(calorie);
+            ingredient.setUnit(unit);
             
             if (ingredientsDAO.update(ingredient)) {
                 isSuccess = true;
