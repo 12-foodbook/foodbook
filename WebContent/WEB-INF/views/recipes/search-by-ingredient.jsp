@@ -102,6 +102,7 @@
 						action="/favorites/create">
 						<input type="hidden" name="recipe_id" value="${recipesPartial[i].recipe_id}">
 					</form>
+					<h3>ขาด</h3>
 					<c:forEach var="ingredientPartial" items="${ingredientsPartial[i]}">
 						${ingredientPartial.name}<br>
 					</c:forEach>
