@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
+import th.ac.kmitl.it.foodbook.beans.Moderator;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.beans.RecipeStep;
@@ -115,9 +116,15 @@ public class CreateServlet extends HttpServlet {
             recipe.setPhoto_url(photoUrl);
             recipe.setVideo_url(videoUrl);
             
-            User user = (User) session.getAttribute("user");
-            
-            recipe.setUser_id(user.getUser_id());
+            if (session.getAttribute("moderator") != null) {
+                Moderator moderator = (Moderator) session.getAttribute("moderator");
+                recipe.setUser_id(moderator.getModerator_id());
+                recipe.setIs_moderator_id(true);
+            } else {
+                User user = (User) session.getAttribute("moderator");
+                recipe.setUser_id(user.getUser_id());
+                recipe.setIs_moderator_id(false);
+            }
             
             if (recipesDAO.create(recipe)) {
                 isSuccess = true;
