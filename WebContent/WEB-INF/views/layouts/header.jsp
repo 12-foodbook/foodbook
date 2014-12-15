@@ -131,14 +131,17 @@
 								<li><a href="#"><span class="glyphicon glyphicon-user"
 										aria-hidden="true"></span> ผู้ใช้ทั้งหมด</a></li>
 								<li><a href="/ingredients/index"><span
-										class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+										class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
 										วัตถุดิบทั้งหมด</a></li>
 								<li><a href="/recipes/index"><span
-										class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+										class="glyphicon glyphicon-book" aria-hidden="true"></span>
 										ตำหรับอาหารทั้งหมด</a></li>
 								<li><a href="/recipes/categories/index"><span
 										class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 										หมวดหมู่ตำหรับอาหารทั้งหมด</a></li>
+								<li><a href="/kitchenwares/index"><span
+										class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+										เครื่องครัวทั้งหมด</a></li>
 								<li class="divider"></li>
 								<li><a href="/moderators/deauthenticate"><span
 										class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
