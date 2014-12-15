@@ -14,10 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter({
-    "/users/delete",
     "/recipes/categories/index",
     "/recipes/categories/create",
+    "/ingredients/index",
     "/ingredients/categories/create",
+    "/users/delete",
     "/moderators/create"
 })
 public class ModeratorAuthenticationFilter implements Filter {

@@ -9,7 +9,7 @@
 <div class="container">
 	
 	<div class="page-header">
-		<h1>${recipe.name} <small>โดย <a href="/recipes/index?user_id=${recipeUser.user_id}">${recipeUser.username}</a></small></h1>
+		<h1>${recipe.name} <small>โดย <a href="/recipes/user?id=${recipeUser.user_id}">${recipeUser.username}</a></small></h1>
 	</div>
 	
 	<div class="row">

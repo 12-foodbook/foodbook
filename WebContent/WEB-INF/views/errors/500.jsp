@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 <div class="container">
-	<h1><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Internal Server Error</h1>
+	<h1><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Something Went Wrong D:</h1>
 </div>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>

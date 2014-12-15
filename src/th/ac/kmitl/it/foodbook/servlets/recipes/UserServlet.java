@@ -20,17 +20,17 @@ import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 
-@WebServlet("/recipes/index")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/recipes/user")
+public class UserServlet extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
     
-    public IndexServlet() {
+    public UserServlet() {
         super();
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userIdString = request.getParameter("user_id");
+        String userIdString = request.getParameter("id");
         List<Recipe> recipes = null;
         List<RecipeCategory> recipeCategories = null;
         
@@ -70,7 +70,7 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipeCategories", recipeCategories);
         
-        request.getRequestDispatcher("/WEB-INF/views/recipes/index.jsp").include(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/recipes/user.jsp").include(request, response);
     }
     
 }
