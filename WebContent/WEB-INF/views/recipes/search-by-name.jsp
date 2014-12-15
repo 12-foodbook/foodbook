@@ -27,7 +27,21 @@
 
 		<div class="list-group media col-xs-12 col-md-8">
 			<c:forEach var="recipe" items="${recipes}">
-				<a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top col-md-3">
+			<a href="/recipes/show?id=${recipe.recipe_id}">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-12 col-sm-6 col-md-4">
+								<img src="${recipe.photo_url}" width="100%">
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-8">
+								<h2>${recipe.name}</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+				<%-- <a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top col-md-3">
 					<img src="${recipe.photo_url}" style="width:80%;height:80%" alt="image">
 				</a>
 
@@ -62,7 +76,7 @@
 						action="/favorites/create">
 						<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
 					</form>
-				</div>
+				</div> --%>
 			</c:forEach>
 		</div>
 	</div>

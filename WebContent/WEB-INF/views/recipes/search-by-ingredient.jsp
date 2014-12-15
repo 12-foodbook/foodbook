@@ -28,7 +28,21 @@
 
 		<div class="list-group media col-xs-12 col-md-8">
 			<c:forEach var="recipe" items="${recipes}">
-				<a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top col-md-3">
+			<a href="/recipes/show?id=${recipe.recipe_id}">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-12 col-sm-6 col-md-4">
+								<img src="${recipe.photo_url}" width="100%">
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-8">
+								<h2>${recipe.name}</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+				<%-- <a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top col-md-3">
 					<img src="${recipe.photo_url}" style="width:80%;height:80%" alt="image">
 				</a>
 
@@ -63,12 +77,32 @@
 						action="/favorites/create">
 						<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
 					</form>
-				</div>
+				</div> --%>
 			</c:forEach>
-			<hr>
 			<h3>ขาดบางอย่าง</h3>
+			<hr>
 			<c:forEach var="i" begin="0" end="${fn:length(recipesPartial) - 1}">
-				<a href="/recipes/show?id=${recipesPartial[i].recipe_id}" class="media-left media-top col-md-3">
+				<div class="panel panel-default">
+			<a href="/recipes/show?id=${recipesPartial[i].recipe_id}">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-12 col-sm-6 col-md-4">
+								<img src="${recipesPartial[i].photo_url}" width="100%">
+							</div>
+							<div class="col-xs-12 col-sm-6 col-md-8">
+								<h2>${recipesPartial[i].name}</h2>
+							</div>
+						</div>
+					</div>
+			</a>
+					<div class="panel-footer">
+					<b>ขาด:</b>
+						<c:forEach var="ingredientPartial" items="${ingredientsPartial[i]}">
+							${ingredientPartial.name} 
+						</c:forEach>
+					</div>
+				</div>
+				<%-- <a href="/recipes/show?id=${recipesPartial[i].recipe_id}" class="media-left media-top col-md-3">
 					<img src="${recipesPartial[i].photo_url}" style="width:80%;height:80%" alt="image">
 				</a>
 
@@ -107,7 +141,7 @@
 					<c:forEach var="ingredientPartial" items="${ingredientsPartial[i]}">
 						${ingredientPartial.name}<br>
 					</c:forEach>
-				</div>
+				</div> --%>
 			</c:forEach>
 		</div>
 	</div>
