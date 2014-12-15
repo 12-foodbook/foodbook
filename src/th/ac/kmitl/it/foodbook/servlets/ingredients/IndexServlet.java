@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
+import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
+import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
 
 @WebServlet("/ingredients/index")
@@ -26,6 +28,7 @@ public class IndexServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Ingredient> ingredients = null;
+        List<IngredientCategory> ingredientCategories = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -35,6 +38,9 @@ public class IndexServlet extends HttpServlet {
             IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
             ingredients = ingredientsDAO.findAll();
             
+            IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
+            ingredientCategories = ingredientCategoriesDAO.findAll();
+            
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,6 +48,7 @@ public class IndexServlet extends HttpServlet {
         }
         
         request.setAttribute("ingredients", ingredients);
+        request.setAttribute("ingredientCategories", ingredientCategories);
         request.getRequestDispatcher("/WEB-INF/views/ingredients/index.jsp").include(request, response);
     }
     

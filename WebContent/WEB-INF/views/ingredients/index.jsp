@@ -9,7 +9,21 @@
 <form action="/ingredients/index" method="get">
 <div class="container">
 	<div class="row">
-			<table id="cateTable" class="table table-striped"><!-- ingredients -->
+		<div class="col-xs-12 col-md-4 checkcate">
+			<form>
+				<label>หมวดหมู่วัตถุดิบ</label>
+				<c:forEach var="ingredientCategory" items="${ingredientCategories}">
+					<div class="checkbox">
+						<label> <input name="ingredient_category_id" type="checkbox"
+							value="${ingredientCategory.ingredient_category_id}">
+							${ingredientCategory.name}
+						</label>
+					</div>
+				</c:forEach>
+			</form>
+		</div>
+		<div class="col-xs-12 col-md-8 col-md-offset-4">
+			<table id="cateTable" class="table table-striped" ><!-- ingredients -->
 				<thead><td >รูปรายการอาหาร</td><td align="center">รายการอาหาร</td><td align="center">แคลลอรี่/หน่วย</td><td align="center">ลบรายการ</td><td align="center"></td></thead>
 				<c:forEach var="i" begin="0" end="${fn:length(ingredients)-1}">
 					<tr>
@@ -33,6 +47,7 @@
 					</tr>	
 				</c:forEach>
 			</table>
+		</div>
 	</div>		
 </div>
 </form>
