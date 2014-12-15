@@ -10,8 +10,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-md-3">
-			<form id="fuckYeah">
-				<label>หมวดหมู่วัตถุดิบ</label>
+			<form id="fix">
+				<b>หมวดหมู่วัตถุดิบ</b>
 				<c:forEach var="ingredientCategory" items="${ingredientCategories}">
 					<div class="checkbox">
 						<label> <input name="ingredient_category_id"
@@ -22,8 +22,9 @@
 					</div>
 				</c:forEach>
 			</form>
+			
 			<script>
-				$('#fuckYeah').affix({
+				$('#fix').affix({
 					offset : {
 						top : 0,
 						bottom : 0
@@ -31,9 +32,10 @@
 				});
 			</script>
 		</div>
+		
 		<div class="col-xs-12 col-md-9">
 		<div class="page-header">
-			<h1>รายการตำรับอาหาร</h1>
+			<h1>วัตถุดิบ</h1>
 		</div>
 			<form action="/ingredients/index" method="get">
 				<table id="cateTable" class="table table-striped">
