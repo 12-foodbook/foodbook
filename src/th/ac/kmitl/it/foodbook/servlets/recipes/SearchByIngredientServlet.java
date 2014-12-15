@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
+import th.ac.kmitl.it.foodbook.beans.Kitchenware;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
+import th.ac.kmitl.it.foodbook.daos.KitchenwaresDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
@@ -49,6 +51,7 @@ public class SearchByIngredientServlet extends HttpServlet {
         List<Recipe> recipesPartial = null;
         List<List<Ingredient>> ingredientsPartial = null;
         List<RecipeCategory> recipeCategories = null;
+        List<Kitchenware> kitchenwares = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -57,6 +60,9 @@ public class SearchByIngredientServlet extends HttpServlet {
             
             RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
             recipeCategories = recipeCategoriesDAO.findAll();
+            
+            KitchenwaresDAO kitchenwaresDAO = new KitchenwaresDAO(conn);
+            kitchenwares = kitchenwaresDAO.findAll();
             
             Set<String> ingredientIdStrings = new HashSet<String>(Arrays.asList(ingredientIds));
             
@@ -164,6 +170,7 @@ public class SearchByIngredientServlet extends HttpServlet {
         request.setAttribute("recipesPartial", recipesPartial);
         request.setAttribute("ingredientsPartial", ingredientsPartial);
         request.setAttribute("recipeCategories", recipeCategories);
+        request.setAttribute("kitchenwares", kitchenwares);
         
         request.getRequestDispatcher("/WEB-INF/views/recipes/search-by-ingredient.jsp").include(request, response);
     }
