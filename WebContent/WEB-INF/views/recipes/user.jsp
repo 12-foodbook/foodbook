@@ -63,7 +63,7 @@
 								${rate}
 							</h3>
 						</form>
-						<c:if test="${param.user_id == recipeUser.user_id}">
+						<c:if test="${param.id == recipeUser.user_id}">
 						<a href="/recipes/edit?id=${recipe.recipe_id}"
 							class='col-md-1 col-md-offset-0'>
 							<input type="submit" class="btn btn-default" value='Edit' /></a>
