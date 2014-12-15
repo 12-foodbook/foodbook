@@ -34,7 +34,7 @@
 									<c:forEach var="ingredient" items="${ingredients[j]}">
 									<div class=' col-sm-4'>
 										<input id='${ingredient.name}' onclick='showStatus("${ingredient.name}")' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
-										<label>
+										<label style='cursor:pointer' for='${ingredient.name}'>
 										${ingredient.name}
 										</label>
 									</div>
@@ -76,24 +76,29 @@
 
 <script type="text/javascript">
 var checknum = 0;
+var numrow=0;
 function showStatus(ingname){
 	var tagHTML ='<span onclick="del_select(this)" id="label-selected_'+ingname+'" class="label label-info" style="margin-left:2%;cursor:pointer">'+ingname+'</span>';
 	if(document.getElementById(ingname).checked){
 		$( "#tagDiv" ).append(tagHTML);	
 		checknum++;
-		if(checknum%5==0){$( "#tagDiv" ).append('<div id="space"><br></div>');}
+		if(checknum%5==0){$( "#tagDiv" ).append('<div id="space"><br></div>');
+		numrow++;
+		}
 	}
 	else{
 		$( '#label-selected_'+ingname+'' ).remove();
 		
-		if(checknum%5==0||checknum>5){$( '#space' ).remove();}
+		if(checknum<5*numrow){$( '#space' ).remove();numrow--;}
 		checknum--;
+		
 	}
 }
 function del_select(temid){
 	document.getElementById(temid.innerHTML).checked=false;
-	if(checknum%5==0||checknum>5){$( '#space' ).remove();}
+	if(checknum<5*numrow){$( '#space' ).remove();numrow--;}
 	checknum--;
+	
 	$("#"+temid.id).remove();
 }
 </script>
