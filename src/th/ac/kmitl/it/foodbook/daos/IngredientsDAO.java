@@ -54,7 +54,7 @@ public class IngredientsDAO extends AbstractDAO {
             ingredient.setPhoto_url(rs.getString("photo_url"));
             ingredient.setCalorie(rs.getFloat("calorie"));
             ingredient.setUnit(rs.getString("unit"));
-            ingredient.setIngrdient_categories(getIngredientCategoriesByIngredientId(rs.getLong("ingredient_id")));
+            ingredient.setIngredient_categories(getIngredientCategoriesByIngredientId(rs.getLong("ingredient_id")));
             
         }
         

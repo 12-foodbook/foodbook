@@ -10,16 +10,16 @@ public class Ingredient {
     private float calorie;
     private float amount;
     private String unit;
-    private List<IngredientCategory> ingrdient_categories;
+    private List<IngredientCategory> ingredient_categories;
     
     
-    public List<IngredientCategory> getIngrdient_categories() {
-        return ingrdient_categories;
+    public List<IngredientCategory> getIngredient_categories() {
+        return ingredient_categories;
     }
 
     
-    public void setIngrdient_categories(List<IngredientCategory> ingrdient_categories) {
-        this.ingrdient_categories = ingrdient_categories;
+    public void setIngredient_categories(List<IngredientCategory> ingrdient_categories) {
+        this.ingredient_categories = ingrdient_categories;
     }
 
     public long getIngredient_id() {

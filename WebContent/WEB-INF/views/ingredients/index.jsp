@@ -43,7 +43,11 @@
 						<td align="center">
 							<input id='ingredient_id' name="ingredient_id" type="checkbox" value="${ingredients[i].ingredient_id}" />
 						</td>
-						<td></td>
+						<td>
+							<c:forEach var="ingredientCategory" items="${ingredients[i].ingredient_categories}">
+								${ingredientCategory.name} 
+							</c:forEach>
+						</td>
 					</tr>	
 				</c:forEach>
 			</table>
