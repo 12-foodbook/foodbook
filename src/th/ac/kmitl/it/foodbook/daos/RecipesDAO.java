@@ -8,11 +8,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.Recipe;
+import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 
 public class RecipesDAO extends AbstractDAO {
     
     public RecipesDAO(Connection conn) {
         super(conn);
+    }
+    
+    public List<RecipeCategory> getRecipeCategoriesByRecipeId(long id) throws SQLException {
+        List<RecipeCategory> recipeCategories = new ArrayList<RecipeCategory>();
+        
+        String sql = "SELECT * FROM recipes_recipe_categories WHERE recipe_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, id);
+        
+        ResultSet rs = stm.executeQuery();
+        
+        RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+        
+        while (rs.next()) {
+            RecipeCategory recipeCategory = recipeCategoriesDAO.find(rs.getLong("recipe_category_id"));
+            recipeCategories.add(recipeCategory);
+        }
+        
+        return recipeCategories;
+        
     }
     
     public boolean create(Recipe recipe) throws SQLException {
