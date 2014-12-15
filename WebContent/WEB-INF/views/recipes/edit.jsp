@@ -113,7 +113,7 @@
 
 			<!-- ingredients -->
 
-			<div class="col-xs-12 col-md-6">
+			<div class="col-xs-12 col-md-6 fixed-div-ingres">
 				<ul class="nav nav-tabs">
 					<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}"
 						var="i">
@@ -131,8 +131,8 @@
 								<div class="checkboxcol col-sm-12">
 									<c:forEach var="ingredient" items="${ingredients[j]}">
 									<div class=' col-sm-6'>
-										<input type="checkbox" onclick="toggleAmount(this)" name="ingredient_id" value="${ingredient.ingredient_id}">
-										<label >
+										<input id='${ingredient.name}' onclick='showNext(this)' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
+										<label style='cursor:pointer' for='${ingredient.name}'>
 										${ingredient.name}
 										</label>
 									</div>
@@ -142,10 +142,13 @@
 							</div>
 						</c:forEach>
 					</div>
+				</div>	
+				<!-- TAG -->
+			<div class='row'>
+				<h3><div id='tagDiv' class='col-sm-6'></div></h3>
+				</div>			
 				</div>
-				</div>
-
-				
+			
 		</div>
 		<!-- button -->
 		<div class="row">
@@ -167,7 +170,7 @@
 	console.log(recipeStepHtml);
 	var $addStepButton = $('#add-step-button');
 	var $createButton = $('#create-button');
-
+	
 	// $recipeSteps.append(recipeStepHtml);
 
 	$addStepButton.click(function() {
@@ -227,13 +230,47 @@
 	}
 
 	var amountHtml = '<input name="ingredient_amount" class="form-control" placeholder="เช่น 5 ชิ้น"/>'
-
+	function showNext(input){
+		$("#"+input.id).click(toggleAmount(input),showStatus(input));
+	}
 	function toggleAmount(input) {
+		
 		if (input.checked)
 			$(input).next().after(amountHtml);
 		else
 			$(input).next().next().remove();
 	}
+	
+  //Copy from Index
+	var checknum = 0;
+var numrow=0;
+function showStatus(input){
+	var ingname = input.id;
+	var tagHTML ='<span onclick="del_select(this)" title="Remove" id="label-selected_'+ingname+'" class="label label-info" style="margin-left:2%;cursor:pointer">'+ingname;
+	tagHTML+='</span>';
+	if(document.getElementById(ingname).checked){
+		$( "#tagDiv" ).append(tagHTML);	
+		checknum++;
+		if(checknum%5==0){$( "#tagDiv" ).append('<div id="space"><br></div>');
+		numrow++;
+		}
+	}
+	else{
+		$( '#label-selected_'+ingname+'' ).remove();
+		$(input).next().next().remove();
+		if(checknum<5*numrow){$( '#space' ).remove();numrow--;}
+		checknum--;
+		
+	}
+}
+function del_select(temid){
+	document.getElementById(temid.innerHTML).checked=false;
+	if(checknum<5*numrow){$( '#space' ).remove();numrow--;}
+	checknum--;
+	
+	$("#"+temid.id).remove();
+}
 </script>
+
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp" />
