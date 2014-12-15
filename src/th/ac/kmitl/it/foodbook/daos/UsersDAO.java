@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.utils.Util;
@@ -86,6 +88,26 @@ public class UsersDAO extends AbstractDAO {
         }
         
         return user;
+    }
+    
+    public List<User> findAll() throws SQLException {
+        String sql = "SELECT * FROM users";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        ResultSet rs = stm.executeQuery();
+        
+        List<User> users = new ArrayList<User>();
+        
+        while (rs.next()) {
+            User user = new User();
+            user.setUser_id(rs.getLong("user_id"));
+            user.setUsername(rs.getString("username"));
+            user.setHashed_password(rs.getString("hashed_password"));
+            user.setSalt(rs.getString("salt"));
+            users.add(user);
+        }
+        
+        return users;
     }
     
     public User findByUsername(String username) throws SQLException {
