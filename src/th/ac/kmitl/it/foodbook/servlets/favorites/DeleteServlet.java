@@ -61,7 +61,7 @@ public class DeleteServlet extends HttpServlet {
         
         if (isSuccess) {
             session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Deleted Successfully!"));
-            response.sendRedirect("/");
+            response.sendRedirect("/favorites/index");
         } else {
             session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Deleted Unsuccessfully!"));
             response.sendRedirect("/favorites/index");
