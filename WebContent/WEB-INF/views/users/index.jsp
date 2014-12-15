@@ -8,6 +8,9 @@
 
 <div class='container'>
 	<div class="row">
+	<div class="page-header">
+		<h1>ผู้ใช้</h1>
+	</div>
 		<div class="col-md-10 col-md-offset-1"><!-- set table -->
 	
 		<form action='/users/delete' method="post">

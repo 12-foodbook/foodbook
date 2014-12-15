@@ -8,6 +8,9 @@
 
 <div class='container'>
 	<div class="row">
+	<div class="page-header">
+		<h1>หมวดหมู่อาหาร</h1>
+	</div>
 		<div class="col-md-10 col-md-offset-1"><!-- set table -->
 	
 		<form action='/recipes/categories/create' method="post">
@@ -93,7 +96,7 @@
 				 
 					
 				    cell1.innerHTML = '<tr><td><div align="center">${fn:length(recipeCategories)+1}</div></td>';
-				    cell2.innerHTML = '<td><div align="center"><input class="col-md-4 col-md-offset-4" value="${recipe.name}" name="name" placeholder="หมวดหมู่อาหาร" /></div></td>';
+				    cell2.innerHTML = '<td><div align="center"><input class="col-md-4 col-md-offset-4" name="name" placeholder="หมวดหมู่อาหาร" /></div></td>';
 				    cell3.innerHTML = '<td><div align="center"><input type="checkbox" value="" /></div></td>';
 				    cell4.innerHTML = '<td><div align="center"><a href="/recipes/categories/index"class="btn btn-default col-md-3">ยกเลิก</a></td>'+
 				    '<td><button class="btn btn-success col-md-4" type="submit">เพิ่มหมวดหมู่</button></div></td></tr>'; 
