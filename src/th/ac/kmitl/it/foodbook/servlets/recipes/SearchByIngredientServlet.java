@@ -40,6 +40,11 @@ public class SearchByIngredientServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] ingredientIds = request.getParameterValues("ingredient_id");
         
+        if (ingredientIds == null) {
+            response.sendRedirect("/");
+            return;
+        }
+        
         List<Recipe> recipes = null;
         List<Recipe> recipesPartial = null;
         List<List<Ingredient>> ingredientsPartial = null;
