@@ -47,6 +47,13 @@ public class CreateServlet extends HttpServlet {
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
+        HttpSession session = request.getSession();
+        
+        if (session.getAttribute("user") == null && session.getAttribute("moderator") == null) {
+            response.sendRedirect("/");
+            return;
+        }
+        
         try {
             Connection conn = ds.getConnection();
             
