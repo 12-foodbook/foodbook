@@ -11,6 +11,7 @@ public class Recipe {
     private long user_id;
     private boolean is_moderator_id;
     private List<RecipeCategory> recipe_categories;
+    private double averageRate;
     
     public List<RecipeCategory> getRecipe_categories() {
         return recipe_categories;
@@ -68,6 +69,16 @@ public class Recipe {
         this.is_moderator_id = is_moderator_id;
     }
     
+    
+    public double getAverageRate() {
+        return averageRate;
+    }
+
+    
+    public void setAverageRate(double averageRate) {
+        this.averageRate = averageRate;
+    }
+
     @Override
     public String toString() {
         return "Recipe [recipe_id=" + recipe_id + ", name=" + name + ", photo_url=" + photo_url + ", video_url=" + video_url + ", user_id=" + user_id + ", is_moderator_id=" + is_moderator_id + "]";

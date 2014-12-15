@@ -68,6 +68,8 @@ public class RecipesDAO extends AbstractDAO {
         
         ResultSet rs = stm.executeQuery();
         
+        RatesDAO ratesDAO = new RatesDAO(conn);
+        
         if (rs.next()) {
             recipe = new Recipe();
             recipe.setRecipe_id(rs.getLong("recipe_id"));
@@ -76,6 +78,10 @@ public class RecipesDAO extends AbstractDAO {
             recipe.setVideo_url(rs.getString("video_url"));
             recipe.setUser_id(rs.getLong("user_id"));
             recipe.setIs_moderator_id(rs.getBoolean("is_moderator_id"));
+            
+            double averageRate = ratesDAO.average(rs.getLong("recipe_id"));
+            
+            recipe.setAverageRate(averageRate);
         }
         
         return recipe;
@@ -89,8 +95,20 @@ public class RecipesDAO extends AbstractDAO {
         
         ResultSet rs = stm.executeQuery();
         
+        RatesDAO ratesDAO = new RatesDAO(conn);
+        
         while (rs.next()) {
-            Recipe recipe = find(rs.getLong("recipe_id"));
+            Recipe recipe = new Recipe();
+            recipe.setRecipe_id(rs.getLong("recipe_id"));
+            recipe.setName(rs.getString("name"));
+            recipe.setPhoto_url(rs.getString("photo_url"));
+            recipe.setVideo_url(rs.getString("video_url"));
+            recipe.setUser_id(rs.getLong("user_id"));
+            recipe.setIs_moderator_id(rs.getBoolean("is_moderator_id"));
+            
+            double averageRate = ratesDAO.average(rs.getLong("recipe_id"));
+            
+            recipe.setAverageRate(averageRate);
             recipes.add(recipe);
         }
         
@@ -271,6 +289,8 @@ public class RecipesDAO extends AbstractDAO {
         
         ResultSet rs = stm.executeQuery();
         
+        RatesDAO ratesDAO = new RatesDAO(conn);
+        
         while (rs.next()) {
             Recipe recipe = new Recipe();
             recipe.setRecipe_id(rs.getLong("recipe_id"));
@@ -279,6 +299,10 @@ public class RecipesDAO extends AbstractDAO {
             recipe.setVideo_url(rs.getString("video_url"));
             recipe.setUser_id(rs.getLong("user_id"));
             recipe.setIs_moderator_id(rs.getBoolean("is_moderator_id"));
+            
+            double averageRate = ratesDAO.average(rs.getLong("recipe_id"));
+            
+            recipe.setAverageRate(averageRate);
             recipes.add(recipe);
         }
         
