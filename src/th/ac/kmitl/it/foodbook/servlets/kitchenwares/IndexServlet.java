@@ -35,6 +35,10 @@ public class IndexServlet extends HttpServlet {
             KitchenwaresDAO kitchenwaresDAO = new KitchenwaresDAO(conn);
             kitchenwares = kitchenwaresDAO.findAll();
             
+            for(Kitchenware i:kitchenwares){
+                System.out.println(i.getName());
+            }
+            
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
