@@ -285,7 +285,7 @@
 var numrow=0;
 function showStatus(input){
 	var ingname = input.id;
-	var tagHTML ='<span onclick="del_select(this)" title="Remove" id="label-selected_'+ingname+'" class="label label-info" style="margin-left:2%;cursor:pointer">'+ingname;
+	var tagHTML ='<span title="Remove" id="label-selected_'+ingname+'" class="label label-info" style="margin-left:2%;">'+ingname;
 	tagHTML+='</span>';
 	if(document.getElementById(ingname).checked){
 		$( "#tagDiv" ).append(tagHTML);	
