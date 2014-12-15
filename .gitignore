@@ -3,3 +3,4 @@
 .settings/
 /build/
 foodbook.mwb.bak
+WebContent/META-INF/context.xml
