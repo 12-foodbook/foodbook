@@ -90,7 +90,7 @@ public class RecipesDAO extends AbstractDAO {
     public List<Recipe> findAll() throws SQLException {
         List<Recipe> recipes = new ArrayList<Recipe>();
         
-        String sql = "SELECT * FROM recipes";
+        String sql = "SELECT * FROM recipes ORDER BY name ASC";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         ResultSet rs = stm.executeQuery();
@@ -282,7 +282,7 @@ public class RecipesDAO extends AbstractDAO {
     public List<Recipe> findByNameLike(String query) throws SQLException {
         List<Recipe> recipes = new ArrayList<Recipe>();
         
-        String sql = "SELECT * FROM recipes WHERE name LIKE ?";
+        String sql = "SELECT * FROM recipes WHERE name LIKE ? ORDER BY name ASC";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setString(1, "%" + query + "%");
@@ -312,7 +312,7 @@ public class RecipesDAO extends AbstractDAO {
     public List<Recipe> findByUserId(long userId) throws SQLException {
         List<Recipe> recipes = new ArrayList<Recipe>();
         
-        String sql = "SELECT recipe_id FROM recipes WHERE user_id = ?";
+        String sql = "SELECT recipe_id FROM recipes WHERE user_id = ?  ORDER BY name ASC";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setLong(1, userId);

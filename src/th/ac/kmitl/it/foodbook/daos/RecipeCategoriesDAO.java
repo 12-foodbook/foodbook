@@ -87,7 +87,7 @@ public class RecipeCategoriesDAO extends AbstractDAO {
     }
     
     public List<RecipeCategory> findAll() throws SQLException {
-        String sql = "SELECT * FROM recipe_categories";
+        String sql = "SELECT * FROM recipe_categories ORDER BY name ASC";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         ResultSet rs = stm.executeQuery();

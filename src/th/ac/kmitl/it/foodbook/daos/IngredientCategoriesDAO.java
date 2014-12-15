@@ -37,7 +37,7 @@ public class IngredientCategoriesDAO extends AbstractDAO {
     public List<IngredientCategory> findAll() throws SQLException {
         List<IngredientCategory> ingredientCategories = new ArrayList<IngredientCategory>();
         
-        String sql = "SELECT * FROM ingredient_categories";
+        String sql = "SELECT * FROM ingredient_categories ORDER BY name ASC";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         ResultSet rs = stm.executeQuery();
