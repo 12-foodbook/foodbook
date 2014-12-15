@@ -26,10 +26,10 @@ public class IngredientsDAO extends AbstractDAO {
         
         ResultSet rs = stm.executeQuery();
         
+        IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
+        
         while (rs.next()) {
-            IngredientCategory ingredientCategory = new IngredientCategory();
-            ingredientCategory.setName(rs.getString("name"));
-            ingredientCategory.setIngredient_category_id(rs.getLong("ingredient_category_id"));
+            IngredientCategory ingredientCategory = ingredientCategoriesDAO.find(rs.getLong("ingredient_category_id"));
             ingredientCategories.add(ingredientCategory);
         }
         
