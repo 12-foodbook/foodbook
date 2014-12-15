@@ -8,7 +8,7 @@
 
 <div class="container">
 	<div class="page-header">
-		<h1><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> รายการตำรับอาหาร</h1>
+		<h1><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> รายการโปรด</h1>
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
