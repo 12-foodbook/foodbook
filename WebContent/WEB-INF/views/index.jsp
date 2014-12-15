@@ -78,7 +78,7 @@
 var checknum = 0;
 var numrow=0;
 function showStatus(ingname){
-	var tagHTML ='<span onclick="del_select(this)" title="Remove" id="label-selected_'+ingname+'" class="label label-info" style="margin-left:2%;cursor:pointer">'+ingname;
+	var tagHTML ='<span onclick="del_select(this)" title="Remove" id="label-selected_'+ingname+'" class="label label-info glyphicon glyphicon-remove" style="margin-left:2%;cursor:pointer">'+ingname;
 	tagHTML+='</span>';
 	if(document.getElementById(ingname).checked){
 		$( "#tagDiv" ).append(tagHTML);	

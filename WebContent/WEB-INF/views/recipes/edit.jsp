@@ -125,16 +125,25 @@
 					<div id="myTabContent" class="tab-content">
 					
 						<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
+						${ingredient.ingredient_id}
 							<div
 								class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>"
 								id="ingredient-category-${j}">
 								<div class="checkboxcol col-sm-12">
 									<c:forEach var="ingredient" items="${ingredients[j]}">
 									<div class=' col-sm-6'>
+									<%-- <c:if test="${recipeIngredients[j].ingredient_id==ingredients[j].ingredient_id}"> --%>									
 										<input id='${ingredient.name}' onclick='showNext(this)' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
 										<label style='cursor:pointer' for='${ingredient.name}'>
 										${ingredient.name}
 										</label>
+										<%-- </c:if> --%>
+									<%-- <c:if test="${recipeIngredients[j].ingredient_id!=ingredients[j].ingredient_id}">
+									<input id='${ingredient.name}' onclick='showNext(this)' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
+										<label style='cursor:pointer' for='${ingredient.name}'>
+										${ingredient.name}
+										</label>
+									</c:if> --%>
 									</div>
 
 									</c:forEach>
@@ -246,7 +255,7 @@
 var numrow=0;
 function showStatus(input){
 	var ingname = input.id;
-	var tagHTML ='<span title="Remove" id="label-selected_'+ingname+'" class="label label-info" style="margin-left:2%;">'+ingname;
+	var tagHTML ='<span title="Remove" id="label-selected_'+ingname+'" class="label label-info glyphicon glyphicon-remove" style="margin-left:2%;">'+ingname;
 	tagHTML+='</span>';
 	if(document.getElementById(ingname).checked){
 		$( "#tagDiv" ).append(tagHTML);	
