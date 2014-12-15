@@ -64,7 +64,7 @@ public class KitchenwaresDAO extends AbstractDAO {
         
         ResultSet rs = stm.executeQuery();
         
-        if (rs.next()) {
+        while (rs.next()) {
             Kitchenware kitchenware = find(rs.getLong("kitchenware_id"));
             kitchenwares.add(kitchenware);
         }

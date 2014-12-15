@@ -86,7 +86,7 @@ public class IngredientsDAO extends AbstractDAO {
         
         ResultSet rs = stm.executeQuery();
         
-        if (rs.next()) {
+        while (rs.next()) {
             Ingredient ingredient = find(rs.getLong("ingredient_id"));
             ingredients.add(ingredient);
         }
