@@ -11,7 +11,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-3">
 			<form id="fix">
-				<b>หมวดหมู่วัตถุดิบ</b>
+				<b><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> หมวดหมู่วัตถุดิบ</b>
 				<c:forEach var="ingredientCategory" items="${ingredientCategories}">
 					<div class="checkbox">
 						<label> <input name="ingredient_category_id"
@@ -35,7 +35,7 @@
 		
 		<div class="col-xs-12 col-md-9">
 		<div class="page-header">
-			<h1>วัตถุดิบ</h1>
+			<h1><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> วัตถุดิบ</h1>
 		</div>
 			<form action="/ingredients/index" method="get">
 				<table id="cateTable" class="table table-striped">
