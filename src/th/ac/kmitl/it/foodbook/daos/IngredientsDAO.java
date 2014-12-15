@@ -8,11 +8,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
+import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
 
 public class IngredientsDAO extends AbstractDAO {
     
     public IngredientsDAO(Connection conn) {
         super(conn);
+    }
+    
+    public List<IngredientCategory> getIngredientCategoriesByIngredientId(long id) throws SQLException {
+        List<IngredientCategory> ingredientCategories = new ArrayList<IngredientCategory>();
+        
+        String sql = "SELECT * FROM ingredients_ingredient_categories WHERE ingredient_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, id);
+        
+        ResultSet rs = stm.executeQuery();
+        
+        while (rs.next()) {
+            IngredientCategory ingredientCategory = new IngredientCategory();
+            ingredientCategory.setName(rs.getString("name"));
+            ingredientCategory.setIngredient_category_id(rs.getLong("ingredient_category_id"));
+            ingredientCategories.add(ingredientCategory);
+        }
+        
+        return ingredientCategories;
+        
     }
     
     public Ingredient find(long id) throws SQLException {
@@ -32,6 +54,8 @@ public class IngredientsDAO extends AbstractDAO {
             ingredient.setPhoto_url(rs.getString("photo_url"));
             ingredient.setCalorie(rs.getFloat("calorie"));
             ingredient.setUnit(rs.getString("unit"));
+            ingredient.setIngrdient_categories(getIngredientCategoriesByIngredientId(rs.getLong("ingredient_id")));
+            
         }
         
         return ingredient;
@@ -66,8 +90,6 @@ public class IngredientsDAO extends AbstractDAO {
         stm.setLong(1, ingredientCategoryId);
         
         ResultSet rs = stm.executeQuery();
-        
-        
         
         while (rs.next()) {
             long ingredientId = rs.getLong("ingredient_id");
