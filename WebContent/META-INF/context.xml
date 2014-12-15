@@ -1,0 +1,29 @@
+<Context>
+    
+	<Resource
+	    name="jdbc/foodbook_development"
+	    auth="Container"
+	    type="javax.sql.DataSource"
+	    maxActive="100"
+	    maxIdle="30"
+	    maxWait="10000"
+	    username="root"
+	    password="root1@#$"
+	    driverClassName="com.mysql.jdbc.Driver"
+	    url="jdbc:mysql://128.199.251.149:3306/foodbook_development?useUnicode=true&amp;characterEncoding=UTF-8"
+	/>
+	
+	<Resource
+	    name="jdbc/foodbook_production"
+	    auth="Container"
+	    type="javax.sql.DataSource"
+	    maxActive="100"
+	    maxIdle="30"
+	    maxWait="10000"
+	    username="root"
+	    password="root1@#$"
+	    driverClassName="com.mysql.jdbc.Driver"
+	    url="jdbc:mysql://128.199.251.149:3306/foodbook_production?useUnicode=true&amp;characterEncoding=UTF-8"
+	/>
+	
+</Context>
