@@ -117,6 +117,11 @@ th, b, strong {
 	background: #F57F17;
 	color: white;
 }
+
+.nav-tabs>li.active>a:focus {
+	background: #F57F17;
+	color: white;
+}
 .checkboxcol{
 	padding-top: 5%;
 	padding-bottom: 5%;
