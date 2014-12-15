@@ -27,18 +27,20 @@
 		</div>
 
 		<div class="list-group media col-xs-12 col-md-8">
-			
-			<c:forEach var="recipe" items="${recipes}">
-				<a href="/recipes/show?id=${recipe.recipe_id}">
+
+			<c:if test="${fn:length(recipes) != 0}">
+			<c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
+				<a href="/recipes/show?id=${recipes[i].recipe_id}">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-xs-12 col-sm-6 col-md-4">
-									<img src="${recipe.photo_url}" width="100%">
+									<img src="${recipes[i].photo_url}" width="100%">
 								</div>
 								<div class="col-xs-12 col-sm-6 col-md-8">
-									<h2>${recipe.name}</h2>
-									${recipe.averageRate}
+									<h2>${recipes[i].name}</h2>
+									${recipeUsers[i].username}<br>
+									${recipes[i].averageRate}
 								</div>
 							</div>
 						</div>
@@ -81,26 +83,31 @@
 					</form>
 				</div> --%>
 			</c:forEach>
+			</c:if>
 			<h3>ขาดบางอย่าง</h3>
-			<hr>
 			<c:if test="${fn:length(recipesPartial) != 0}">
-			<c:forEach var="i" begin="0" end="${fn:length(recipesPartial) - 1}">
-				<div class="panel panel-default">
-					<a href="/recipes/show?id=${recipesPartial[i].recipe_id}">
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-xs-12 col-sm-6 col-md-4">
-									<img src="${recipesPartial[i].photo_url}" width="100%">
-								</div>
-								<div class="col-xs-12 col-sm-6 col-md-8">
-									<h2>${recipesPartial[i].name}</h2>
-									${recipesPartial[i].averageRate}
+				<c:forEach var="i" begin="0" end="${fn:length(recipesPartial) - 1}">
+					<div class="panel panel-default">
+						<a href="/recipes/show?id=${recipesPartial[i].recipe_id}">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<img src="${recipesPartial[i].photo_url}" width="100%">
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-8">
+										<h2>${recipesPartial[i].name}</h2>
+										${recipesPartialUsers[i].username}<br>
+										${recipesPartial[i].averageRate}<br> <b>ขาด:</b>
+										<c:forEach var="ingredientPartial"
+											items="${ingredientsPartial[i]}">
+							${ingredientPartial.name} 
+						</c:forEach>
+									</div>
 								</div>
 							</div>
-						</div>
-					</a>
-				</div>
-				<%-- <a href="/recipes/show?id=${recipesPartial[i].recipe_id}" class="media-left media-top col-md-3">
+						</a>
+					</div>
+					<%-- <a href="/recipes/show?id=${recipesPartial[i].recipe_id}" class="media-left media-top col-md-3">
 					<img src="${recipesPartial[i].photo_url}" style="width:80%;height:80%" alt="image">
 				</a>
 
@@ -140,7 +147,7 @@
 						${ingredientPartial.name}<br>
 					</c:forEach>
 				</div> --%>
-			</c:forEach>
+				</c:forEach>
 			</c:if>
 		</div>
 	</div>

@@ -20,10 +20,12 @@ import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.Kitchenware;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
+import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
 import th.ac.kmitl.it.foodbook.daos.KitchenwaresDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
+import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 
 @WebServlet("/recipes/search-by-ingredient")
 public class SearchByIngredientServlet extends HttpServlet {
@@ -48,7 +50,9 @@ public class SearchByIngredientServlet extends HttpServlet {
         }
         
         List<Recipe> recipes = null;
+        List<User> recipesUsers = null;
         List<Recipe> recipesPartial = null;
+        List<User> recipesPartialUsers = null;
         List<List<Ingredient>> ingredientsPartial = null;
         List<RecipeCategory> recipeCategories = null;
         List<Kitchenware> kitchenwares = null;
@@ -68,9 +72,12 @@ public class SearchByIngredientServlet extends HttpServlet {
             
             IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
             RecipesDAO recipesDAO = new RecipesDAO(conn);
+            UsersDAO usersDAO = new UsersDAO(conn);
             
             recipes = new ArrayList<Recipe>();
+            recipesUsers = new ArrayList<User>();
             recipesPartial = new ArrayList<Recipe>();
+            recipesPartialUsers = new ArrayList<User>();
             ingredientsPartial = new ArrayList<List<Ingredient>>();
             
             // For ingredient in all selected ingredients...
@@ -106,6 +113,8 @@ public class SearchByIngredientServlet extends HttpServlet {
                         
                         if (!fuckedUp) {
                             recipes.add(recipe);
+                            User user = usersDAO.find(recipe.getUser_id());
+                            recipesUsers.add(user);
                         }
                         
                     }
@@ -115,7 +124,7 @@ public class SearchByIngredientServlet extends HttpServlet {
                         // TODO: Remove fuck up (duplicate recipe).
                         boolean fuckedUp = false;
                         
-                        for (Recipe fu : recipes) {
+                        for (Recipe fu : recipesPartial) {
                             if (recipe.getRecipe_id() == fu.getRecipe_id()) {
                                 fuckedUp = true;
                             }
@@ -123,6 +132,8 @@ public class SearchByIngredientServlet extends HttpServlet {
                         
                         if (!fuckedUp) {
                             recipesPartial.add(recipe);
+                            User user = usersDAO.find(recipe.getUser_id());
+                            recipesPartialUsers.add(user);
                             
                             List<Ingredient> ingredientPartial = new ArrayList<Ingredient>();
                             
@@ -167,7 +178,9 @@ public class SearchByIngredientServlet extends HttpServlet {
         }
         
         request.setAttribute("recipes", recipes);
+        request.setAttribute("recipesUsers", recipesUsers);
         request.setAttribute("recipesPartial", recipesPartial);
+        request.setAttribute("recipesPartialUsers", recipesPartialUsers);
         request.setAttribute("ingredientsPartial", ingredientsPartial);
         request.setAttribute("recipeCategories", recipeCategories);
         request.setAttribute("kitchenwares", kitchenwares);
