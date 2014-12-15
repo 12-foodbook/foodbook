@@ -88,7 +88,7 @@
 					<c:forEach var="recipeStep" items="${recipeSteps}">
 						<hr>
 						<div class="form-group">
-							<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
+							<label class="col-sm-4 control-label label-create ">หัวข้อขั้นตอน</label>
 							<div class="col-sm-8">
 								<input name="step_title" class="form-control"
 									value="${recipeStep.title}">
@@ -205,15 +205,19 @@
 <script>
 	var $createRecipeForm = $('#create-recipe');
 	var $recipeSteps = $('#recipe-steps');
-	var recipeStepHtml = '<hr><div class="form-group"><label class="col-sm-4 control-label">หัวข้อขั้นตอน</label><div class="col-sm-8"><input name="step_title" class="form-control" value="${recipeStep.title}"></div></div><div class="form-group"><label class="col-sm-4 control-label">รายละเอียดขั้นตอน</label><div class="col-sm-8"><textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea></div></div><div class="form-group"><label class="col-sm-4 control-label">รูปภาพประกอบขั้นตอน</label><div class="col-sm-8"><input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)"><input name="step_photo_url" class="form-control" type="hidden"></div></div>';
-	console.log(recipeStepHtml);
+	var temp = 1;
 	var $addStepButton = $('#add-step-button');
 	var $createButton = $('#create-button');
-	
 	// $recipeSteps.append(recipeStepHtml);
 
 	$addStepButton.click(function() {
+		var recipeStepHtml = '<div id="step_'+temp+'"><hr><img src="../img/remove_red.png" alt="remove" onclick='+'remove_step('+'"step_'+temp+'"'+')'+' width="22px" height="22px"/>'+
+		'<div class="form-group"><label class="col-sm-4 control-label">หัวข้อขั้นตอน</label><div class="col-sm-8"><input name="step_title" class="form-control" value="${recipeStep.title}"></div></div>'+
+		'<div class="form-group"><label class="col-sm-4 control-label">รายละเอียดขั้นตอน</label><div class="col-sm-8"><textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea></div></div>'+
+		'<div class="form-group"><label class="col-sm-4 control-label">รูปภาพประกอบขั้นตอน</label><div class="col-sm-8"><input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)"><input name="step_photo_url" class="form-control" type="hidden"></div></div></div>';
+		console.log(recipeStepHtml);
 		$recipeSteps.append(recipeStepHtml);
+		temp++;
 	});
 
 	$createRecipeForm.submit(function(event) {
@@ -309,6 +313,11 @@ function del_select(temid){
 	
 	$("#"+temid.id).remove();
 }
+
+function remove_step(temp){
+	$('#'+temp).remove();
+}
+
 </script>
 
 <%-- <div class="container">
