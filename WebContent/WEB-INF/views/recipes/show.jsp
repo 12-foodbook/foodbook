@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-8">
 
-			<img src="${recipe.photo_url}" width="100%" />
+			<img src="${recipe.photo_url}" />
 
 			<c:if test="${!empty recipe.video_url}">
 				<div class="embed-responsive embed-responsive-16by9">
