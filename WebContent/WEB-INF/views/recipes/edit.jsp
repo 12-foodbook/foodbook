@@ -141,7 +141,8 @@
 										<input id='${ingredient.name}' checked="checked" onclick='showNext(this)' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
 										<label style='cursor:pointer' for='${ingredient.name}'>
 										${ingredient.name}
-										</label>										
+										</label>
+										<input name="ingredient_amount" class="form-control" value='${recipeIngredient.amount}'/>										
 									</div>
 									</c:if>
 									
