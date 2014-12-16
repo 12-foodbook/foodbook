@@ -31,6 +31,7 @@ public class UserServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userIdString = request.getParameter("id");
+        User user = null;
         List<Recipe> recipes = null;
         List<RecipeCategory> recipeCategories = null;
         
@@ -40,8 +41,6 @@ public class UserServlet extends HttpServlet {
         
         try {
             Connection conn = ds.getConnection();
-            
-            User user = null;
             
             if (session.getAttribute("user") != null) {
                 user = (User) session.getAttribute("user");
@@ -54,6 +53,8 @@ public class UserServlet extends HttpServlet {
                 response.sendRedirect("/");
                 return;
             }
+            
+            request.setAttribute("user", user);
             
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipes = recipesDAO.findByUserId(user.getUser_id());

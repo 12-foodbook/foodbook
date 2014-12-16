@@ -11,7 +11,7 @@
 	<div class="page-header">
 		<h1>
 			<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-			รายการตำรับอาหาร
+			รายการตำรับอาหารของ ${user.username}
 		</h1>
 	</div>
 	<div class="row">
