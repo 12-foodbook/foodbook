@@ -6,6 +6,7 @@ public class Recipe {
     
     private long recipe_id;
     private String name;
+    private String description;
     private String photo_url;
     private String video_url;
     private long user_id;
@@ -37,6 +38,16 @@ public class Recipe {
         this.name = name;
     }
     
+    
+    public String getDescription() {
+        return description;
+    }
+
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getPhoto_url() {
         return photo_url;
     }

@@ -27,6 +27,12 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="name" class="col-sm-4 control-label label-create">คำอธิบายรายการอาหาร</label>
+					<div class="col-sm-8">
+						<textarea name="description">${recipe.description}</textarea>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="name" class="col-sm-4 control-label label-create">หมวดรายการอาหาร</label>
 					<div class="col-sm-8">						
 						<c:forEach var='i' begin="0" end="${fn:length(recipeCategories) - 1}">
