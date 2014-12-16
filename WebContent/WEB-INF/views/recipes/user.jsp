@@ -28,8 +28,112 @@
 				</c:forEach>
 			</form>
 		</div>
+				<div class="list-group media col-xs-12 col-md-8">
+			<c:if test="${fn:length(recipes) != 0}">
+				<c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
+					<a href="/recipes/show?id=${recipes[i].recipe_id}"
+						class="recipe-panel">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<img src="${recipes[i].photo_url}" width="100%">
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<h2>${recipes[i].name}</h2>
+										โดย ${recipesUsers[i].username}<br>
+										<div class="media-body col-md-12">
+											<form action="/rates" accept-charset="UTF-8" method="post">
+												<input type="hidden" value="${recipe.recipe_id}"
+													name="recipe_id">
+												<h3>
+													<script>
+														function sentrate(
+																recipe_id, rate) {
+															$
+																	.post(
+																			'/rates',
+																			{
+																				'recipe_id' : recipe_id,
+																				'rate' : rate
+																			},
+																			function(
+																					data) {
+																				console
+																						.log(data);
+																			});
+														}
+													</script>
+													<span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
+													<span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span>
+													<span onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span>
+													<span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span>
+													<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span>
+													${rate}
+												</h3>
+											</form>
+											<form class="col-md-4" method="post" accept-charset="UTF-8"
+												action="/favorites/create">
+												<input type="hidden" name="recipe_id"
+													value="${recipe.recipe_id}">
+											</form>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<a href="/recipes/edit?id=${recipes[i].recipe_id}"
+											class='col-md-1 col-md-offset-0'> <input type="submit"
+											class="btn btn-default" value='Edit' />
+										</a>
+										<c:if test="${param.id == recipeUser.user_id}">
+											<form action="/recipes/delete" method="post"
+												class='col-md-10' style='margin-left: 2%'>
+												<input type="hidden" name="recipe_id"
+													value="${recipes[i].recipe_id}">
+												<!-- Button trigger modal -->
+												<button type="button" class="btn btn-danger col-md-offset-2"
+													data-toggle="modal" data-target="#myModal_${recipes[i].name}">Delete</button>
 
-		<div class="list-group media col-xs-12 col-md-8">
+												<!-- Modal -->
+												<div class="modal fade" id="myModal_${recipes[i].name}"
+													tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+													aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal">
+																	<span aria-hidden="true">&times;</span><span
+																		class="sr-only">Close</span>
+																</button>
+																<h4 class="modal-title" id="myModalLabel">Delete
+																	Recipe</h4>
+															</div>
+															<div class="modal-body">Are you sure to delete
+																${recipes[i].name}?</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-default"
+																	data-dismiss="modal">Cancel</button>
+																<input type="submit" class="btn btn-danger"
+																	value='Delete'>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+											<form class="col-md-4" method="post" accept-charset="UTF-8"
+												action="/favorites/create">
+												<input type="hidden" name="recipe_id"
+													value="${recipes[i].recipe_id}">
+											</form>
+										</c:if>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</c:forEach>
+			</c:if>
+		</div>
+		<%-- <div class="list-group media col-xs-12 col-md-8">
 			<c:if test="${fn:length(recipes) == 0}">
 				<h3>ยังไม่มีรายการตำรับอาหาร</h3>
 			</c:if>
@@ -80,7 +184,7 @@
 									value="${recipe.recipe_id}">
 								<!-- Button trigger modal -->
 								<button type="button" class="btn btn-danger" data-toggle="modal"
-									data-target="#myModal_${recipe.name}">Delete</button>
+									data-target="#myModal_${recipe.name}">Delete</button> 
 
 								<!-- Modal -->
 								<div class="modal fade" id="myModal_${recipe.name}"
@@ -117,7 +221,7 @@
 				</div>
 				<hr class='col-sm-12'>
 			</c:forEach>
-		</div>
+		</div> --%>
 	</div>
 </div>
 
