@@ -111,7 +111,7 @@
 										สร้างตำรับอาหาร
 								</a></li>
 								<li class="divider"></li>
-								<li><a href="/users/deauthenticate" data-toggle="modal"
+								<li><a href="#" data-toggle="modal"
 									data-target="#logoutModal"> <span
 										class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
 										ออกจากระบบ
