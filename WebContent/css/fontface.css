@@ -44,3 +44,8 @@
     font-family: 'thaisansneue_ultralight';
     src: url('../fonts/thaisansneue-ultralight-webfont.eot');src: url('../fonts/thaisansneue-ultralight-webfont.eot?#iefix') format('embedded-opentype'),url('../fonts/thaisansneue-ultralight-webfont.woff') format('woff'),url('../fonts/thaisansneue-ultralight-webfont.ttf') format('truetype'),url('../fonts/thaisansneue-ultralight-webfont.svg#thaisans_neue_ultltregular') format('svg');font-weight: normal;font-style: normal;
 }
+@font-face{
+	font-family: 'CircusOrnate';
+	src: url("../fonts/CircusOrnate-1.ttf");
+	
+}

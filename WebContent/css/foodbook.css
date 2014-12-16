@@ -4,14 +4,6 @@
 	color: #333 !important;
 }
 
-@font-face {
-    font-family: hottpizza;
-	src: url(fonts/hotpizza.ttf);    
-}
-@font-face {
-    font-family: TGI;
-	src: url(fonts/TGIFriday.ttf);    
-}
 body{
 	padding-top: 70px;
 	padding-bottom: 20px;
