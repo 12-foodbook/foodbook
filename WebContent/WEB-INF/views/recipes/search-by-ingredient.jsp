@@ -86,6 +86,7 @@
 				</c:forEach>
 			</c:if>
 			<h3>ตำรับอาหารที่ขาดวัตถุดิบบางอย่าง</h3>
+			<hr>
 			<c:if test="${fn:length(recipesPartial) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipesPartial) - 1}">
 					<div class="panel panel-default">
