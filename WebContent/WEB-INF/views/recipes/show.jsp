@@ -24,9 +24,10 @@
 				<div class="embed-responsive embed-responsive-16by9">
 					<iframe src="${recipe.video_url}"></iframe>
 				</div>
-				<hr>
 			</c:if>
 
+			<hr>
+			
 			<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -34,9 +35,8 @@
 					</div>
 					<div class="panel-body">
 						${recipeSteps[i].description}
-
 						<c:forEach var="recipeStepPhoto" items="${recipeStepPhotos[i]}">
-							<img src="${recipeStepPhoto.photo_url}">
+							<img src="${recipeStepPhoto.photo_url}" width="100%">
 						</c:forEach>
 					</div>
 				</div>
