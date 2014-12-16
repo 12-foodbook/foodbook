@@ -6,7 +6,9 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 <div class="container">
-	<h1><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Not Found</h1>
+	<div class="page-header">
+		<h1><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Not Found</h1>
+	</div>
 </div>
 
 <jsp:include page="/WEB-INF/views/layouts/footer.jsp"/>
