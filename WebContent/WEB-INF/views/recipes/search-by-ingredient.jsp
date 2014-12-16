@@ -41,7 +41,8 @@
 									<div class="col-xs-12 col-sm-6 col-md-8">
 										<h2>${recipes[i].name}</h2>
 										โดย ${recipeUsers[i].username}<br>
-										${recipes[i].averageRate}
+										${recipes[i].averageRate}<br>
+										${recipes[i].description}
 									</div>
 								</div>
 							</div>
