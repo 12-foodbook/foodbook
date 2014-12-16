@@ -61,7 +61,7 @@
 						value="${totalCalorie + (ingredient.calorie * ingredient.amount)}" />
 					<tr>
 						<td>${ingredient.name}</td>
-						<td>${ingredient.amount}${ingredient.unit}</td>
+						<td>${ingredient.amount} ${ingredient.unit}</td>
 						<td>${ingredient.calorie}</td>
 					</tr>
 				</c:forEach>

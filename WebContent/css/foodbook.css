@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.recipe-panel {
+	color: #333 !important;
+}
+
 @font-face {
     font-family: hottpizza;
 	src: url(fonts/hotpizza.ttf);    

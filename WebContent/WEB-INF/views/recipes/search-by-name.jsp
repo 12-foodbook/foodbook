@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="pageTitle" value="Recipes / Index" scope="application" />
 
@@ -26,22 +27,26 @@
 		</div>
 
 		<div class="list-group media col-xs-12 col-md-8">
-			<c:forEach var="recipe" items="${recipes}">
-			<a href="/recipes/show?id=${recipe.recipe_id}">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-xs-12 col-sm-6 col-md-4">
-								<img src="${recipe.photo_url}" width="100%">
-							</div>
-							<div class="col-xs-12 col-sm-6 col-md-8">
-								<h2>${recipe.name}</h2>
+			<c:if test="${fn:length(recipes) != 0}">
+				<c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
+					<a href="/recipes/show?id=${recipes[i].recipe_id}"
+						class="recipe-panel">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<img src="${recipes[i].photo_url}" width="100%">
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-8">
+										<h2>${recipes[i].name}</h2>
+										โดย ${recipesUsers[i].username}<br>
+										${recipes[i].averageRate}
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</a>
-				<%-- <a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top col-md-3">
+					</a>
+					<%-- <a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top col-md-3">
 					<img src="${recipe.photo_url}" style="width:80%;height:80%" alt="image">
 				</a>
 
@@ -77,7 +82,8 @@
 						<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
 					</form>
 				</div> --%>
-			</c:forEach>
+				</c:forEach>
+			</c:if>
 		</div>
 	</div>
 </div>
