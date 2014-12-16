@@ -145,7 +145,7 @@
 								<li class="divider"></li>
 								<li><a href="/moderators/deauthenticate"><span
 										class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-										ออกจากระบบ</a></li>
+										ออกจากระบบผู้ดูแล</a></li>
 							</ul></li>
 					</c:if>
 				</ul>
