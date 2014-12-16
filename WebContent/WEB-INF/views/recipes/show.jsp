@@ -9,14 +9,14 @@
 
 <div class="container">
 
-	<div class="page-header">
-		<h1>${recipe.name}
-			<small>โดย <a href="/recipes/user?id=${recipeUser.user_id}">${recipeUser.username}</a></small>
-		</h1>
-	</div>
-
 	<div class="row">
 		<div class="col-xs-12 col-md-8">
+
+			<div class="page-header">
+				<h1>${recipe.name}
+					<small>โดย <a href="/recipes/user?id=${recipeUser.user_id}">${recipeUser.username}</a></small>
+				</h1>
+			</div>
 
 			<img src="${recipe.photo_url}" width="100%" />
 
@@ -27,11 +27,11 @@
 			</c:if>
 
 			<hr>
-			
+
 			<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">${i+1}. ${recipeSteps[i].title}</h3>
+						<h3 class="panel-title">${i+1}.${recipeSteps[i].title}</h3>
 					</div>
 					<div class="panel-body">
 						<p>${recipeSteps[i].description}</p>
@@ -49,39 +49,42 @@
 		</div>
 
 		<div class="col-xs-12 col-md-4">
-			<table class="table table-bordered">
-				<tr>
-					<th>วัตถุดิบ</th>
-					<th>ปริมาณที่ใช้</th>
-					<th>แคเรอรี่</th>
-				</tr>
-				<c:set var="totalCalorie" value="0" />
-				<c:forEach var="ingredient" items="${ingredients}">
-					<c:set var="totalCalorie"
-						value="${totalCalorie + (ingredient.calorie * ingredient.amount)}" />
+			<div id="fix">
+				<table class="table table-bordered">
 					<tr>
-						<td>${ingredient.name}</td>
-						<td>${ingredient.amount} ${ingredient.unit}</td>
-						<td>${ingredient.calorie}</td>
+						<th>วัตถุดิบ</th>
+						<th>ปริมาณที่ใช้</th>
+						<th>แคเรอรี่</th>
 					</tr>
-				</c:forEach>
-				<tr>
-					<td colspan="2"><strong>แคเรอรี่รวม</strong></td>
-					<td>${totalCalorie}</td>
-				</tr>
-			</table>
-			<c:if test="${!empty user}">
-				<form action="/rates" method="post">
-					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
-					<div class="btn-group" role="group">
-						<input class="btn btn-default" type="submit" name="rate" value="1">
-						<input class="btn btn-default" type="submit" name="rate" value="2">
-						<input class="btn btn-default" type="submit" name="rate" value="3">
-						<input class="btn btn-default" type="submit" name="rate" value="4">
-						<input class="btn btn-default" type="submit" name="rate" value="5">
-					</div>
-				</form>
-				<%-- <h1>
+					<c:set var="totalCalorie" value="0" />
+					<c:forEach var="ingredient" items="${ingredients}">
+						<c:set var="totalCalorie"
+							value="${totalCalorie + (ingredient.calorie * ingredient.amount)}" />
+						<tr>
+							<td>${ingredient.name}</td>
+							<td>${ingredient.amount} ${ingredient.unit}</td>
+							<td>${ingredient.calorie}</td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<td colspan="2"><strong>แคเรอรี่รวม</strong></td>
+						<td>${totalCalorie}</td>
+					</tr>
+				</table>
+				<c:if test="${!empty user}">
+					<form action="/rates" method="post">
+						<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
+						<div class="btn-group" role="group">
+							<input class="btn btn-default" type="submit" name="rate"
+								value="1"> <input class="btn btn-default" type="submit"
+								name="rate" value="2"> <input class="btn btn-default"
+								type="submit" name="rate" value="3"> <input
+								class="btn btn-default" type="submit" name="rate" value="4">
+							<input class="btn btn-default" type="submit" name="rate"
+								value="5">
+						</div>
+					</form>
+					<%-- <h1>
 					<script>
 					function sentrate(recipe_id,rate) {
 						$.post('/rates', {'recipe_id':recipe_id,'rate':rate}, function (data) {
@@ -96,13 +99,22 @@
 						<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span>
 						${rate}
 					</h1> --%>
-				<form method="post" accept-charset="UTF-8"
-					action="/favorites/create">
-					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
-					<button class="btn btn-lg btn-block btn-danger">เพิ่มในรายการโปรด</button>
-				</form>
-			</c:if>
-			${recipe.averageRate}
+					<form method="post" accept-charset="UTF-8"
+						action="/favorites/create">
+						<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
+						<button class="btn btn-lg btn-block btn-danger">เพิ่มในรายการโปรด</button>
+					</form>
+				</c:if>
+				${recipe.averageRate}
+			</div>
+			<script>
+		$('#fix').affix({
+		    offset : {
+			top : 0,
+			bottom : 0
+		    }
+		});
+	    </script>
 		</div>
 	</div>
 
