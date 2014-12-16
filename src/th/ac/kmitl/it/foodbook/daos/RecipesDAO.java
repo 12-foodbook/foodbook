@@ -38,13 +38,14 @@ public class RecipesDAO extends AbstractDAO {
     }
     
     public boolean create(Recipe recipe) throws SQLException {
-        String sql = "INSERT INTO recipes (name, video_url, user_id, is_moderator_id) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO recipes (name, photo_url, video_url, user_id, is_moderator_id) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         
         stm.setString(1, recipe.getName());
-        stm.setString(2, recipe.getVideo_url());
-        stm.setLong(3, recipe.getUser_id());
-        stm.setBoolean(4, recipe.getIs_moderator_id());
+        stm.setString(2, recipe.getPhoto_url());
+        stm.setString(3, recipe.getVideo_url());
+        stm.setLong(4, recipe.getUser_id());
+        stm.setBoolean(5, recipe.getIs_moderator_id());
         
         int rowCount = stm.executeUpdate();
         
