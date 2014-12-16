@@ -38,14 +38,15 @@ public class RecipesDAO extends AbstractDAO {
     }
     
     public boolean create(Recipe recipe) throws SQLException {
-        String sql = "INSERT INTO recipes (name, photo_url, video_url, user_id, is_moderator_id) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO recipes (name, description, photo_url, video_url, user_id, is_moderator_id) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         
         stm.setString(1, recipe.getName());
-        stm.setString(2, recipe.getPhoto_url());
-        stm.setString(3, recipe.getVideo_url());
-        stm.setLong(4, recipe.getUser_id());
-        stm.setBoolean(5, recipe.getIs_moderator_id());
+        stm.setString(2, recipe.getDescription());
+        stm.setString(3, recipe.getPhoto_url());
+        stm.setString(4, recipe.getVideo_url());
+        stm.setLong(5, recipe.getUser_id());
+        stm.setBoolean(6, recipe.getIs_moderator_id());
         
         int rowCount = stm.executeUpdate();
         
@@ -75,6 +76,7 @@ public class RecipesDAO extends AbstractDAO {
             recipe = new Recipe();
             recipe.setRecipe_id(rs.getLong("recipe_id"));
             recipe.setName(rs.getString("name"));
+            recipe.setDescription(rs.getString("description"));
             recipe.setPhoto_url(rs.getString("photo_url"));
             recipe.setVideo_url(rs.getString("video_url"));
             recipe.setUser_id(rs.getLong("user_id"));
@@ -102,6 +104,7 @@ public class RecipesDAO extends AbstractDAO {
             Recipe recipe = new Recipe();
             recipe.setRecipe_id(rs.getLong("recipe_id"));
             recipe.setName(rs.getString("name"));
+            recipe.setDescription(rs.getString("description"));
             recipe.setPhoto_url(rs.getString("photo_url"));
             recipe.setVideo_url(rs.getString("video_url"));
             recipe.setUser_id(rs.getLong("user_id"));
@@ -268,12 +271,13 @@ public class RecipesDAO extends AbstractDAO {
     }
     
     public boolean update(Recipe recipe) throws SQLException {
-        String sql = "UPDATE recipes SET name = ?, video_url = ? WHERE recipe_id = ?";
+        String sql = "UPDATE recipes SET name = ?, description = ?, video_url = ? WHERE recipe_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setString(1, recipe.getName());
-        stm.setString(2, recipe.getVideo_url());
-        stm.setLong(3, recipe.getRecipe_id());
+        stm.setString(2, recipe.getDescription());
+        stm.setString(3, recipe.getVideo_url());
+        stm.setLong(4, recipe.getRecipe_id());
         
         int rowCount = stm.executeUpdate();
         
@@ -296,6 +300,7 @@ public class RecipesDAO extends AbstractDAO {
             Recipe recipe = new Recipe();
             recipe.setRecipe_id(rs.getLong("recipe_id"));
             recipe.setName(rs.getString("name"));
+            recipe.setDescription(rs.getString("description"));
             recipe.setPhoto_url(rs.getString("photo_url"));
             recipe.setVideo_url(rs.getString("video_url"));
             recipe.setUser_id(rs.getLong("user_id"));

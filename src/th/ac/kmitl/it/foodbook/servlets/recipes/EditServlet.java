@@ -110,6 +110,7 @@ public class EditServlet extends HttpServlet {
         long recipeId = Long.parseLong(recipeIdString);
         
         String name = request.getParameter("name");
+        String description = request.getParameter("description");
         String photoUrl = request.getParameter("photo_url");
         String videoUrl = request.getParameter("video_url");
         
@@ -143,6 +144,7 @@ public class EditServlet extends HttpServlet {
             
             recipe = recipesDAO.find(recipeId);
             recipe.setName(name);
+            recipe.setDescription(description);
             recipe.setPhoto_url(photoUrl);
             recipe.setVideo_url(videoUrl);
             
