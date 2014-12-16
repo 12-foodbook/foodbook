@@ -18,18 +18,26 @@
 				<thead><td align="center">#</td><td align="center">หมวดหมู่อาหาร</td><td align="center">ลบหมวดหมู่</td><td></td></thead>
 				<c:forEach var="i" begin="0" end="${fn:length(recipeCategories)-1}">
 					
-					<tr>
+					<tr id='row_${recipeCategories[i].name}' onmouseout="hide_visible('${recipeCategories[i].name}')" onmouseover="show_visible('${recipeCategories[i].name}')">
 						<td align="center" >${i+1}</td>
 						<td align="center" id='cateValue_${recipeCategories[i].name}' value="${recipeCategories[i].name}">${recipeCategories[i].name}</td>
 						<td align="center"><input id='recipe_category_id' name="recipe_category_id" type="checkbox" value="${recipeCategories[i].recipe_category_id}" /></td>
-						<td id="editButt_${recipeCategories[i].name}"><a  onclick="editCate('${recipeCategories[i].recipe_category_id}','editButt_${recipeCategories[i].name}','cateValue_${recipeCategories[i].name}','${recipeCategories[i].name}')" class="btn btn-default col-md-6" >แก้ไขหมวดหมู่</a></td>
-						<td></td>
+						<td style='visibility:hidden' id="editButt_${recipeCategories[i].name}"><a  onclick="editCate('${recipeCategories[i].recipe_category_id}','editButt_${recipeCategories[i].name}','cateValue_${recipeCategories[i].name}','${recipeCategories[i].name}')" class="btn btn-default col-md-6" >แก้ไขหมวดหมู่</a></td>						
 					</tr>	
 				</c:forEach>
 			</table></form>
 			
 			<!-- edit -->
 			<script type="text/javascript">
+			
+				function show_visible(id){
+					document.getElementById('editButt_'+id).style.visibility='visible';
+				}
+				
+				function hide_visible(id){
+					
+					document.getElementById('editButt_'+id).style.visibility='hidden';
+				}
 				
 				function editCate(id,butt,catefield,val){
 					//alert("333");
