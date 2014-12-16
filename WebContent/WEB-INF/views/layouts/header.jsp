@@ -25,7 +25,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-					<a href="/moderators/deauthenticate" class="btn btn-primary">Yes</a>
+					<a href="/users/deauthenticate" class="btn btn-primary">Yes</a>
 				</div>
 			</div>
 			<!-- /.modal-content -->
