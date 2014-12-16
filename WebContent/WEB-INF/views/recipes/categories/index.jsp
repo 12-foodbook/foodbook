@@ -22,7 +22,7 @@
 						<td align="center" >${i+1}</td>
 						<td align="center" id='cateValue_${recipeCategories[i].name}' value="${recipeCategories[i].name}">${recipeCategories[i].name}</td>
 						<td align="center"><input id='recipe_category_id' name="recipe_category_id" type="checkbox" value="${recipeCategories[i].recipe_category_id}" /></td>
-						<td style='visibility:hidden' id="editButt_${recipeCategories[i].name}"><a  onclick="editCate('${recipeCategories[i].recipe_category_id}','editButt_${recipeCategories[i].name}','cateValue_${recipeCategories[i].name}','${recipeCategories[i].name}')" class="btn btn-default col-md-6" >แก้ไขหมวดหมู่</a></td>						
+						<td id="editButt_${recipeCategories[i].name}"><a id="a_${recipeCategories[i].name}" style='visibility:hidden' onclick="editCate('${recipeCategories[i].recipe_category_id}','editButt_${recipeCategories[i].name}','cateValue_${recipeCategories[i].name}','${recipeCategories[i].name}')" class="btn btn-default col-md-6" >แก้ไขหมวดหมู่</a></td>						
 					</tr>	
 				</c:forEach>
 			</table></form>
@@ -31,12 +31,12 @@
 			<script type="text/javascript">
 			
 				function show_visible(id){
-					document.getElementById('editButt_'+id).style.visibility='visible';
+					document.getElementById('a_'+id).style.visibility='visible';
 				}
 				
 				function hide_visible(id){
 					
-					document.getElementById('editButt_'+id).style.visibility='hidden';
+					document.getElementById('a_'+id).style.visibility='hidden';
 				}
 				
 				function editCate(id,butt,catefield,val){
