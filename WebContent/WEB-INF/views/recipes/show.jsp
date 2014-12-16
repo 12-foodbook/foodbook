@@ -34,7 +34,7 @@
 						<h3 class="panel-title">${i+1}.${recipeSteps[i].title}</h3>
 					</div>
 					<div class="panel-body">
-						${recipeSteps[i].description}
+						<p>${recipeSteps[i].description}</p>
 						<c:forEach var="recipeStepPhoto" items="${recipeStepPhotos[i]}">
 							<img src="${recipeStepPhoto.photo_url}" width="100%">
 						</c:forEach>

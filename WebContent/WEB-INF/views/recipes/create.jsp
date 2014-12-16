@@ -202,6 +202,12 @@
 
 </div>
 
+<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea"
+ });
+</script>
 <script>
 	var $createRecipeForm = $('#create-recipe');
 	var $recipeSteps = $('#recipe-steps');
@@ -218,6 +224,9 @@
 		console.log(recipeStepHtml);
 		$recipeSteps.append(recipeStepHtml);
 		temp++;
+		tinymce.init({
+		    selector: "textarea"
+		 });
 	});
 
 	$createRecipeForm.submit(function(event) {
