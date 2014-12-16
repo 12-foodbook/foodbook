@@ -31,8 +31,9 @@
 					<div class="col-sm-8">						
 						<c:forEach var='i' begin="0" end="${fn:length(recipeCategories) - 1}">
 						<div class='col-sm-3'>
-						<input type="checkbox" name="recipe_category_id" value="${recipeCategories[i].recipe_category_id}">
 						<label>
+						
+						<input type="checkbox" name="recipe_category_id" value="${recipeCategories[i].recipe_category_id}">
 						${recipeCategories[i].name}
 						</label>
 						</div>
