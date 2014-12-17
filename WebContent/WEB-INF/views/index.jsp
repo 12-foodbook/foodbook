@@ -34,7 +34,7 @@
 									<c:forEach var="ingredient" items="${ingredients[j]}">
 									<div class=' col-sm-4'>
 										<input data-image-url='${ingredient.photo_url}' data-toggle="popover" title="${ingredient.name}" id='${ingredient.name}' style='cursor:pointer' onclick='showStatus("${ingredient.name}")' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
-										<label style='cursor:pointer' for='${ingredient.name}'>
+										<label data-image-url='${ingredient.photo_url}' data-toggle="popover" title="${ingredient.name}" id='${ingredient.name}' style='cursor:pointer' for='${ingredient.name}'>
 										${ingredient.name}
 										</label>
 									</div>
@@ -45,22 +45,15 @@
 						</c:forEach>
 					</div>
 				</div>
-			
-			
 				</div>
 			</c:forEach>
 			<!-- PopOver -->
 			<script type="text/javascript">
-			/* <c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
-			<c:forEach var="ingredient" items="${ingredients[j]}"> */
 			$('[data-toggle="popover"]').popover({'placement' : 'right','trigger':'hover',
 				'html':true,
 			    'content':function(){
 			        return "<img style='max-height: 100%;max-width: 100%' src='"+$(this).data('imageUrl')+"'>";
 			    }});
-			/* </c:forEach>
-			</c:forEach> */
-			
 			</script>
 			
 			<!-- TAG -->
