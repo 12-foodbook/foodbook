@@ -8,29 +8,56 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp" />
 
 <div class="container">
-	<div class="page-header">
-		<h1>รายการตำรับอาหาร</h1>
-	</div>
 	<div class="row">
-		<div class="col-xs-12 col-md-4">
-			<form>
-				<label>หมวดหมู่ตำรับอาหาร</label>
+		<div class="col-xs-12 col-md-3">
+			<form id="fix">
+				<h4>
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					หมวดหมู่ตำรับอาหาร
+				</h4>
 				<c:forEach var="recipeCategory" items="${recipeCategories}">
 					<div class="checkbox">
 						<label> <input name="recipe_category_id" type="checkbox"
-							value="${recipeCategory.recipe_category_id}">
-							${recipeCategory.name}
+							value="${recipeCategory.recipe_category_id}"
+							onclick="filter(this)"> ${recipeCategory.name}
 						</label>
 					</div>
 				</c:forEach>
+				<script>
+		    $('#fix').affix({
+			offset : {
+			    top : 0,
+			    bottom : 0
+			}
+		    });
+		    function filter(e) {
+			var checked = $(':checked');
+			console.log(checked);
+			$('.recipe-panel').hide();
+			for (var i = 0; i < checked.length; i++) {
+			    var category = $('[data-recipe-category-'
+				    + checked[i].value + ']');
+			    console.log(category);
+			    category.show();
+			}
+			if (checked.length == 0)
+			    $('.recipe-panel').show();
+		    }
+		</script>
 			</form>
 		</div>
 
-		<div class="list-group media col-xs-12 col-md-8">
+		<div class="list-group media col-xs-12 col-md-9">
+			<div class="page-header">
+				<h1>รายการตำรับอาหาร</h1>
+			</div>
 
 			<c:if test="${fn:length(recipes) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
 					<a href="/recipes/show?id=${recipes[i].recipe_id}"
+						<c:forEach var="aRecipeCategory" items="${recipesCategories[i]}">
+											data-recipe-category-${aRecipeCategory.recipe_category_id}
+										</c:forEach>
 						class="recipe-panel">
 						<div class="panel panel-default">
 							<div class="panel-body">
@@ -45,22 +72,22 @@
 										<c:forEach begin="1" end="${recipes[i].averageRate}"
 											var='star'>
 											<span onclick="sentrate('${recipe.recipe_id}','${star}')"
-												class='glyphicon glyphicon-star' style='color: gold;font-size:x-large;'></span>
+												class='glyphicon glyphicon-star'
+												style='color: gold; font-size: x-large;'></span>
 										</c:forEach>
 									</div>
 								</div>
 							</div>
 						</div>
 					</a>
-					
+
 				</c:forEach>
 			</c:if>
 			<h3>ตำรับอาหารที่ขาดวัตถุดิบบางอย่าง</h3>
 			<hr>
 			<c:if test="${fn:length(recipesPartial) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipesPartial) - 1}">
-					<c:if
-						test="${fn:length(ingredientsPartial[i]) <= 5}">
+					<c:if test="${fn:length(ingredientsPartial[i]) <= 5}">
 						<div class="panel panel-default">
 							<a href="/recipes/show?id=${recipesPartial[i].recipe_id}"
 								class="recipe-panel">
@@ -74,11 +101,12 @@
 											โดย ${recipesPartialUsers[i].username}<br>
 											${recipesPartial[i].averageRate}<br>
 											<c:forEach begin="1" end="${recipes[i].averageRate}"
-											var='star'>
-											<span onclick="sentrate('${recipe.recipe_id}','${star}')"
-												class='glyphicon glyphicon-star' style='color: gold;font-size:x-large;'></span>
-										</c:forEach><br>
-										 <b>วัตถุดิบที่ขาด:</b>
+												var='star'>
+												<span onclick="sentrate('${recipe.recipe_id}','${star}')"
+													class='glyphicon glyphicon-star'
+													style='color: gold; font-size: x-large;'></span>
+											</c:forEach>
+											<br> <b>วัตถุดิบที่ขาด:</b>
 											<c:forEach var="ingredientPartial"
 												items="${ingredientsPartial[i]}">
 							${ingredientPartial.name} 

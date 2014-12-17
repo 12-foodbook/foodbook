@@ -3,6 +3,9 @@ package th.ac.kmitl.it.foodbook.servlets.recipes;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -34,6 +37,7 @@ public class UserServlet extends HttpServlet {
         User user = null;
         List<Recipe> recipes = null;
         List<RecipeCategory> recipeCategories = null;
+        List<List<RecipeCategory>> recipesCategories = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -57,7 +61,21 @@ public class UserServlet extends HttpServlet {
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipes = recipesDAO.findByUserId(user.getUser_id());
             
+            Collections.sort(recipes, new Comparator<Recipe>() {
+                @Override
+                public int compare(Recipe o1, Recipe o2) {
+                    return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
+                }
+            });
+
             RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+            recipesCategories = new ArrayList<List<RecipeCategory>>();
+            
+            for (Recipe recipe : recipes) {
+                List<RecipeCategory> aRecipesCategories = recipeCategoriesDAO.findByRecipeId(recipe.getRecipe_id());
+                recipesCategories.add(aRecipesCategories);
+            }
+            
             recipeCategories = recipeCategoriesDAO.findAll();
             
             conn.close();
@@ -69,6 +87,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("recipesUser", user);
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipeCategories", recipeCategories);
+        request.setAttribute("recipesCategories", recipesCategories);
         
         request.getRequestDispatcher("/WEB-INF/views/recipes/user.jsp").include(request, response);
     }

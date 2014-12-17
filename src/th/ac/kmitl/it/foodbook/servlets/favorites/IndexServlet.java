@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,6 +23,7 @@ import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.FavoritesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
+import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 
 @WebServlet("/favorites/index")
 public class IndexServlet extends HttpServlet {
@@ -34,7 +37,9 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Favorite> favorites = null;
         List<Recipe> recipes = new ArrayList<Recipe>();
+        List<User> recipesUsers = null;
         List<RecipeCategory> recipeCategories = null;
+        List<List<RecipeCategory>> recipesCategories = null;
         
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -52,9 +57,35 @@ public class IndexServlet extends HttpServlet {
             RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
             recipeCategories = recipeCategoriesDAO.findAll();
             
+
+            recipesCategories = new ArrayList<List<RecipeCategory>>();
+            
             for (Favorite favorite : favorites) {
                 Recipe recipe = recipesDAO.find(favorite.getRecipe_id());
                 recipes.add(recipe);
+                
+                List<RecipeCategory> aRecipesCategories = recipeCategoriesDAO.findByRecipeId(recipe.getRecipe_id());
+                recipesCategories.add(aRecipesCategories);
+            }
+            
+            Collections.sort(recipes, new Comparator<Recipe>() {
+                @Override
+                public int compare(Recipe o1, Recipe o2) {
+                    return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
+                }
+            });
+
+            UsersDAO usersDAO = new UsersDAO(conn);
+            recipesUsers = new ArrayList<User>();
+            
+            recipesCategories = new ArrayList<List<RecipeCategory>>();
+            
+            for (Recipe recipe : recipes) {
+                User recipeUser = usersDAO.find(recipe.getUser_id());
+                recipesUsers.add(recipeUser);
+                
+                List<RecipeCategory> aRecipesCategories = recipeCategoriesDAO.findByRecipeId(recipe.getRecipe_id());
+                recipesCategories.add(aRecipesCategories);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -63,6 +94,8 @@ public class IndexServlet extends HttpServlet {
         
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipeCategories", recipeCategories);
+        request.setAttribute("recipesCategories", recipesCategories);
+        request.setAttribute("recipesUsers", recipesUsers);
         request.getRequestDispatcher("/WEB-INF/views/favorites/index.jsp").include(request, response);
     }
     

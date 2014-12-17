@@ -8,13 +8,13 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp" />
 
 <div class="container">
-	<div class="page-header">
-		<h1>รายการตำรับอาหาร</h1>
-	</div>
 	<div class="row">
-		<div class="col-xs-12 col-md-4">
-			<form>
-				<label>หมวดหมู่ตำรับอาหาร</label>
+		<div class="col-xs-12 col-md-3">
+			<form id="fix">
+				<h4>
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					หมวดหมู่ตำรับอาหาร
+				</h4>
 				<c:forEach var="recipeCategory" items="${recipeCategories}">
 					<div class="checkbox">
 						<label> <input name="recipe_category_id" type="checkbox"
@@ -24,23 +24,33 @@
 					</div>
 				</c:forEach>
 				<script>
-		    function filter(e) {
-				var checked = $(':checked');
-				console.log(checked);
-				$('.recipe-panel').hide();
-				for (var i = 0; i < checked.length; i++) {
-				    var category = $('[data-recipe-category-'
-					    + checked[i].value + ']');
-				    console.log(category);
-				    category.show();
-				}
-				if (checked.length == 0) $('.recipe-panel').show();
+		    $('#fix').affix({
+			offset : {
+			    top : 0,
+			    bottom : 0
 			}
+		    });
+		    function filter(e) {
+			var checked = $(':checked');
+			console.log(checked);
+			$('.recipe-panel').hide();
+			for (var i = 0; i < checked.length; i++) {
+			    var category = $('[data-recipe-category-'
+				    + checked[i].value + ']');
+			    console.log(category);
+			    category.show();
+			}
+			if (checked.length == 0)
+			    $('.recipe-panel').show();
+		    }
 		</script>
 			</form>
 		</div>
 
-		<div class="list-group media col-xs-12 col-md-8">
+		<div class="list-group media col-xs-12 col-md-9">
+			<div class="page-header">
+				<h1>รายการตำรับอาหาร</h1>
+			</div>
 			<c:if test="${fn:length(recipes) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
 					<a href="/recipes/show?id=${recipes[i].recipe_id}"
