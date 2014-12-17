@@ -13,7 +13,7 @@
 			<form id="fix">
 				<h4>
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					หมวดหมู่ตำรับอาหารทั้งหมด
+					หมวดหมู่ตำรับอาหาร
 				</h4>
 				<c:forEach var="recipeCategory" items="${recipeCategories}">
 					<div class="checkbox">
@@ -98,7 +98,9 @@
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-8">
 										<h2>${recipes[i].name}</h2>
-										<p><b>โดย</b> ${recipesUsers[i].username}</p>
+										<p>
+											<b>โดย</b> ${recipesUsers[i].username}
+										</p>
 										<p>
 											<c:forEach begin="1" end="${recipes[i].averageRate}"
 												var='star'>
@@ -107,6 +109,53 @@
 											</c:forEach>
 										</p>
 										${recipes[i].description}
+									</div>
+									<div class="col-xs-12 col-md-3">
+										<c:if test="${param.id == recipeUser.user_id}">
+											<a href="/recipes/edit?id=${recipes[i].recipe_id}"
+												class="btn btn-default btn-block">แก้ไข</a>
+											<br>
+											<form action="/recipes/delete" method="post"
+												style='margin-left: 2%'>
+												<input type="hidden" name="recipe_id"
+													value="${recipes[i].recipe_id}">
+												<!-- Button trigger modal -->
+												<button type="button" class="btn btn-danger btn-block"
+													data-toggle="modal"
+													data-target="#myModal_${recipes[i].name}">ลบ</button>
+
+												<!-- Modal -->
+												<div class="modal fade" id="myModal_${recipes[i].name}"
+													tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+													aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal">
+																	<span aria-hidden="true">&times;</span><span
+																		class="sr-only">Close</span>
+																</button>
+																<h4 class="modal-title" id="myModalLabel">Delete
+																	Recipe</h4>
+															</div>
+															<div class="modal-body">คุณแน่ใจใช่ไหมว่าจะลบ
+																${recipes[i].name}?</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-default"
+																	data-dismiss="modal">Cancel</button>
+																<input type="submit" class="btn btn-danger"
+																	value='Delete'>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+											<form class="col-md-4" method="post" accept-charset="UTF-8"
+												action="/favorites/create">
+												<input type="hidden" name="recipe_id"
+													value="${recipes[i].recipe_id}">
+											</form>
+										</c:if>
 									</div>
 								</div>
 							</div>
