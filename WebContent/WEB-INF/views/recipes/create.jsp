@@ -259,7 +259,7 @@ tinymce.init({
 		});
 	}
 
-	var amountHtml = '<input name="ingredient_amount" class="form-control" placeholder="เช่น 5 ชิ้น"/>'
+	var amountHtml = '<input type="number" name="ingredient_amount" class="form-control" placeholder="เช่น 5 "/>'
 	function showNext(input){
 		$("#"+input.id).click(toggleAmount(input),showStatus(input));
 	}
