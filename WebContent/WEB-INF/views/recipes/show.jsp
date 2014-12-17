@@ -31,13 +31,15 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-8">
 
-			<img src="${recipe.photo_url}" width="100%" />
-
 			<c:if test="${!empty recipe.video_url}">
 				<div class="embed-responsive embed-responsive-16by9">
 					<iframe src="${recipe.video_url}"></iframe>
 				</div>
+
+				<hr>
 			</c:if>
+
+			<img src="${recipe.photo_url}" width="100%" />
 
 			<hr>
 
@@ -84,7 +86,7 @@
 				</tr>
 			</table>
 			<c:if test="${!empty user}">
-			<h1>VOTE</h1>
+				<h1>VOTE</h1>
 				<form action="/rates" method="post">
 					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
 					<div class="btn-group" role="group">
@@ -95,7 +97,7 @@
 						<input class="btn btn-default" type="submit" name="rate" value="5">
 					</div>
 				</form>
-				
+
 				<form method="post" accept-charset="UTF-8"
 					action="/favorites/create">
 					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}"><br>
@@ -104,11 +106,11 @@
 			</c:if>
 			<br>
 			<h3>RATING AVERAGE</h3>
-			<c:forEach begin="1" end="${recipe.averageRate}"
-											var='star'>
-											<span onclick="sentrate('${recipe.recipe_id}','${star}')"
-												class='glyphicon glyphicon-star' style='color: gold;font-size:x-large;'></span>
-										</c:forEach>
+			<c:forEach begin="1" end="${recipe.averageRate}" var='star'>
+				<span onclick="sentrate('${recipe.recipe_id}','${star}')"
+					class='glyphicon glyphicon-star'
+					style='color: gold; font-size: x-large;'></span>
+			</c:forEach>
 		</div>
 	</div>
 
