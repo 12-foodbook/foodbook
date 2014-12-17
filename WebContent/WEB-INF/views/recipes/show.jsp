@@ -44,7 +44,7 @@
 			<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">${i+1}.${recipeSteps[i].title}</h3>
+						<h3 class="panel-title">${i+1}. ${recipeSteps[i].title}</h3>
 					</div>
 					<div class="panel-body">
 						<p>${recipeSteps[i].description}</p>
@@ -74,7 +74,7 @@
 						value="${totalCalorie + (ingredient.calorie * ingredient.amount)}" />
 					<tr>
 						<td>${ingredient.name}</td>
-						<td>${ingredient.amount}${ingredient.unit}</td>
+						<td>${ingredient.amount} ${ingredient.unit}</td>
 						<td>${ingredient.calorie}</td>
 					</tr>
 				</c:forEach>
