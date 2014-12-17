@@ -164,37 +164,6 @@
 				</div>			
 				</div>
 				
-
-				<!-- check box -->
-				<%-- <div class="col-xs-12 col-md-5 col-md-offset-1 editrecipe-bgcolor">
-			<h4>เลือกวัตถุดิบ</h4>
-				<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}" var="i">
-					<div class="form-group">
-						<label class="col-sm-6 control-label">${ingredientCategories[i].name}</label>
-					</div>
-					<div class="form-group">
-					<c:forEach begin="0" end="${fn:length(ingredients[i]) - 1}" var="j">
-						<c:set var="contains" value="false" />
-						<c:forEach var="recipeIngredient" items="${recipeIngredients}">
-							<c:if test="${recipeIngredient.ingredient_id eq ingredients[i][j].ingredient_id}">
-								<c:set var="contains" value="true" />
-							</c:if>
-						</c:forEach>
-						
-							<div class="col-sm-6">
-								<div class="checkbox">
-								  <label>
-								    <input name="ingredient_id" type="checkbox" onclick="toggleAmount(this)" value="${ingredients[i][j].ingredient_id}"<c:if test="${contains}"> checked</c:if>>
-								    <span>${ingredients[i][j].name}</span>
-								    <c:if test="${contains}"><input name="ingredient_amount" class="form-control" placeholder="เช่น 5 ชิ้น" value=""></c:if>
-								  </label>
-								</div>
-							</div>
-						
-					</c:forEach>
-					</div>
-				</c:forEach>
-			</div> --%>
 		</div>
 		<!-- button -->
 		<div class="row">
@@ -225,7 +194,7 @@ tinymce.init({
 	// $recipeSteps.append(recipeStepHtml);
 
 	$addStepButton.click(function() {
-		var recipeStepHtml = '<div id="step_'+temp+'"><hr><img src="../img/remove_red.png" alt="remove" onclick='+'remove_step('+'"step_'+temp+'"'+')'+' width="22px" height="22px"/>'+
+		var recipeStepHtml = '<div id="step_'+temp+'"><hr><img  src="../img/remove_red.png" alt="remove" onclick='+'remove_step('+'"step_'+temp+'"'+')'+' width="22px" height="22px" style="cursor:pointer"/>'+
 		'<div class="form-group"><label class="col-sm-4 control-label">หัวข้อขั้นตอน</label><div class="col-sm-8"><input name="step_title" class="form-control" value="${recipeStep.title}"></div></div>'+
 		'<div class="form-group"><label class="col-sm-4 control-label">รายละเอียดขั้นตอน</label><div class="col-sm-8"><textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea></div></div>'+
 		'<div class="form-group"><label class="col-sm-4 control-label">รูปภาพประกอบขั้นตอน</label><div class="col-sm-8"><input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)"><input name="step_photo_url" class="form-control" type="hidden"></div></div></div>';
