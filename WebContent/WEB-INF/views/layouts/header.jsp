@@ -94,7 +94,7 @@
 				<form class="navbar-form navbar-left" role="search">
 					<a href="/" class="btn btn-success"> <span
 						class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						ค้นหาตำหรับอาหารจากวัตถุดิบ
+						ค้นหาตำรับอาหารจากวัตถุดิบ
 					</a>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
@@ -120,12 +120,12 @@
 								<li class="divider"></li>
 								<li><a href="/recipes/user"> <span
 										class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-										ตำหรับอาหารของฉัน
+										ตำรับอาหารของฉัน
 								</a></li>
 								<li class="divider"></li>
 								<li><a href="/recipes/create"> <span
 										class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-										สร้างตำหรับอาหาร
+										สร้างตำรับอาหาร
 								</a></li>
 								<li class="divider"></li>
 								<li><a href="#" data-toggle="modal"
@@ -152,10 +152,10 @@
 										วัตถุดิบทั้งหมด</a></li>
 								<li><a href="/recipes/index"><span
 										class="glyphicon glyphicon-book" aria-hidden="true"></span>
-										ตำหรับอาหารทั้งหมด</a></li>
+										ตำรับอาหารทั้งหมด</a></li>
 								<li><a href="/recipes/categories/index"><span
 										class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-										หมวดหมู่ตำหรับอาหารทั้งหมด</a></li>
+										หมวดหมู่ตำรับอาหารทั้งหมด</a></li>
 								<li><a href="/kitchenwares/index"><span
 										class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
 										เครื่องครัวทั้งหมด</a></li>

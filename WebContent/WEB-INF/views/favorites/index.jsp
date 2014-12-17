@@ -15,9 +15,9 @@
 		</h1>
 	</div>
 	<div class="row">
-		<div class="col-xs-8 col-md-4 col-xs-offset-4">
+		<div class="col-xs-12 col-md-4">
 			<form>
-				<label>หมวดหมู่ตำหรับอาหาร</label>
+				<label>หมวดหมู่ตำรับอาหาร</label>
 				<c:forEach var="recipeCategory" items="${recipeCategories}">
 					<div class="checkbox">
 						<label> <input name="recipe_category_id" type="checkbox"
@@ -29,7 +29,7 @@
 			</form>
 		</div>
 
-		<div class="list-group media col-xs-8 col-md-8 col-xs-offset-4">
+		<div class="list-group media col-xs-12 col-md-8 col-xs-offset-2">
 			<c:if test="${fn:length(recipes) == 0}">
 				<h3>ยังไม่มีรายการโปรด</h3>
 			</c:if>
