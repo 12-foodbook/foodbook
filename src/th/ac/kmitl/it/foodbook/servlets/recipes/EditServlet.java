@@ -158,9 +158,12 @@ public class EditServlet extends HttpServlet {
 
             if (recipesDAO.update(recipe)) {
                 isSuccess = true;
+                
+                recipesDAO.removeAllRecipeFromRecipeCategories(recipeId);
 
                 for (String recipeCategoryIdString : recipeCategoryIds) {
                     long recipeCategoryId = Long.parseLong(recipeCategoryIdString);
+                    recipesDAO.removeAllRecipeFromRecipeCategories(recipeId);
                     recipesDAO.addRecipeCategory(recipe.getRecipe_id(), recipeCategoryId);
                 }
 
