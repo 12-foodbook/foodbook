@@ -41,8 +41,7 @@
 									<div class="col-xs-12 col-sm-6 col-md-8">
 										<h2>${recipes[i].name}</h2>
 										โดย ${recipeUsers[i].username}<br>
-										${recipes[i].averageRate}<br>
-										${recipes[i].description}
+										${recipes[i].averageRate}<br> ${recipes[i].description}
 									</div>
 								</div>
 							</div>
@@ -90,28 +89,30 @@
 			<hr>
 			<c:if test="${fn:length(recipesPartial) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipesPartial) - 1}">
-					<div class="panel panel-default">
-						<a href="/recipes/show?id=${recipesPartial[i].recipe_id}"
-							class="recipe-panel">
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-xs-12 col-sm-6 col-md-4">
-										<img src="${recipesPartial[i].photo_url}" width="100%">
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-8">
-										<h2>${recipesPartial[i].name}</h2>
-										โดย ${recipesPartialUsers[i].username}<br>
-										${recipesPartial[i].averageRate}<br> <b>วัตถุดิบที่ขาด:</b>
-										<c:forEach var="ingredientPartial"
-											items="${ingredientsPartial[i]}">
+					<c:if
+						test="${fn:length(ingredientsPartial[i]) <= 5}">
+						<div class="panel panel-default">
+							<a href="/recipes/show?id=${recipesPartial[i].recipe_id}"
+								class="recipe-panel">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-xs-12 col-sm-6 col-md-4">
+											<img src="${recipesPartial[i].photo_url}" width="100%">
+										</div>
+										<div class="col-xs-12 col-sm-6 col-md-8">
+											<h2>${recipesPartial[i].name}</h2>
+											โดย ${recipesPartialUsers[i].username}<br>
+											${recipesPartial[i].averageRate}<br> <b>วัตถุดิบที่ขาด:</b>
+											<c:forEach var="ingredientPartial"
+												items="${ingredientsPartial[i]}">
 							${ingredientPartial.name} 
 						</c:forEach>
+										</div>
 									</div>
 								</div>
-							</div>
-						</a>
-					</div>
-					<%-- <a href="/recipes/show?id=${recipesPartial[i].recipe_id}" class="media-left media-top col-md-3">
+							</a>
+						</div>
+						<%-- <a href="/recipes/show?id=${recipesPartial[i].recipe_id}" class="media-left media-top col-md-3">
 					<img src="${recipesPartial[i].photo_url}" style="width:80%;height:80%" alt="image">
 				</a>
 
@@ -151,6 +152,7 @@
 						${ingredientPartial.name}<br>
 					</c:forEach>
 				</div> --%>
+					</c:if>
 				</c:forEach>
 			</c:if>
 		</div>
