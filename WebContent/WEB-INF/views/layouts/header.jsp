@@ -117,7 +117,6 @@
 										class="glyphicon glyphicon-heart" aria-hidden="true"></span>
 										รายการโปรด
 								</a></li>
-								<li class="divider"></li>
 								<li><a href="/recipes/user"> <span
 										class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
 										ตำรับอาหารของฉัน
