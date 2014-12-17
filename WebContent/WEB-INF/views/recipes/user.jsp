@@ -47,31 +47,9 @@
 											<input type="hidden" value="${recipe.recipe_id}"
 												name="recipe_id">
 											<h3>
-												<script>
-						    function sentrate(
-							    recipe_id, rate) {
-							$
-								.post(
-									'/rates',
-									{
-									    'recipe_id' : recipe_id,
-									    'rate' : rate
-									},
-									function(
-										data) {
-									    console
-										    .log(data);
-									});
-						    }
-						</script>
 						<c:forEach begin="1" end="${recipes[i].averageRate}" var='star'>
 						<span onclick="sentrate('${recipe.recipe_id}','${star}')" class='glyphicon glyphicon-star' style='color:gold'></span>
 						</c:forEach>
-												<%-- <span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
-												<span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span>
-												<span onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span>
-												<span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span>
-												<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span> --%>
 												${rate}
 											</h3>
 										</form>

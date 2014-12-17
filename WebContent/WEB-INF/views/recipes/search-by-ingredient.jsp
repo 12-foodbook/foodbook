@@ -42,47 +42,17 @@
 										<h2>${recipes[i].name}</h2>
 										โดย ${recipeUsers[i].username}<br>
 										${recipes[i].averageRate}<br> ${recipes[i].description}
+										<c:forEach begin="1" end="${recipes[i].averageRate}"
+											var='star'>
+											<span onclick="sentrate('${recipe.recipe_id}','${star}')"
+												class='glyphicon glyphicon-star' style='color: gold;font-size:x-large;'></span>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
 						</div>
 					</a>
-					<%-- <a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top col-md-3">
-					<img src="${recipe.photo_url}" style="width:80%;height:80%" alt="image">
-				</a>
-
-				<div class="media-body col-md-10">
-					<h4 class="media-heading col-md-6">
-						<a href="/recipes/show?id=${recipe.recipe_id}" class="media-left media-top">
-							<h2>${recipe.name}</h2>
-						</a>
-					</h4>
-					<form action="/rates" accept-charset="UTF-8" method="post">
-						<input type="hidden" value="${recipe.recipe_id}" name="recipe_id">
-						<h3>
-							<script>
-								function sentrate(recipe_id, rate) {
-									$.post('/rates', {
-										'recipe_id' : recipe_id,
-										'rate' : rate
-									}, function(data) {
-										console.log(data);
-									});
-								}
-							</script>
-							<span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
-							<span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span>
-							<span onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span>
-							<span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span>
-							<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span>
-							${rate}
-						</h3>
-					</form>
-					<form class="col-md-4" method="post" accept-charset="UTF-8"
-						action="/favorites/create">
-						<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
-					</form>
-				</div> --%>
+					
 				</c:forEach>
 			</c:if>
 			<h3>ตำรับอาหารที่ขาดวัตถุดิบบางอย่าง</h3>
@@ -102,7 +72,13 @@
 										<div class="col-xs-12 col-sm-6 col-md-8">
 											<h2>${recipesPartial[i].name}</h2>
 											โดย ${recipesPartialUsers[i].username}<br>
-											${recipesPartial[i].averageRate}<br> <b>วัตถุดิบที่ขาด:</b>
+											${recipesPartial[i].averageRate}<br>
+											<c:forEach begin="1" end="${recipes[i].averageRate}"
+											var='star'>
+											<span onclick="sentrate('${recipe.recipe_id}','${star}')"
+												class='glyphicon glyphicon-star' style='color: gold;font-size:x-large;'></span>
+										</c:forEach><br>
+										 <b>วัตถุดิบที่ขาด:</b>
 											<c:forEach var="ingredientPartial"
 												items="${ingredientsPartial[i]}">
 							${ingredientPartial.name} 
@@ -112,46 +88,6 @@
 								</div>
 							</a>
 						</div>
-						<%-- <a href="/recipes/show?id=${recipesPartial[i].recipe_id}" class="media-left media-top col-md-3">
-					<img src="${recipesPartial[i].photo_url}" style="width:80%;height:80%" alt="image">
-				</a>
-
-				<div class="media-body col-md-10">
-					<h4 class="media-heading col-md-6">
-						<a href="/recipes/show?id=${recipesPartial[i].recipe_id}" class="media-left media-top">
-							<h2>${recipesPartial[i].name}</h2>
-						</a>
-					</h4>
-					<form action="/rates" accept-charset="UTF-8" method="post">
-						<input type="hidden" value="${recipesPartial[i].recipe_id}" name="recipe_id">
-						<h3>
-							<script>
-								function sentrate(recipe_id, rate) {
-									$.post('/rates', {
-										'recipe_id' : recipe_id,
-										'rate' : rate
-									}, function(data) {
-										console.log(data);
-									});
-								}
-							</script>
-							<span onclick="sentrate('${recipesPartial[i].recipe_id}','1')">&#x2605;</span>
-							<span onclick="sentrate('${recipesPartial[i].recipe_id}','2')">&#x2605;</span>
-							<span onclick="sentrate('${recipesPartial[i].recipe_id}','3')">&#x2605;</span>
-							<span onclick="sentrate('${recipesPartial[i].recipe_id}','4')">&#x2605;</span>
-							<span onclick="sentrate('${recipesPartial[i].recipe_id}','5')">&#x2605;</span>
-							${rate}
-						</h3>
-					</form>
-					<form class="col-md-4" method="post" accept-charset="UTF-8"
-						action="/favorites/create">
-						<input type="hidden" name="recipe_id" value="${recipesPartial[i].recipe_id}">
-					</form>
-					<h3>ขาด</h3>
-					<c:forEach var="ingredientPartial" items="${ingredientsPartial[i]}">
-						${ingredientPartial.name}<br>
-					</c:forEach>
-				</div> --%>
 					</c:if>
 				</c:forEach>
 			</c:if>
