@@ -84,6 +84,7 @@
 				</tr>
 			</table>
 			<c:if test="${!empty user}">
+			<h1>VOTE</h1>
 				<form action="/rates" method="post">
 					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
 					<div class="btn-group" role="group">
@@ -94,28 +95,20 @@
 						<input class="btn btn-default" type="submit" name="rate" value="5">
 					</div>
 				</form>
-				<%-- <h1>
-					<script>
-					function sentrate(recipe_id,rate) {
-						$.post('/rates', {'recipe_id':recipe_id,'rate':rate}, function (data) {
-							console.log(data);
-						});
-					}
-						</script>
-						<span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
-						<span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span>
-						<span onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span>
-						<span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span>
-						<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span>
-						${rate}
-					</h1> --%>
+				
 				<form method="post" accept-charset="UTF-8"
 					action="/favorites/create">
-					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
+					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}"><br>
 					<button class="btn btn-lg btn-block btn-danger">เพิ่มในรายการโปรด</button>
 				</form>
 			</c:if>
-			${recipe.averageRate}
+			<br>
+			<h3>RATING AVERAGE</h3>
+			<c:forEach begin="1" end="${recipe.averageRate}"
+											var='star'>
+											<span onclick="sentrate('${recipe.recipe_id}','${star}')"
+												class='glyphicon glyphicon-star' style='color: gold;font-size:x-large;'></span>
+										</c:forEach>
 		</div>
 	</div>
 
