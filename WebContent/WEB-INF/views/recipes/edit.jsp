@@ -71,7 +71,7 @@
 								</c:forEach>
 								<input type="checkbox" name="kitchenware_id"
 									<c:if test="${found}">checked</c:if>
-									value="${kitchenwares[i].kitchenware_id}"> <label>
+									value="${kitchenwaresAll[i].kitchenware_id}"> <label>
 									${kitchenwaresAll[i].name} </label>
 							</div>
 						</c:forEach>
