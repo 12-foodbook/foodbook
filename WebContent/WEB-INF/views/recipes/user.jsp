@@ -53,6 +53,9 @@
 					รายการตำรับอาหารของ ${recipesUser.username}
 				</h1>
 			</div>
+			<c:if test="${fn:length(recipes) == 0}">
+				<h3>ยังไม่มีตำรับอาหาร</h3>
+			</c:if>
 			<c:if test="${fn:length(recipes) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
 					<a href="/recipes/show?id=${recipes[i].recipe_id}"
