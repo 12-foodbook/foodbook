@@ -50,7 +50,7 @@ public class CreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("user") == null && session.getAttribute("moderator") == null) {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Can not be accessed D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Access Denial D:"));
             response.sendRedirect("/");
             return;
         }
