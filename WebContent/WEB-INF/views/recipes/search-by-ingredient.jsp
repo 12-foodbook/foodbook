@@ -143,12 +143,12 @@
 									</div>
 								</div>
 								<div class="panel-footer">
-									<b>วัตถุดิบที่ขาด:</b>
+									<p><b>วัตถุดิบที่ขาด:</b>
 									<c:forEach var="ingredientPartial"
 										items="${ingredientsPartial[i]}">
 							${ingredientPartial.name} 
 						</c:forEach>
-									<br> <b>หมวดหมู่:</b>
+									</p><b>หมวดหมู่:</b>
 									<c:forEach var="aRecipeCategory"
 										items="${recipesCategories[i]}">
 											${aRecipeCategory.name} 
