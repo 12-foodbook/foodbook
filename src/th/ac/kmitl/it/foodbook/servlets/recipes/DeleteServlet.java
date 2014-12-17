@@ -66,7 +66,7 @@ public class DeleteServlet extends HttpServlet {
 
         if (isSuccess) {
             session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "ลบตำรับอาหารสำเร็จ :D"));
-            response.sendRedirect("/");
+            response.sendRedirect("/recipes/user");
         } else {
             session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ลบตำรับอาหารไม่สำเร็จ :D"));
             response.sendRedirect("/recipes/index");
