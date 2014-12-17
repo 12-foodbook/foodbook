@@ -80,7 +80,7 @@
 									</div>
 									<div class="col-xs-12 col-md-3">
 										<c:if test="${param.id == recipeUser.user_id}">
-											<a href="/recipes/edit?id=${recipes[i].recipe_id}" class="btn btn-default btn-block">Edit</a><br>
+											<a href="/recipes/edit?id=${recipes[i].recipe_id}" class="btn btn-default btn-block">แก้ไข</a><br>
 											<form action="/recipes/delete" method="post"
 												style='margin-left: 2%'>
 												<input type="hidden" name="recipe_id"
@@ -88,7 +88,7 @@
 												<!-- Button trigger modal -->
 												<button type="button" class="btn btn-danger btn-block"
 													data-toggle="modal"
-													data-target="#myModal_${recipes[i].name}">Delete</button>
+													data-target="#myModal_${recipes[i].name}">ลบ</button>
 
 												<!-- Modal -->
 												<div class="modal fade" id="myModal_${recipes[i].name}"
@@ -104,8 +104,7 @@
 																<h4 class="modal-title" id="myModalLabel">Delete
 																	Recipe</h4>
 															</div>
-															<div class="modal-body">Are you sure to delete
-																${recipes[i].name}?</div>
+															<div class="modal-body">คุณแน่ใจใช่ไหมว่าจะลบ ${recipes[i].name}?</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-default"
 																	data-dismiss="modal">Cancel</button>
