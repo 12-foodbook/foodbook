@@ -11,7 +11,7 @@
 
 	<div class="page-header">
 		<h1>
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> สร้างตำหรับอาหาร
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> สร้างตำรับอาหาร
 		</h1>
 	</div>
 
