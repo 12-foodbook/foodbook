@@ -61,28 +61,6 @@
 				</div>
 
 				<div id="recipe-steps">
-					<hr>
-					<div class="form-group">
-						<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
-						<div class="col-sm-8">
-							<input name="step_title" class="form-control"
-								value="${recipeStep.title}">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-4 control-label label-create">รายละเอียดขั้นตอน</label>
-						<div class="col-sm-8">
-							<textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-4 control-label label-create">รูปภาพประกอบขั้นตอน</label>
-						<div class="col-sm-8">
-							<input name="step_photo" class="form-control" type="file"
-								onchange="fileChanged(this)"> <input
-								name="step_photo_url" class="form-control" type="hidden">
-						</div>
-					</div>
 					<c:forEach var="recipeStep" items="${recipeSteps}">
 						<hr>
 						<div class="form-group">
