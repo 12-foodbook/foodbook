@@ -69,10 +69,10 @@ public class CreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "สร้างผู้ดูแลสำเร็จ :D"));
             response.sendRedirect("/");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "สร้างผู้ดูแลไม่สำเร็จ D:"));
             request.getRequestDispatcher("/WEB-INF/views/moderators/create.jsp").include(request, response);
         }
     }
