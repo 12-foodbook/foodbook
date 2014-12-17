@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
     "/favorites/create",
     "/favorites/delete",
     "/rates",
+    "/users/change-password",
 })
 public class UserAuthenticationFilter implements Filter {
     

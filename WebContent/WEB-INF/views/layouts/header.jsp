@@ -127,6 +127,10 @@
 										สร้างตำรับอาหาร
 								</a></li>
 								<li class="divider"></li>
+								<li><a href="/users/change-password"> <span
+										class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+										เปลี่ยนรหัสผ่าน
+								</a></li>
 								<li><a href="#" data-toggle="modal"
 									data-target="#user-logout-modal"> <span
 										class="glyphicon glyphicon-log-out" aria-hidden="true"></span>

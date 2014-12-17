@@ -150,5 +150,19 @@ public class UsersDAO extends AbstractDAO {
         
         return rowCount == 1;
     }
+
+    public boolean update(User user) throws SQLException {
+        String sql = "UPDATE users SET username = ?, hashed_password = ?, salt = ? WHERE user_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setString(1, user.getUsername());
+        stm.setString(2, user.getHashed_password());
+        stm.setString(3, user.getSalt());
+        stm.setLong(4, user.getUser_id());
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
     
 }
