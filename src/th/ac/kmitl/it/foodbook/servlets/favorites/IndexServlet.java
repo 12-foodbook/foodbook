@@ -63,9 +63,6 @@ public class IndexServlet extends HttpServlet {
             for (Favorite favorite : favorites) {
                 Recipe recipe = recipesDAO.find(favorite.getRecipe_id());
                 recipes.add(recipe);
-                
-                List<RecipeCategory> aRecipesCategories = recipeCategoriesDAO.findByRecipeId(recipe.getRecipe_id());
-                recipesCategories.add(aRecipesCategories);
             }
             
             Collections.sort(recipes, new Comparator<Recipe>() {
@@ -92,6 +89,7 @@ public class IndexServlet extends HttpServlet {
             response.sendError(500);
         }
         
+        System.out.println(recipes);
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipeCategories", recipeCategories);
         request.setAttribute("recipesCategories", recipesCategories);
