@@ -50,6 +50,7 @@ public class CreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("user") == null && session.getAttribute("moderator") == null) {
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Can not be accessed D:"));
             response.sendRedirect("/");
             return;
         }
@@ -103,7 +104,7 @@ public class CreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (name.equals("") || ingredientIds.length == 0 || ingredientAmounts.length == 0 || stepTitles.length == 0) {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Can not be accessed D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Access Denial D:"));
             request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
             return;
         }

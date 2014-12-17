@@ -66,31 +66,20 @@
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-xs-12 col-md-4">
+									<div class="col-xs-12 col-sm-6 col-md-4">
 										<img src="${recipes[i].photo_url}" width="100%">
 									</div>
-									<div class="col-xs-12 col-md-5">
+									<div class="col-xs-12 col-sm-6 col-md-8">
 										<h2>${recipes[i].name}</h2>
-										<b>โดย </b> ${recipesUser.username}<br> 
-										<b> คะแนนที่ได้ : </b> ${recipes[i].averageRate}<br>
+										<p>โดย ${recipesUser.username}</p>
+										<p>
+											<c:forEach begin="1" end="${recipes[i].averageRate}"
+												var='star'>
+												<span class='glyphicon glyphicon-star'
+													style='color: gold; font-size: x-large;'></span>
+											</c:forEach>
+										</p>
 										${recipes[i].description}
-										<form action="/rates" accept-charset="UTF-8" method="post">
-											<input type="hidden" value="${recipe.recipe_id}"
-												name="recipe_id">
-											<h3>
-												<c:forEach begin="1" end="${recipes[i].averageRate}"
-													var='star'>
-													<span onclick="sentrate('${recipe.recipe_id}','${star}')"
-														class='glyphicon glyphicon-star' style='color: gold'></span>
-												</c:forEach>
-												${rate}
-											</h3>
-										</form>
-										<form class="col-md-4" method="post" accept-charset="UTF-8"
-											action="/favorites/create">
-											<input type="hidden" name="recipe_id"
-												value="${recipe.recipe_id}">
-										</form>
 									</div>
 									<div class="col-xs-12 col-md-3">
 										<c:if test="${param.id == recipeUser.user_id}">

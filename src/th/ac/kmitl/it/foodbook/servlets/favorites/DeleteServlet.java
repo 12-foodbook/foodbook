@@ -60,10 +60,10 @@ public class DeleteServlet extends HttpServlet {
         }
         
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Deleted favorites successfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Deleted Successfully!"));
             response.sendRedirect("/favorites/index");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Deleted favorites unsuccessfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Deleted Unsuccessfully!"));
             response.sendRedirect("/favorites/index");
         }
     }

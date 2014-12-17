@@ -51,7 +51,7 @@ public class DeleteServlet extends HttpServlet {
             User user = (User) session.getAttribute("user");
 
             if (recipe.getUser_id() != user.getUser_id()) {
-                session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Can not be accessed D:"));
+                session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Access Denial D:"));
                 response.sendRedirect("/");
                 return;
             }

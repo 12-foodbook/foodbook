@@ -74,10 +74,10 @@ public class EditServlet extends HttpServlet {
         }
 
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "แก้ไขวัตถุดิบสำเร็จ :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Updated Successfully :D"));
             response.sendRedirect("/ingredients/index");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "แก้ไขวัตถุดิบไม่สำเร็จ D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Updated Unsuccessfully D:"));
             request.getRequestDispatcher("/WEB-INF/views/ingredients/index.jsp").include(request, response);
         }
     }

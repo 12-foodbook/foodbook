@@ -65,8 +65,8 @@ public class EditServlet extends HttpServlet {
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipe = recipesDAO.find(recipeId);
 
-            if (user == null || recipe.getUser_id() != user.getUser_id()) {
-                session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Can not be accessed D:"));
+            if ((user == null || recipe.getUser_id() != user.getUser_id()) && session.getAttribute("moderator") == null) {
+                session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Access Denial D:"));
                 response.sendRedirect("/");
                 return;
             }
@@ -129,7 +129,7 @@ public class EditServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (name.equals("") || ingredientIds.length == 0 || ingredientAmounts.length == 0 || stepTitles.length == 0) {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Can not be accessed D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Invalid Inputs D:"));
             request.getRequestDispatcher("/WEB-INF/views/recipes/edit.jsp?id=" + recipeId).include(request, response);
             return;
         }

@@ -54,7 +54,7 @@ public class AuthenticateServlet extends HttpServlet {
         
         if (user != null) {
             session.setAttribute("user", user);
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Authenticated successfully :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Authenticated Successfully :D"));
             
 //            String referrer = (String) session.getAttribute("referrer");
 //            session.setAttribute("referrer", null);
@@ -64,7 +64,7 @@ public class AuthenticateServlet extends HttpServlet {
             
             response.sendRedirect("/");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Authenticated unsuccessfully D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Authenticated Unsuccessfully D:"));
             request.getRequestDispatcher("/WEB-INF/views/users/authenticate.jsp").include(request, response);
         }
     }

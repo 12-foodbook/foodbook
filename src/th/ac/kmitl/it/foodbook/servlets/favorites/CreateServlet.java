@@ -59,10 +59,10 @@ public class CreateServlet extends HttpServlet {
         }
 
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Add to favorites successfully :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully :D"));
             response.sendRedirect("/recipes/show?id=" + recipeId);
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Add to favorites unsuccessfully D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully D:"));
             response.sendRedirect("/recipes/show?id=" + recipeId);
         }
     }

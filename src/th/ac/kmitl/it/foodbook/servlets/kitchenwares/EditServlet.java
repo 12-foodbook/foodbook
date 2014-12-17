@@ -62,10 +62,10 @@ public class EditServlet extends HttpServlet {
         }
 
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "แก้ไขเครื่องครัวสำเร็จ :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Updated Successfully :D"));
             response.sendRedirect("/kitchenwares/index");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "แก้ไขเครื่องครัวไม่สำเร็จ D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Updated Unsuccessfully D:"));
             request.getRequestDispatcher("/WEB-INF/views/kitchenwares/index.jsp").include(request, response);
         }
     }

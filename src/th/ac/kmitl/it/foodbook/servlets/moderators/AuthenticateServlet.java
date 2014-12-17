@@ -54,11 +54,11 @@ public class AuthenticateServlet extends HttpServlet {
         
         if (moderator != null) {
             session.setAttribute("moderator", moderator);
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Authenticated successfully :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Authenticated Successfully :D"));
             
             response.sendRedirect("/");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Authenticated unsuccessfully D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Authenticated Unsuccessfully D:"));
             request.getRequestDispatcher("/WEB-INF/views/moderators/authenticate.jsp").include(request, response);
         }
     }
