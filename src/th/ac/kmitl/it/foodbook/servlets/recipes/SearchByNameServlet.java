@@ -15,9 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import th.ac.kmitl.it.foodbook.beans.Kitchenware;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.beans.User;
+import th.ac.kmitl.it.foodbook.daos.KitchenwaresDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.daos.UsersDAO;
@@ -38,6 +40,8 @@ public class SearchByNameServlet extends HttpServlet {
         List<User> recipesUsers = null;
         List<RecipeCategory> recipeCategories = null;
         List<List<RecipeCategory>> recipesCategories = null;
+        List<Kitchenware> kitchenwares = null;
+        List<List<Kitchenware>> recipesKitchenwares = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -56,11 +60,15 @@ public class SearchByNameServlet extends HttpServlet {
                     return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
                 }
             });
+            
+            KitchenwaresDAO kitchenwaresDAO = new KitchenwaresDAO(conn);
+            kitchenwares = kitchenwaresDAO.findAll();
 
             UsersDAO usersDAO = new UsersDAO(conn);
             recipesUsers = new ArrayList<User>();
             
             recipesCategories = new ArrayList<List<RecipeCategory>>();
+            recipesKitchenwares = new ArrayList<List<Kitchenware>>();
             
             for (Recipe recipe : recipes) {
                 User user = usersDAO.find(recipe.getUser_id());
@@ -68,6 +76,9 @@ public class SearchByNameServlet extends HttpServlet {
                 
                 List<RecipeCategory> aRecipesCategories = recipeCategoriesDAO.findByRecipeId(recipe.getRecipe_id());
                 recipesCategories.add(aRecipesCategories);
+                
+                List<Kitchenware> recipesKitchenware = kitchenwaresDAO.findByRecipeId(recipe.getRecipe_id());
+                recipesKitchenwares.add(recipesKitchenware);
             }
             
             for (List<RecipeCategory> aaRecipeCategories : recipesCategories) {
@@ -84,6 +95,8 @@ public class SearchByNameServlet extends HttpServlet {
         request.setAttribute("recipesCategories", recipesCategories);
         request.setAttribute("recipesUsers", recipesUsers);
         request.setAttribute("recipeCategories", recipeCategories);
+        request.setAttribute("recipesKitchenwares", recipesKitchenwares);
+        request.setAttribute("kitchenwares", kitchenwares);
         
         request.getRequestDispatcher("/WEB-INF/views/recipes/search-by-name.jsp").include(request, response);
     }

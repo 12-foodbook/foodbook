@@ -38,7 +38,7 @@ public class KitchenwaresDAO extends AbstractDAO {
     public List<Kitchenware> findByRecipeId(long recipeId) throws SQLException {
         List<Kitchenware> kitchenwares = new ArrayList<Kitchenware>();
         
-        String sql = "SELECT kitchenware_id FROM recipes_kitchenwares WHERE recipe_id = ? ORDER BY name ASC";
+        String sql = "SELECT kitchenware_id FROM recipes_kitchenwares WHERE recipe_id = ?";//
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setLong(1, recipeId);

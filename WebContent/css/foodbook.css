@@ -4,6 +4,10 @@
 	color: #333 !important;
 }
 
+.recipe-panel:hover {
+	text-decoration: none;
+}
+
 body{
 	padding-top: 70px;
 	padding-bottom: 20px;
