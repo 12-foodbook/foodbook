@@ -44,7 +44,8 @@
 									</div>
 									<div class="col-xs-12 col-md-5">
 										<h2>${recipes[i].name}</h2>
-										โดย ${recipesUser.username}<br> ${recipes[i].averageRate}<br>
+										<b>โดย </b> ${recipesUser.username}<br> 
+										<b> คะแนนที่ได้ : </b> ${recipes[i].averageRate}<br>
 										${recipes[i].description}
 										<form action="/rates" accept-charset="UTF-8" method="post">
 											<input type="hidden" value="${recipe.recipe_id}"

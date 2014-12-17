@@ -69,8 +69,9 @@
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-8">
 										<h2>${recipes[i].name}</h2>
-										โดย ${recipesUsers[i].username}<br>
-										${recipes[i].averageRate}<br> ${recipes[i].description}
+										<b>โดย </b> ${recipesUser.username}<br> 
+										<b> คะแนนที่ได้ : </b> ${recipes[i].averageRate}<br>
+										${recipes[i].description}
 										<c:forEach var="aRecipeCategory"
 											items="${recipesCategories[i]}">
 											${aRecipeCategory.name} 

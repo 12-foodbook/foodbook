@@ -46,6 +46,14 @@
 					</div>
 				</div><hr>
 				<div class="form-group">
+						<label class="col-sm-4 control-label label-create">รูปภาพหน้าปก</label>
+						<div class="col-sm-8">
+							<input name="photo" class="form-control" type="file"
+								onchange="fileChanged(this)"> <input
+								name="photo_url" class="form-control" type="hidden">
+						</div>
+					</div>
+				<div class="form-group">
 					<label for="video_url" class="col-sm-4 control-label label-create">วิดิโอวิธีการประกอบอาหาร</label>
 					<div class="col-sm-8">
 						<input id='video_you' onblur="checkLink()" name="video_url" placeholder="video_url" id="video_url" class="form-control" value="${recipe.video_url}">
