@@ -60,10 +60,10 @@ public class CreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "สร้างเครื่องครัวสำเร็จ :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created kitchenwares successfully :D"));
             response.sendRedirect("/kitchenwares/index");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "สร้างเครื่องครัวไม่สำเร็จ D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created kitchenwares unsuccessfully D:"));
             request.getRequestDispatcher("/WEB-INF/views/kitchenwares/create.jsp").include(request, response);
         }
     }

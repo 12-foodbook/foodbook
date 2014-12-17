@@ -24,7 +24,7 @@ public class DeauthenticateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("moderator", null);
-        session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "ออกจากระบบสำเร็จ :)"));
+        session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Deauthenticated successfully :D"));
         response.sendRedirect("/");
     }
     

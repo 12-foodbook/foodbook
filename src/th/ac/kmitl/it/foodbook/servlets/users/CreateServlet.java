@@ -72,10 +72,10 @@ public class CreateServlet extends HttpServlet {
         }
         
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "สร้างผู้ใช้สำเร็จ :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created successfully :D"));
             response.sendRedirect("/");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "สร้างผู้ใช้ไม่สำเร็จ D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created unsuccessfully D:"));
             request.getRequestDispatcher("/WEB-INF/views/users/create.jsp").include(request, response);
         }
     }

@@ -69,10 +69,10 @@ public class CreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "เธชเธฃเน�เธฒเธ�เธงเธฑเธ•เธ–เธธเธ”เธดเธ�เธชเธณเน€เธฃเน�เธ� :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Add ingredients successfully :D"));
             response.sendRedirect("/ingredients/index");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "เธชเธฃเน�เธฒเธ�เธงเธฑเธ•เธ–เธธเธ”เธดเธ�เน�เธกเน�เธชเธณเน€เธฃเน�เธ� D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Add ingredients unsuccessfully D:"));
             request.getRequestDispatcher("/WEB-INF/views/ingredients/index.jsp").include(request, response);
         }
     }

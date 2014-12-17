@@ -68,10 +68,10 @@ public class RateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "ให้คะแนนสำเร็จ :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Add rating successfully :D"));
             response.sendRedirect("/recipes/show?id=" + recipeId);
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ให้คะแนนไม่สำเร็จ D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Add rating unsuccessfully D:"));
             response.sendRedirect("/recipes/show?id=" + recipeId);
         }
     }

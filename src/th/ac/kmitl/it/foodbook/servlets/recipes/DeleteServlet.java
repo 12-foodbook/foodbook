@@ -51,7 +51,7 @@ public class DeleteServlet extends HttpServlet {
             User user = (User) session.getAttribute("user");
 
             if (recipe.getUser_id() != user.getUser_id()) {
-                session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ไม่สามารถเข้าถึงได้ D:"));
+                session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Can not be accessed D:"));
                 response.sendRedirect("/");
                 return;
             }
@@ -65,10 +65,10 @@ public class DeleteServlet extends HttpServlet {
         }
 
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "ลบตำรับอาหารสำเร็จ :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Deleted recipe successfully :D"));
             response.sendRedirect("/recipes/user");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ลบตำรับอาหารไม่สำเร็จ :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Deleted recipe unsuccessfully :D"));
             response.sendRedirect("/recipes/index");
         }
     }

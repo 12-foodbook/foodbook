@@ -103,7 +103,7 @@ public class CreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (name.equals("") || ingredientIds.length == 0 || ingredientAmounts.length == 0 || stepTitles.length == 0) {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¸™à¸³à¹€à¸‚à¹‰à¸²à¹„à¸¡à¹ˆà¸–à¸¹à¸�à¸•à¹‰à¸­à¸‡ D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Can not be accessed D:"));
             request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
             return;
         }
@@ -180,10 +180,10 @@ public class CreateServlet extends HttpServlet {
         }
 
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "à¸ªà¸£à¹‰à¸²à¸‡à¸•à¸³à¸£à¸±à¸šà¸­à¸­à¸²à¸«à¸²à¸£à¸ªà¸³à¹€à¸£à¹‡à¸ˆ :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created recipe successfully :D"));
             response.sendRedirect("/recipes/show?id=" + recipe.getRecipe_id());
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "à¸ªà¸£à¹‰à¸²à¸‡à¸•à¸³à¸£à¸±à¸šà¸­à¸­à¸²à¸«à¸²à¸£à¹„à¸¡à¹ˆà¸ªà¸³à¹€à¸£à¹‡à¸ˆ D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created recipe unsuccessfully D:"));
             request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
         }
     }
