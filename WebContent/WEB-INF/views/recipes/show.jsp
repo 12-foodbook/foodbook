@@ -81,7 +81,7 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="2"><strong>แคเรอรี่รวม</strong></td>
+					<td colspan="2"><strong>แคลลอรี่รวม</strong></td>
 					<td>${totalCalorie}</td>
 				</tr>
 			</table>
