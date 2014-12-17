@@ -134,6 +134,11 @@
 								</a></li>
 							</ul></li>
 					</c:if>
+					<c:if test="${empty moderator}">
+						<li><a href="/moderators/authenticate"><span
+								class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+								เข้าสู่ระบบสำหรับผู้ดูแล</a></li>
+					</c:if>
 					<c:if test="${!empty moderator}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"><span

@@ -271,13 +271,14 @@ public class RecipesDAO extends AbstractDAO {
     }
     
     public boolean update(Recipe recipe) throws SQLException {
-        String sql = "UPDATE recipes SET name = ?, description = ?, video_url = ? WHERE recipe_id = ?";
+        String sql = "UPDATE recipes SET name = ?, description = ?, photo_url = ?, video_url = ? WHERE recipe_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setString(1, recipe.getName());
         stm.setString(2, recipe.getDescription());
-        stm.setString(3, recipe.getVideo_url());
-        stm.setLong(4, recipe.getRecipe_id());
+        stm.setString(3, recipe.getPhoto_url());
+        stm.setString(4, recipe.getVideo_url());
+        stm.setLong(5, recipe.getRecipe_id());
         
         int rowCount = stm.executeUpdate();
         
