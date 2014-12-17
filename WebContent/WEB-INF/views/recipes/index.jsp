@@ -93,10 +93,10 @@
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="col-xs-12 col-md-4">
 										<img src="${recipes[i].photo_url}" width="100%">
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-8">
+									<div class="col-xs-12 col-md-5">
 										<h2>${recipes[i].name}</h2>
 										<p>
 											<b>โดย</b> ${recipesUsers[i].username}
