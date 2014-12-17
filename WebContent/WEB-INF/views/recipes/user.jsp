@@ -64,11 +64,14 @@
 									});
 						    }
 						</script>
-												<span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
+						<c:forEach begin="1" end="${recipes[i].averageRate}" var='star'>
+						<span onclick="sentrate('${recipe.recipe_id}','${star}')">&#x2605;</span>
+						</c:forEach>
+												<%-- <span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
 												<span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span>
 												<span onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span>
 												<span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span>
-												<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span>
+												<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span> --%>
 												${rate}
 											</h3>
 										</form>
