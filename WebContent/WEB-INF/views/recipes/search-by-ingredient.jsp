@@ -90,7 +90,7 @@
 			<hr>
 			<c:if test="${fn:length(recipesPartial) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipesPartial) - 1}">
-					<c:if test="${fn:length(ingredientsPartial[i]) <= 5}">
+					<c:if test="${fn:length(ingredientsPartial[i]) <= 15}">
 						<div class="panel panel-default">
 							<a href="/recipes/show?id=${recipesPartial[i].recipe_id}"
 								class="recipe-panel">
