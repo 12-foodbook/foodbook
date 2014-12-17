@@ -51,26 +51,26 @@
 					<c:forEach var="i" begin="0" end="${fn:length(ingredients)-1}">
 						<tr>
 							<!-- photo -->
-							<td id='ingrePhoto_${ingredients[i].photo_url}'><img
+							<td id='ingrePhoto_${ingredients[i].ingredient_id}' value="${ingredients[i].photo_url}"><img
 								src="${ingredients[i].photo_url}" alt="ingredient photo"
 								width="150px" height="100px" /></td>
 							<!-- ingredient -->
 							<td align="center" id='cateValue_${ingredients[i].name}'
 								value="${ingredients[i].name}">${ingredients[i].name}</td>
 							<!-- calories -->
-							<td align="center" class='col-md-4' id='cal_${ingredients[i].calorie}'>
+							<td align="center" class='col-md-4' id='${ingredients[i].calorie}'>
 								${ingredients[i].calorie} kcal/${ingredients[i].unit}</td>
 							<!-- delete -->
 							<td align="center"><input id='ingredient_id'
 								name="ingredient_id" type="checkbox"
 								value="${ingredients[i].ingredient_id}" />
 							</td>
-							<td align="center"><c:forEach var="ingredientCategory"
+							<td align="center" id='cat_select_${ingredients[i].name}'><c:forEach var="ingredientCategory"
 									items="${ingredients[i].ingredient_categories}">
-								${ingredientCategory.name} 
+								${ingredientCategory.name}
 							</c:forEach></td>
 							<td id="editButt_${ingredients[i].name}"><a
-								onclick="editCate('${ingredients[i].ingredient_id}','editButt_${ingredients[i].name}','cateValue_${ongredients[i].name}','${ingredients[i].name}')"
+								onclick="domulti('${ingredients[i].ingredient_id}','editButt_${ingredients[i].name}','cateValue_${ingredients[i].name}','${ingredients[i].name}','${ingredients[i].calorie }','${ingredients[i].unit }','cat_select_${ingredients[i].name}','${ingredients[i].photo_url}')"
 								class="btn btn-default col-md-11">แก้ไขวัตถุดิบ</a></td>
 						</tr>
 					</c:forEach>
@@ -78,14 +78,21 @@
 			</form>
 			
 			<script type="text/javascript">
-				
-				function editCate(id,butt,catefield,val){
-					//alert("333");
+				function domulti(id,butt,catefield,name,kcal,unit,cate,photo){
+					
+					$('#editButt_'+name).click(editCate(id,butt,catefield,name,kcal,unit,cate,photo));
+					
+				}
+			
+				function editCate(id,butt,catefield,name,kcal,unit,cate,photo){
+					
 					var table = document.getElementById('cateTable');
-				    var cell2 = val;
-				    document.getElementById(catefield).innerHTML='<input id="newcateValue" value='+cell2+' />';
-				    document.getElementById(butt).innerHTML='<a onclick="sending('+id+')" id="editButt" class="btn btn-success col-md-6" >ยืนยัน</a>';
-				    //alert(cell3);
+					document.getElementById('ingrePhoto_'+id).innerHTML='<img src="'+photo+'" alt="ingredient photo"width="150px" height="100px" /><input  name="photo" class="form-control" id="oldPhoto" type="file"onchange="fileChanged(this)"> <input id="newPhoto" name="photo_url" class="form-control" type="hidden">';
+				    document.getElementById(catefield).innerHTML='<input class="col-md-8 col-md-offset-2" id="newcateValue" value='+name+' />';				    
+				    document.getElementById(kcal).innerHTML='<input class="col-md-2 col-md-offset-4" id="newCalorie" value='+kcal+' /><input class="col-md-3 col-md-offset-0" id="newUnit" value='+unit+' />';
+				    document.getElementById(cate).innerHTML='<select class="col-md-10 col-md-offset-1" id="newCateg"><c:forEach var="Categories" items="${ingredientCategories}"><option selected="selected">${Categories.name}</option></c:forEach></select>';
+				    document.getElementById(butt).innerHTML='<a onclick="sending('+id+')" id="editButt" class="btn btn-success col-md-7" >ยืนยัน</a>';
+				    
 
 				}
 				function sending(id){
@@ -93,15 +100,103 @@
 					xmlhttp = new XMLHttpRequest();	
 					var cateid = id;
 					var catename = document.getElementById('newcateValue').value;
-					var url = "/ingredients/edit?id="+cateid+"&&name="+catename;
+					var cat_calorie = document.getElementById('newCalorie').value;
+					var cat_Unit = document.getElementById('newUnit').value;
+					var cat_Photo =document.getElementById('newPhoto');
+					var url = "/ingredients/edit";
 					
+					if (cat_Photo == null || cat_Photo.value == '') {
+						cat_Photo = $('#ingrePhoto_'+id).attr('value');
+						console.log(cat_Photo);
+					} else {
+						cat_Photo = $('#newPhoto').attr('value');
+						console.log(cat_Photo);
+					}
+					$.post(url, {id: cateid, name: catename, photo_url: cat_Photo, calorie: cat_calorie, unit: cat_Unit}, function(data) {
+						window.location = '/ingredients/index';
+					});
 
-					xmlhttp.open("POST",url,true);
-					xmlhttp.onreadystatechange=function(){
+					//xmlhttp.open("POST",url,true);
+					/* xmlhttp.onreadystatechange=function(){
 						location.reload();
-					};
-					xmlhttp.send();
+					}; */
+					//xmlhttp.send();
+					
 				}
+				
+				var $createRecipeForm = $('#create-recipe');
+				var $recipeSteps = $('#recipe-steps');
+				var temp = 1;
+				var $addStepButton = $('#add-step-button');
+				var $createButton = $('#editButt');
+				// $recipeSteps.append(recipeStepHtml);
+
+				$addStepButton.click(function() {
+					var recipeStepHtml = '<div id="step_'+temp+'"><hr><img src="../img/remove_red.png" alt="remove" onclick='+'remove_step('+'"step_'+temp+'"'+')'+' width="22px" height="22px"/>'+
+					'<div class="form-group"><label class="col-sm-4 control-label">หัวข้อขั้นตอน</label><div class="col-sm-8"><input name="step_title" class="form-control" value="${recipeStep.title}"></div></div>'+
+					'<div class="form-group"><label class="col-sm-4 control-label">รายละเอียดขั้นตอน</label><div class="col-sm-8"><textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea></div></div>'+
+					'<div class="form-group"><label class="col-sm-4 control-label">รูปภาพประกอบขั้นตอน</label><div class="col-sm-8"><input name="step_photo" class="form-control" type="file" onchange="fileChanged(this)"><input name="step_photo_url" class="form-control" type="hidden"></div></div></div>';
+					console.log(recipeStepHtml);
+					$recipeSteps.append(recipeStepHtml);
+					temp++;
+					tinymce.init({
+					    selector: "textarea",
+					    menubar : false
+					 });
+				});
+
+				$createRecipeForm.submit(function(event) {
+					console.log("submit");
+				});
+
+				var $stepPhotoUrlInput;
+
+				function fileChanged(input) {
+					$stepPhotoUrlInput = $($(input).next()[0]);
+					console.log($stepPhotoUrlInput);
+					readImage(input);
+				}
+
+				function readImage(input) {
+					for (var i = 0; i < input.files.length; i++) {
+						var fr = new FileReader();
+						fr.onload = uploadImage;
+						fr.readAsDataURL(input.files[i]);
+					}
+				}
+
+				function uploadImage(e) {
+					var data = e.target.result.split(',')[1];
+					$.ajax({
+						url : 'https://api.imgur.com/3/image',
+						method : 'POST',
+						headers : {
+							Authorization : 'Client-ID 104715d58c6294d',
+							Accept : 'application/json'
+						},
+						data : {
+							image : data,
+							type : 'base64'
+						},
+						beforeSend : function(xhr, settings) {
+							$('input[type=file]').attr('disabled', true);
+							$createButton.attr('disabled', true);
+						},
+						success : function(result) {
+							console.log(result);
+							var id = result.data.id;
+							var url = 'https://i.imgur.com/' + id + '.png';
+							$stepPhotoUrlInput.attr('value', url);
+							console.log($stepPhotoUrlInput);
+							$('input[type=file]').attr('disabled', false);
+							$createButton.attr('disabled', false);
+						},
+						error : function(result) {
+							console.log(result);
+						}
+					});
+				}
+
 			</script>
 			
 			<button type="button" class="btn btn-danger col-md-2"
@@ -150,7 +245,7 @@
 				 
 					
 				    cell1.innerHTML = '<tr><td><div align="center"><input name="photo" class="form-control" type="file"onchange="fileChanged(this)"> <input name="photo_url" class="form-control" type="hidden"></div></td>';
-				    cell2.innerHTML = '<td><div align="center"><input class="col-md-7 col-md-offset-2" name="name" placeholder="วัตถุดิบ" /></div></td>';
+				    cell2.innerHTML = '<td><div align="center"><input class="col-md-8 col-md-offset-2" name="name" placeholder="วัตถุดิบ" /></div></td>';
 				    cell3.innerHTML = '<td><div align="center"><input class="col-md-2 col-md-offset-4" name="calorie" /><input class="col-md-2 col-md-offset-0" name="unit"/></div></td>';
 				    cell4.innerHTML = '<td><div align="center"><input type="checkbox" value="" /></div></td>';
 				    cell5.innerHTML = '<td><div align="center"><select class="col-md-4 col-md-offset-2" name="name" placeholder="วัตถุดิบ"><option></option></select></div></td>';
