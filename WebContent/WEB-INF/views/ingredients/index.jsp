@@ -37,7 +37,7 @@
 		<div class="page-header">
 			<h1><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> วัตถุดิบ</h1>
 		</div>
-			<form action="/ingredients/index" method="get">
+			<form action="/ingredients/create" method="get">
 				<table id="cateTable" class="table table-striped">
 					<!-- ingredients -->
 					<thead>
@@ -250,7 +250,7 @@
 				    cell2.innerHTML = '<td><div align="center"><input class="col-md-8 col-md-offset-2" name="name" placeholder="วัตถุดิบ" /></div></td>';
 				    cell3.innerHTML = '<td><div align="center"><input class="col-md-2 col-md-offset-4" name="calorie" /><input class="col-md-2 col-md-offset-0" name="unit"/></div></td>';
 				    cell4.innerHTML = '<td><div align="center"><input type="checkbox" value="" /></div></td>';
-				    cell5.innerHTML = '<td><div align="center"><select class="col-md-4 col-md-offset-2" name="name" placeholder="วัตถุดิบ"><option></option></select></div></td>';
+				    cell5.innerHTML = '<td><div align="center"><select name="ingredient_category_id" class="col-md-10 col-md-offset-1" id="newCateg"><c:forEach var="Categories" items="${ingredientCategories}"><option selected="selected" value="${Categories.ingredient_category_id}">${Categories.name}</option></c:forEach></select></div></td>';
 				    cell6.innerHTML = '<td><div align="center"><a href="/ingredients/index"class="btn btn-default col-md-7">ยกเลิก</a></td>'+
 				    '<td><button class="btn btn-success col-md-4" type="submit">+</button></div></td></tr>'; 
 					

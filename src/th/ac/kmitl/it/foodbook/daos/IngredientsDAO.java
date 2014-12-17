@@ -118,7 +118,7 @@ public class IngredientsDAO extends AbstractDAO {
     
     public boolean create(Ingredient ingredient) throws SQLException {
         String sql = "INSERT INTO ingredients (name, photo_url, calorie, unit) VALUES (?, ?, ?, ?)";
-        PreparedStatement stm = conn.prepareStatement(sql);
+        PreparedStatement stm = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         
         stm.setString(1, ingredient.getName());
         stm.setString(2, ingredient.getPhoto_url());
@@ -127,7 +127,14 @@ public class IngredientsDAO extends AbstractDAO {
         
         int rowCount = stm.executeUpdate();
         
-        return rowCount == 1;
+        if (rowCount == 1) {
+            ResultSet rs = stm.getGeneratedKeys();
+            rs.next();
+            ingredient.setIngredient_id(rs.getLong(1));
+            return true;
+        }
+        
+        return false;
     }
     
     public boolean update(Ingredient ingredient) throws SQLException {
