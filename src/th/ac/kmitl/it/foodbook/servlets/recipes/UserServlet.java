@@ -46,7 +46,7 @@ public class UserServlet extends HttpServlet {
         try {
             Connection conn = ds.getConnection();
             
-            if (session.getAttribute("user") != null) {
+            if (session.getAttribute("user") != null && userIdString == null) {
                 user = (User) session.getAttribute("user");
             } else if (userIdString != null) {
                 long userId = Long.parseLong(userIdString);
