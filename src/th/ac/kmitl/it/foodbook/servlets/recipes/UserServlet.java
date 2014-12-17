@@ -54,8 +54,6 @@ public class UserServlet extends HttpServlet {
                 return;
             }
             
-            request.setAttribute("user", user);
-            
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipes = recipesDAO.findByUserId(user.getUser_id());
             
@@ -68,6 +66,7 @@ public class UserServlet extends HttpServlet {
             response.sendError(500);
         }
         
+        request.setAttribute("user", user);
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipeCategories", recipeCategories);
         
