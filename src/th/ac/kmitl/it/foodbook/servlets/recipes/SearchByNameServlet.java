@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -60,6 +61,13 @@ public class SearchByNameServlet extends HttpServlet {
             e.printStackTrace();
             response.sendError(500);
         }
+        
+        recipes.sort(new Comparator<Recipe>() {
+            @Override
+            public int compare(Recipe o1, Recipe o2) {
+                return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
+            }
+        });
         
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipesUsers", recipesUsers);

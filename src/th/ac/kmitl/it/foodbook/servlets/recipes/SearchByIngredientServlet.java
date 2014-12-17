@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -176,6 +177,13 @@ public class SearchByIngredientServlet extends HttpServlet {
                 System.out.println("\t"+ingredient);
             }
         }
+        
+        recipes.sort(new Comparator<Recipe>() {
+            @Override
+            public int compare(Recipe o1, Recipe o2) {
+                return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
+            }
+        });
         
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipesUsers", recipesUsers);
