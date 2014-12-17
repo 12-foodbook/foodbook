@@ -83,7 +83,7 @@ function showStatus(ingname){
 	if(document.getElementById(ingname).checked){
 		$( "#tagDiv" ).append(tagHTML);	
 		checknum++;
-		if(checknum%5==0){$( "#tagDiv" ).append('<div id="space"><br></div>');
+		if(checknum%3==0){$( "#tagDiv" ).append('<div id="space"><br></div>');
 		numrow++;
 		}
 	}
@@ -97,7 +97,7 @@ function showStatus(ingname){
 }
 function del_select(temid){
 	document.getElementById(temid.innerHTML).checked=false;
-	if(checknum<5*numrow){$( '#space' ).remove();numrow--;}
+	if(checknum<3*numrow){$( '#space' ).remove();numrow--;}
 	checknum--;
 	
 	$("#"+temid.id).remove();
