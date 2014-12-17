@@ -17,15 +17,32 @@
 </head>
 <body>
 
-	<div class="modal fade" id="logoutModal">
-		<div class="modal-dialog">
+	<div class="modal fade" id="user-logout-modal">
+		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-body">
-					<p>Are you sure?</p>
+					<p>คุณแน่ในใช่ไหมว่าจะออกจากระบบ?</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-					<a href="/users/deauthenticate" class="btn btn-primary">Yes</a>
+					<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+					<a href="/users/deauthenticate" class="btn btn-danger">ออกจากระบบ</a>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<div class="modal fade" id="moderator-logout-modal">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p>คุณแน่ในใช่ไหมว่าจะออกจากระบบ?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+					<a href="/moderators/deauthenticate" class="btn btn-danger">ออกจากระบบ</a>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -112,7 +129,7 @@
 								</a></li>
 								<li class="divider"></li>
 								<li><a href="#" data-toggle="modal"
-									data-target="#logoutModal"> <span
+									data-target="#user-logout-modal"> <span
 										class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
 										ออกจากระบบ
 								</a></li>
@@ -143,7 +160,8 @@
 										class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
 										เครื่องครัวทั้งหมด</a></li>
 								<li class="divider"></li>
-								<li><a href="/moderators/deauthenticate"><span
+								<li><a href="#" data-toggle="modal"
+									data-target="#moderator-logout-modal"><span
 										class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
 										ออกจากระบบผู้ดูแล</a></li>
 							</ul></li>
