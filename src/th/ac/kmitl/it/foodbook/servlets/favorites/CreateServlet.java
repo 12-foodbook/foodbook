@@ -20,49 +20,49 @@ import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/favorites/create")
 public class CreateServlet extends HttpServlet {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     public CreateServlet() {
         super();
     }
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String recipeIdString = request.getParameter("recipe_id");
         long recipeId = Long.parseLong(recipeIdString);
-        
+
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-        
+
         boolean isSuccess = false;
-        
+
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        
+
         Favorite favorite = new Favorite();
         favorite.setUser_id(user.getUser_id());
         favorite.setRecipe_id(recipeId);
-        
+
         try {
             Connection conn = ds.getConnection();
-            
+
             FavoritesDAO favoritesDAO = new FavoritesDAO(conn);
             isSuccess = favoritesDAO.create(favorite);
-            
+
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(500);
         }
-        
+
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "เพิ่มรายการโปรดสำเร็จ :D"));
             response.sendRedirect("/recipes/show?id=" + recipeId);
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "เพิ่มรายการโปรดไม่สำเร็จ D:"));
             response.sendRedirect("/recipes/show?id=" + recipeId);
         }
     }
