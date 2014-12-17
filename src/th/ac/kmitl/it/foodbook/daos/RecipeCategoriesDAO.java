@@ -104,4 +104,23 @@ public class RecipeCategoriesDAO extends AbstractDAO {
         return recipeCategories;
     }
     
+    public List<RecipeCategory> findByRecipeId(long recipeId) throws SQLException {
+        String sql = "SELECT * FROM recipes_recipe_categories where recipe_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeId);
+        
+        ResultSet rs = stm.executeQuery();
+        
+        List<RecipeCategory> recipeCategories = new ArrayList<RecipeCategory>();
+        
+        while (rs.next()) {
+            RecipeCategory recipeCategory = new RecipeCategory();
+            recipeCategory = find(rs.getLong("recipe_category_id"));
+            recipeCategories.add(recipeCategory);
+        }
+        
+        return recipeCategories;
+    }
+    
 }

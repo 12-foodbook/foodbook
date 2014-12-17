@@ -18,11 +18,25 @@
 				<c:forEach var="recipeCategory" items="${recipeCategories}">
 					<div class="checkbox">
 						<label> <input name="recipe_category_id" type="checkbox"
-							value="${recipeCategory.recipe_category_id}">
-							${recipeCategory.name}
+							value="${recipeCategory.recipe_category_id}"
+							onclick="filter(this)"> ${recipeCategory.name}
 						</label>
 					</div>
 				</c:forEach>
+				<script>
+		    function filter(e) {
+				var checked = $(':checked');
+				console.log(checked);
+				$('.recipe-panel').hide();
+				for (var i = 0; i < checked.length; i++) {
+				    var category = $('[data-recipe-category-'
+					    + checked[i].value + ']');
+				    console.log(category);
+				    category.show();
+				}
+				if (checked.length == 0) $('.recipe-panel').show();
+			}
+		</script>
 			</form>
 		</div>
 
@@ -30,6 +44,9 @@
 			<c:if test="${fn:length(recipes) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
 					<a href="/recipes/show?id=${recipes[i].recipe_id}"
+						<c:forEach var="aRecipeCategory" items="${recipesCategories[i]}">
+											data-recipe-category-${aRecipeCategory.recipe_category_id}
+										</c:forEach>
 						class="recipe-panel">
 						<div class="panel panel-default">
 							<div class="panel-body">
@@ -41,10 +58,15 @@
 										<h2>${recipes[i].name}</h2>
 										โดย ${recipesUsers[i].username}<br>
 										${recipes[i].averageRate}<br> ${recipes[i].description}
+										<c:forEach var="aRecipeCategory"
+											items="${recipesCategories[i]}">
+											${aRecipeCategory.name} 
+										</c:forEach>
 										<c:forEach begin="1" end="${recipes[i].averageRate}"
 											var='star'>
 											<span onclick="sentrate('${recipe.recipe_id}','${star}')"
-												class='glyphicon glyphicon-star' style='color: gold;font-size:x-large;'></span>
+												class='glyphicon glyphicon-star'
+												style='color: gold; font-size: x-large;'></span>
 										</c:forEach>
 									</div>
 								</div>

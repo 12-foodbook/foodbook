@@ -20,5 +20,10 @@ public class IngredientCategory {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "IngredientCategory [ingredient_category_id=" + ingredient_category_id + ", name=" + name + "]";
+    }
     
 }

@@ -37,6 +37,7 @@ public class SearchByNameServlet extends HttpServlet {
         List<Recipe> recipes = null;
         List<User> recipesUsers = null;
         List<RecipeCategory> recipeCategories = null;
+        List<List<RecipeCategory>> recipesCategories = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -59,9 +60,18 @@ public class SearchByNameServlet extends HttpServlet {
             UsersDAO usersDAO = new UsersDAO(conn);
             recipesUsers = new ArrayList<User>();
             
+            recipesCategories = new ArrayList<List<RecipeCategory>>();
+            
             for (Recipe recipe : recipes) {
                 User user = usersDAO.find(recipe.getUser_id());
                 recipesUsers.add(user);
+                
+                List<RecipeCategory> aRecipesCategories = recipeCategoriesDAO.findByRecipeId(recipe.getRecipe_id());
+                recipesCategories.add(aRecipesCategories);
+            }
+            
+            for (List<RecipeCategory> aaRecipeCategories : recipesCategories) {
+                System.out.println(aaRecipeCategories);
             }
             
             conn.close();
@@ -71,6 +81,7 @@ public class SearchByNameServlet extends HttpServlet {
         }
         
         request.setAttribute("recipes", recipes);
+        request.setAttribute("recipesCategories", recipesCategories);
         request.setAttribute("recipesUsers", recipesUsers);
         request.setAttribute("recipeCategories", recipeCategories);
         
