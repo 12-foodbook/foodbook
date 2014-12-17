@@ -19,18 +19,18 @@ import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/ingredients/edit")
 public class EditServlet extends HttpServlet {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     public EditServlet() {
         super();
-        
+
     }
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long ingredientId = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
@@ -38,26 +38,26 @@ public class EditServlet extends HttpServlet {
         String calorieString = request.getParameter("calorie");
         float calorie = Float.parseFloat(calorieString);
         String unit = request.getParameter("unit");
-        
+
         HttpSession session = request.getSession();
-        
+
         Ingredient ingredient = null;
-        
+
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-        
+
         boolean isSuccess = false;
-        
+
         try {
             Connection conn = ds.getConnection();
-            
+
             IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
-            
+
             ingredient = ingredientsDAO.find(ingredientId);
             ingredient.setName(name);
             ingredient.setPhoto_url(photoUrl);
             ingredient.setCalorie(calorie);
             ingredient.setUnit(unit);
-            
+
             if (ingredientsDAO.update(ingredient)) {
                 isSuccess = true;
             }
@@ -67,14 +67,14 @@ public class EditServlet extends HttpServlet {
             response.sendError(500);
             return;
         }
-        
+
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Edited Successfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "แก้ไขวัตถุดิบสำเร็จ :D"));
             response.sendRedirect("/ingredients/index");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Edited Unsuccessfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "แก้ไขวัตถุดิบไม่สำเร็จ D:"));
             request.getRequestDispatcher("/WEB-INF/views/ingredients/index.jsp").include(request, response);
         }
     }
-    
+
 }

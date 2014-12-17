@@ -19,51 +19,51 @@ import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/ingredients/categories/create")
 public class CreateServlet extends HttpServlet {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     public CreateServlet() {
         super();
     }
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/ingredients/categories/create.jsp").include(request, response);
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
-        
+
         IngredientCategory ingredientCategory = null;
-        
+
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-        
+
         boolean isSuccess = false;
-        
+
         try {
             Connection conn = ds.getConnection();
-            
+
             IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
-            
+
             ingredientCategory = new IngredientCategory();
             ingredientCategory.setName(name);
-            
+
             isSuccess = ingredientCategoriesDAO.create(ingredientCategory);
-            
+
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(500);
         }
-        
+
         HttpSession session = request.getSession();
-        
+
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Created Successfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "สร้างวัตถุดิบหมวดหมู่สำเร็จ :D"));
             response.sendRedirect("/ingredients/categories/create");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Created Unsuccessfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "สร้างวัตถุดิบไม่สำเร็จ D:"));
             request.getRequestDispatcher("/WEB-INF/views/ingredients/categories/create.jsp").include(request, response);
         }
     }
-    
+
 }

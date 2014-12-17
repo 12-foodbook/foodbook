@@ -18,56 +18,56 @@ import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/ingredients/delete")
 public class DeleteServlet extends HttpServlet {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     public DeleteServlet() {
         super();
-        
+
     }
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] ingredientIdsString = request.getParameterValues("ingredient_id");
-        
+
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-        
+
         boolean isSuccess = false;
-        
+
         HttpSession session = request.getSession();
-        
+
         try {
             Connection conn = ds.getConnection();
-            
+
             if (ingredientIdsString == null) {
                 response.sendRedirect("/ingredients/index");
                 return;
             }
-            
+
             for (String ingredientIdString : ingredientIdsString) {
                 long ingredientId = Long.parseLong(ingredientIdString);
-                
+
                 IngredientsDAO ingredientsDAO = new IngredientsDAO(conn);
                 ingredientsDAO.removeAllIngredientFromIngredientCategories(ingredientId);
                 ingredientsDAO.removeAllIngredientFromRecipes(ingredientId);
                 isSuccess = ingredientsDAO.delete((ingredientId));
-                
+
             }
-            
+
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(500);
         }
-        
+
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Deleted Successfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "ลบวัตถุดิบสำเร็จ :D"));
             response.sendRedirect("/ingredients/index");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Deleted Unsuccessfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ลบวัตถุดิบไม่สำเร็จ D:"));
             response.sendRedirect("/ingredients/index");
         }
     }
