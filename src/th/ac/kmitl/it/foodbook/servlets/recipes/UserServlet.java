@@ -66,7 +66,7 @@ public class UserServlet extends HttpServlet {
             response.sendError(500);
         }
         
-        request.setAttribute("user", user);
+        request.setAttribute("recipesUser", user);
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipeCategories", recipeCategories);
         

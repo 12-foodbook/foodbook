@@ -11,7 +11,7 @@
 	<div class="page-header">
 		<h1>
 			<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-			รายการตำรับอาหารของ ${user.username}
+			รายการตำรับอาหารของ ${recipesUser.username}
 		</h1>
 	</div>
 	<div class="row">
@@ -28,7 +28,7 @@
 				</c:forEach>
 			</form>
 		</div>
-				<div class="list-group media col-xs-12 col-md-8">
+		<div class="list-group media col-xs-12 col-md-8">
 			<c:if test="${fn:length(recipes) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
 					<a href="/recipes/show?id=${recipes[i].recipe_id}"
@@ -36,62 +36,59 @@
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="col-xs-12 col-md-4">
 										<img src="${recipes[i].photo_url}" width="100%">
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="col-xs-12 col-md-5">
 										<h2>${recipes[i].name}</h2>
-										โดย ${recipesUsers[i].username}<br>
-										<div class="media-body col-md-12">
-											<form action="/rates" accept-charset="UTF-8" method="post">
-												<input type="hidden" value="${recipe.recipe_id}"
-													name="recipe_id">
-												<h3>
-													<script>
-														function sentrate(
-																recipe_id, rate) {
-															$
-																	.post(
-																			'/rates',
-																			{
-																				'recipe_id' : recipe_id,
-																				'rate' : rate
-																			},
-																			function(
-																					data) {
-																				console
-																						.log(data);
-																			});
-														}
-													</script>
-													<span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
-													<span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span>
-													<span onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span>
-													<span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span>
-													<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span>
-													${rate}
-												</h3>
-											</form>
-											<form class="col-md-4" method="post" accept-charset="UTF-8"
-												action="/favorites/create">
-												<input type="hidden" name="recipe_id"
-													value="${recipe.recipe_id}">
-											</form>
-										</div>
+										โดย ${recipesUser.username}<br> ${recipes[i].averageRate}<br>
+										${recipes[i].description}
+										<form action="/rates" accept-charset="UTF-8" method="post">
+											<input type="hidden" value="${recipe.recipe_id}"
+												name="recipe_id">
+											<h3>
+												<script>
+						    function sentrate(
+							    recipe_id, rate) {
+							$
+								.post(
+									'/rates',
+									{
+									    'recipe_id' : recipe_id,
+									    'rate' : rate
+									},
+									function(
+										data) {
+									    console
+										    .log(data);
+									});
+						    }
+						</script>
+												<span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
+												<span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span>
+												<span onclick="sentrate('${recipe.recipe_id}','3')">&#x2605;</span>
+												<span onclick="sentrate('${recipe.recipe_id}','4')">&#x2605;</span>
+												<span onclick="sentrate('${recipe.recipe_id}','5')">&#x2605;</span>
+												${rate}
+											</h3>
+										</form>
+										<form class="col-md-4" method="post" accept-charset="UTF-8"
+											action="/favorites/create">
+											<input type="hidden" name="recipe_id"
+												value="${recipe.recipe_id}">
+										</form>
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-4">
-										<a href="/recipes/edit?id=${recipes[i].recipe_id}"
-											class='col-md-1 col-md-offset-0'> <input type="submit"
-											class="btn btn-default" value='Edit' />
-										</a>
+									<div class="col-xs-12 col-md-3">
 										<c:if test="${param.id == recipeUser.user_id}">
+											<a href="/recipes/edit?id=${recipes[i].recipe_id}" class="btn btn-default btn-block">Edit</a><br>
 											<form action="/recipes/delete" method="post"
-												class='col-md-10' style='margin-left: 2%'>
+												style='margin-left: 2%'>
 												<input type="hidden" name="recipe_id"
 													value="${recipes[i].recipe_id}">
 												<!-- Button trigger modal -->
-												<button type="button" class="btn btn-danger col-md-offset-2"
-													data-toggle="modal" data-target="#myModal_${recipes[i].name}">Delete</button>
+												<button type="button" class="btn btn-danger btn-block"
+													data-toggle="modal"
+													data-target="#myModal_${recipes[i].name}">Delete</button>
 
 												<!-- Modal -->
 												<div class="modal fade" id="myModal_${recipes[i].name}"
