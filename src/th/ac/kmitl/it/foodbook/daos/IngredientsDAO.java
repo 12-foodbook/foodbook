@@ -103,7 +103,7 @@ public class IngredientsDAO extends AbstractDAO {
     public List<Ingredient> findAll() throws SQLException {
         List<Ingredient> ingredients = new ArrayList<Ingredient>();
         
-        String sql = "SELECT * FROM ingredients";
+        String sql = "SELECT * FROM ingredients ORDER BY name ASC";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         ResultSet rs = stm.executeQuery();
