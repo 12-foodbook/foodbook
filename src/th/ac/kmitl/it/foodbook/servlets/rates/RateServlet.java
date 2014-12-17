@@ -20,58 +20,58 @@ import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/rates")
 public class RateServlet extends HttpServlet {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     public RateServlet() {
         super();
     }
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String recipeIdString = request.getParameter("recipe_id");
         long recipeId = Long.parseLong(recipeIdString);
         String ratingString = request.getParameter("rate");
         int rating = Integer.parseInt(ratingString);
-        
+
         Rate rate = null;
-        
+
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-        
+
         boolean isSuccess = false;
-        
+
         try {
             Connection conn = ds.getConnection();
             RatesDAO ratesDAO = new RatesDAO(conn);
-            
+
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
-            
+
             rate = new Rate();
             rate.setUser_id(user.getUser_id());
             rate.setRecipe_id(recipeId);
             rate.setRate(rating);
-            
+
             isSuccess = ratesDAO.update(rate);
-            
+
             if (!isSuccess) isSuccess = ratesDAO.create(rate);
-            
+
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(500);
         }
-        
+
         HttpSession session = request.getSession();
-        
+
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Rated Successfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "ให้คะแนนสำเร็จ :D"));
             response.sendRedirect("/recipes/show?id=" + recipeId);
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Rated Unsuccessfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ให้คะแนนไม่สำเร็จ D:"));
             response.sendRedirect("/recipes/show?id=" + recipeId);
         }
     }
