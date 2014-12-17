@@ -68,7 +68,7 @@
 				<tr>
 					<th>วัตถุดิบ</th>
 					<th>ปริมาณที่ใช้</th>
-					<th>แคเรอรี่</th>
+					<th>แคลลอรี่</th>
 				</tr>
 				<c:set var="totalCalorie" value="0" />
 				<c:forEach var="ingredient" items="${ingredients}">
