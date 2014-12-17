@@ -65,7 +65,7 @@
 						    }
 						</script>
 						<c:forEach begin="1" end="${recipes[i].averageRate}" var='star'>
-						<span onclick="sentrate('${recipe.recipe_id}','${star}')">&#x2605;</span>
+						<span onclick="sentrate('${recipe.recipe_id}','${star}')" class='glyphicon glyphicon-star' style='color:gold'></span>
 						</c:forEach>
 												<%-- <span onclick="sentrate('${recipe.recipe_id}','1')">&#x2605;</span>
 												<span onclick="sentrate('${recipe.recipe_id}','2')">&#x2605;</span>
