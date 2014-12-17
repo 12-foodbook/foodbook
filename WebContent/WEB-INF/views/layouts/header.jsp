@@ -145,6 +145,8 @@
 										class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 										สร้างผู้ดูแล</a></li>
 								<li class="divider"></li>
+								<li><a href="/moderators/index"><span class="glyphicon glyphicon-flash"
+										aria-hidden="true"></span> ผู้ดูแลทั้งหมด</a></li>
 								<li><a href="/users/index"><span class="glyphicon glyphicon-user"
 										aria-hidden="true"></span> ผู้ใช้ทั้งหมด</a></li>
 								<li><a href="/ingredients/index"><span

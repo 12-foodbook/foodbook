@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import th.ac.kmitl.it.foodbook.beans.Moderator;
 import th.ac.kmitl.it.foodbook.utils.Util;
@@ -88,6 +90,26 @@ public class ModeratorsDAO extends AbstractDAO {
         return mod;
     }
     
+    public List<Moderator> findAll() throws SQLException {
+        String sql = "SELECT * FROM moderators";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        ResultSet rs = stm.executeQuery();
+        
+        List<Moderator> moderators = new ArrayList<Moderator>();
+        
+        while (rs.next()) {
+            Moderator moderator = new Moderator();
+            moderator.setModerator_id(rs.getLong("moderator_id"));
+            moderator.setUsername(rs.getString("username"));
+            moderator.setHashed_password(rs.getString("hashed_password"));
+            moderator.setSalt(rs.getString("salt"));
+            moderators.add(moderator);
+        }
+        
+        return moderators;
+    }
+    
     public Moderator findByUsername(String username) throws SQLException {
         Moderator mod = null;
         
@@ -107,6 +129,20 @@ public class ModeratorsDAO extends AbstractDAO {
         }
         
         return mod;
+    }
+    
+    public boolean delete(long moderatorId) throws SQLException {
+        RecipesDAO recipesDAO = new RecipesDAO(conn);
+        recipesDAO.deleteByUserId(moderatorId);
+        
+        String sql = "DELETE FROM moderators WHERE moderator_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, moderatorId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
     }
     
 }
