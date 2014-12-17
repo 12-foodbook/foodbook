@@ -56,6 +56,27 @@
 						</c:forEach>
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="name" class="col-sm-4 control-label label-create">เครื่องครัว</label>
+					<div class="col-sm-8">
+						<c:forEach var='i' begin="0"
+							end="${fn:length(kitchenwaresAll) - 1}">
+							<div class='col-sm-4'>
+								<c:set var="found" value="false" />
+								<c:forEach var="kitchenware" items="${kitchenwares}">
+									<c:if
+										test="${kitchenwaresAll[i].kitchenware_id == kitchenware.kitchenware_id}">
+										<c:set var="found" value="true" />
+									</c:if>
+								</c:forEach>
+								<input type="checkbox" name="kitchenware_id"
+									<c:if test="${found}">checked</c:if>
+									value="${kitchenwares[i].kitchenware_id}"> <label>
+									${kitchenwaresAll[i].name} </label>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
 				<hr>
 				<div class="form-group">
 					<label class="col-sm-4 control-label label-create">รูปภาพหน้าปก</label>
