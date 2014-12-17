@@ -51,7 +51,8 @@ public class EditServlet extends HttpServlet {
         List<IngredientCategory> ingredientCategories = null;
         List<List<Ingredient>> ingredients = null;
         List<RecipeStep> recipeSteps = null;
-
+        List<RecipeCategory> recipesCategories = null;
+ 
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
         HttpSession session = request.getSession();
@@ -72,6 +73,7 @@ public class EditServlet extends HttpServlet {
 
             RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
             recipeCategories = recipeCategoriesDAO.findAll();
+            recipesCategories = recipeCategoriesDAO.findByRecipeId(recipeId);
 
             IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
             ingredientCategories = ingredientCategoriesDAO.findAll();
@@ -101,6 +103,7 @@ public class EditServlet extends HttpServlet {
         request.setAttribute("ingredientCategories", ingredientCategories);
         request.setAttribute("ingredients", ingredients);
         request.setAttribute("recipeSteps", recipeSteps);
+        request.setAttribute("recipesCategories", recipesCategories);
 
         request.getRequestDispatcher("/WEB-INF/views/recipes/edit.jsp").include(request, response);
     }
