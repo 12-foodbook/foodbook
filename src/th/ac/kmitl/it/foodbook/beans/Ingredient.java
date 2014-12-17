@@ -55,7 +55,7 @@ public class Ingredient {
     }
     
     public float getCalorie() {
-        return calorie;
+        return Math.round(calorie);
     }
     
     public void setCalorie(float calorie) {
