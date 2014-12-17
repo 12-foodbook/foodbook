@@ -67,17 +67,20 @@
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<div class="row">
-									<div class="col-xs-12 col-md-4">
+									<div class="col-xs-12 col-sm-6 col-md-4">
 										<img src="${recipes[i].photo_url}" width="100%">
 									</div>
-									<div class="col-xs-12 col-md-5">
+									<div class="col-xs-12 col-sm-6 col-md-5">
 										<h2>${recipes[i].name}</h2>
-										<p>โดย ${recipesUser.username}</p>
+										<p>โดย ${recipesUsers[i].username}</p>
+										<p>
+											<c:forEach begin="1" end="${recipes[i].averageRate}"
+												var='star'>
+												<span class='glyphicon glyphicon-star'
+													style='color: gold; font-size: x-large;'></span>
+											</c:forEach>
+										</p>
 										${recipes[i].description}
-										<c:forEach begin="1" end="${recipes[i].averageRate}"
-											var='star'>
-											<span class='glyphicon glyphicon-star' style='color: gold'></span>
-										</c:forEach>
 									</div>
 									<div class="col-xs-12 col-md-3">
 										<c:if test="${param.id == recipeUser.user_id}">
