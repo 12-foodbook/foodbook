@@ -146,7 +146,7 @@
 								<div class="checkboxcol col-sm-12">
 									<c:forEach var="ingredient" items="${ingredients[j]}">
 									<div class=' col-sm-6'>
-										<input id='${ingredient.name}' onclick='showNext(this)' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
+										<input data-unit="${ingredient.unit}" id='${ingredient.name}' onclick='showNext(this)' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
 										<label style='cursor:pointer' for='${ingredient.name}'>
 										${ingredient.name}
 										</label>
@@ -259,14 +259,14 @@ tinymce.init({
 		});
 	}
 
-	var amountHtml = '<input type="number" min="0" name="ingredient_amount" class="form-control" placeholder="เช่น 5"/>'
+	var amountHtml = '<input type="number" min="0" name="ingredient_amount" class="form-control" placeholder="เช่น 5 unit"/>'
 	function showNext(input){
 		$("#"+input.id).click(toggleAmount(input),showStatus(input));
 	}
 	function toggleAmount(input) {
 		
 		if (input.checked)
-			$(input).next().after(amountHtml);
+			$(input).next().after(amountHtml.replace('unit',$(input).data('unit')));
 		else
 			$(input).next().next().remove();
 	}
