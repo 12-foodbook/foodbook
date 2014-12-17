@@ -143,7 +143,7 @@
 									<c:if test="${eqing eq 'true'}">
 									<div class=' col-sm-6'>
 																						
-										<input id='${ingredient.name}' onclick='showNext(this)' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
+										<input data-unit="${ingredient.unit}" id='${ingredient.name}' onclick='showNext(this)' type="checkbox"name="ingredient_id" value="${ingredient.ingredient_id}">
 										<label style='cursor:pointer' for='${ingredient.name}'>
 										${ingredient.name}
 										</label>										
@@ -265,14 +265,14 @@ tinymce.init({
 		});
 	}
 
-	var amountHtml = '<input name="ingredient_amount" class="form-control" placeholder="เช่น 5 ชิ้น"/>'
+	var amountHtml = '<input name="ingredient_amount" class="form-control" placeholder="เช่น 5 unit"/>'
 	function showNext(input){
 		$("#"+input.id).click(toggleAmount(input),showStatus(input));
 	}
 	function toggleAmount(input) {
-		
+		console.log(input);
 		if (input.checked)
-			$(input).next().after(amountHtml);
+			$(input).next().after(amountHtml.replace('unit',$(input).data('unit')));
 		else
 			$(input).next().next().remove();
 	}
