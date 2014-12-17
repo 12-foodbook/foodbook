@@ -3,6 +3,7 @@ package th.ac.kmitl.it.foodbook.servlets.ingredients;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,6 +32,7 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Ingredient> ingredients = null;
         List<IngredientCategory> ingredientCategories = null;
+        List<List<IngredientCategory>> ingredientsCategories = null;
         List<Kitchenware> kitchenwares = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
@@ -44,6 +46,13 @@ public class IndexServlet extends HttpServlet {
             IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
             ingredientCategories = ingredientCategoriesDAO.findAll();
             
+            ingredientsCategories = new ArrayList<List<IngredientCategory>>();
+            
+            for (Ingredient ingredient : ingredients) {
+                List<IngredientCategory> aIngredientCategories = ingredientsDAO.getIngredientCategoriesByIngredientId(ingredient.getIngredient_id());
+                ingredientsCategories.add(aIngredientCategories);
+            }
+            
             KitchenwaresDAO kitchenwaresDAO = new KitchenwaresDAO(conn);
             kitchenwares = kitchenwaresDAO.findAll();
             
@@ -56,6 +65,7 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("ingredients", ingredients);
         request.setAttribute("ingredientCategories", ingredientCategories);
         request.setAttribute("kitchenwares", kitchenwares);
+        request.setAttribute("ingredientsCategories", ingredientsCategories);
         request.getRequestDispatcher("/WEB-INF/views/ingredients/index.jsp").include(request, response);
     }
     

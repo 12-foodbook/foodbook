@@ -11,32 +11,50 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-2">
 			<form id="fix">
-				<b><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> หมวดหมู่วัตถุดิบ</b>
+				<h4>
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					หมวดหมู่วัตถุดิบ
+				</h4>
 				<c:forEach var="ingredientCategory" items="${ingredientCategories}">
 					<div class="checkbox">
 						<label> <input name="ingredient_category_id"
 							type="checkbox"
-							value="${ingredientCategory.ingredient_category_id}">
-							${ingredientCategory.name}
+							value="${ingredientCategory.ingredient_category_id}"
+							onclick="filter(this)"> ${ingredientCategory.name}
 						</label>
 					</div>
 				</c:forEach>
+				<script>
+		    $('#fix').affix({
+			offset : {
+			    top : 0,
+			    bottom : 0
+			}
+		    });
+		    function filter(e) {
+			var checked = $(':checked');
+			console.log(checked);
+			$('#cateTable tbody tr').hide();
+			for (var i = 0; i < checked.length; i++) {
+			    var category = $('[data-ingredient-category-'
+				    + checked[i].value + ']');
+			    console.log(category);
+			    category.show();
+			}
+			if (checked.length == 0)
+			    $('#cateTable tbody tr').show();
+		    }
+		</script>
 			</form>
-			
-			<script>
-				$('#fix').affix({
-					offset : {
-						top : 0,
-						bottom : 0
-					}
-				});
-			</script>
 		</div>
-		
+
 		<div class="col-xs-12 col-md-10">
-		<div class="page-header">
-			<h1><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> วัตถุดิบ</h1>
-		</div>
+			<div class="page-header">
+				<h1>
+					<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+					วัตถุดิบ
+				</h1>
+			</div>
 			<form action="/ingredients/create" method="get">
 				<table id="cateTable" class="table table-striped">
 					<!-- ingredients -->
@@ -48,35 +66,42 @@
 						<td align="center">ประเภทวัตถุดิบ</td>
 						<td align="center"></td>
 					</thead>
-					<c:forEach var="i" begin="0" end="${fn:length(ingredients)-1}">
-						<tr>
-							<!-- photo -->
-							<td id='ingrePhoto_${ingredients[i].ingredient_id}' value="${ingredients[i].photo_url}"><img
-								src="${ingredients[i].photo_url}" alt="ingredient photo"
-								width="150px" height="100px" /></td>
-							<!-- ingredient -->
-							<td align="center" id='cateValue_${ingredients[i].name}'
-								value="${ingredients[i].name}">${ingredients[i].name}</td>
-							<!-- calories -->
-							<td align="center" class='col-md-4' id='${ingredients[i].calorie}'>
-								${ingredients[i].calorie} kcal/${ingredients[i].unit}</td>
-							<!-- delete -->
-							<td align="center"><input id='ingredient_id'
-								name="ingredient_id" type="checkbox"
-								value="${ingredients[i].ingredient_id}" />
-							</td>
-							<td align="center" id='cat_select_${ingredients[i].name}'><c:forEach var="ingredientCategory"
-									items="${ingredients[i].ingredient_categories}">
+					<tbody>
+						<c:forEach var="i" begin="0" end="${fn:length(ingredients)-1}">
+							<tr
+								<c:forEach var="aIngredientCategory" items="${ingredientsCategories[i]}">
+											data-ingredient-category-${aIngredientCategory.ingredient_category_id}
+										</c:forEach>>
+								<!-- photo -->
+								<td id='ingrePhoto_${ingredients[i].ingredient_id}'
+									value="${ingredients[i].photo_url}"><img
+									src="${ingredients[i].photo_url}" alt="ingredient photo"
+									width="150px" height="100px" /></td>
+								<!-- ingredient -->
+								<td align="center" id='cateValue_${ingredients[i].name}'
+									value="${ingredients[i].name}">${ingredients[i].name}</td>
+								<!-- calories -->
+								<td align="center" class='col-md-4'
+									id='${ingredients[i].calorie}'>${ingredients[i].calorie}
+									kcal/${ingredients[i].unit}</td>
+								<!-- delete -->
+								<td align="center"><input id='ingredient_id'
+									name="ingredient_id" type="checkbox"
+									value="${ingredients[i].ingredient_id}" /></td>
+								<td align="center" id='cat_select_${ingredients[i].name}'><c:forEach
+										var="ingredientCategory"
+										items="${ingredients[i].ingredient_categories}">
 								${ingredientCategory.name}
 							</c:forEach></td>
-							<td id="editButt_${ingredients[i].name}"><a
-								onclick="domulti('${ingredients[i].ingredient_id}','editButt_${ingredients[i].name}','cateValue_${ingredients[i].name}','${ingredients[i].name}','${ingredients[i].calorie }','${ingredients[i].unit }','cat_select_${ingredients[i].name}','${ingredients[i].photo_url}')"
-								class="btn btn-default col-md-11">แก้ไขวัตถุดิบ</a></td>
-						</tr>
-					</c:forEach>
+								<td id="editButt_${ingredients[i].name}"><a
+									onclick="domulti('${ingredients[i].ingredient_id}','editButt_${ingredients[i].name}','cateValue_${ingredients[i].name}','${ingredients[i].name}','${ingredients[i].calorie }','${ingredients[i].unit }','cat_select_${ingredients[i].name}','${ingredients[i].photo_url}')"
+									class="btn btn-default col-md-11">แก้ไขวัตถุดิบ</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
 			</form>
-			
+
 			<script type="text/javascript">
 				function domulti(id,butt,catefield,name,kcal,unit,cate,photo){
 					
@@ -200,7 +225,7 @@
 				}
 
 			</script>
-			
+
 			<button type="button" class="btn btn-danger col-md-2"
 				data-toggle="modal" data-target="#myModal">ลบวัตถุดิบ</button>
 			<!-- Modal -->
@@ -220,12 +245,12 @@
 								data-dismiss="modal">ยกเลิก</button>
 							<input onclick='sendValue()' type="submit" class="btn btn-danger"
 								value='ลบ'>
-								
+
 						</div>
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- button add -->
 
 			<button onclick="addCate()" id="add" class="btn btn-default col-md-2">เพิ่มวัตถุดิบ</button>
@@ -287,7 +312,7 @@
 				
 				
 			</script>
-			
+
 		</div>
 	</div>
 </div>
