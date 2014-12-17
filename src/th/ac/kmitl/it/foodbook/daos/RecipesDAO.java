@@ -138,13 +138,13 @@ public class RecipesDAO extends AbstractDAO {
         return recipes;
     }
     
-    public boolean addIngredient(long recipeId, long ingredientId, String amount) throws SQLException {
+    public boolean addIngredient(long recipeId, long ingredientId, float amount) throws SQLException {
         String sql = "INSERT INTO recipes_ingredients (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)";
         PreparedStatement stm = conn.prepareStatement(sql);
         
         stm.setLong(1, recipeId);
         stm.setLong(2, ingredientId);
-        stm.setString(3, amount);
+        stm.setFloat(3, amount);
         
         int rowCount = stm.executeUpdate();
         

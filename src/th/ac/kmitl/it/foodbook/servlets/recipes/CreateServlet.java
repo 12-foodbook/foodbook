@@ -103,7 +103,7 @@ public class CreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (name.equals("") || ingredientIds.length == 0 || ingredientAmounts.length == 0 || stepTitles.length == 0) {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ข้อมูลนำเข้าไม่ถูกต้อง D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¸™à¸³à¹€à¸‚à¹‰à¸²à¹„à¸¡à¹ˆà¸–à¸¹à¸�à¸•à¹‰à¸­à¸‡ D:"));
             request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
             return;
         }
@@ -146,7 +146,7 @@ public class CreateServlet extends HttpServlet {
                 for (int i = 0; i < ingredientIds.length; i++) {
                     long ingredientId = Integer.parseInt(ingredientIds[i]);
 
-                    if (!recipesDAO.addIngredient(recipe.getRecipe_id(), ingredientId, ingredientAmounts[i])) {
+                    if (!recipesDAO.addIngredient(recipe.getRecipe_id(), ingredientId, Float.parseFloat(ingredientAmounts[i]))) {
                         isSuccess = false;
                         return;
                     }
@@ -180,10 +180,10 @@ public class CreateServlet extends HttpServlet {
         }
 
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "สร้างตำรับออาหารสำเร็จ :D"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "à¸ªà¸£à¹‰à¸²à¸‡à¸•à¸³à¸£à¸±à¸šà¸­à¸­à¸²à¸«à¸²à¸£à¸ªà¸³à¹€à¸£à¹‡à¸ˆ :D"));
             response.sendRedirect("/recipes/show?id=" + recipe.getRecipe_id());
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "สร้างตำรับออาหารไม่สำเร็จ D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "à¸ªà¸£à¹‰à¸²à¸‡à¸•à¸³à¸£à¸±à¸šà¸­à¸­à¸²à¸«à¸²à¸£à¹„à¸¡à¹ˆà¸ªà¸³à¹€à¸£à¹‡à¸ˆ D:"));
             request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
         }
     }
