@@ -55,7 +55,7 @@
 				</div>
 				<button class="btn btn-success btn-lg btn-block searchButt col-sm-12">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						ค้นหาตำรับอาหาร
+						ค้นหาตำหรับอาหาร
 					</button>
 		</div>
 		
@@ -67,7 +67,7 @@
 	    <div align="center">
 			<img src="/img/foodbook_black.png">
 			<h1>Foodbook</h1>
-			<h3>ระบบค้นหาตำรับอาหารจากวัตถุดิบที่มีอยู่</h3>
+			<h3>ระบบค้นหาตำหรับอาหารจากวัตถุดิบที่มีอยู่</h3>
 		</div>
 	  </div>
 	</div>
