@@ -115,8 +115,6 @@ public class SearchByIngredientServlet extends HttpServlet {
                         
                         if (!fuckedUp) {
                             recipes.add(recipe);
-                            User user = usersDAO.find(recipe.getUser_id());
-                            recipesUsers.add(user);
                         }
                         
                     }
@@ -134,8 +132,6 @@ public class SearchByIngredientServlet extends HttpServlet {
                         
                         if (!fuckedUp) {
                             recipesPartial.add(recipe);
-                            User user = usersDAO.find(recipe.getUser_id());
-                            recipesPartialUsers.add(user);
                             
                             List<Ingredient> ingredientPartial = new ArrayList<Ingredient>();
                             
@@ -159,6 +155,30 @@ public class SearchByIngredientServlet extends HttpServlet {
                 }
             }
             
+            Collections.sort(recipes, new Comparator<Recipe>() {
+                @Override
+                public int compare(Recipe o1, Recipe o2) {
+                    return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
+                }
+            });
+            
+            for (Recipe recipe : recipes) {
+                User user = usersDAO.find(recipe.getUser_id());
+                recipesUsers.add(user);
+            }
+            
+            Collections.sort(recipesPartial, new Comparator<Recipe>() {
+                @Override
+                public int compare(Recipe o1, Recipe o2) {
+                    return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
+                }
+            });
+            
+            for (Recipe recipePartial : recipesPartial) {
+                User user = usersDAO.find(recipePartial.getUser_id());
+                recipesPartialUsers.add(user);
+            }
+            
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -178,13 +198,6 @@ public class SearchByIngredientServlet extends HttpServlet {
                 System.out.println("\t"+ingredient);
             }
         }
-        
-        Collections.sort(recipes, new Comparator<Recipe>() {
-			@Override
-			public int compare(Recipe o1, Recipe o2) {
-				return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
-			}
-		});
         
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipesUsers", recipesUsers);

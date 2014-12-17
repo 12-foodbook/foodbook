@@ -45,6 +45,16 @@ public class SearchByNameServlet extends HttpServlet {
             
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipes = recipesDAO.findByNameLike(query);
+            
+            RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
+            recipeCategories = recipeCategoriesDAO.findAll();
+            
+            Collections.sort(recipes, new Comparator<Recipe>() {
+                @Override
+                public int compare(Recipe o1, Recipe o2) {
+                    return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
+                }
+            });
 
             UsersDAO usersDAO = new UsersDAO(conn);
             recipesUsers = new ArrayList<User>();
@@ -54,21 +64,11 @@ public class SearchByNameServlet extends HttpServlet {
                 recipesUsers.add(user);
             }
             
-            RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
-            recipeCategories = recipeCategoriesDAO.findAll();
-            
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(500);
         }
-        
-        Collections.sort(recipes, new Comparator<Recipe>() {
-			@Override
-			public int compare(Recipe o1, Recipe o2) {
-				return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
-			}
-		});
         
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipesUsers", recipesUsers);
