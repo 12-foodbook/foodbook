@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
+import th.ac.kmitl.it.foodbook.beans.Kitchenware;
 import th.ac.kmitl.it.foodbook.beans.Moderator;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
@@ -24,6 +25,7 @@ import th.ac.kmitl.it.foodbook.beans.RecipeStepPhoto;
 import th.ac.kmitl.it.foodbook.beans.User;
 import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
+import th.ac.kmitl.it.foodbook.daos.KitchenwaresDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepPhotosDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeStepsDAO;
@@ -44,6 +46,7 @@ public class CreateServlet extends HttpServlet {
         List<RecipeCategory> recipeCategories = null;
         List<IngredientCategory> ingredientCategories = null;
         List<List<Ingredient>> ingredients = null;
+        List<Kitchenware> kitchenwares = null;
 
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
 
@@ -63,6 +66,9 @@ public class CreateServlet extends HttpServlet {
 
             IngredientCategoriesDAO ingredientCategoriesDAO = new IngredientCategoriesDAO(conn);
             ingredientCategories = ingredientCategoriesDAO.findAll();
+            
+            KitchenwaresDAO kitchenwaresDAO = new KitchenwaresDAO(conn);
+            kitchenwares = kitchenwaresDAO.findAll();
 
             ingredients = new ArrayList<List<Ingredient>>();
 
@@ -79,6 +85,7 @@ public class CreateServlet extends HttpServlet {
             response.sendError(500);
         }
 
+        request.setAttribute("kitchenwares", kitchenwares);
         request.setAttribute("recipeCategories", recipeCategories);
         request.setAttribute("ingredientCategories", ingredientCategories);
         request.setAttribute("ingredients", ingredients);
@@ -93,6 +100,7 @@ public class CreateServlet extends HttpServlet {
         String videoUrl = request.getParameter("video_url");
 
         String[] recipeCategoryIds = request.getParameterValues("recipe_category_id");
+        String[] kitchenwareIds = request.getParameterValues("kitchenware_id");
 
         String[] ingredientIds = request.getParameterValues("ingredient_id");
         String[] ingredientAmounts = request.getParameterValues("ingredient_amount");
@@ -119,6 +127,7 @@ public class CreateServlet extends HttpServlet {
             Connection conn = ds.getConnection();
 
             RecipesDAO recipesDAO = new RecipesDAO(conn);
+            KitchenwaresDAO kitchenwaresDAO = new KitchenwaresDAO(conn);
 
             recipe = new Recipe();
             recipe.setName(name);
@@ -142,6 +151,11 @@ public class CreateServlet extends HttpServlet {
                 for (String recipeCategoryIdString : recipeCategoryIds) {
                     long recipeCategoryId = Long.parseLong(recipeCategoryIdString);
                     recipesDAO.addRecipeCategory(recipe.getRecipe_id(), recipeCategoryId);
+                }
+                
+                for (String kitchenwareIdString : kitchenwareIds) {
+                    long kitchenwareId = Long.parseLong(kitchenwareIdString);
+                    kitchenwaresDAO.addRecipeKitchenware(recipe.getRecipe_id(), kitchenwareId);
                 }
 
                 for (int i = 0; i < ingredientIds.length; i++) {

@@ -118,4 +118,16 @@ public class KitchenwaresDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
+    public boolean addRecipeKitchenware(long recipeId, long kitchenwareId) throws SQLException {
+        String sql = "INSERT INTO recipes_kitchenwares (recipe_id, kitchenware_id) VALUES (?, ?)";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, recipeId);
+        stm.setLong(2, kitchenwareId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
 }

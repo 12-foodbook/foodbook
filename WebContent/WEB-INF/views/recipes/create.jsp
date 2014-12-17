@@ -45,6 +45,20 @@
 						</div>
 						</c:forEach>
 					</div>
+				</div>
+				<div class="form-group">
+					<label for="name" class="col-sm-4 control-label label-create">เครื่องครัว</label>
+					<div class="col-sm-8">						
+						<c:forEach var='i' begin="0" end="${fn:length(kitchenwares) - 1}">
+						<div class='col-sm-4'>
+						<label>
+						
+						<input type="checkbox" name="kitchenware_id" value="${kitchenwares[i].kitchenware_id}">
+						${kitchenwares[i].name}
+						</label>
+						</div>
+						</c:forEach>
+					</div>
 				</div><hr>
 				<div class="form-group">
 						<label class="col-sm-4 control-label label-create">รูปภาพหน้าปก</label>
