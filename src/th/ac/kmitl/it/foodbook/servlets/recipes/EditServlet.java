@@ -64,7 +64,7 @@ public class EditServlet extends HttpServlet {
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             recipe = recipesDAO.find(recipeId);
 
-            if (recipe.getUser_id() != user.getUser_id()) {
+            if (user == null || recipe.getUser_id() != user.getUser_id()) {
                 session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ไม่สามารถเข้าถึงได้ D:"));
                 response.sendRedirect("/");
                 return;

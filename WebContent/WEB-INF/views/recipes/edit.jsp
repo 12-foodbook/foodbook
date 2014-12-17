@@ -191,6 +191,14 @@
 
 </div>
 
+<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+tinymce.init({
+    selector: "textarea",
+    menubar : false
+ });
+</script>
+
 <script>
 	var $createRecipeForm = $('#create-recipe');
 	var $recipeSteps = $('#recipe-steps');
@@ -203,6 +211,10 @@
 
 	$addStepButton.click(function() {
 		$recipeSteps.append(recipeStepHtml);
+		tinymce.init({
+		    selector: "textarea",
+		    menubar : false
+		 });
 	});
 
 	$createRecipeForm.submit(function(event) {
