@@ -85,7 +85,7 @@
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-8">
 										<h2>${recipes[i].name}</h2>
-										<p>โดย ${recipesUsers[i].username}</p>
+										<p><b>โดย</b> ${recipesUsers[i].username}</p>
 										<p>
 											<c:forEach begin="1" end="${recipes[i].averageRate}"
 												var='star'>
@@ -130,7 +130,7 @@
 										</div>
 										<div class="col-xs-12 col-sm-6 col-md-8">
 											<h2>${recipesPartial[i].name}</h2>
-											<p>โดย ${recipesPartialUsers[i].username}</p>
+											<p><b>โดย</b> ${recipesPartialUsers[i].username}</p>
 											<p>
 												<c:forEach begin="1" end="${recipesPartial[i].averageRate}"
 													var='star'>
