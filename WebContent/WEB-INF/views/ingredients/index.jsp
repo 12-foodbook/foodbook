@@ -90,7 +90,7 @@
 					document.getElementById('ingrePhoto_'+id).innerHTML='<img src="'+photo+'" alt="ingredient photo"width="150px" height="100px" /><input  name="photo" class="form-control" id="oldPhoto" type="file"onchange="fileChanged(this)"> <input id="newPhoto" name="photo_url" class="form-control" type="hidden">';
 				    document.getElementById(catefield).innerHTML='<input class="col-md-8 col-md-offset-2" id="newcateValue" value='+name+' />';				    
 				    document.getElementById(kcal).innerHTML='<input class="col-md-2 col-md-offset-4" id="newCalorie" value='+kcal+' /><input class="col-md-3 col-md-offset-0" id="newUnit" value='+unit+' />';
-				    document.getElementById(cate).innerHTML='<select class="col-md-10 col-md-offset-1" id="newCateg"><c:forEach var="Categories" items="${ingredientCategories}"><option selected="selected">${Categories.name}</option></c:forEach></select>';
+				    document.getElementById(cate).innerHTML='<select class="col-md-10 col-md-offset-1" id="newCateg"><c:forEach var="Categories" items="${ingredientCategories}"><option selected="selected" value="${Categories.ingredient_category_id}">${Categories.name}</option></c:forEach></select>';
 				    document.getElementById(butt).innerHTML='<a onclick="sending('+id+')" id="editButt" class="btn btn-success col-md-7" >ยืนยัน</a>';
 				    
 
@@ -103,6 +103,7 @@
 					var cat_calorie = document.getElementById('newCalorie').value;
 					var cat_Unit = document.getElementById('newUnit').value;
 					var cat_Photo =document.getElementById('newPhoto');
+					var newCateg = $('#newCateg').find(":selected").attr('value');
 					var url = "/ingredients/edit";
 					
 					if (cat_Photo == null || cat_Photo.value == '') {
@@ -112,7 +113,8 @@
 						cat_Photo = $('#newPhoto').attr('value');
 						console.log(cat_Photo);
 					}
-					$.post(url, {id: cateid, name: catename, photo_url: cat_Photo, calorie: cat_calorie, unit: cat_Unit}, function(data) {
+					console.log(newCateg);
+					$.post(url, {id: cateid, name: catename, photo_url: cat_Photo, calorie: cat_calorie, unit: cat_Unit, ingredient_category_id: newCateg}, function(data) {
 						window.location = '/ingredients/index';
 					});
 

@@ -145,6 +145,18 @@ public class IngredientsDAO extends AbstractDAO {
         return rowCount == 1;
     }
     
+    public boolean addIngredientCategory(long ingredientId, long ingredientCategoryId) throws SQLException {
+        String sql = "INSERT INTO ingredients_ingredient_categories (ingredient_id, ingredient_category_id) VALUES (?, ?)";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setLong(1, ingredientId);
+        stm.setLong(2, ingredientCategoryId);
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
+    
     public boolean removeAllIngredientFromIngredientCategories(long ingredientId) throws SQLException {
         String sql = "DELETE FROM ingredients_ingredient_categories WHERE ingredient_id = ?";
         PreparedStatement stm = conn.prepareStatement(sql);

@@ -38,6 +38,8 @@ public class EditServlet extends HttpServlet {
         String calorieString = request.getParameter("calorie");
         float calorie = Float.parseFloat(calorieString);
         String unit = request.getParameter("unit");
+        String ingredientCategoryIdString = request.getParameter("ingredient_category_id");
+        long ingredientCategoryId = Long.parseLong(ingredientCategoryIdString);
 
         HttpSession session = request.getSession();
 
@@ -57,6 +59,9 @@ public class EditServlet extends HttpServlet {
             ingredient.setPhoto_url(photoUrl);
             ingredient.setCalorie(calorie);
             ingredient.setUnit(unit);
+            
+            ingredientsDAO.removeAllIngredientFromIngredientCategories(ingredientId);
+            ingredientsDAO.addIngredientCategory(ingredientId, ingredientCategoryId);
 
             if (ingredientsDAO.update(ingredient)) {
                 isSuccess = true;
