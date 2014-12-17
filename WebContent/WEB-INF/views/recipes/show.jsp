@@ -8,13 +8,17 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp" />
 
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1589281751292732&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+    (function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id))
+	    return;
+	js = d.createElement(s);
+	js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1589281751292732&version=v2.0";
+	fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <div class="container">
 
@@ -36,11 +40,11 @@
 			</c:if>
 
 			<hr>
-			
+
 			<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">${i+1}. ${recipeSteps[i].title}</h3>
+						<h3 class="panel-title">${i+1}.${recipeSteps[i].title}</h3>
 					</div>
 					<div class="panel-body">
 						<p>${recipeSteps[i].description}</p>
@@ -70,7 +74,7 @@
 						value="${totalCalorie + (ingredient.calorie * ingredient.amount)}" />
 					<tr>
 						<td>${ingredient.name}</td>
-						<td>${ingredient.amount} ${ingredient.unit}</td>
+						<td>${ingredient.amount}${ingredient.unit}</td>
 						<td>${ingredient.calorie}</td>
 					</tr>
 				</c:forEach>
