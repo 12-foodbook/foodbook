@@ -56,10 +56,10 @@ public class DeleteServlet extends HttpServlet {
         }
         
         if (isSuccess) {
-            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Deleted Successfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "ลบผู้ใช้สำเร็จ"));
             response.sendRedirect("/users/index");
         } else {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Deleted Unsuccessfully!"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ลบผู้ใช้ไม่สำเร็จ"));
             response.sendRedirect("/users/index");
         }
     }

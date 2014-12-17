@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import th.ac.kmitl.it.foodbook.utils.Alert;
+import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
+
 @WebServlet("/users/deauthenticate")
 public class DeauthenticateServlet extends HttpServlet {
     
@@ -21,6 +24,7 @@ public class DeauthenticateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("user", null);
+        session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "ออกจากระบบสำเร็จ"));
         response.sendRedirect("/");
     }
     
