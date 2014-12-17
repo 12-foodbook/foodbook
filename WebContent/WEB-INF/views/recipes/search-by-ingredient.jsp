@@ -23,6 +23,19 @@
 						</label>
 					</div>
 				</c:forEach>
+				<hr>
+				<h4>
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					เครื่องครัว
+				</h4>
+				<c:forEach var="kitchenware" items="${kitchenwares}">
+					<div class="checkbox">
+						<label> <input name="kitchenware_id" type="checkbox"
+							value="${kitchenware.kitchenware_id}" onclick="filter(this)">
+							${kitchenware.name}
+						</label>
+					</div>
+				</c:forEach>
 				<script>
 		    $('#fix').affix({
 			offset : {
@@ -60,6 +73,9 @@
 						<c:forEach var="aRecipeCategory" items="${recipesCategories[i]}">
 											data-recipe-category-${aRecipeCategory.recipe_category_id}
 										</c:forEach>
+						<c:forEach var="recipeKitchenware" items="${recipeKitchenwares[i]}">
+											data-kitchenware-category-${recipeKitchenware.kitchenware_id}
+										</c:forEach>
 						class="recipe-panel">
 						<div class="panel panel-default">
 							<div class="panel-body">
@@ -69,30 +85,43 @@
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-8">
 										<h2>${recipes[i].name}</h2>
-										<b>โดย </b> ${recipesUser.username}<br> 
-										<b> คะแนนที่ได้ : </b> ${recipes[i].averageRate}<br> 
+										<p>โดย ${recipesUsers[i].username}</p>
+										<p>
+											<c:forEach begin="1" end="${recipes[i].averageRate}"
+												var='star'>
+												<span onclick="sentrate('${recipe.recipe_id}','${star}')"
+													class='glyphicon glyphicon-star'
+													style='color: gold; font-size: x-large;'></span>
+											</c:forEach>
+										</p>
 										${recipes[i].description}
-										<c:forEach begin="1" end="${recipes[i].averageRate}"
-											var='star'>
-											<span onclick="sentrate('${recipe.recipe_id}','${star}')"
-												class='glyphicon glyphicon-star'
-												style='color: gold; font-size: x-large;'></span>
-										</c:forEach>
 									</div>
 								</div>
+							</div>
+							<div class="panel-footer">
+								<b>หมวดหมู่:</b>
+								<c:forEach var="aRecipeCategory" items="${recipesCategories[i]}">
+											${aRecipeCategory.name} 
+										</c:forEach>
 							</div>
 						</div>
 					</a>
 
 				</c:forEach>
 			</c:if>
-			<h3>ตำรับอาหารที่ขาดวัตถุดิบบางอย่าง</h3>
 			<hr>
+			<h3>ตำรับอาหารที่ขาดวัตถุดิบบางอย่าง</h3>
 			<c:if test="${fn:length(recipesPartial) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipesPartial) - 1}">
 					<c:if test="${fn:length(ingredientsPartial[i]) <= 15}">
 						<div class="panel panel-default">
 							<a href="/recipes/show?id=${recipesPartial[i].recipe_id}"
+								<c:forEach var="aRecipeCategory" items="${recipesCategoriesPartial[i]}">
+											data-recipe-category-${aRecipeCategory.recipe_category_id}
+										</c:forEach>
+								<c:forEach var="recipeKitchenware" items="${recipeKitchenwaresPartial[i]}">
+											data-kitchenware-category-${recipeKitchenware.kitchenware_id}
+										</c:forEach>
 								class="recipe-panel">
 								<div class="panel-body">
 									<div class="row">
@@ -101,21 +130,29 @@
 										</div>
 										<div class="col-xs-12 col-sm-6 col-md-8">
 											<h2>${recipesPartial[i].name}</h2>
-											โดย ${recipesPartialUsers[i].username}<br>
-											${recipesPartial[i].averageRate}<br>
-											<c:forEach begin="1" end="${recipes[i].averageRate}"
-												var='star'>
-												<span onclick="sentrate('${recipe.recipe_id}','${star}')"
-													class='glyphicon glyphicon-star'
-													style='color: gold; font-size: x-large;'></span>
-											</c:forEach>
-											<br> <b>วัตถุดิบที่ขาด:</b>
-											<c:forEach var="ingredientPartial"
-												items="${ingredientsPartial[i]}">
-							${ingredientPartial.name} 
-						</c:forEach>
+											<p>โดย ${recipesPartialUsers[i].username}</p>
+											<p>
+												<c:forEach begin="1" end="${recipesPartial[i].averageRate}"
+													var='star'>
+													<span class='glyphicon glyphicon-star'
+														style='color: gold; font-size: x-large;'></span>
+												</c:forEach>
+											</p>
+											${recipesPartial[i].description}
 										</div>
 									</div>
+								</div>
+								<div class="panel-footer">
+									<b>วัตถุดิบที่ขาด:</b>
+									<c:forEach var="ingredientPartial"
+										items="${ingredientsPartial[i]}">
+							${ingredientPartial.name} 
+						</c:forEach>
+									<br> <b>หมวดหมู่:</b>
+									<c:forEach var="aRecipeCategory"
+										items="${recipesCategories[i]}">
+											${aRecipeCategory.name} 
+										</c:forEach>
 								</div>
 							</a>
 						</div>

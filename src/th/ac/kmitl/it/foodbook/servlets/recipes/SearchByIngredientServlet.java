@@ -58,6 +58,10 @@ public class SearchByIngredientServlet extends HttpServlet {
         List<List<Ingredient>> ingredientsPartial = null;
         List<RecipeCategory> recipeCategories = null;
         List<Kitchenware> kitchenwares = null;
+        List<List<Kitchenware>> recipesKitchenwares = null;
+        List<List<Kitchenware>> recipesKitchenwaresPartial = null;
+        List<List<RecipeCategory>> recipesCategories = null;
+        List<List<RecipeCategory>> recipesCategoriesPartial = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -162,9 +166,18 @@ public class SearchByIngredientServlet extends HttpServlet {
                 }
             });
             
+            recipesCategories = new ArrayList<List<RecipeCategory>>();
+            recipesKitchenwares = new ArrayList<List<Kitchenware>>();
+            
             for (Recipe recipe : recipes) {
                 User user = usersDAO.find(recipe.getUser_id());
                 recipesUsers.add(user);
+                
+                List<RecipeCategory> aRecipeCategories = recipeCategoriesDAO.findByRecipeId(recipe.getRecipe_id());
+                recipesCategories.add(aRecipeCategories);
+                
+                List<Kitchenware> recipesKitchenware = kitchenwaresDAO.findByRecipeId(recipe.getRecipe_id());
+                recipesKitchenwares.add(recipesKitchenware);
             }
             
             Collections.sort(recipesPartial, new Comparator<Recipe>() {
@@ -173,10 +186,19 @@ public class SearchByIngredientServlet extends HttpServlet {
                     return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
                 }
             });
+
+            recipesCategoriesPartial = new ArrayList<List<RecipeCategory>>();
+            recipesKitchenwaresPartial = new ArrayList<List<Kitchenware>>();
             
             for (Recipe recipePartial : recipesPartial) {
                 User user = usersDAO.find(recipePartial.getUser_id());
                 recipesPartialUsers.add(user);
+                
+                List<RecipeCategory> aRecipeCategories = recipeCategoriesDAO.findByRecipeId(recipePartial.getRecipe_id());
+                recipesCategoriesPartial.add(aRecipeCategories);
+                
+                List<Kitchenware> recipesKitchenware = kitchenwaresDAO.findByRecipeId(recipePartial.getRecipe_id());
+                recipesKitchenwaresPartial.add(recipesKitchenware);
             }
             
             conn.close();
@@ -200,12 +222,16 @@ public class SearchByIngredientServlet extends HttpServlet {
         }
         
         request.setAttribute("recipes", recipes);
+        request.setAttribute("recipesCategories", recipesCategories);
         request.setAttribute("recipesUsers", recipesUsers);
         request.setAttribute("recipesPartial", recipesPartial);
+        request.setAttribute("recipesCategoriesPartial", recipesCategoriesPartial);
         request.setAttribute("recipesPartialUsers", recipesPartialUsers);
         request.setAttribute("ingredientsPartial", ingredientsPartial);
         request.setAttribute("recipeCategories", recipeCategories);
         request.setAttribute("kitchenwares", kitchenwares);
+        request.setAttribute("recipesKitchenwares", recipesKitchenwares);
+        request.setAttribute("recipesKitchenwaresPartial", recipesKitchenwaresPartial);
         
         request.getRequestDispatcher("/WEB-INF/views/recipes/search-by-ingredient.jsp").include(request, response);
     }
