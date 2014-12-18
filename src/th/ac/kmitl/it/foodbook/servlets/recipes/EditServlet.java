@@ -176,7 +176,7 @@ public class EditServlet extends HttpServlet {
             
             User user = (User) session.getAttribute("user");
             
-            if (recipe.getUser_id() != user.getUser_id()) {
+            if ((recipe.getUser_id() != user.getUser_id()) || session.getAttribute("moderator") == null) {
                 session.setAttribute("alert", new Alert(AlertTypes.DANGER, "User Not Found D:"));
                 response.sendRedirect("/");
                 return;
