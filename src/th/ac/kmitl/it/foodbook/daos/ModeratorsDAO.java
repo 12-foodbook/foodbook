@@ -81,7 +81,7 @@ public class ModeratorsDAO extends AbstractDAO {
         
         if (rs.next()) {
             mod = new Moderator();
-            mod.setModerator_id(rs.getLong("user_id"));
+            mod.setModerator_id(rs.getLong("moderator_id"));
             mod.setUsername(rs.getString("username"));
             mod.setHashed_password(rs.getString("hashed_password"));
             mod.setSalt(rs.getString("salt"));
