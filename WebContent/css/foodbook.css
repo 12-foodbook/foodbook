@@ -210,6 +210,17 @@ th, b, strong {
 	border-top: 3px solid #000;
 	border-bottom: 1px solid #000;
 }
+/* ingredient index */
+span a {
+	list-style-type: none;
+	text-decoration: none;
+	color: black;
+}
+a.bottom:HOVER {
+	list-style-type: none;
+	text-decoration: none underline;
+	color: black;
+}
 <<<<<<< Updated upstream
 /*  */
 .checkcate{

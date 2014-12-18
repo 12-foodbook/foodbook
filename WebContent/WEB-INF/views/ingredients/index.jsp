@@ -54,6 +54,12 @@
 					<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
 					วัตถุดิบ
 				</h1>
+				<a name="top"></a>
+				<!-- jump bottom -->
+				<span class="glyphicon glyphicon-arrow-down  col-md-offset-10 col-xs-offset-6">
+					<a href="#bottom" class="bottom">Go To Bottom</a>
+				</span>
+				
 			</div>
 			<form action="/ingredients/create" method="get">
 				<table id="cateTable" class="table table-striped">
@@ -101,7 +107,10 @@
 					</tbody>
 				</table>
 			</form>
-
+			<!-- top -->
+			<span class="glyphicon glyphicon-arrow-up  col-md-offset-10 col-xs-offset-6">
+					<a href="#top" class="top">Back To Top</a>
+				</span>
 			<script type="text/javascript">
 				function domulti(id,butt,catefield,name,kcal,unit,cate,photo){
 					
@@ -312,7 +321,7 @@
 				
 				
 			</script>
-
+		<a name="bottom"></a>
 		</div>
 	</div>
 </div>
