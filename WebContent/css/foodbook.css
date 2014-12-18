@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.recipe-panel {
+	color: #333 !important;
+}
+
 .recipe-panel a {
 	color: #333 !important;
 }

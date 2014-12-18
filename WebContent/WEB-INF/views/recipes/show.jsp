@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<c:set var="pageTitle" value="Recipes / Show" scope="application" />
+<c:set var="pageTitle" value="${recipe.name}" scope="application" />
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp" />
 
@@ -24,7 +24,7 @@
 
 	<div class="page-header">
 		<h1>${recipe.name}
-			<small>โดย <a href="/recipes/user?id=${recipeUser.user_id}">${recipeUser.username}</a></small>
+			<small>โดย <a href="/recipes/user?id=<c:if test="${recipe.is_moderator_id}">${recipeUser.moderator_id}</c:if><c:if test="${!recipe.is_moderator_id}">${recipeUser.user_id}</c:if>">${recipeUser.username}</a></small>
 		</h1>
 	</div>
 
@@ -85,9 +85,9 @@
 					<td>${totalCalorie}</td>
 				</tr>
 			</table>
-			<div class="fb-share-button"
+			<p><div class="fb-share-button"
 				data-href="<%=request.getRequestURL() + "?" + request.getQueryString()%>"
-				data-layout="button_count"></div>
+				data-layout="button_count" style="top:-5px"></div>
 			<a class="twitter-share-button" href="https://twitter.com/share">
 				Tweet </a>
 			<script type="text/javascript">
@@ -95,6 +95,7 @@
 		    var t, js, fjs = d.getElementsByTagName(s)[0];
 		    if (d.getElementById(id)) {
 			return
+
 		    }
 		    js = d.createElement(s);
 		    js.id = id;
@@ -108,6 +109,16 @@
 		    })
 		}(document, "script", "twitter-wjs"));
 	    </script>
+			<!-- Place this tag in your head or just before your close body tag. -->
+			<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+			<!-- Place this tag where you want the share button to render. -->
+			<div class="g-plus" data-action="share" data-annotation="bubble"></div></p>
+			<p><c:forEach begin="1" end="${recipe.averageRate}" var='star'>
+				<span onclick="sentrate('${recipe.recipe_id}','${star}')"
+					class='glyphicon glyphicon-star'
+					style='color: gold; font-size: x-large;'></span>
+			</c:forEach></p>
 			<c:if test="${!empty user}">
 				<h1>VOTE</h1>
 				<form action="/rates" method="post">
@@ -127,13 +138,6 @@
 					<button class="btn btn-lg btn-block btn-danger">เพิ่มในรายการโปรด</button>
 				</form>
 			</c:if>
-			<br>
-			<h3>RATING AVERAGE</h3>
-			<c:forEach begin="1" end="${recipe.averageRate}" var='star'>
-				<span onclick="sentrate('${recipe.recipe_id}','${star}')"
-					class='glyphicon glyphicon-star'
-					style='color: gold; font-size: x-large;'></span>
-			</c:forEach>
 		</div>
 	</div>
 
