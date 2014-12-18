@@ -36,7 +36,7 @@
 		    });
 		}
 		</script>
-		<input class="form-control" onkeyup="filterIngre(this)" placeholder="ค้นหาวัตถุดิบ เช่น องุ่น">
+		<input class="form-control" onkeyup="filterIngre(this)" placeholder="ค้นหาวัตถุดิบภายในหมวดหมู่ เช่น องุ่น">
 		<div id="myTabContent" class="tab-content">
 			<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
 				<div class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>" id="ingredient-category-${i}">
