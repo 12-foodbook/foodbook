@@ -53,7 +53,7 @@
 						<div class='col-sm-4'>
 						<label>
 						
-						<input type="checkbox" name="kitchenware_id" value="${kitchenwares[i].kitchenware_id}" required>
+						<input type="checkbox" name="kitchenware_id" value="${kitchenwares[i].kitchenware_id}">
 						${kitchenwares[i].name}
 						</label>
 						</div>
