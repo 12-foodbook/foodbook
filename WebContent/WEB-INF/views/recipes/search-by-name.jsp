@@ -86,8 +86,8 @@
 						<c:forEach var="aRecipeCategory" items="${recipesCategories[i]}">
 											data-recipe-category-${aRecipeCategory.recipe_category_id}
 										</c:forEach>
-						<c:forEach var="recipeKitchenware" items="${recipeKitchenwares[i]}">
-											data-kitchenware-category-${recipeKitchenware.kitchenware_id}
+						<c:forEach var="recipesKitchenware" items="${recipesKitchenwares[i]}">
+											data-kitchenware-category-${recipesKitchenware.kitchenware_id}
 										</c:forEach>
 						class="recipe-panel">
 						<div class="panel panel-default">

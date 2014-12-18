@@ -78,6 +78,7 @@ public class SearchByNameServlet extends HttpServlet {
                 recipesCategories.add(aRecipesCategories);
                 
                 List<Kitchenware> recipesKitchenware = kitchenwaresDAO.findByRecipeId(recipe.getRecipe_id());
+                System.out.println();
                 recipesKitchenwares.add(recipesKitchenware);
             }
             
