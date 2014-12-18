@@ -27,11 +27,11 @@
 				var label = $(e).next();
 				console.log($.trim(label.html()).indexOf(ev.value) >= 0);
 				if ($.trim(label.html()).indexOf(ev.value) >= 0) {
-				    input.show();
-				    label.show();
+				    input.css('visibility','visible');
+				    label.css('visibility','visible');
 				} else {
-				    input.hide();
-				    label.hide();
+				    input.css('visibility','hidden');
+				    label.css('visibility','hidden');
 				}
 		    });
 		}
