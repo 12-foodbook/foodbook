@@ -13,7 +13,7 @@
 	<div class="page-header">
 		<h1>
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-			สร้างตำรับอาหาร
+			แก้ไขตำรับอาหาร
 		</h1>
 	</div>
 
@@ -102,29 +102,67 @@
 			</script>
 					</div>
 				</div>
-
+				<script>
+		    function magicRemove(e) {
+			if ($(e).parent().parent().children().length == 1) {
+			    console.log($('#cantRemove'));
+				$('#cantRemove').modal();
+			} else {
+			    $(e).parent().remove();
+			}
+		    }
+		</script>
+				<div class="modal fade" id="cantRemove">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+								</button>
+								<h4 class="modal-title">Modal title</h4>
+							</div>
+							<div class="modal-body">
+								<p>Must have at least one step</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save
+									changes</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
 				<div id="recipe-steps">
 					<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
-						<hr>
-						<div class="form-group">
-							<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
-							<div class="col-sm-8">
-								<input name="step_title" class="form-control"
-									value="${recipeSteps[i].title}">
+						<div>
+							<hr>
+							<img src="/img/remove_red.png" onclick="magicRemove(this)"
+								width="22px" height="22px" style="cursor: pointer" />
+							<div class="form-group">
+								<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
+								<div class="col-sm-8">
+									<input name="step_title" class="form-control"
+										value="${recipeSteps[i].title}">
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-4 control-label label-create">รายละเอียดขั้นตอน</label>
-							<div class="col-sm-8">
-								<textarea name="step_description" class="form-control" rows="5">${recipeSteps[i].description}</textarea>
+							<div class="form-group">
+								<label class="col-sm-4 control-label label-create">รายละเอียดขั้นตอน</label>
+								<div class="col-sm-8">
+									<textarea name="step_description" class="form-control" rows="5">${recipeSteps[i].description}</textarea>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-4 control-label label-create">รูปภาพประกอบขั้นตอน</label>
-							<div class="col-sm-8">
-								<input name="step_photo" class="form-control" type="file"
-									onchange="fileChanged(this)"> <input
-									name="step_photo_url" class="form-control" type="hidden" value="${recipeStepPhotos[i].photo_url}">
+							<div class="form-group">
+								<label class="col-sm-4 control-label label-create">รูปภาพประกอบขั้นตอน</label>
+								<div class="col-sm-8">
+									<input name="step_photo" class="form-control" type="file"
+										onchange="fileChanged(this)"> <input
+										name="step_photo_url" class="form-control" type="hidden"
+										value="${recipeStepPhotos[i][0].photo_url}">
+								</div>
 							</div>
 						</div>
 					</c:forEach>

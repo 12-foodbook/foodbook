@@ -85,6 +85,29 @@
 					<td>${totalCalorie}</td>
 				</tr>
 			</table>
+			<div class="fb-share-button"
+				data-href="<%=request.getRequestURL() + "?" + request.getQueryString()%>"
+				data-layout="button_count"></div>
+			<a class="twitter-share-button" href="https://twitter.com/share">
+				Tweet </a>
+			<script type="text/javascript">
+		window.twttr = (function(d, s, id) {
+		    var t, js, fjs = d.getElementsByTagName(s)[0];
+		    if (d.getElementById(id)) {
+			return
+		    }
+		    js = d.createElement(s);
+		    js.id = id;
+		    js.src = "https://platform.twitter.com/widgets.js";
+		    fjs.parentNode.insertBefore(js, fjs);
+		    return window.twttr || (t = {
+			_e : [],
+			ready : function(f) {
+			    t._e.push(f)
+			}
+		    })
+		}(document, "script", "twitter-wjs"));
+	    </script>
 			<c:if test="${!empty user}">
 				<h1>VOTE</h1>
 				<form action="/rates" method="post">

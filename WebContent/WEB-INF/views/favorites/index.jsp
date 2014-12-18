@@ -59,7 +59,7 @@
 			</c:if>
 			<c:if test="${fn:length(recipes) != 0}">
 				<c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
-					<a href="/recipes/show?id=${recipes[i].recipe_id}"
+					<span style="cursor: pointer;"
 						<c:forEach var="aRecipeCategory" items="${recipesCategories[i]}">
 											data-recipe-category-${aRecipeCategory.recipe_category_id}
 										</c:forEach>
@@ -68,11 +68,15 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-xs-12 col-sm-6 col-md-4">
-										<img src="${recipes[i].photo_url}" width="100%">
+										<a href="/recipes/show?id=${recipes[i].recipe_id}"> <img
+											src="${recipes[i].photo_url}" width="100%">
+										</a>
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-5">
 										<h2>${recipes[i].name}</h2>
-										<p><b>โดย</b> ${recipesUsers[i].username}</p>
+										<p>
+											<b>โดย</b> ${recipesUsers[i].username}
+										</p>
 										<p>
 											<c:forEach begin="1" end="${recipes[i].averageRate}"
 												var='star'>
@@ -126,7 +130,7 @@
 								</div>
 							</div>
 						</div>
-					</a>
+					</span>
 				</c:forEach>
 			</c:if>
 		</div>
