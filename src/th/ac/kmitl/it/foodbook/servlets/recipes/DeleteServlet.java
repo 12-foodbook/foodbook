@@ -14,56 +14,60 @@ import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.User;
+import th.ac.kmitl.it.foodbook.daos.KitchenwaresDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.utils.Alert;
 import th.ac.kmitl.it.foodbook.utils.Alert.AlertTypes;
 
 @WebServlet("/recipes/delete")
 public class DeleteServlet extends HttpServlet {
-
+    
     private static final long serialVersionUID = 1L;
-
+    
     public DeleteServlet() {
         super();
-
+        
     }
-
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
-
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String recipeIdString = request.getParameter("recipe_id");
         long recipeId = Long.parseLong(recipeIdString);
-
+        
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
-
+        
         HttpSession session = request.getSession();
-
+        
         boolean isSuccess = false;
-
+        
         try {
             Connection conn = ds.getConnection();
-
+            
             RecipesDAO recipesDAO = new RecipesDAO(conn);
             Recipe recipe = recipesDAO.find(recipeId);
-
+            
+            KitchenwaresDAO kitchenwaresDAO = new KitchenwaresDAO(conn);
+            kitchenwaresDAO.removeAllKitchenwareFromRecipesByRecipeId(recipeId);
+            
             User user = (User) session.getAttribute("user");
-
+            
             if (recipe.getUser_id() != user.getUser_id()) {
                 session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Access Denial D:"));
                 response.sendRedirect("/");
                 return;
             }
-
+            
             isSuccess = recipesDAO.delete(recipeId);
-
+            
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendError(500);
         }
-
+        
         if (isSuccess) {
             session.setAttribute("alert", new Alert(AlertTypes.SUCCESS, "Deleted recipe successfully :D"));
             response.sendRedirect("/recipes/user");

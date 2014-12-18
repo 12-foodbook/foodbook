@@ -182,9 +182,10 @@ public class EditServlet extends HttpServlet {
                     recipesDAO.addRecipeCategory(recipe.getRecipe_id(), recipeCategoryId);
                 }
                 
+                kitchenwaresDAO.removeAllKitchenwareFromRecipesByRecipeId(recipeId);
+                
                 for (String kitchenwareIdString : kitchenwareIds) {
                     long kitchenwareId = Long.parseLong(kitchenwareIdString);
-                    kitchenwaresDAO.removeAllKitchenwareFromRecipes(kitchenwareId);
                     kitchenwaresDAO.addRecipeKitchenware(recipe.getRecipe_id(), kitchenwareId);
                 }
                 
