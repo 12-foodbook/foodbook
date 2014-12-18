@@ -53,6 +53,7 @@ public class EditServlet extends HttpServlet {
         List<IngredientCategory> ingredientCategories = null;
         List<List<Ingredient>> ingredients = null;
         List<RecipeStep> recipeSteps = null;
+        List<List<RecipeStepPhoto>> recipeStepPhotos = null;
         List<RecipeCategory> recipesCategories = null;
         List<Kitchenware> kitchenwaresAll = null;
         List<Kitchenware> kitchenwares = null;
@@ -100,6 +101,14 @@ public class EditServlet extends HttpServlet {
             RecipeStepsDAO recipeStepsDAO = new RecipeStepsDAO(conn);
             recipeSteps = recipeStepsDAO.findByRecipeId(recipeId);
             
+            RecipeStepPhotosDAO recipeStepPhotosDAO = new RecipeStepPhotosDAO(conn);
+            recipeStepPhotos = new ArrayList<List<RecipeStepPhoto>>();
+            
+            for (RecipeStep recipeStep : recipeSteps) {
+                List<RecipeStepPhoto> recipesdlnflks = recipeStepPhotosDAO.findByRecipeStepId(recipeStep.getRecipe_step_id());
+                recipeStepPhotos.add(recipesdlnflks);
+            }
+            
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -115,6 +124,7 @@ public class EditServlet extends HttpServlet {
         request.setAttribute("ingredients", ingredients);
         request.setAttribute("recipeSteps", recipeSteps);
         request.setAttribute("recipesCategories", recipesCategories);
+        request.setAttribute("recipeStepPhotos", recipeStepPhotos);
         
         request.getRequestDispatcher("/WEB-INF/views/recipes/edit.jsp").include(request, response);
     }

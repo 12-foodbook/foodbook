@@ -104,19 +104,19 @@
 				</div>
 
 				<div id="recipe-steps">
-					<c:forEach var="recipeStep" items="${recipeSteps}">
+					<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
 						<hr>
 						<div class="form-group">
 							<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
 							<div class="col-sm-8">
 								<input name="step_title" class="form-control"
-									value="${recipeStep.title}">
+									value="${recipeSteps[i].title}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-4 control-label label-create">รายละเอียดขั้นตอน</label>
 							<div class="col-sm-8">
-								<textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea>
+								<textarea name="step_description" class="form-control" rows="5">${recipeSteps[i].description}</textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -124,7 +124,7 @@
 							<div class="col-sm-8">
 								<input name="step_photo" class="form-control" type="file"
 									onchange="fileChanged(this)"> <input
-									name="step_photo_url" class="form-control" type="hidden">
+									name="step_photo_url" class="form-control" type="hidden" value="${recipeStepPhotos[i].photo_url}">
 							</div>
 						</div>
 					</c:forEach>
