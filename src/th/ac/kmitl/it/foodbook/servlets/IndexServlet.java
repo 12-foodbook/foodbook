@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,8 +17,10 @@ import javax.sql.DataSource;
 
 import th.ac.kmitl.it.foodbook.beans.Ingredient;
 import th.ac.kmitl.it.foodbook.beans.IngredientCategory;
+import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.daos.IngredientCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.IngredientsDAO;
+import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet {
@@ -30,6 +34,7 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<IngredientCategory> ingredientCategories = null;
         List<List<Ingredient>> ingredients = null;
+        List<Recipe> recipes = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -46,6 +51,19 @@ public class IndexServlet extends HttpServlet {
                 ingredients.add(tempIngredients);
             }
             
+            RecipesDAO recipesDAO = new RecipesDAO(conn);
+            recipes = recipesDAO.findAll();
+
+            
+            Collections.sort(recipes, new Comparator<Recipe>() {
+                @Override
+                public int compare(Recipe o1, Recipe o2) {
+                    return o1.getAverageRate() < o2.getAverageRate() ? 1 : -1;
+                }
+            });
+            
+            recipes = recipes.subList(0, 5);
+            
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,6 +72,7 @@ public class IndexServlet extends HttpServlet {
         
         request.setAttribute("ingredientCategories", ingredientCategories);
         request.setAttribute("ingredients", ingredients);
+        request.setAttribute("recipes", recipes);
         
         request.getRequestDispatcher("/WEB-INF/views/index.jsp").include(request, response);
     }

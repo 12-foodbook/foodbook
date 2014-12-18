@@ -7,6 +7,8 @@
 <jsp:include page="/WEB-INF/views/layouts/header.jsp"/>
 
 <div class="container">
+
+
 	<div class="ingresTab col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-0">
 		<div class="page-header">
 			<h1>
@@ -86,7 +88,50 @@
 		</form>
 	</div>
 	
-	<div class="panel panel-default col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-0"">
+	<div class="col-xs-12 col-sm-6">
+	<div class="page-header">
+			<h1>
+				<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+				Top ${fn:length(recipes)} Recipes
+			</h1>
+		</div>
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
+	    <div class="item<c:if test="${i == 0}"> active</c:if>" style="height:540px;background-image:url('${recipes[i].photo_url}');background-size:cover;">
+	    <a href="/recipes/show?id=${recipes[i].recipe_id}" style="display:block;width:100%;height:100%;">
+	      </a>
+	      <div class="carousel-caption">
+	        <h3>${recipes[i].name}</h3>
+	      </div>
+	    </div>
+    </c:forEach>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<br>
+	
+	</div>
+	
+	<!-- <div class="panel panel-default col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-0"">
 	  <div class="panel-body">
 	    <div align="center">
 			<img src="/img/foodbook_black.png">
@@ -94,7 +139,7 @@
 			<h3>ระบบค้นหาตำรับอาหารจากวัตถุดิบที่มีอยู่</h3>
 		</div>
 	  </div>
-	</div>
+	</div> -->
 
 </div>
 
