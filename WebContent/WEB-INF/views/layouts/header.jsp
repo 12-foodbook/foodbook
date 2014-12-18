@@ -176,6 +176,10 @@
 										class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
 										เครื่องครัวทั้งหมด</a></li>
 								<li class="divider"></li>
+								<li><a href="/moderators/change-password"> <span
+										class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+										เปลี่ยนรหัสผ่าน
+								</a></li>
 								<li><a href="#" data-toggle="modal"
 									data-target="#moderator-logout-modal"><span
 										class="glyphicon glyphicon-log-out" aria-hidden="true"></span>

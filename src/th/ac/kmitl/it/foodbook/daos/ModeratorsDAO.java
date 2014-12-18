@@ -144,5 +144,18 @@ public class ModeratorsDAO extends AbstractDAO {
         
         return rowCount == 1;
     }
+    public boolean update(Moderator moderator) throws SQLException {
+        String sql = "UPDATE moderators SET username = ?, hashed_password = ?, salt = ? WHERE moderator_id = ?";
+        PreparedStatement stm = conn.prepareStatement(sql);
+        
+        stm.setString(1, moderator.getUsername());
+        stm.setString(2, moderator.getHashed_password());
+        stm.setString(3, moderator.getSalt());
+        stm.setLong(4, moderator.getModerator_id());
+        
+        int rowCount = stm.executeUpdate();
+        
+        return rowCount == 1;
+    }
     
 }
