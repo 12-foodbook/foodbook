@@ -380,14 +380,14 @@
 	if (document.getElementById(ingname).checked) {
 	    $("#tagDiv").append(tagHTML);
 	    checknum++;
-	    if (checknum % 5 == 0) {
+	    if (checknum % 3 == 0) {
 		$("#tagDiv").append('<div id="space"><br></div>');
 		numrow++;
 	    }
 	} else {
 	    $('#label-selected_' + ingname + '').remove();
 	    $(input).next().next().remove();
-	    if (checknum < 5 * numrow) {
+	    if (checknum < 3 * numrow) {
 		$('#space').remove();
 		numrow--;
 	    }
@@ -397,7 +397,7 @@
     }
     function del_select(temid) {
 	document.getElementById(temid.innerHTML).checked = false;
-	if (checknum < 5 * numrow) {
+	if (checknum < 3 * numrow) {
 	    $('#space').remove();
 	    numrow--;
 	}
