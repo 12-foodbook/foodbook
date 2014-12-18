@@ -98,9 +98,9 @@
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <c:forEach var="i" begin="0" end="${fn:length(recipes) - 1}">
+    <li data-target="#carousel-example-generic" data-slide-to="${i}"<c:if test="${i == 0}"> class="active"</c:if>></li>
+    </c:forEach>
   </ol>
 
   <!-- Wrapper for slides -->
