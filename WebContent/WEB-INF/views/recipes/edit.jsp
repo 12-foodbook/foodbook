@@ -189,6 +189,23 @@
 					</c:forEach>
 				</ul>
 				<div class="row">
+		<script>
+		function filterIngre(ev) {
+		    $('#myTabContent').find('input[type=checkbox]').each(function(i,e){
+				var input = $(e);
+				var label = $(e).next();
+				console.log($.trim(label.html()).indexOf(ev.value) >= 0);
+				if ($.trim(label.html()).indexOf(ev.value) >= 0) {
+				    input.css('visibility','visible');
+				    label.css('visibility','visible');
+				} else {
+				    input.css('visibility','hidden');
+				    label.css('visibility','hidden');
+				}
+		    });
+		}
+		</script>
+				<div class="col-xs-12"><input class="form-control" onkeyup="filterIngre(this)" placeholder="ค้นหาวัตถุดิบภายในหมวดหมู่ เช่น องุ่น"></div>
 					<div id="myTabContent" class="tab-content">
 
 						<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
