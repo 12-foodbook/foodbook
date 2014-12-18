@@ -157,6 +157,8 @@ public class SearchByIngredientServlet extends HttpServlet {
                                 
                                 if (!ingredientIdStrings.contains(recipeIngredientPartialIdString)) {
                                     
+                                    if (recipeIngredientPartialIdString == null) break;
+                                    
                                     long ingredientPartialId = Long.parseLong(recipeIngredientPartialIdString);
                                     Ingredient ingredient = ingredientsDAO.find(ingredientPartialId);
                                     
