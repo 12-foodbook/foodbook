@@ -31,7 +31,7 @@
 				<c:forEach var="kitchenware" items="${kitchenwares}">
 					<div class="checkbox">
 						<label> <input name="kitchenware_id" type="checkbox"
-							value="${kitchenware.kitchenware_id}" onclick="filter(this)">
+							value="${kitchenware.kitchenware_id}" onclick="filter2(this)">
 							${kitchenware.name}
 						</label>
 					</div>
