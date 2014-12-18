@@ -34,7 +34,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-xs-12">
-						<button type="submit" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> สมัครสมาชิก</button>
+						<button type="submit" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> เปลี่ยนรหัสผ่าน</button>
 					</div>
 				</div>
 			</form>

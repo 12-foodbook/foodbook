@@ -20,20 +20,20 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
 				<div class="form-group">
-					<label for="name" class="col-sm-4 control-label label-create">ชื่อรายการอาหาร</label>
+					<label for="name" class="col-sm-4 control-label label-create">ชื่อรายการอาหาร <b style='color: red;'>*</b></label>
 					<div class="col-sm-8">
-						<input name="name" placeholder="name" id="name"
+						<input name="name" placeholder="เช่น เค้ก" id="name"
 							class="form-control" value="${recipe.name}" required>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="name" class="col-sm-4 control-label label-create">คำอธิบายรายการอาหาร</label>
+					<label for="name" class="col-sm-4 control-label label-create">คำอธิบายรายการอาหาร <b style='color: red;'>*</b></label>
 					<div class="col-sm-8">
 						<textarea name="description">${recipe.description}</textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="name" class="col-sm-4 control-label label-create">หมวดรายการอาหาร</label>
+					<label for="name" class="col-sm-4 control-label label-create">หมวดรายการอาหาร <b style='color: red;'>*</b></label>
 					<div class="col-sm-8">						
 						<c:forEach var='i' begin="0" end="${fn:length(recipeCategories) - 1}">
 						<div class='col-sm-3'>
@@ -47,7 +47,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="name" class="col-sm-4 control-label label-create">เครื่องครัว</label>
+					<label for="name" class="col-sm-4 control-label label-create">เครื่องครัว <b style='color: red;'>*</b></label>
 					<div class="col-sm-8">						
 						<c:forEach var='i' begin="0" end="${fn:length(kitchenwares) - 1}">
 						<div class='col-sm-4'>
@@ -61,10 +61,10 @@
 					</div>
 				</div><hr>
 				<div class="form-group">
-						<label class="col-sm-4 control-label label-create">รูปภาพหน้าปก</label>
+						<label class="col-sm-4 control-label label-create">รูปภาพหน้าปก <b style='color: red;'>*</b></label>
 						<div class="col-sm-8">
 							<input name="photo" class="form-control" type="file"
-								onchange="fileChanged(this)"> <input
+								onchange="fileChanged(this)" required> <input
 								name="photo_url" class="form-control" type="hidden">
 						</div>
 					</div>
@@ -86,14 +86,14 @@
 				<div id="recipe-steps">
 					<hr>
 					<div class="form-group">
-						<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
+						<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน <b style='color: red;'>*</b></label>
 						<div class="col-sm-8">
 							<input name="step_title" class="form-control"
 								value="${recipeStep.title}">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label label-create">รายละเอียดขั้นตอน</label>
+						<label class="col-sm-4 control-label label-create">รายละเอียดขั้นตอน <b style='color: red;'>*</b></label>
 						<div class="col-sm-8">
 							<textarea name="step_description" class="form-control" rows="5">${recipeStep.description}</textarea>
 						</div>
@@ -143,6 +143,7 @@
 			<!-- ingredients -->
 
 			<div class="col-xs-12 col-md-6 fixed-div-ingres">
+			<b style='color: red;'>* choose at least 1 or more</b>
 				<ul class="nav nav-tabs">
 					<c:forEach begin="0" end="${fn:length(ingredientCategories) - 1}"
 						var="i">
@@ -295,21 +296,21 @@ function showStatus(input){
 	if(document.getElementById(ingname).checked){
 		$( "#tagDiv" ).append(tagHTML);	
 		checknum++;
-		if(checknum%5==0){$( "#tagDiv" ).append('<div id="space"><br></div>');
+		if(checknum%3==0){$( "#tagDiv" ).append('<div id="space"><br></div>');
 		numrow++;
 		}
 	}
 	else{
 		$( '#label-selected_'+ingname+'' ).remove();
 		$(input).next().next().remove();
-		if(checknum<5*numrow){$( '#space' ).remove();numrow--;}
+		if(checknum<3*numrow){$( '#space' ).remove();numrow--;}
 		checknum--;
 		
 	}
 }
 function del_select(temid){
 	document.getElementById(temid.innerHTML).checked=false;
-	if(checknum<5*numrow){$( '#space' ).remove();numrow--;}
+	if(checknum<3*numrow){$( '#space' ).remove();numrow--;}
 	checknum--;
 	
 	$("#"+temid.id).remove();
