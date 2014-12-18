@@ -112,7 +112,7 @@ public class CreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (name.equals("") || ingredientIds.length == 0 || ingredientAmounts.length == 0 || stepTitles.length == 0) {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Access Denial D:"));
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Invalid Inputs D:"));
             request.getRequestDispatcher("/WEB-INF/views/recipes/create.jsp").include(request, response);
             return;
         }

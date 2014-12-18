@@ -71,8 +71,10 @@ public class IndexServlet extends HttpServlet {
                 if (recipe.getIs_moderator_id()) {
                     Moderator moderator = moderatorsDAO.find(recipe.getUser_id());
                     recipesModerators.add(moderator);
+                    recipesUsers.add(new User());
                 } else {
                     User user = usersDAO.find(recipe.getUser_id());
+                    recipesModerators.add(new Moderator());
                     recipesUsers.add(user);
                 }
                 
