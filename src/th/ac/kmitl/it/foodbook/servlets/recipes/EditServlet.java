@@ -90,7 +90,6 @@ public class EditServlet extends HttpServlet {
             kitchenwaresAll = kitchenwaresDAO.findAll();
             kitchenwares = kitchenwaresDAO.findByRecipeId(recipeId);
             
-            
             ingredients = new ArrayList<List<Ingredient>>();
             
             for (IngredientCategory ingredientCategory : ingredientCategories) {
@@ -150,9 +149,47 @@ public class EditServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         
-        if (name.equals("") || ingredientIds.length == 0 || ingredientAmounts.length == 0 || stepTitles.length == 0) {
-            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Invalid Inputs D:"));
-            request.getRequestDispatcher("/WEB-INF/views/recipes/edit.jsp?id=" + recipeId).include(request, response);
+        if (name == null || name.equals("")) {
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Name is empty D:"));
+            response.sendRedirect("/recipes/create");
+            return;
+        }
+        
+        if (recipeCategoryIds == null || recipeCategoryIds.length == 0) {
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Recipe category is empty D:"));
+            response.sendRedirect("/recipes/create");
+            return;
+        }
+        
+        if (kitchenwareIds == null || kitchenwareIds.length == 0) {
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Kitchenware is empty D:"));
+            response.sendRedirect("/recipes/create");
+            return;
+        }
+        
+        if (ingredientIds == null || ingredientIds.length == 0) {
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Ingredient is empty D:"));
+            response.sendRedirect("/recipes/create");
+            return;
+        }
+        
+        if (ingredientAmounts == null || ingredientAmounts.length == 0) {
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ingredient amount is empty D:"));
+            response.sendRedirect("/recipes/create");
+            return;
+        } else {
+            for (String id : ingredientAmounts) {
+                if (id.equals("")) {
+                    session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ingredient amount is empty D:"));
+                    response.sendRedirect("/recipes/create");
+                    return;
+                }
+            }
+        }
+        
+        if (stepTitles == null || stepTitles.length == 0) {
+            session.setAttribute("alert", new Alert(AlertTypes.DANGER, "Step title is empty D:"));
+            response.sendRedirect("/recipes/create");
             return;
         }
         

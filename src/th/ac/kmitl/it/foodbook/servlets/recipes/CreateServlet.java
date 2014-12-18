@@ -139,6 +139,14 @@ public class CreateServlet extends HttpServlet {
             session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ingredient amount is empty D:"));
             response.sendRedirect("/recipes/create");
             return;
+        } else {
+            for (String id : ingredientAmounts) {
+                if (id.equals("")) {
+                    session.setAttribute("alert", new Alert(AlertTypes.DANGER, "ingredient amount is empty D:"));
+                    response.sendRedirect("/recipes/create");
+                    return;
+                }
+            }
         }
         
         if (stepTitles == null || stepTitles.length == 0) {
