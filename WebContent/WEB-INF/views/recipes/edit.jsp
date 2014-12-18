@@ -372,7 +372,7 @@
 	});
     }
 
-    var amountHtml = '<input name="ingredient_amount" class="form-control" placeholder="เช่น 5 unit"/>'
+    var amountHtml = '<input name="ingredient_amount" class="form-control" placeholder="หน่วย: unit"/>'
     function showNext(input) {
 	$("#" + input.id).click(toggleAmount(input), showStatus(input));
     }
