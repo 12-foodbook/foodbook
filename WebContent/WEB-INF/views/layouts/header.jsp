@@ -149,6 +149,9 @@
 								class="glyphicon glyphicon-flash" aria-hidden="true"></span>
 								${moderator.username} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
+								<li><a href="/recipes/create"><span
+										class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+										สร้างตำรับอาหาร</a></li>
 								<li><a href="/moderators/create"><span
 										class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 										สร้างผู้ดูแล</a></li>
