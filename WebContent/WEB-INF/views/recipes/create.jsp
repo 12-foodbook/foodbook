@@ -71,7 +71,7 @@
 				<div class="form-group">
 					<label for="video_url" class="col-sm-4 control-label label-create">วิดิโอวิธีการประกอบอาหาร</label>
 					<div class="col-sm-8">
-						<input id='video_you' onblur="checkLink()" name="video_url" placeholder="video_url" id="video_url" class="form-control" value="${recipe.video_url}">
+						<input id='video_you' onblur="checkLink()" name="video_url" placeholder="เช่น https://www.youtube.com/watch?v=RBumgq5yVrA&list=RDhT_nvWreIhg" id="video_url" class="form-control" value="${recipe.video_url}">
 						<script type="text/javascript">			
 						function checkLink(){
 							var tem =document.getElementById('video_you').value;
@@ -89,7 +89,7 @@
 						<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน <b style='color: red;'>*</b></label>
 						<div class="col-sm-8">
 							<input name="step_title" class="form-control"
-								value="${recipeStep.title}">
+								value="${recipeStep.title}" required>
 						</div>
 					</div>
 					<div class="form-group">
