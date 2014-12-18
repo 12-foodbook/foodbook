@@ -24,7 +24,9 @@
 
 	<div class="page-header">
 		<h1>${recipe.name}
-			<small>โดย <a href="/recipes/user?id=<c:if test="${recipe.is_moderator_id}">${recipeUser.moderator_id}</c:if><c:if test="${!recipe.is_moderator_id}">${recipeUser.user_id}</c:if>">${recipeUser.username}</a></small>
+			<c:if test="${!recipe.is_moderator_id}">
+				<small>โดย <a href="/recipes/user?id=${recipeUser.user_id}">${recipeUser.username}</a></small>
+			</c:if>
 		</h1>
 	</div>
 
@@ -46,7 +48,7 @@
 			<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">${i+1}. ${recipeSteps[i].title}</h3>
+						<h3 class="panel-title">${i+1}.${recipeSteps[i].title}</h3>
 					</div>
 					<div class="panel-body">
 						<p>${recipeSteps[i].description}</p>
@@ -76,7 +78,7 @@
 						value="${totalCalorie + (ingredient.calorie * ingredient.amount)}" />
 					<tr>
 						<td>${ingredient.name}</td>
-						<td>${ingredient.amount} ${ingredient.unit}</td>
+						<td>${ingredient.amount}${ingredient.unit}</td>
 						<td>${ingredient.calorie}</td>
 					</tr>
 				</c:forEach>
@@ -85,9 +87,10 @@
 					<td>${totalCalorie}</td>
 				</tr>
 			</table>
-			<p><div class="fb-share-button"
+			<p>
+			<div class="fb-share-button"
 				data-href="<%=request.getRequestURL() + "?" + request.getQueryString()%>"
-				data-layout="button_count" style="top:-5px"></div>
+				data-layout="button_count" style="top: -5px"></div>
 			<a class="twitter-share-button" href="https://twitter.com/share">
 				Tweet </a>
 			<script type="text/javascript">
@@ -95,6 +98,12 @@
 		    var t, js, fjs = d.getElementsByTagName(s)[0];
 		    if (d.getElementById(id)) {
 			return
+
+			
+
+						
+
+			
 
 		    }
 		    js = d.createElement(s);
@@ -109,21 +118,26 @@
 		    })
 		}(document, "script", "twitter-wjs"));
 	    </script>
+
 			<!-- Place this tag in your head or just before your close body tag. -->
 			<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 			<!-- Place this tag where you want the share button to render. -->
-			<div class="g-plus" data-action="share" data-annotation="bubble"></div></p>
-			<p><c:forEach begin="1" end="${recipe.averageRate}" var='star'>
-				<span onclick="sentrate('${recipe.recipe_id}','${star}')"
-					class='glyphicon glyphicon-star'
-					style='color: gold; font-size: x-large;'></span>
-			</c:forEach></p>
+
+			<div class="g-plus" data-action="share" data-annotation="bubble"></div>
+			</p>
+			<p>
+				<c:forEach begin="1" end="${recipe.averageRate}" var='star'>
+					<span onclick="sentrate('${recipe.recipe_id}','${star}')"
+						class='glyphicon glyphicon-star'
+						style='color: gold; font-size: x-large;'></span>
+				</c:forEach>
+			</p>
 			<c:if test="${!empty user}">
 				<h1>VOTE</h1>
 				<form action="/rates" method="post">
 					<input type="hidden" name="recipe_id" value="${recipe.recipe_id}">
-					<div class="btn-group" role="group">
+					<div class="btn-group btn-group-justified" role="group">
 						<input class="btn btn-default" type="submit" name="rate" value="1">
 						<input class="btn btn-default" type="submit" name="rate" value="2">
 						<input class="btn btn-default" type="submit" name="rate" value="3">

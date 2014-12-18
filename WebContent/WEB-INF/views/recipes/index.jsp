@@ -99,7 +99,8 @@
 									<div class="col-xs-12 col-md-5">
 										<h2>${recipes[i].name}</h2>
 										<p>
-											<b>โดย</b> ${recipesUsers[i].username}
+											<b>โดย</b> <c:if test="${recipes[i].is_moderator_id}">${recipesModerators[i].username}</c:if>
+											<c:if test="${!recipes[i].is_moderator_id}">${recipesUsers[i].username}</c:if>
 										</p>
 										<p>
 											<c:forEach begin="1" end="${recipes[i].averageRate}"
