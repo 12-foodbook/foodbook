@@ -153,10 +153,7 @@ public class SearchByIngredientServlet extends HttpServlet {
                             
                             List<Ingredient> ingredientPartial = new ArrayList<Ingredient>();
                             
-                            System.out.println(ingredientIdStrings);
-                            System.out.println(recipesIngredientIdStrings);
-                            
-                            for (String recipeIngredientPartialIdString : recipesIngredientIdStrings.toArray(new String[ingredientIdStrings.size()])) {
+                            for (String recipeIngredientPartialIdString : recipesIngredientIdStrings.toArray(new String[recipesIngredientIdStrings.size()])) {
                                 
                                 if (!ingredientIdStrings.contains(recipeIngredientPartialIdString)) {
                                     
