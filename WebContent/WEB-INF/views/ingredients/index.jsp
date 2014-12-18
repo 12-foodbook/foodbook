@@ -7,6 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/layouts/header.jsp" />
 
+				<a name="top"></a>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-md-2">
@@ -53,13 +54,20 @@
 				<h1>
 					<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
 					วัตถุดิบ
+					<div class="pull-right">
+					<script>
+					function toggleInput() {
+						$('input[name=ingredient_id]').click();
+					}
+					</script>
+						<a href="#" class="btn btn-default" onclick="toggleInput()">เลือกทั้งหมด</a> <a href="#bottom" class=" btn btn-default"><span
+							class="glyphicon glyphicon-arrow-down"> </span> Go To Bottom</a>
+					</div>
 				</h1>
-				<a name="top"></a>
 				<!-- jump bottom -->
-				<span class="glyphicon glyphicon-arrow-down  col-md-offset-10 col-xs-offset-6">
-					<a href="#bottom" class="bottom">Go To Bottom</a>
-				</span>
-				
+
+				<!-- Delete all -->
+
 			</div>
 			<form action="/ingredients/create" method="get">
 				<table id="cateTable" class="table table-striped">
@@ -108,9 +116,8 @@
 				</table>
 			</form>
 			<!-- top -->
-			<span class="glyphicon glyphicon-arrow-up  col-md-offset-10 col-xs-offset-6">
-					<a href="#top" class="top">Back To Top</a>
-				</span>
+			<a href="#" class="btn btn-default" onclick="toggleInput()">เลือกทั้งหมด</a> <a href="#top" class=" btn btn-default"><span
+							class="glyphicon glyphicon-arrow-up"> </span> Go To Top</a>
 			<script type="text/javascript">
 				function domulti(id,butt,catefield,name,kcal,unit,cate,photo){
 					
@@ -123,7 +130,7 @@
 					var table = document.getElementById('cateTable');
 					document.getElementById('ingrePhoto_'+id).innerHTML='<img src="'+photo+'" alt="ingredient photo"width="150px" height="100px" /><input  name="photo" class="form-control" id="oldPhoto" type="file"onchange="fileChanged(this)"> <input id="newPhoto" name="photo_url" class="form-control" type="hidden">';
 				    document.getElementById(catefield).innerHTML='<input class="col-md-8 col-md-offset-2" id="newcateValue" value='+name+' />';				    
-				    document.getElementById(kcal).innerHTML='<input class="col-md-2 col-md-offset-4" id="newCalorie" value='+kcal+' /><input class="col-md-3 col-md-offset-0" id="newUnit" value='+unit+' />';
+				    document.getElementById(kcal).innerHTML='<input class="col-md-2 col-md-offset-4" id="newCalorie" value='+kcal+'><input class="col-md-3 col-md-offset-0" id="newUnit" value='+unit+' />';
 				    document.getElementById(cate).innerHTML='<select class="col-md-10 col-md-offset-1" id="newCateg"><c:forEach var="Categories" items="${ingredientCategories}"><option selected="selected" value="${Categories.ingredient_category_id}">${Categories.name}</option></c:forEach></select>';
 				    document.getElementById(butt).innerHTML='<a onclick="sending('+id+')" id="editButt" class="btn btn-success col-md-7" >ยืนยัน</a>';
 				    
@@ -321,7 +328,7 @@
 				
 				
 			</script>
-		<a name="bottom"></a>
+			<a name="bottom"></a>
 		</div>
 	</div>
 </div>
