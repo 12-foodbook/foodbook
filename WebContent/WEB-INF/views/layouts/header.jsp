@@ -155,6 +155,9 @@
 								<li><a href="/moderators/create"><span
 										class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 										สร้างผู้ดูแล</a></li>
+								<li><a href="/ingredients/index"><span
+										class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+										สร้างวัตถุดิบ</a></li>
 								<li class="divider"></li>
 								<li><a href="/moderators/index"><span class="glyphicon glyphicon-flash"
 										aria-hidden="true"></span> ผู้ดูแลทั้งหมด</a></li>
