@@ -213,7 +213,7 @@
 				<button type="submit" id="create-button"
 					class="btn btn-success btn-lg btn-block">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-					สร้างตำรับอาหาร
+					แก้ไขตำรับอาหาร
 				</button>
 			</div>
 		</div>
