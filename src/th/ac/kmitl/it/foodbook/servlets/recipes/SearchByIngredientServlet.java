@@ -104,6 +104,11 @@ public class SearchByIngredientServlet extends HttpServlet {
                         // Add it to said set.
                         recipesIngredientIdStrings.add(String.valueOf(ingredient.getIngredient_id()));
                     }
+
+                    System.out.println(ingredientIdStrings);
+                    System.out.println(recipesIngredientIdStrings);
+                    System.out.println(ingredientIdStrings.containsAll(recipesIngredientIdStrings));
+                    System.out.println();
                     
                     // if said set is a subset of selected ingredients. (this recipe can be cooked)
                     if (ingredientIdStrings.containsAll(recipesIngredientIdStrings)) {
@@ -123,7 +128,16 @@ public class SearchByIngredientServlet extends HttpServlet {
                         
                     }
                     
-                    if (recipesIngredientIdStrings.containsAll(ingredientIdStrings)) {
+                    boolean found = false;
+                    
+                    for (String ingredientIdA : recipesIngredientIdStrings) {
+                        if (ingredientIdStrings.contains(ingredientIdA)) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    
+                    if (found || recipesIngredientIdStrings.containsAll(ingredientIdStrings)) {
 
                         // TODO: Remove fuck up (duplicate recipe).
                         boolean fuckedUp = false;
