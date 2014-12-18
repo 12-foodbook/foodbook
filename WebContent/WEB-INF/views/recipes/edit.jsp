@@ -83,7 +83,7 @@
 					<div class="col-sm-8">
 						<input name="photo" class="form-control" type="file"
 							onchange="fileChanged(this)"> <input name="photo_url"
-							class="form-control" type="hidden">
+							class="form-control" type="hidden" value="${recipe.photo_url}">
 					</div>
 				</div>
 				<div class="form-group">
