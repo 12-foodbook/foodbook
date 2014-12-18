@@ -56,6 +56,19 @@
 			if (checked.length == 0)
 			    $('.recipe-panel').show();
 		    }
+		    function filter2(e) {
+			var checked = $(':checked');
+			console.log(checked);
+			$('.recipe-panel').hide();
+			for (var i = 0; i < checked.length; i++) {
+			    var category = $('[data-kitchenware-category-'
+				    + checked[i].value + ']');
+			    console.log(category);
+			    category.show();
+			}
+			if (checked.length == 0)
+			    $('.recipe-panel').show();
+		    }
 		</script>
 			</form>
 		</div>
@@ -73,7 +86,7 @@
 						<c:forEach var="aRecipeCategory" items="${recipesCategories[i]}">
 											data-recipe-category-${aRecipeCategory.recipe_category_id}
 										</c:forEach>
-						<c:forEach var="recipeKitchenware" items="${recipeKitchenwares[i]}">
+						<c:forEach var="recipeKitchenware" items="${recipesKitchenwares[i]}">
 											data-kitchenware-category-${recipeKitchenware.kitchenware_id}
 										</c:forEach>
 						class="recipe-panel">

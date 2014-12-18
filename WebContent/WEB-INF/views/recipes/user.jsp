@@ -23,6 +23,19 @@
 						</label>
 					</div>
 				</c:forEach>
+				<hr>
+				<h4>
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					เครื่องครัว
+				</h4>
+				<c:forEach var="kitchenware" items="${kitchenwares}">
+					<div class="checkbox">
+						<label> <input name="kitchenware_id" type="checkbox"
+							value="${kitchenware.kitchenware_id}" onclick="filter2(this)">
+							${kitchenware.name}
+						</label>
+					</div>
+				</c:forEach>
 				<script>
 		    $('#fix').affix({
 			offset : {
