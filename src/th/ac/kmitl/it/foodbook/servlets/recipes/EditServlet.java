@@ -179,7 +179,6 @@ public class EditServlet extends HttpServlet {
                 
                 for (String recipeCategoryIdString : recipeCategoryIds) {
                     long recipeCategoryId = Long.parseLong(recipeCategoryIdString);
-                    recipesDAO.removeAllRecipeFromRecipeCategories(recipeId);
                     recipesDAO.addRecipeCategory(recipe.getRecipe_id(), recipeCategoryId);
                 }
                 
