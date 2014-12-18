@@ -20,6 +20,20 @@
 			</c:forEach>
 		</ul>
 		<form method="post" action="/recipes/search-by-ingredient">
+		<script>
+		function filterIngre(ev) {
+		    $('#myTabContent').find('input[type=checkbox]').each(function(i,e){
+				var input = $(e);
+				var label = $(e).next();
+				console.log(label.html());
+				console.log(ev.value);
+				if ($.contains(label.html(), ev.value)) {
+				    console.log(label);
+				}
+		    });
+		}
+		</script>
+		<input class="form-control" onkeyup="filterIngre(this)">
 		<div id="myTabContent" class="tab-content">
 			<c:forEach begin="0" end="${fn:length(ingredients) - 1}" var="j">
 				<div class="tab-pane fade<c:if test="${j == 0}"> active in</c:if>" id="ingredient-category-${i}">
