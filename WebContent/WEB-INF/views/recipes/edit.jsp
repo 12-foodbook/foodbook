@@ -124,7 +124,7 @@
 							<div class="col-sm-8">
 								<input name="step_photo" class="form-control" type="file"
 									onchange="fileChanged(this)"> <input
-									name="step_photo_url" class="form-control" type="hidden" value="${recipeStepPhotos[i].photo_url}">
+									name="step_photo_url" class="form-control" type="hidden" value="${recipeStepPhotos[i][0].photo_url}">
 							</div>
 						</div>
 					</c:forEach>
