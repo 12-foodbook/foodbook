@@ -106,7 +106,7 @@
 				<div id="recipe-steps">
 					<c:forEach var="i" begin="0" end="${fn:length(recipeSteps) - 1}">
 						<hr>
-						<img src="../img/remove_red.png" alt="remove" width="22px" height="22px" style="cursor:pointer"/>'
+						<img src="../img/remove_red.png" alt="remove" width="22px" height="22px" style=cursor:pointer/>
 						<div class="form-group">
 							<label class="col-sm-4 control-label label-create">หัวข้อขั้นตอน</label>
 							<div class="col-sm-8">
