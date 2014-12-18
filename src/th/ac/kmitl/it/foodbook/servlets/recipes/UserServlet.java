@@ -16,9 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import th.ac.kmitl.it.foodbook.beans.Kitchenware;
 import th.ac.kmitl.it.foodbook.beans.Recipe;
 import th.ac.kmitl.it.foodbook.beans.RecipeCategory;
 import th.ac.kmitl.it.foodbook.beans.User;
+import th.ac.kmitl.it.foodbook.daos.KitchenwaresDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipeCategoriesDAO;
 import th.ac.kmitl.it.foodbook.daos.RecipesDAO;
 import th.ac.kmitl.it.foodbook.daos.UsersDAO;
@@ -38,6 +40,8 @@ public class UserServlet extends HttpServlet {
         List<Recipe> recipes = null;
         List<RecipeCategory> recipeCategories = null;
         List<List<RecipeCategory>> recipesCategories = null;
+        List<Kitchenware> kitchenwares = null;
+        List<List<Kitchenware>> recipesKitchenwares = null;
         
         DataSource ds = (DataSource) request.getServletContext().getAttribute("ds");
         
@@ -71,12 +75,19 @@ public class UserServlet extends HttpServlet {
             RecipeCategoriesDAO recipeCategoriesDAO = new RecipeCategoriesDAO(conn);
             recipesCategories = new ArrayList<List<RecipeCategory>>();
             
+            KitchenwaresDAO kitchenwaresDAO = new KitchenwaresDAO(conn);
+            recipesKitchenwares = new ArrayList<List<Kitchenware>>();
+            
             for (Recipe recipe : recipes) {
                 List<RecipeCategory> aRecipesCategories = recipeCategoriesDAO.findByRecipeId(recipe.getRecipe_id());
                 recipesCategories.add(aRecipesCategories);
+                
+                List<Kitchenware> aRecipesKitchenwares = kitchenwaresDAO.findByRecipeId(recipe.getRecipe_id());
+                recipesKitchenwares.add(aRecipesKitchenwares);
             }
             
             recipeCategories = recipeCategoriesDAO.findAll();
+            kitchenwares = kitchenwaresDAO.findAll();
             
             conn.close();
         } catch (SQLException e) {
@@ -84,10 +95,12 @@ public class UserServlet extends HttpServlet {
             response.sendError(500);
         }
         
+        request.setAttribute("kitchenwares", kitchenwares);
         request.setAttribute("recipesUser", user);
         request.setAttribute("recipes", recipes);
         request.setAttribute("recipeCategories", recipeCategories);
         request.setAttribute("recipesCategories", recipesCategories);
+        request.setAttribute("recipesKitchenwares", recipesKitchenwares);
         
         request.getRequestDispatcher("/WEB-INF/views/recipes/user.jsp").include(request, response);
     }

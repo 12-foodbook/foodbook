@@ -73,18 +73,17 @@
 										</a>
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-5">
-										<h2>${recipes[i].name}</h2>
-										<p>
-											<b>โดย</b> ${recipesUsers[i].username}
-										</p>
-										<p>
-											<c:forEach begin="1" end="${recipes[i].averageRate}"
-												var='star'>
-												<span class='glyphicon glyphicon-star'
-													style='color: gold; font-size: x-large;'></span>
-											</c:forEach>
-										</p>
-										${recipes[i].description}
+										<a href="/recipes/show?id=${recipes[i].recipe_id}"><h2>${recipes[i].name}</h2>
+											<p>
+												<b>โดย</b> ${recipesUsers[i].username}
+											</p>
+											<p>
+												<c:forEach begin="1" end="${recipes[i].averageRate}"
+													var='star'>
+													<span class='glyphicon glyphicon-star'
+														style='color: gold; font-size: x-large;'></span>
+												</c:forEach>
+											</p> ${recipes[i].description}</a>
 									</div>
 									<div class="col-xs-12 col-md-3">
 										<c:if test="${param.id == recipeUser.user_id}">
@@ -95,10 +94,10 @@
 												<!-- Button trigger modal -->
 												<button type="button" class="btn btn-danger btn-block"
 													data-toggle="modal"
-													data-target="#myModal_${recipes[i].name}" onclick="magic">ลบ</button>
+													data-target="#myModal_${recipes[i].recipe_id}">ลบ</button>
 
 												<!-- Modal -->
-												<div class="modal fade" id="myModal_${recipes[i].name}"
+												<div class="modal fade" id="myModal_${recipes[i].recipe_id}"
 													tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 													aria-hidden="true">
 													<div class="modal-dialog">

@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
 
-.recipe-panel {
+.recipe-panel a {
 	color: #333 !important;
 }
 
-.recipe-panel:hover {
+.recipe-panel a:hover {
 	text-decoration: none;
 }
 
