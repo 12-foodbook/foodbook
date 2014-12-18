@@ -25,10 +25,13 @@
 		    $('#myTabContent').find('input[type=checkbox]').each(function(i,e){
 				var input = $(e);
 				var label = $(e).next();
-				console.log(label.html());
-				console.log(ev.value);
-				if ($.contains(label.html(), ev.value)) {
-				    console.log(label);
+				console.log($.trim(label.html()).indexOf(ev.value) >= 0);
+				if ($.trim(label.html()).indexOf(ev.value) >= 0) {
+				    input.show();
+				    label.show();
+				} else {
+				    input.hide();
+				    label.hide();
 				}
 		    });
 		}
