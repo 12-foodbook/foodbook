@@ -1,6 +1,8 @@
 package th.ac.kmitl.it.foodbook.filters;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,6 +14,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
+
+import th.ac.kmitl.it.foodbook.beans.User;
+import th.ac.kmitl.it.foodbook.daos.UsersDAO;
 
 @WebFilter({
     "/favorites/index",
@@ -34,12 +40,34 @@ public class UserAuthenticationFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession();
+        
+        if(session.getAttribute("user") != null){
+            DataSource ds = (DataSource) httpRequest.getServletContext().getAttribute("ds");
+            try{
+                Connection conn = ds.getConnection();
+                UsersDAO usersDAO = new UsersDAO(conn);
+                User user = (User) session.getAttribute("user");
+                User userdb = usersDAO.findByUsername(user.getUsername());
+                
+                
+                if(userdb == null){
+                    session.setAttribute("user", null);
+                }
+                conn.close();
+                
+                
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+        
         if (session.getAttribute("user") == null) {
             session.setAttribute("referrer", new String(httpRequest.getRequestURL().append('?').append(httpRequest.getQueryString())));
             httpResponse.sendRedirect("/users/authenticate");
-        } else {
-            chain.doFilter(request, response);
+            return;
         }
+        
+        chain.doFilter(request, response);
     }
     
     public void init(FilterConfig fConfig) throws ServletException {
