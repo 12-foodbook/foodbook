@@ -119,7 +119,7 @@
 								<c:forEach var="aRecipeCategory" items="${recipesCategoriesPartial[i]}">
 											data-recipe-category-${aRecipeCategory.recipe_category_id}
 										</c:forEach>
-								<c:forEach var="recipeKitchenware" items="${recipeKitchenwaresPartial[i]}">
+								<c:forEach var="recipeKitchenware" items="${recipesKitchenwaresPartial[i]}">
 											data-kitchenware-category-${recipeKitchenware.kitchenware_id}
 										</c:forEach>
 								class="recipe-panel">
