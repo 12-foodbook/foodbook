@@ -150,7 +150,7 @@
 						</c:forEach>
 									</p><b>หมวดหมู่:</b>
 									<c:forEach var="aRecipeCategory"
-										items="${recipesCategories[i]}">
+										items="${recipesCategoriesPartial[i]}">
 											${aRecipeCategory.name} 
 										</c:forEach>
 								</div>

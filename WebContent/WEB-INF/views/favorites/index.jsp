@@ -91,7 +91,7 @@
 												<!-- Button trigger modal -->
 												<button type="button" class="btn btn-danger btn-block"
 													data-toggle="modal"
-													data-target="#myModal_${recipes[i].name}">ลบ</button>
+													data-target="#myModal_${recipes[i].name}" onclick="magic">ลบ</button>
 
 												<!-- Modal -->
 												<div class="modal fade" id="myModal_${recipes[i].name}"
